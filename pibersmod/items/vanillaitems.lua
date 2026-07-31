@@ -457,6 +457,70 @@ function PibersMod:PostAddCollectible(collectibleID, charge, firstTime, slot, va
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PibersMod.PostAddCollectible)
 
+PibersMod.IncubusShootToBrimstone = {
+	ShootDown = "Shoot2Down",
+	ShootSide = "Shoot2Side",
+	ShootUp = "Shoot2Up",
+	FloatShootDown = "Shoot2Down",
+	FloatShootSide = "Shoot2Side",
+	FloatShootUp = "Shoot2Up"
+}
+PibersMod.IncubusShootToBrimstoneFloat = {
+	ShootDown = "FloatShoot2Down",
+	ShootSide = "FloatShoot2Side",
+	ShootUp = "FloatShoot2Up",
+	FloatShootDown = "FloatShoot2Down",
+	FloatShootSide = "FloatShoot2Side",
+	FloatShootUp = "FloatShoot2Up",
+	Shoot2Down = "FloatShoot2Down",
+	Shoot2Side = "FloatShoot2Side",
+	Shoot2Up = "FloatShoot2Up",
+	FloatShoot2Down = "FloatShoot2Down",
+	FloatShoot2Side = "FloatShoot2Side",
+	FloatShoot2Up = "FloatShoot2Up"
+}
+function PibersMod:OnIncubusUpdate(incubus)
+	local player = incubus.Player
+	if player ~= nil and player:Exists() and player.Type == EntityType.ENTITY_PLAYER then
+		if player:ToPlayer() then
+			player = player:ToPlayer()
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then
+				local data = PibersMod.GetData(incubus)
+				local sprite = incubus:GetSprite()
+				local foundAnim = nil
+				for animationPlaying, animationShouldPlay in pairs(PibersMod.IncubusShootToBrimstone) do
+					if sprite:IsPlaying(animationPlaying) then
+						sprite:Play(animationShouldPlay, true)
+						foundAnim = animationShouldPlay
+						break
+					end
+				end
+				if foundAnim then
+					if not data.BrimShootAnim then
+						data.BrimShootAnim = foundAnim
+					end
+					if not data.BrimShootFrame then
+						data.BrimShootFrame = incubus.FrameCount
+					end
+					local diff = math.floor((incubus.FrameCount-data.BrimShootFrame)/2)
+					if diff >= 8 then
+						foundAnim = PibersMod.IncubusShootToBrimstoneFloat[data.BrimShootAnim]
+						if data.BrimShootAnim ~= foundAnim then
+							data.BrimShootAnim = foundAnim
+						end
+						diff = diff-8
+					end
+					sprite:SetFrame(data.BrimShootAnim, diff)
+				else
+					data.BrimShootAnim = nil
+					data.BrimShootFrame = nil
+				end
+			end
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, PibersMod.OnIncubusUpdate, FamiliarVariant.INCUBUS)
+
 --[[
 PibersMod.HudSlotSprite = {}
 PibersMod.HudSlotSprite.Active = Sprite("gfx/ui/ui_slots.anm2", true)
