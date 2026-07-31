@@ -1,0 +1,67 @@
+<data>
+    <entity Image="gfx/blessing.png" Group="Pickups" Kind="Pibersmod" Name="Blessing" ID="5" Variant="10" Subtype="230" />
+
+    <entity Image="gfx/basement.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Basement Backdrop" ID="533" Variant="3331" Subtype="1" />
+    <entity Image="gfx/cellar.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Cellar Backdrop" ID="533" Variant="3331" Subtype="2" />
+    <entity Image="gfx/burning basement.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Burning Basement Backdrop" ID="533" Variant="3331" Subtype="3" />
+    <entity Image="gfx/caves.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Caves Backdrop" ID="533" Variant="3331" Subtype="4" />
+    <entity Image="gfx/catacombs.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Catacombs Backdrop" ID="533" Variant="3331" Subtype="5" />
+    <entity Image="gfx/flooded caves.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Flooded Caves Backdrop" ID="533" Variant="3331" Subtype="6" />
+    <entity Image="gfx/depths.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Depths Backdrop" ID="533" Variant="3331" Subtype="7" />
+    <entity Image="gfx/necropolis.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Necropolis Backdrop" ID="533" Variant="3331" Subtype="8" />
+    <entity Image="gfx/dank depths.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dank Depths Backdrop" ID="533" Variant="3331" Subtype="9" />
+    <entity Image="gfx/womb.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Womb Backdrop" ID="533" Variant="3331" Subtype="10" />
+    <entity Image="gfx/utero.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Utero Backdrop" ID="533" Variant="3331" Subtype="11" />
+    <entity Image="gfx/scarred womb.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Scarred Womb Backdrop" ID="533" Variant="3331" Subtype="12" />
+    <entity Image="gfx/blue womb.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Blue Womb Backdrop" ID="533" Variant="3331" Subtype="13" />
+    <entity Image="gfx/sheol.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Sheol Backdrop" ID="533" Variant="3331" Subtype="14" />
+    <entity Image="gfx/cathedral.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Cathedral Backdrop" ID="533" Variant="3331" Subtype="15" />
+    <entity Image="gfx/dark room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dark Room Backdrop" ID="533" Variant="3331" Subtype="16" />
+    <entity Image="gfx/chest.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Chest Backdrop" ID="533" Variant="3331" Subtype="17" />
+    <entity Image="gfx/mega satan.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mega Satan Backdrop" ID="533" Variant="3331" Subtype="18" />
+    <entity Image="gfx/library.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Library Backdrop" ID="533" Variant="3331" Subtype="19" />
+    <entity Image="gfx/shop.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Shop Backdrop" ID="533" Variant="3331" Subtype="20" />
+    <entity Image="gfx/isaacs room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Isaacs Room Backdrop" ID="533" Variant="3331" Subtype="21" />
+    <entity Image="gfx/barren room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Barren Room Backdrop" ID="533" Variant="3331" Subtype="22" />
+    <entity Image="gfx/secret room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Secret Room Backdrop" ID="533" Variant="3331" Subtype="23" />
+    <entity Image="gfx/dice room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dice Room Backdrop" ID="533" Variant="3331" Subtype="24" />
+    <entity Image="gfx/arcade.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Arcade Backdrop" ID="533" Variant="3331" Subtype="25" />
+    <entity Image="gfx/error.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Error Backdrop" ID="533" Variant="3331" Subtype="26" />
+    <entity Image="gfx/blue womb entrance.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Blue Womb Entrance Backdrop" ID="533" Variant="3331" Subtype="27" />
+    <entity Image="gfx/ultra greed.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Ultra Greed Backdrop" ID="533" Variant="3331" Subtype="28" />
+    <entity Image="gfx/crawlspace.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Crawlspace Backdrop" ID="533" Variant="3331" Subtype="29" />
+    <entity Image="gfx/sacrifice room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Sacrifice Room Backdrop" ID="533" Variant="3331" Subtype="30" />
+    <entity Image="gfx/downpour.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Downpour Backdrop" ID="533" Variant="3331" Subtype="31" />
+    <entity Image="gfx/mines.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mines Backdrop" ID="533" Variant="3331" Subtype="32" />
+    <entity Image="gfx/mausoleum.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mausoleum Backdrop" ID="533" Variant="3331" Subtype="33" />
+    <entity Image="gfx/corpse.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Corpse Backdrop" ID="533" Variant="3331" Subtype="34" />
+    <entity Image="gfx/planetarium.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Planetarium Backdrop" ID="533" Variant="3331" Subtype="35" />
+    <entity Image="gfx/downpour entrance.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Downpour Entrance Backdrop" ID="533" Variant="3331" Subtype="36" />
+    <entity Image="gfx/mines entrance.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mines Entrance Backdrop" ID="533" Variant="3331" Subtype="37" />
+    <entity Image="gfx/mausoleum entrance.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mausoleum Entrance Backdrop" ID="533" Variant="3331" Subtype="38" />
+    <entity Image="gfx/corpse entrance.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Corpse Entrance Backdrop" ID="533" Variant="3331" Subtype="39" />
+    <entity Image="gfx/mausoleum2.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mausoleum Alt Backdrop" ID="533" Variant="3331" Subtype="40" />
+    <entity Image="gfx/mausoleumb.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mausoleum Tele Alt Backdrop" ID="533" Variant="3331" Subtype="41" />
+    <entity Image="gfx/mausoleum boss.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mausoleum Boss Backdrop" ID="533" Variant="3331" Subtype="42" />
+    <entity Image="gfx/corpse2.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Corpse Gray Backdrop" ID="533" Variant="3331" Subtype="43" />
+    <entity Image="gfx/corpse3.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Corpse Bloody Backdrop" ID="533" Variant="3331" Subtype="44" />
+    <entity Image="gfx/dress.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dross Backdrop" ID="533" Variant="3331" Subtype="45" />
+    <entity Image="gfx/ashpit.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Ashpit Backdrop" ID="533" Variant="3331" Subtype="46" />
+    <entity Image="gfx/gehenna.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Gehenna Backdrop" ID="533" Variant="3331" Subtype="47" />
+    <entity Image="gfx/mortis.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mortis Backdrop" ID="533" Variant="3331" Subtype="48" />
+    <entity Image="gfx/isaacs bedroom.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Isaac's Bedroom Backdrop" ID="533" Variant="3331" Subtype="49" />
+    <entity Image="gfx/hallway.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Hallway Backdrop" ID="533" Variant="3331" Subtype="50" />
+    <entity Image="gfx/moms bedroom.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mom's Bedroom Backdrop" ID="533" Variant="3331" Subtype="51" />
+    <entity Image="gfx/closet.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Closet Backdrop" ID="533" Variant="3331" Subtype="52" />
+    <entity Image="gfx/closet tainted.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Tainted Closet Backdrop" ID="533" Variant="3331" Subtype="53" />
+    <entity Image="gfx/dogma.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dogma Backdrop" ID="533" Variant="3331" Subtype="54" />
+    <entity Image="gfx/gideon.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Gideon Backdrop" ID="533" Variant="3331" Subtype="55" />
+    <entity Image="gfx/rotgut.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Rotgut Backdrop" ID="533" Variant="3331" Subtype="56" />
+    <entity Image="gfx/beast.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Beast Backdrop" ID="533" Variant="3331" Subtype="57" />
+    <entity Image="gfx/mines shaft.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Mines Shaft Backdrop" ID="533" Variant="3331" Subtype="58" />
+    <entity Image="gfx/ashpit shaft.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Ashpit Shaft Backdrop" ID="533" Variant="3331" Subtype="59" />
+    <entity Image="gfx/closet dark.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Dark Closet Backdrop" ID="533" Variant="3331" Subtype="60" />
+    <entity Image="gfx/deathmatch.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Deathmatch Backdrop" ID="533" Variant="3331" Subtype="61" />
+    <entity Image="gfx/portal room.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Portal Room Backdrop" ID="533" Variant="3331" Subtype="62" />
+    <entity Image="gfx/rune room secret.png" Group="Force Backdrop" Kind="Pibersmod" Name="Force Rune Room Secret Backdrop" ID="533" Variant="3331" Subtype="101" />
+</data>

@@ -1,0 +1,10 @@
+**
+!.gitignore
+*/.gitignore
+!pibers mod/**
+!pibers mod lj patch/**
+!*/
+
+#idk why these still show up on github desktop
+restored hearts_3476266920/
+mod config menu_3701683951/

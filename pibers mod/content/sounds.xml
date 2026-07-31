@@ -1,0 +1,648 @@
+<sounds root="sfx/">
+	<sound name="rplus915">
+		<sample weight="1" path="spin_to_win.wav" />
+	</sound>
+	<sound name="rplus916">
+		<sample weight="1" path="godeeper_crawlspace_dig.wav" />
+	</sound>
+	<sound name="rplus917">
+		<sample weight="1" path="godeeper_crawlspace_open.wav" />
+	</sound>
+	<sound name="rplus918">
+		<sample weight="1" path="cage_death_start.wav" />
+	</sound>
+	<sound name="rplus919">
+		<sample weight="1" path="cage_jump_high.wav" />
+	</sound>
+	<sound name="rplus920">
+		<sample weight="1" path="cage_open_ribs.wav" />
+	</sound>
+	<sound name="rplus921">
+		<sample weight="1" path="cage_rolling_start.wav" />
+	</sound>
+	<sound name="rplus922">
+		<sample weight="1" path="cage_prep_shoot.wav" />
+	</sound>
+	<sound name="rplus923">
+		<sample weight="1" path="cage_rolling_stop.wav" />
+	</sound>
+	<sound name="rplus924">
+		<sample weight="1" path="cage_wall_bounce_01.wav" />
+		<sample weight="1" path="cage_wall_bounce_02.wav" />
+		<sample weight="1" path="cage_wall_bounce_03.wav" />
+	</sound>
+	<sound name="rplus925">
+		<sample weight="1" path="death_hourglass.wav" />
+	</sound>
+	<sound name="rplus926">
+		<sample weight="1" path="death_sickle_start_01.wav" />
+		<sample weight="1" path="death_sickle_start_02.wav" />
+		<sample weight="1" path="death_sickle_start_03.wav" />
+		<sample weight="1" path="death_sickle_start_04.wav" />
+	</sound>
+	<sound name="rplus927">
+		<sample weight="1" path="death_lean.wav" />
+	</sound>
+	<sound name="rplus928">
+		<sample weight="1" path="death_spawn_vox_01.wav" />
+		<sample weight="1" path="death_spawn_vox_02.wav" />
+		<sample weight="1" path="death_spawn_vox_03.wav" />
+	</sound>
+	<sound name="rplus929">
+		<sample weight="1" path="death_spawn_prep.wav" />
+	</sound>
+	<sound name="rplus930">
+		<sample weight="1" path="death_horse_attack.wav" />
+	</sound>
+	<sound name="rplus931">
+		<sample weight="1" path="death_horse_whoosh_01.wav" />
+		<sample weight="1" path="death_horse_whoosh_02.wav" />
+		<sample weight="1" path="death_horse_whoosh_03.wav" />
+		<sample weight="1" path="death_horse_whoosh_04.wav" />
+	</sound>
+	<sound name="rplus932">
+		<sample weight="1" path="pin/frail_dive.wav" />
+	</sound>
+	<sound name="rplus933">
+		<sample weight="1" path="pin/frail_popup.wav" />
+	</sound>
+	<sound name="rplus934">
+		<sample weight="1" path="pin/frail_puddle_01.wav" />
+		<sample weight="1" path="pin/frail_puddle_02.wav" />
+		<sample weight="1" path="pin/frail_puddle_03.wav" />
+		<sample weight="1" path="pin/frail_puddle_04.wav" />
+		<sample weight="1" path="pin/frail_puddle_05.wav" />
+	</sound>
+	<sound name="rplus935">
+		<sample weight="1" path="pin/frail_spit.wav" />
+	</sound>
+	<sound name="rplus936">
+		<sample weight="1" path="gish/gish_jump_01.wav" />
+		<sample weight="1" path="gish/gish_jump_02.wav" />
+		<sample weight="1" path="gish/gish_jump_03.wav" />
+	</sound>
+	<sound name="rplus937">
+		<sample weight="1" path="gish/gish_jump_high.wav" />
+	</sound>
+	<sound name="rplus938">
+		<sample weight="1" path="gish/gish_spit_tar.wav" />
+	</sound>
+	<sound name="rplus939">
+		<sample weight="1" path="gurdy/gurdy_face_attack_appear.wav" />
+	</sound>
+	<sound name="rplus940">
+		<sample weight="1" path="gurdy/gurdy_face_attack_hide.wav" />
+	</sound>
+	<sound name="rplus941">
+		<sample weight="1" path="gurdy/gurdy_face_smile_appear.wav" />
+	</sound>
+	<sound name="rplus942">
+		<sample weight="1" path="gurdy/gurdy_face_smile_hide.wav" />
+	</sound>
+	<sound name="rplus943">
+		<sample weight="1" path="gurglings/gurglings_attack_01.wav" />
+		<sample weight="1" path="gurglings/gurglings_attack_02.wav" />
+		<sample weight="1" path="gurglings/gurglings_attack_03.wav" />
+	</sound>
+	<sound name="rplus944">
+		<sample weight="1" path="littlehorn/littlehorn_death.wav" />
+	</sound>
+	<sound name="rplus945">
+		<sample weight="1" path="littlehorn/littlehorn_hole_bombthrow.wav" />
+	</sound>
+	<sound name="rplus946">
+		<sample weight="1" path="littlehorn/littlehorn_hole_dive_01.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_dive_02.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_dive_03.wav" />
+	</sound>
+	<sound name="rplus947">
+		<sample weight="1" path="littlehorn/littlehorn_hole_open_01.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_open_02.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_open_03.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_open_04.wav" />
+	</sound>
+	<sound name="rplus948">
+		<sample weight="1" path="littlehorn/littlehorn_hole_riseup_01.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_riseup_02.wav" />
+		<sample weight="1" path="littlehorn/littlehorn_hole_riseup_03.wav" />
+	</sound>
+	<sound name="rplus949">
+		<sample weight="1" path="loki/loki_jump_giggle.wav" />
+	</sound>
+	<sound name="rplus950">
+		<sample weight="1" path="loki/loki_jump_out.wav" />
+	</sound>
+	<sound name="rplus951">
+		<sample weight="1" path="loki/loki_jump_in.wav" />
+	</sound>
+	<sound name="rplus952">
+		<sample weight="1" path="loki/loki_shoot.wav" />
+	</sound>
+	<sound name="rplus953">
+		<sample weight="1" path="loki/loki_shoot_8way.wav" />
+	</sound>
+	<sound name="rplus954">
+		<sample weight="1" path="maskinfamy/maskinfamy_mad.wav" />
+	</sound>
+	<sound name="rplus955">
+		<sample weight="1" path="maskinfamy/maskinfamy_dash_01.wav" />
+		<sample weight="1" path="maskinfamy/maskinfamy_dash_02.wav" />
+		<sample weight="1" path="maskinfamy/maskinfamy_dash_03.wav" />
+		<sample weight="1" path="maskinfamy/maskinfamy_dash_04.wav" />
+	</sound>
+	<sound name="rplus956">
+		<sample weight="1" path="megafatty/megafatty_gulp.wav" />
+	</sound>
+	<sound name="rplus957">
+		<sample weight="1" path="megafatty/megafatty_suckin.wav" />
+	</sound>
+	<sound name="rplus958">
+		<sample weight="1" path="megafatty/megafatty_vomit.wav" />
+	</sound>
+	<sound name="rplus959">
+		<sample weight="1" path="stain/stain_attack_vox.wav" />
+	</sound>
+	<sound name="rplus960">
+		<sample weight="1" path="sistersvis/sistersvis_scare.wav" />
+	</sound>
+	<sound name="rplus961">
+		<sample weight="1" path="steven/steven_teardeath_big.wav" />
+	</sound>
+	<sound name="rplus962">
+		<sample weight="1" path="steven/steven_teardeath_small.wav" />
+	</sound>
+	<sound name="rplus963">
+		<sample weight="1" path="steven/steven_small_growl_01.wav" />
+		<sample weight="1" path="steven/steven_small_growl_02.wav" />
+		<sample weight="1" path="steven/steven_small_growl_03.wav" />
+		<sample weight="1" path="steven/steven_small_growl_04.wav" />
+	</sound>
+	<sound name="rplus964">
+		<sample weight="1" path="fallen/fallen_chase_flap_01.wav" />
+		<sample weight="1" path="fallen/fallen_chase_flap_02.wav" />
+		<sample weight="1" path="fallen/fallen_chase_flap_03.wav" />
+		<sample weight="1" path="fallen/fallen_chase_flap_04.wav" />
+		<sample weight="1" path="fallen/fallen_chase_flap_05.wav" />
+		<sample weight="1" path="fallen/fallen_chase_flap_06.wav" />
+	</sound>
+	<sound name="rplus965">
+		<sample weight="1" path="fallen/fallen_chase_growl_01.wav" />
+		<sample weight="1" path="fallen/fallen_chase_growl_02.wav" />
+		<sample weight="1" path="fallen/fallen_chase_growl_03.wav" />
+		<sample weight="1" path="fallen/fallen_chase_growl_04.wav" />
+	</sound>
+	<sound name="rplus966">
+		<sample weight="1" path="fallen/fallen_flap_01.wav" />
+		<sample weight="1" path="fallen/fallen_flap_02.wav" />
+		<sample weight="1" path="fallen/fallen_flap_03.wav" />
+		<sample weight="1" path="fallen/fallen_flap_04.wav" />
+	</sound>
+	<sound name="rplus967">
+		<sample weight="1" path="fallen/fallen_open_wings.wav" />
+	</sound>
+	<sound name="rplus968">
+		<sample weight="1" path="teratoma/teratoma_bounce_large_01.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_large_02.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_large_03.wav" />
+	</sound>
+	<sound name="rplus969">
+		<sample weight="1" path="teratoma/teratoma_bounce_medium_01.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_medium_02.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_medium_03.wav" />
+	</sound>
+	<sound name="rplus970">
+		<sample weight="1" path="teratoma/teratoma_bounce_small_01.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_small_02.wav" />
+		<sample weight="1" path="teratoma/teratoma_bounce_small_03.wav" />
+	</sound>
+	<sound name="rplus971">
+		<sample weight="1" path="forsaken/forsaken_blood_laser.wav" />
+	</sound>
+	<sound name="rplus972">
+		<sample weight="1" path="forsaken/forsaken_arms_up_01.wav" />
+		<sample weight="1" path="forsaken/forsaken_arms_up_02.wav" />
+	</sound>
+	<sound name="rplus973">
+		<sample weight="1" path="forsaken/forsaken_ghost_fade.wav" />
+	</sound>
+	<sound name="rplus974">
+		<sample weight="1" path="fistula/fistula_bounce_large_01.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_large_02.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_large_03.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_large_04.wav" />
+	</sound>
+	<sound name="rplus975">
+		<sample weight="1" path="fistula/fistula_bounce_medium_01.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_medium_02.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_medium_03.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_medium_04.wav" />
+	</sound>
+	<sound name="rplus976">
+		<sample weight="1" path="fistula/fistula_bounce_small_01.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_small_02.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_small_03.wav" />
+		<sample weight="1" path="fistula/fistula_bounce_small_04.wav" />
+	</sound>
+	<sound name="rplus977">
+		<sample weight="1" path="fistula/fistula_burst_large.wav" />
+	</sound>
+	<sound name="rplus978">
+		<sample weight="1" path="fistula/fistula_growl_large_01.wav" />
+		<sample weight="1" path="fistula/fistula_growl_large_02.wav" />
+		<sample weight="1" path="fistula/fistula_growl_large_03.wav" />
+		<sample weight="1" path="fistula/fistula_growl_large_04.wav" />
+		<sample weight="1" path="fistula/fistula_growl_large_05.wav" />
+	</sound>
+	<sound name="rplus979">
+		<sample weight="1" path="fistula/fistula_growl_medium_01.wav" />
+		<sample weight="1" path="fistula/fistula_growl_medium_02.wav" />
+		<sample weight="1" path="fistula/fistula_growl_medium_03.wav" />
+		<sample weight="1" path="fistula/fistula_growl_medium_04.wav" />
+		<sample weight="1" path="fistula/fistula_growl_medium_05.wav" />
+	</sound>
+	<sound name="rplus980">
+		<sample weight="1" path="fistula/fistula_growl_small_01.wav" />
+		<sample weight="1" path="fistula/fistula_growl_small_02.wav" />
+		<sample weight="1" path="fistula/fistula_growl_small_03.wav" />
+		<sample weight="1" path="fistula/fistula_growl_small_04.wav" />
+		<sample weight="1" path="fistula/fistula_growl_small_05.wav" />
+	</sound>
+	<sound name="rplus981">
+		<sample weight="1" path="ragmega/RagMega_ball_attack.wav" />
+	</sound>
+	<sound name="rplus982">
+		<sample weight="1" path="ragmega/RagMega_beam.wav" />
+	</sound>
+	<sound name="rplus983">
+		<sample weight="1" path="ragmega/RagMega_inhale.wav" />
+	</sound>
+	<sound name="rplus984">
+		<sample weight="1" path="ragmega/RagMega_exhale.wav" />
+	</sound>
+	<sound name="rplus985">
+		<sample weight="1" path="ragmega/RagMega_invincible_on.wav" />
+	</sound>
+	<sound name="rplus986">
+		<sample weight="1" path="ragmega/RagMega_invincible_off.wav" />
+	</sound>
+	<sound name="rplus987">
+		<sample weight="1" path="blastocyst/blastocyst_bigjump.wav" />
+	</sound>
+	<sound name="rplus988">
+		<sample weight="1" path="blastocyst/blastocyst_jump_01.wav" />
+		<sample weight="1" path="blastocyst/blastocyst_jump_02.wav" />
+		<sample weight="1" path="blastocyst/blastocyst_jump_03.wav" />
+	</sound>
+	<sound name="rplus989">
+		<sample weight="1" path="blastocyst/blastocyst_littlejump_01.wav" />
+		<sample weight="1" path="blastocyst/blastocyst_littlejump_02.wav" />
+		<sample weight="1" path="blastocyst/blastocyst_littlejump_03.wav" />
+	</sound>
+	<sound name="rplus990">
+		<sample weight="1" path="drop_poop.wav" />
+	</sound>
+	<sound name="rplus991">
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_01.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_02.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_03.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_04.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_05.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_06.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_bounce_07.wav" />
+	</sound>
+	<sound name="rplus992">
+		<sample weight="1" path="carrionqueen/carrionqueen_diagstart.wav" />
+	</sound>
+	<sound name="rplus993">
+		<sample weight="1" path="carrionqueen/carrionqueen_diagvox_01.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_diagvox_02.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_diagvox_03.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_diagvox_04.wav" />
+	</sound>
+	<sound name="rplus994">
+		<sample weight="1" path="carrionqueen/carrionqueen_roar_01.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_roar_02.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_roar_03.wav" />
+		<sample weight="1" path="carrionqueen/carrionqueen_roar_04.wav" />
+	</sound>
+	<sound name="rplus995">
+		<sample weight="1" path="haunt/haunt_charge_01.wav" />
+		<sample weight="1" path="haunt/haunt_charge_02.wav" />
+		<sample weight="1" path="haunt/haunt_charge_03.wav" />
+	</sound>
+	<sound name="rplus996">
+		<sample weight="1" path="haunt/haunt_death.wav" />
+	</sound>
+	<sound name="rplus997">
+		<sample weight="1" path="haunt/haunt_random_01.wav" />
+		<sample weight="1" path="haunt/haunt_random_02.wav" />
+		<sample weight="1" path="haunt/haunt_random_03.wav" />
+	</sound>
+	<sound name="rplus998">
+		<sample weight="1" path="haunt/haunt_release_lilhaunts_01.wav" />
+		<sample weight="1" path="haunt/haunt_release_lilhaunts_02.wav" />
+		<sample weight="1" path="haunt/haunt_release_lilhaunts_03.wav" />
+	</sound>
+	<sound name="rplus999">
+		<sample weight="1" path="larryjr/larryjr_death_01.wav" />
+	</sound>
+	<sound name="rplus1000">
+		<sample weight="1" path="larryjr/larryjr_death_02.wav" />
+	</sound>
+	<sound name="rplus1001">
+		<sample weight="1" path="larryjr/larryjr_vocal_01.wav" />
+		<sample weight="1" path="larryjr/larryjr_vocal_02.wav" />
+		<sample weight="1" path="larryjr/larryjr_vocal_03.wav" />
+		<sample weight="1" path="larryjr/larryjr_vocal_04.wav" />
+	</sound>
+	<sound name="rplus1002">
+		<sample weight="1" path="megafatty/megafatty_megafart.wav" />
+	</sound>
+	<sound name="rplus1003">
+		<sample weight="1" path="hollow/hollow_death_01.wav" />
+	</sound>
+	<sound name="rplus1004">
+		<sample weight="1" path="hollow/hollow_death_02.wav" />
+	</sound>
+	<sound name="rplus1005">
+		<sample weight="1" path="hollow/hollow_vocal_01.wav" />
+		<sample weight="1" path="hollow/hollow_vocal_02.wav" />
+		<sample weight="1" path="hollow/hollow_vocal_03.wav" />
+		<sample weight="1" path="hollow/hollow_vocal_04.wav" />
+	</sound>
+	<sound name="rplus1006">
+		<sample weight="1" path="war/war_knockdown_01.wav" />
+		<sample weight="1" path="war/war_knockdown_02.wav" />
+		<sample weight="1" path="war/war_knockdown_03.wav" />
+		<sample weight="1" path="war/war_knockdown_04.wav" />
+	</sound>
+	<sound name="rplus1007">
+		<sample weight="1" path="war/war_triplecharge_01.wav" />
+		<sample weight="1" path="war/war_triplecharge_02.wav" />
+		<sample weight="1" path="war/war_triplecharge_03.wav" />
+		<sample weight="1" path="war/war_triplecharge_04.wav" />
+	</sound>
+	<sound name="rplus1008">
+		<sample weight="1" path="amb_monsters_nextdoor_01.wav" />
+		<sample weight="1" path="amb_monsters_nextdoor_07.wav" />
+	</sound>
+	<sound name="rplus1009">
+		<sample weight="1" path="cambri_conception.wav" />
+	</sound>
+	<sound name="rplus1010">
+		<sample weight="1" path="immac_conception.wav" />
+	</sound>
+	<sound name="rplus1011">
+		<sample weight="1" path="chargedbaby_battery.wav" />
+	</sound>
+	<sound name="rplus1012">
+		<sample weight="1" path="chargedbaby_charge.wav" />
+	</sound>
+	<sound name="rplus1013">
+		<sample weight="1" path="chargedbaby_stun.wav" />
+	</sound>
+	<sound name="rplus1014">
+		<sample weight="1" path="shinyrock_shimmer.wav" />
+	</sound>
+	<sound name="rplus1015">
+		<sample weight="1" path="bluespider_die.wav" />
+	</sound>
+	<sound name="rplus1016">
+		<sample weight="1" path="sissylonglegs_charm.wav" />
+	</sound>
+	<sound name="rplus1017">
+		<sample weight="1" path="item_raise.wav" />
+	</sound>
+	<sound name="rplus1018">
+		<sample weight="1" path="clog/clog_poopsmoke.wav" />
+	</sound>
+	<sound name="rplus1019">
+		<sample weight="1" path="friendlyball_capture.wav" />
+	</sound>
+	<sound name="rplus1020">
+		<sample weight="1" path="friendlyball_land.wav" />
+	</sound>
+	<sound name="rplus1021">
+		<sample weight="1" path="friendlyball_pickup.wav" />
+	</sound>
+	<sound name="rplus1022">
+		<sample weight="1" path="friendlyball_raise.wav" />
+	</sound>
+	<sound name="rplus1023">
+		<sample weight="1" path="friendlyball_release.wav" />
+	</sound>
+	<sound name="rplus1024">
+		<sample weight="1" path="friendlyball_throw.wav" />
+	</sound>
+	<sound name="rplus1025">
+		<sample weight="1" path="bestfriend.wav" />
+	</sound>
+	<sound name="rplus1026">
+		<sample weight="1" path="bookofshadows.wav" />
+	</sound>
+	<sound name="rplus1027">
+		<sample weight="1" path="bookofshadows_end.wav" />
+	</sound>
+	<sound name="rplus1028">
+		<sample weight="1" path="bookofshadows_sigil.wav" />
+	</sound>
+	<sound name="rplus1029">
+		<sample weight="1" path="boxofspiders.wav" />
+	</sound>
+	<sound name="rplus1030">
+		<sample weight="1" path="suplex_activate.wav" />
+	</sound>
+	<sound name="rplus1031">
+		<sample weight="1" path="suplex_grab.wav" />
+	</sound>
+	<sound name="rplus1032">
+		<sample weight="1" path="suplex_jump.wav" />
+	</sound>
+	<sound name="rplus1033">
+		<sample weight="1" path="suplex_land.wav" />
+	</sound>
+	<sound name="rplus1034">
+		<sample weight="1" path="deadsceascrolls.wav" />
+	</sound>
+	<sound name="rplus1035">
+		<sample weight="1" path="momsbra.wav" />
+	</sound>
+	<sound name="rplus1036">
+		<sample weight="1" path="redcandle.wav" />
+	</sound>
+	<sound name="rplus1037">
+		<sample weight="1" path="satanicbible.wav" />
+	</sound>
+	<sound name="rplus1038">
+		<sample weight="1" path="thebible.wav" />
+	</sound>
+	<sound name="rplus1039">
+		<sample weight="1" path="hourglass.wav" />
+	</sound>
+	<sound name="rplus1040">
+		<sample weight="1" path="megamush_end.wav" />
+	</sound>
+	<sound name="rplus1041">
+		<sample weight="1" path="magicskin.wav" />
+	</sound>
+	<sound name="rplus1042">
+		<sample weight="1" path="bookofsin.wav" />
+	</sound>
+	<sound name="rplus1043">
+		<sample weight="1" path="brokenshovel.wav" />
+	</sound>
+	<sound name="rplus1044">
+		<sample weight="1" path="dullrazor.wav" />
+	</sound>
+	<sound name="rplus1045">
+		<sample weight="1" path="darkarts_activate.wav" />
+	</sound>
+	<sound name="rplus1046">
+		<sample weight="1" path="decapattack.wav" />
+	</sound>
+	<sound name="rplus1047">
+		<sample weight="1" path="decapattack_throw.wav" />
+	</sound>
+	<sound name="rplus1048">
+		<sample weight="1" path="esaujr.wav" />
+	</sound>
+	<sound name="rplus1049">
+		<sample weight="1" path="necromancer.wav" />
+	</sound>
+	<sound name="rplus1050">
+		<sample weight="1" path="gello.wav" />
+	</sound>
+	<sound name="rplus1051">
+		<sample weight="1" path="heavenslightdoor.wav" />
+	</sound>
+	<sound name="rplus1052">
+		<sample weight="1" path="trapdoor_jump.wav" />
+	</sound>
+	<sound name="rplus1053">
+		<sample weight="1" path="crystalball.wav" />
+	</sound>
+	<sound name="rplus1054">
+		<sample weight="1" path="forgetmenow.wav" />
+	</sound>
+	<sound name="rplus1055">
+		<sample weight="1" path="howtojump.wav" />
+	</sound>
+	<sound name="rplus1056">
+		<sample weight="1" path="ivbag.wav" />
+	</sound>
+	<sound name="rplus1057">
+		<sample weight="1" path="notchedaxe.wav" />
+	</sound>
+	<sound name="rplus1058">
+		<sample weight="1" path="razorblade.wav" />
+	</sound>
+	<sound name="rplus1059">
+		<sample weight="1" path="telepathydummy.wav" />
+	</sound>
+	<sound name="rplus1060">
+		<sample weight="1" path="jar_of_flies.wav" />
+	</sound>
+	<sound name="rplus1061">
+		<sample weight="1" path="diplopia.wav" />
+	</sound>
+	<sound name="rplus1062">
+		<sample weight="1" path="minecrafter.wav" />
+	</sound>
+	<sound name="rplus1063">
+		<sample weight="1" path="teardetonator.wav" />
+	</sound>
+	<sound name="rplus1064">
+		<sample weight="1" path="ventriclerazor.wav" />
+	</sound>
+	<sound name="rplus1065">
+		<sample weight="1" path="woodennickel.wav" />
+	</sound>
+	<sound name="rplus1066">
+		<sample weight="1" path="woodennickel_spawn.wav" />
+	</sound>
+	<sound name="rplus1067">
+		<sample weight="1" path="blackhole_raise.wav" />
+	</sound>
+	<sound name="rplus1068">
+		<sample weight="1" path="blackhole_throw.wav" />
+	</sound>
+	<sound name="rplus1069">
+		<sample weight="1" path="mr_me.wav" />
+	</sound>
+	<sound name="rplus1070">
+		<sample weight="1" path="sprinkler.wav" />
+	</sound>
+	<sound name="rplus1071">
+		<sample weight="1" path="void_success.wav" />
+	</sound>
+	<sound name="rplus1072">
+		<sample weight="1" path="void_fail.wav" />
+	</sound>
+	<sound name="rplus1073">
+		<sample weight="1" path="abyss_success.wav" />
+	</sound>
+	<sound name="rplus1074">
+		<sample weight="1" path="bagofcrafting.wav" />
+	</sound>
+	<sound name="rplus1075">
+		<sample weight="1" path="goldbosschest_open.wav" />
+	</sound>
+	<sound name="rplus1076">
+		<sample weight="1" path="imp_growl_01.wav" />
+		<sample weight="1" path="imp_growl_02.wav" />
+		<sample weight="1" path="imp_growl_03.wav" />
+	</sound>
+	<sound name="rplus1077">
+		<sample weight="1" path="imp_shoot_01.wav" />
+		<sample weight="1" path="imp_shoot_02.wav" />
+		<sample weight="1" path="imp_shoot_03.wav" />
+	</sound>
+	<sound name="rplus1078">
+		<sample weight="1" path="imp_warp_out.wav" />
+	</sound>
+	<sound name="rplus1079">
+		<sample weight="1" path="imp_warp_in.wav" />
+	</sound>
+	<sound name="rplus1080">
+		<sample weight="1" path="brain_move_01.wav" />
+		<sample weight="1" path="brain_move_02.wav" />
+	</sound>
+	<sound name="rplus1081">
+		<sample weight="1" path="poisonmind_hurt_01.wav" />
+		<sample weight="1" path="poisonmind_hurt_02.wav" />
+	</sound>
+	<sound name="rplus1082">
+		<sample weight="1" path="knight_growl_01.wav" />
+		<sample weight="1" path="knight_growl_02.wav" />
+	</sound>
+	<sound name="rplus1083">
+		<sample weight="1" path="selflessknight_growl_01.wav" />
+		<sample weight="1" path="selflessknight_growl_02.wav" />
+	</sound>
+	<sound name="rplus1084">
+		<sample weight="1" path="floatingknight_growl_01.wav" />
+		<sample weight="1" path="floatingknight_growl_02.wav" />
+	</sound>
+	<sound name="rplus1085">
+		<sample weight="1" path="buttlicker_growl_01.wav" />
+		<sample weight="1" path="buttlicker_growl_02.wav" />
+		<sample weight="1" path="buttlicker_growl_03.wav" />
+	</sound>
+	<sound name="rplus1086">
+		<sample weight="1" path="ladder.wav" />
+	</sound>
+	<sound name="rplus1087">
+		<sample weight="1" path="ocularrift_shoot.wav" />
+	</sound>
+	<sound name="rplus1088">
+		<sample weight="1" path="ocularrift_portal.wav" />
+	</sound>
+	<sound name="rplus1089">
+		<sample weight="1" path="unborn_growl_01.wav" />
+		<sample weight="1" path="unborn_growl_02.wav" />
+		<sample weight="1" path="unborn_growl_03.wav" />
+	</sound>
+	<sound name="rplus1090">
+		<sample weight="1" path="unborn_warp.wav" />
+	</sound>
+</sounds>

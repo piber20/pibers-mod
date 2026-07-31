@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="0" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="2" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="3" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="4" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="5" name="Corpse" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.009999999776482582">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="6">
+			<entity type="4500" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="6" name="Wave" type="11" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="10">
+			<entity type="856" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="7" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="10">
+			<entity type="910" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+</rooms>

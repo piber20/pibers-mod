@@ -1,0 +1,18 @@
+<bosscolors version="1" anm2root="gfx/" portraitroot="gfx/ui/boss/">
+	<!-- Duke of Flies -->
+	<boss id="67" variant="0">
+		<color name="eternalduke" suffix="_white" />
+	</boss>
+	<!-- Gemini -->
+	<boss id="79" variant="0">
+		<color name="fakestevengemini" suffix="_black" />
+	</boss>
+	<!-- Gemini (baby) -->
+	<boss id="79" variant="10">
+		<color name="fakestevenbaby" suffix="_black" />
+	</boss>
+	<!-- Gemini (cord) -->
+	<boss id="79" variant="20">
+		<color name="fakestevencord" suffix="_black" />
+	</boss>
+</bosscolors>

@@ -1,0 +1,31 @@
+<AnimatedActor>
+    <Info CreatedBy="robot" CreatedOn="5/15/2014 2:38:39 PM" Fps="30" Version="103"/>
+    <Content>
+        <Spritesheets>
+            <Spritesheet Id="0" Path="bosses/classic/boss_068_teratoma.png"/>
+        </Spritesheets>
+        <Layers>
+            <Layer Id="0" Name="body" SpritesheetId="0"/>
+        </Layers>
+        <Nulls/>
+        <Events/>
+    </Content>
+    <Animations DefaultAnimation="Idle">
+        <Animation Name="Idle" FrameNum="200" Loop="true">
+            <RootAnimation>
+                <Frame XPosition="0" YPosition="0" Delay="1" Visible="true" XScale="100" YScale="100" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+            </RootAnimation>
+            <LayerAnimations>
+                <LayerAnimation LayerId="0" Visible="true">
+                    <Frame XPosition="0" YPosition="-28" XPivot="40" YPivot="44" XCrop="0" YCrop="0" Width="80" Height="96" XScale="100" YScale="100" Delay="50" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="-28" XPivot="40" YPivot="44" XCrop="0" YCrop="0" Width="80" Height="96" XScale="100" YScale="100" Delay="50" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="90" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="-28" XPivot="40" YPivot="44" XCrop="0" YCrop="0" Width="80" Height="96" XScale="100" YScale="100" Delay="50" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="180" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="-28" XPivot="40" YPivot="44" XCrop="0" YCrop="0" Width="80" Height="96" XScale="100" YScale="100" Delay="50" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="270" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="-28" XPivot="40" YPivot="44" XCrop="0" YCrop="0" Width="80" Height="96" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="360" Interpolated="true"/>
+                </LayerAnimation>
+            </LayerAnimations>
+            <NullAnimations/>
+            <Triggers/>
+        </Animation>
+    </Animations>
+</AnimatedActor>

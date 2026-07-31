@@ -1,0 +1,42 @@
+<entities anm2root="gfx/" version="5">
+    <entity name="Bloody Suit Card" anm2path="005.335_Suit Card Bloody.anm2" id="5" variant="300" subtype="230" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+        <preload-snd id="8"/>
+    </entity>
+    <entity name="Question Card" anm2path="005.336_Question Card.anm2" id="5" variant="300" subtype="231" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+        <preload-snd id="8"/>
+    </entity>
+    <entity name="Blank Rune" anm2path="005.337_BlankRune.anm2" id="5" variant="300" subtype="232" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+        <preload-snd id="8"/>
+    </entity>
+    <entity name="Blessing" anm2path="005.011_blessing.anm2" id="5" variant="10" subtype="230" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="17" bagofcrafting="eternalheart" meleecollide="true" boomerang="true">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity name="Sticky Nickel Puddle" anm2path="005.025_sticky nickel_puddle.anm2" id="1000" variant="3330" subtype="1" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Fake Wall Handler" anm2path="blank.anm2" id="1000" variant="3330" subtype="2" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity name="Effect Proxy" anm2path="blank.anm2" id="533" variant="0" subtype="0" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity name="Force Backdrop Handler" anm2path="blank.anm2" id="1000" variant="3331" subtype="0" baseHP="0" stageHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity anm2path="1000.016_Poof02_C_Blood_White.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Large Blood Poof (foreground, white)" numGridCollisionPoints="1" shadowSize="0" stageHP="0" subtype="97" variant="16">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+    <entity anm2path="1000.016_poof02_white.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Poof02" numGridCollisionPoints="1" shadowSize="0" stageHP="0" subtype="98" variant="16">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+    <entity anm2path="1000.016.99_small poof.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Poof02 Small" numGridCollisionPoints="1" shadowSize="0" stageHP="0" subtype="99" variant="16">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+</entities>

@@ -1,0 +1,13 @@
+<backdrops gfxroot="gfx/backdrop/" gridgfxroot="gfx/grid/" effectsgfxroot="gfx/effects/">
+	<backdrop reftype="14" name="Rune Room Secret" gfx="rune_room_secret.png" walls="1" wallvariants="1" floors="1" floorvariants="1"
+		rocks		= "rocks_mausoleum.png"
+		pit			= "grid_pit_mausoleum.png"
+		bridge		= "grid_bridge_mausoleum.png"
+		door		= "door_01_mausoleumdoor.png"
+		holeinwall	= "door_08_holeinwall_depths.png"
+	/>
+	<backdrop reftype="1" name="Basement Boss" gfx="01_basement_boss.png" walls="1" wallvariants="1" floors="1" floorvariants="6" />
+	<backdrop reftype="1" name="Test" gfx="test.png" walls="1" wallvariants="1" floors="1" floorvariants="1" />
+	<backdrop reftype="25" name="Baby Shop" gfx="0E_Arcade_BabyShop.png" walls="1" wallvariants="2" floors="1" floorvariants="6" />
+	<backdrop reftype="25" name="Arcade Beta" gfx="0E_Arcade_Beta.png" walls="1" wallvariants="4" floors="1" floorvariants="4" />
+</backdrops>
