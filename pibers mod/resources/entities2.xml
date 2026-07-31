@@ -2646,7 +2646,7 @@
     <entity anm2path="274.001_MegaSatanHand.anm2" baseHP="600" boss="1" bossID="55" champion="0" collisionDamage="2" collisionMass="400" collisionRadius="45" friction="1" gridCollision="walls" id="275" name="Mega Satan 2&apos;s Left Hand" numGridCollisionPoints="12" portrait="78" shadowSize="60" shieldStrength="15" tags="nodelirium" variant="2">
         <gibs amount="18" blood="1" bone="1" eye="0" gut="1" large="1"/>
     </entity>
-    <entity anm2path="276.000_Roundy.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="276" name="#ROUNDY" numGridCollisionPoints="12" portrait="122" reroll="true" shadowSize="0" stageHP="0" tags="explosive_soul" variant="0">
+    <entity anm2path="276.000_Roundy.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="100" collisionRadius="13" friction="1" id="276" name="#ROUNDY" numGridCollisionPoints="12" portrait="122" reroll="true" shadowSize="0" stageHP="0" tags="explosive_soul" variant="0" hasFloorAlts="true">
         <bestiary anim="Idle" transform="0,0,1"/>
         <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0"/>
     	<devolve id="289.0.0" weight="1" />
@@ -2678,8 +2678,8 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="999.33.0" weight="1" />
 	</entity>
-    <entity anm2path="282.000_MegaClotty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="282" name="#MEGA_CLOTTY" numGridCollisionPoints="12" portrait="128" reroll="true" shadowSize="28" stageHP="0" variant="0">
-        <bestiary anim="Hop" transform="0,0,1" hasFloorAlts="true"/>
+    <entity anm2path="282.000_MegaClotty.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="282" name="#MEGA_CLOTTY" numGridCollisionPoints="12" portrait="128" reroll="true" shadowSize="28" stageHP="0" variant="0" hasFloorAlts="true">
+        <bestiary anim="Hop" transform="0,0,1"/>
         <gibs amount="6" blood="1" bone="1" eye="1" gut="0" large="0" worm="1"/>
     	<devolve id="15.0.0" weight="1" />
 	</entity>
@@ -2735,7 +2735,7 @@
     <entity anm2path="grid/grid_tnt_pushable.anm2" baseHP="4" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="20" friction="1" id="292" name="Movable TNT" numGridCollisionPoints="12" portrait="113" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="0" hasFloorAlts="true">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0"/>
     </entity>
-    <entity anm2path="grid/grid_tnt_minecrafter.anm2" baseHP="4" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="20" friction="1" id="292" name="Movable TNT (Mine Crafter)" numGridCollisionPoints="12" portrait="113" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
+    <entity anm2path="grid/grid_tnt_minecrafter.anm2" baseHP="4" boss="0" champion="0" collisionDamage="0" collisionMass="20" collisionRadius="20" friction="1" id="292" name="Movable TNT (Mine Crafter)" numGridCollisionPoints="12" portrait="113" shadowSize="0" shutdoors="false" stageHP="0" tags="noreroll" variant="1" hasFloorAlts="true">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0"/>
     </entity>
     <entity anm2path="293.000_UltraGreedCoins.anm2" baseHP="50" boss="0" champion="0" collisionDamage="1" collisionMass="7" collisionRadius="28" friction="1" id="293" name="Ultra Greed Coin (Spinner)" numGridCollisionPoints="12" portrait="151" shadowSize="28" shutdoors="true" stageHP="0" variant="0">
