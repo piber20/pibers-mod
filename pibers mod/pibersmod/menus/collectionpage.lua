@@ -470,7 +470,7 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 					PibersMod.CollectionPageItemDesc = ""
 				end
 			end
-			--if PibersMod.CollectionPageMode ~= 0 then
+			if PibersMod.CollectionPageMode ~= 0 then
 				PibersMod.CollectionPageDupe:RenderLayer(2, Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageItemNotePos))
 				local iconPos = collsprite:GetNullFrame("BigItemIcon"):GetPos()
 				if PibersMod.CollectionPageDisplayItem then
@@ -578,10 +578,10 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 				]]
 				numPages = PibersMod.CollectionPageFakeNumPages
 				currentPage = PibersMod.CollectionPageFakeCurrentPage
-			--else
-			--	PibersMod.CollectionPageFakeCurrentPage = 0
-			--	PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage
-			--end
+			else
+				PibersMod.CollectionPageFakeCurrentPage = 0
+				PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage
+			end
 			if numPages > 1 then
 				local bulletGap = Vector(0,PibersMod.CollectionPageBulletHeight/numPages)
 				local bulletPos = (collsprite:GetNullFrame("Bullet"):GetPos()+PibersMod.CollectionPageBulletPos)-(bulletGap/2)
