@@ -187,3 +187,17 @@ function PibersMod:OnModsLoaded()
 
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoaded)
+
+function PibersMod:OnNewStageCompat()
+	if not StageAPI then
+		local stageID = Isaac.GetCurrentStageConfigId()
+		if stageID == StbType.CATACOMBS then
+			Isaac.SetCurrentFloorMusic(Music.MUSIC_CATACOMBS)
+		elseif stageID == StbType.NECROPOLIS then
+			Isaac.SetCurrentFloorMusic(Music.MUSIC_NECROPOLIS)
+		elseif stageID == StbType.UTERO then
+			Isaac.SetCurrentFloorMusic(Music.MUSIC_UTERO)
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PibersMod.OnNewStageCompat)
