@@ -221,7 +221,7 @@ function PibersMod:OnMainMenuRenderToDoList()
 	end
 
 	--todo list
-	if PibersMod.SaveGood and CharacterMenu.GetActiveStatus() ~= CharacterMenuStatus.SEED then
+	if currentActive > MainMenuType.SAVES and CharacterMenu.GetActiveStatus() ~= CharacterMenuStatus.SEED then
 		local difficulty = CharacterMenu.GetDifficulty()
 		local persistentSave = PibersMod.SaveManager.GetPersistentSave()
 		local bossesDone = 0

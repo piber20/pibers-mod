@@ -6,7 +6,6 @@ end
 PibersMod = RegisterMod("Piber's Mod", 1)
 PibersMod.SaveManager = include("pibersmod.libs.save_manager")
 PibersMod.SaveManager.Init(PibersMod)
-PibersMod.SaveGood = false
 Options.MouseControl = true
 
 include("pibersmod.enums")

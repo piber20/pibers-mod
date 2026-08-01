@@ -101,21 +101,20 @@ PibersMod.AllTaintedPlayerTypes = {
 }
 
 local skipHardmodeCheck = false
-function PibersMod:OnLoadSave(saveSlot, isSlotSelected, rawSlot)
-
-	PibersMod.SaveGood = false
-	if rawSlot > 0 and isSlotSelected == true then
-		-- loop through each player type
-		for playerType=0, (PlayerType.NUM_PLAYER_TYPES-1) do
-			skipHardmodeCheck = true
-			PibersMod:OnMarkGet(nil, playerType)
+local lastActiveMenu = 0
+function PibersMod:OnMainMenuRenderHardModeUnlocks()
+	local currentActive = MenuManager:GetActiveMenu()
+	if currentActive > MainMenuType.SAVES then
+		if lastActiveMenu ~= currentActive then
+			for playerType=0, (PlayerType.NUM_PLAYER_TYPES-1) do
+				skipHardmodeCheck = true
+				PibersMod:OnMarkGet(nil, playerType)
+			end
 		end
-
-		PibersMod.SaveGood = true
 	end
-
+	lastActiveMenu = currentActive
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, PibersMod.OnLoadSave)
+PibersMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, PibersMod.OnMainMenuRenderHardModeUnlocks)
 
 function PibersMod:OnMarkGet(completionType, playerType)
 
@@ -131,14 +130,14 @@ function PibersMod:OnMarkGet(completionType, playerType)
 
 				-- if it's only a single unlock
 				if type(hardModeUnlock) == "number" then
-					if persistentGameData:Unlocked(hardModeUnlock) == false then
+					if not persistentGameData:Unlocked(hardModeUnlock) then
 						persistentGameData:TryUnlock(hardModeUnlock, false)
 					end
 
 				-- if it's multiple unlocks
 				elseif type(hardModeUnlock) == "table" then
 					for index=1, #hardModeUnlock do
-						if persistentGameData:Unlocked(hardModeUnlock[index]) == false then
+						if not persistentGameData:Unlocked(hardModeUnlock[index]) then
 							persistentGameData:TryUnlock(hardModeUnlock[index], false)
 						end
 					end
