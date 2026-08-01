@@ -202,31 +202,27 @@ function PibersMod:OnMarkGet(completionType, playerType)
 			end
 
 			if allCharsDone then
-
 				-- unlock all character unlock
 				if persistentGameData:Unlocked(PibersMod.AllNormalPlayerTypesUnlock) == false then
 					persistentGameData:TryUnlock(PibersMod.AllNormalPlayerTypesUnlock, false)
 				end
-
 				-- all tainted characters
 				local allTaintedDone = true
 				for index=0, (#PibersMod.AllTaintedPlayerTypes) do
 					local otherPlayerType = PibersMod.AllTaintedPlayerTypes[index]
-					local otherCompletionMarks = Isaac.GetCompletionMarks(otherPlayerType)
-
-					if otherCompletionMarks.MomsHeart < 1 or otherCompletionMarks.Isaac < 1 or otherCompletionMarks.Satan < 1 or otherCompletionMarks.BossRush < 1 or otherCompletionMarks.BlueBaby < 1 or otherCompletionMarks.Lamb < 1 or otherCompletionMarks.MegaSatan < 1 or otherCompletionMarks.UltraGreed < 1 or otherCompletionMarks.Hush < 1 or otherCompletionMarks.Delirium < 1 or otherCompletionMarks.Mother < 1 or otherCompletionMarks.Beast < 1 then
-						allTaintedDone = false
-						break
+					if otherPlayerType then
+						local otherCompletionMarks = Isaac.GetCompletionMarks(otherPlayerType)
+						if otherCompletionMarks.MomsHeart < 1 or otherCompletionMarks.Isaac < 1 or otherCompletionMarks.Satan < 1 or otherCompletionMarks.BossRush < 1 or otherCompletionMarks.BlueBaby < 1 or otherCompletionMarks.Lamb < 1 or otherCompletionMarks.MegaSatan < 1 or otherCompletionMarks.UltraGreed < 1 or otherCompletionMarks.Hush < 1 or otherCompletionMarks.Delirium < 1 or otherCompletionMarks.Mother < 1 or otherCompletionMarks.Beast < 1 then
+							allTaintedDone = false
+							break
+						end
 					end
-
 				end
-
 				if allTaintedDone then
 					if persistentGameData:Unlocked(PibersMod.AllNormalPlusTaintedPlayerTypesUnlock) == false then
 						persistentGameData:TryUnlock(PibersMod.AllNormalPlusTaintedPlayerTypesUnlock, false)
 					end
 				end
-
 			end
 
 		end

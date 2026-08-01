@@ -51,6 +51,7 @@ function PibersMod.RemoveModItemFromPool(collID, poolID)
 end
 
 function PibersMod:OnGetCollectible(itemID, poolID, decrease, seed)
+	local game = Game()
 	local itemPool = game:GetItemPool()
 	local lastPool = itemPool:GetLastPool()
 	if not lastPool then
