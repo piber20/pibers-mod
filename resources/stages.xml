@@ -4,13 +4,13 @@
     <stage id="2" name="#CELLAR_NAME" path="02.Cellar.xml" playerspot="playerspot_02_cellar.png" bossspot="bossspot_02_cellar.png" music="4" backdrop="2" suffix="_cellar" />
 	<stage id="3" name="#BURNING_BASEMENT_NAME" path="03.Burning Basement.xml" playerspot="playerspot_13_burning_basement.png" bossspot="bossspot_13_burning_basement.png" music="14" backdrop="3" suffix="_burningbasement" /> <!-- the game trims middle underscores in suffixes -->
     <stage id="4" name="#CAVES_NAME" path="04.Caves.xml" playerspot="playerspot_03_caves.png" bossspot="bossspot_03_caves.png" music="2" backdrop="4" suffix="_caves" />
-    <stage id="5" name="#CATACOMBS_NAME" path="05.Catacombs.xml" playerspot="playerspot_04_catacombs.png" bossspot="bossspot_04_catacombs.png" music="0" backdrop="5" suffix="_catacombs" />
+    <stage id="5" name="#CATACOMBS_NAME" path="05.Catacombs.xml" playerspot="playerspot_04_catacombs.png" bossspot="bossspot_04_catacombs.png" music="5" backdrop="5" suffix="_catacombs" />
 	<stage id="6" name="#FLOODED_CAVES_NAME" path="06.Flooded Caves.xml" playerspot="playerspot_14_drowned_caves.png" bossspot="bossspot_14_drowned_caves.png" music="15" backdrop="6" suffix="_downpour" /> <!-- the game forces this suffix to "_downpour" -->
     <stage id="7" name="#DEPTHS_NAME" path="07.Depths.xml" playerspot="playerspot_05_depths.png" bossspot="bossspot_05_depths.png" music="3" backdrop="7" suffix="_depths" />
-    <stage id="8" name="#NECROPOLIS_NAME" path="08.Necropolis.xml" playerspot="playerspot_06_necropolis.png" bossspot="bossspot_06_necropolis.png" music="0" backdrop="8" suffix="_necropolis" />
+    <stage id="8" name="#NECROPOLIS_NAME" path="08.Necropolis.xml" playerspot="playerspot_06_necropolis.png" bossspot="bossspot_06_necropolis.png" music="6" backdrop="8" suffix="_necropolis" />
 	<stage id="9" name="#DANK_DEPTHS_NAME" path="09.Dank Depths.xml" playerspot="playerspot_15_dank_depths.png" bossspot="bossspot_15_dank_depths.png" music="16" backdrop="9" suffix="_dankdepths" /> <!-- the game trims middle underscores in suffixes -->
     <stage id="10" name="#WOMB_NAME" path="10.Womb.xml" playerspot="playerspot_07_womb.png" bossspot="bossspot_07_womb.png" music="7" backdrop="10" suffix="_womb" />
-    <stage id="11" name="#UTERO_NAME" path="11.Utero.xml" playerspot="playerspot_08_utero.png" bossspot="bossspot_08_utero.png" music="0" backdrop="11" suffix="_utero" />
+    <stage id="11" name="#UTERO_NAME" path="11.Utero.xml" playerspot="playerspot_08_utero.png" bossspot="bossspot_08_utero.png" music="19" backdrop="11" suffix="_utero" />
 	<stage id="12" name="#SCARRED_WOMB_NAME" path="12.Scarred Womb.xml" playerspot="playerspot_16_scarred_womb.png" bossspot="bossspot_16_scarred_womb.png" music="17" backdrop="12" suffix="_scarredwomb" /> <!-- the game trims middle underscores in suffixes -->
     <stage id="13" name="#BLUE_WOMB_NAME" path="13.Blue Womb.xml" playerspot="playerspot_17_blue_womb.png" bossspot="bossspot_17_blue_womb.png" music="18" backdrop="13" suffix="_bluewomb" /> <!-- the game trims middle underscores in suffixes -->
     <stage id="14" name="#SHEOL_NAME" path="14.Sheol.xml" playerspot="playerspot_09_sheol.png" bossspot="bossspot_09_sheol.png" music="11" backdrop="14" suffix="_sheol" />
