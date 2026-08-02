@@ -1,3 +1,69 @@
+local lastRoomTransMode = false
+PibersMod.BossChampionNames = {}
+PibersMod.BossChampionNames[BossType.LARRY_JR] = {}
+PibersMod.BossChampionNames[BossType.LARRY_JR][0] = "green"
+PibersMod.BossChampionNames[BossType.LARRY_JR][1] = "blue"
+PibersMod.BossChampionNames[BossType.THE_HOLLOW] = {}
+PibersMod.BossChampionNames[BossType.THE_HOLLOW][0] = "green"
+PibersMod.BossChampionNames[BossType.CHUB] = {}
+PibersMod.BossChampionNames[BossType.CHUB][0] = "blue"
+PibersMod.BossChampionNames[BossType.GURDY] = {}
+PibersMod.BossChampionNames[BossType.GURDY][0] = "green"
+PibersMod.BossChampionNames[BossType.MOM] = {}
+PibersMod.BossChampionNames[BossType.MOM][0] = "blue"
+PibersMod.BossChampionNames[BossType.FAMINE] = {}
+PibersMod.BossChampionNames[BossType.FAMINE][0] = "blue"
+PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES] = {}
+PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES][0] = "green"
+PibersMod.BossChampionNames[BossType.THE_BLOAT] = {}
+PibersMod.BossChampionNames[BossType.THE_BLOAT][0] = "green"
+PibersMod.BossChampionNames[BossType.GEMINI] = {}
+PibersMod.BossChampionNames[BossType.GEMINI][0] = "green"
+PibersMod.BossChampionNames[BossType.GEMINI][1] = "blue"
+PibersMod.BossChampionNames[BossType.THE_CAGE] = {}
+PibersMod.BossChampionNames[BossType.THE_CAGE][0] = "green"
+PibersMod.BossChampionNames[BossType.GURDY_JR] = {}
+PibersMod.BossChampionNames[BossType.GURDY_JR][0] = "blue"
+PibersMod.BossChampionPortraits = {}
+PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
+PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
+function PibersMod:onRenderBossIntro()
+	local isRendering = RoomTransition.IsRenderingBossIntro()
+	if isRendering and not lastRoomTransMode then
+		local game = Game()
+		local room = game:GetRoom()
+		local roomEnts = Isaac.GetRoomEntities()
+		local likelyBossColor = -1
+		local likelyBossID = room:GetBossID()
+		for _,ent in ipairs(roomEnts) do
+			if ent:ToNPC() then
+				local npc = ent:ToNPC()
+				if npc:IsBoss() and npc:GetBossID() == likelyBossID and npc:GetBossColorIdx() > -1 then
+					likelyBossColor = npc:GetBossColorIdx()
+				end
+			end
+		end
+		local sprite = RoomTransition.GetVersusScreenSprite()
+		if likelyBossColor == -1 then
+			sprite:ReplaceSpritesheet(24, "blank.png", true)
+		elseif PibersMod.BossChampionNames[likelyBossID] and PibersMod.BossChampionNames[likelyBossID][likelyBossColor] then
+			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+			if PibersMod.BossChampionPortraits[likelyBossID] and PibersMod.BossChampionPortraits[likelyBossID][likelyBossColor] then
+				local bosssheet = XMLData.GetEntryById(XMLNode.BOSSPORTRAIT, likelyBossID)
+				if bosssheet and type(bosssheet) == "string" then
+					print(bosssheet)
+					sprite:ReplaceSpritesheet(4, bosssheet .. "_" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+					sprite:ReplaceSpritesheet(13, bosssheet .. "_" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+				end
+			end
+		else
+			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/default.png", true)
+		end
+	end
+	lastRoomTransMode = isRendering
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_RENDER, PibersMod.onRenderBossIntro)
+
 function PibersMod:PreEntityTakeDMGVanillaBosses(entity, amount, flags, source, cooldown)
 	local ignoresArmor = flags & DamageFlag.DAMAGE_IGNORE_ARMOR > 0
 	if not ignoresArmor then
