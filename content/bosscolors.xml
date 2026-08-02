@@ -1,7 +1,7 @@
 <bosscolors version="1" anm2root="gfx/" portraitroot="gfx/ui/boss/">
 	<!-- Duke of Flies -->
 	<boss id="67" variant="0">
-		<color name="eternalduke" suffix="_white" />
+		<color name="eternalduke" suffix="_white" hp="0.65" />
 	</boss>
 	<!-- Gemini -->
 	<boss id="79" variant="0">

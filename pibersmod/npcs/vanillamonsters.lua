@@ -169,3 +169,29 @@ function PibersMod:onBabyUpdate(npc)
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onBabyUpdate, EntityType.ENTITY_BABY)
+
+PibersMod.EternalFlyOrbitDistParents = {}
+PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE] = 55
+function PibersMod:preEternalFlyUpdate(npc)
+	if npc.Parent then
+		local parentData = PibersMod.GetData(npc.Parent)
+		if parentData.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[npc.Parent.Type] then
+			local orbitDist = parentData.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[npc.Parent.Type]
+			npc.Position = npc.Parent.Position + Vector(0, orbitDist):Rotated((npc.FrameCount*2)+npc.StateFrame)
+			npc.Velocity = Vector.Zero
+			local sprite = npc:GetSprite()
+			if not sprite:IsPlaying() then
+				sprite:Play("Fly")
+			end
+			return true
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PibersMod.preEternalFlyUpdate, EntityType.ENTITY_ETERNALFLY)
+
+function PibersMod:preEternalFlyDamage(entity, amount, flags, source, countdown, extraSource)
+	if entity.Parent and PibersMod.EternalFlyOrbitDistParents[entity.Parent.Type] then
+		return false
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, PibersMod.preEternalFlyDamage, EntityType.ENTITY_ETERNALFLY)

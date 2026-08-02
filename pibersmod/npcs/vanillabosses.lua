@@ -409,27 +409,37 @@ function PibersMod:onPinUpdate(npc)
 end
 PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onPinUpdate, EntityType.ENTITY_PIN)
 
-PibersMod.DukeFlyOrbitDist = 40
+PibersMod.DukeFlyOrbitMaxDist = 120
+PibersMod.DukeFlySlowedDist = 100
 function PibersMod:onDukeUpdate(npc)
 	if npc:GetBossColorIdx() == BossColors.DUKE_ETERNAL then
+		local sprite = npc:GetSprite()
 		local data = PibersMod.GetData(npc)
 		if not data.SpawnedFlies then
 			for i=1, 3 do
 				local fly = Isaac.Spawn(EntityType.ENTITY_ETERNALFLY, 0, 0, npc.Position, Vector.Zero, npc):ToNPC()
 				fly.Parent = npc
-				fly.StateFrame = i
+				fly.StateFrame = math.floor((360/3)*(i-1))
 			end
 			data.SpawnedFlies = true
+		end
+		if sprite:IsPlaying("Attack03") then
+			if sprite:GetFrame() == 16 then
+				data.FlySpread = true
+			end
+		elseif not sprite:IsPlaying("Walk") then
+			data.FlySpread = false
+		end
+		if data.FlySpread then
+			data.FlyOrbitDist = data.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE]
+			if data.FlyOrbitDist >= PibersMod.DukeFlySlowedDist then
+				data.FlyOrbitDist = math.min(data.FlyOrbitDist+2, PibersMod.DukeFlyOrbitMaxDist)
+			else
+				data.FlyOrbitDist = math.min(data.FlyOrbitDist+5, PibersMod.DukeFlyOrbitMaxDist)
+			end
+		elseif data.FlyOrbitDist and data.FlyOrbitDist > PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE] then
+			data.FlyOrbitDist = math.max(data.FlyOrbitDist-2, PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE])
 		end
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onDukeUpdate, EntityType.ENTITY_DUKE)
-
-function PibersMod:onDukeEternalFlyUpdate(npc)
-	if npc.Parent and npc.Parent.Type == EntityType.ENTITY_DUKE then
-		local dukePos = npc.Parent.Position
-		local currentOrbitPos = dukePos - npc.Position
-		npc.Position = dukePos + currentOrbitPos:Resized(PibersMod.DukeFlyOrbitDist)
-	end
-end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, PibersMod.onDukeEternalFlyUpdate, EntityType.ENTITY_ETERNALFLY)
