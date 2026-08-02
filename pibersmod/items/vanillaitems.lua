@@ -1,3 +1,16 @@
+function PibersMod.AddTagsToItem(itemConfig, itemID, tags)
+	local currTags = itemConfig:GetCollectible(itemID).Tags
+	currTags = currTags | tags
+	itemConfig:GetCollectible(itemID).Tags = currTags
+end
+
+function PibersMod:OnModsLoadedVanillaItems()
+	local itemConfig = Isaac.GetItemConfig()
+	PibersMod.AddTagsToItem(itemConfig, CollectibleType.COLLECTIBLE_SERAPHIM, ItemConfig.TAG_ANGEL)
+	PibersMod.AddTagsToItem(itemConfig, CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON, ItemConfig.TAG_NO_EDEN)
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoadedVanillaItems)
+
 function PibersMod:OnPlayerUpdate(player)
 
 	local game = Game()
@@ -18,7 +31,6 @@ function PibersMod:OnPlayerUpdate(player)
 		itemPool:RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
 	end
 
-	-- Add innate Fast Bombs for faster placing (and no knockback, not what i want but no big deal)
 	if player:GetBombPlaceDelay() > 5 then
 		player:SetBombPlaceDelay(5)
 	end
