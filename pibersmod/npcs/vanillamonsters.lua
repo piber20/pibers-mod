@@ -86,6 +86,14 @@ PibersMod.SpittyPoofOffsetFlip = Vector(-12,-3)
 PibersMod.SpittyPoofOffsetUp = Vector(0,-12)
 function PibersMod:onSpittyUpdate(npc)
 	local sprite = npc:GetSprite()
+	if npc.SpawnerEntity and npc.SpawnerType == EntityType.ENTITY_CHUB and npc.SpawnerEntity.SubType == 2 then
+		local data = PibersMod.GetData(npc)
+		if not data.ReplacedSprite then
+			local sprite = npc:GetSprite()
+			sprite:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_115_spitty_orange.png", true)
+			data.ReplacedSprite = true
+		end
+	end
 	if sprite:IsEventTriggered("Shoot") then
 		if sprite:IsPlaying("Attack Up") then
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.SpittyPoofOffsetUp, Vector.Zero, npc)
@@ -195,3 +203,21 @@ function PibersMod:preEternalFlyDamage(entity, amount, flags, source, countdown,
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, PibersMod.preEternalFlyDamage, EntityType.ENTITY_ETERNALFLY)
+
+function PibersMod:onLilHauntUpdate(npc)
+	if npc.Variant == 10 then
+		if npc.Parent and npc.Parent.Type == EntityType.ENTITY_THE_HAUNT then
+			local data = PibersMod.GetData(npc)
+			if not data.ReplacedSprite then
+				local sprite = npc:GetSprite()
+				if npc.Parent.SubType == 1 then
+					sprite:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_black.png", true)
+				elseif npc.Parent.SubType == 2 then
+					sprite:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_pink.png", true)
+				end
+				data.ReplacedSprite = true
+			end
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onLilHauntUpdate, EntityType.ENTITY_THE_HAUNT)

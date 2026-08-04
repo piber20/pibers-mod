@@ -6,6 +6,7 @@ BossColors.GEMINI_STEVEN = Isaac.GetBossColorIdxByName("fakestevengemini")
 BossColors.GEMINI_STEVEN_BABY = Isaac.GetBossColorIdxByName("fakestevenbaby")
 BossColors.GEMINI_STEVEN_CORD = Isaac.GetBossColorIdxByName("fakestevencord")
 BossColors.DUKE_ETERNAL = Isaac.GetBossColorIdxByName("eternalduke")
+BossColors.SCOLEX_BLACK = Isaac.GetBossColorIdxByName("blackscolex")
 
 GeminiVariant = GeminiVariant or {}
 GeminiVariant.CONTUSION = 0

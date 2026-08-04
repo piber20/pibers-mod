@@ -1,4 +1,8 @@
 <bosscolors version="1" anm2root="gfx/" portraitroot="gfx/ui/boss/">
+	<!-- Scolex -->
+	<boss id="62" variant="1">
+		<color name="blackscolex" suffix="_black" scale="1.15" hp="1.25"/>
+	</boss>
 	<!-- Duke of Flies -->
 	<boss id="67" variant="0">
 		<color name="eternalduke" suffix="_grey" hp="0.65" />

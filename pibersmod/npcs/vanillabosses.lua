@@ -8,7 +8,7 @@ PibersMod.BossChampionNames[BossType.THE_HOLLOW][0] = "gush_green"
 PibersMod.BossChampionNames[BossType.THE_HOLLOW][1] = "boom"
 PibersMod.BossChampionNames[BossType.THE_HOLLOW][2] = "gilded"
 PibersMod.BossChampionNames[BossType.MONSTRO] = {}
-PibersMod.BossChampionNames[BossType.MONSTRO][0] = "red"
+PibersMod.BossChampionNames[BossType.MONSTRO][0] = "duplo_red"
 PibersMod.BossChampionNames[BossType.MONSTRO][1] = "tanky_black"
 PibersMod.BossChampionNames[BossType.CHUB] = {}
 PibersMod.BossChampionNames[BossType.CHUB][0] = "tanky_blue"
@@ -53,13 +53,13 @@ PibersMod.BossChampionNames[BossType.GEMINI][BossColors.GEMINI_STEVEN] = "black"
 PibersMod.BossChampionNames[BossType.MASK_OF_INFAMY] = {}
 PibersMod.BossChampionNames[BossType.MASK_OF_INFAMY][0] = "tanky_black"
 PibersMod.BossChampionNames[BossType.GURDY_JR] = {}
-PibersMod.BossChampionNames[BossType.GURDY_JR][0] = "blue"
+PibersMod.BossChampionNames[BossType.GURDY_JR][0] = "duplo_blue"
 PibersMod.BossChampionNames[BossType.GURDY_JR][1] = "tanky_yellow"
 PibersMod.BossChampionNames[BossType.WIDOW] = {}
 PibersMod.BossChampionNames[BossType.WIDOW][0] = "black"
 PibersMod.BossChampionNames[BossType.WIDOW][1] = "pink"
 PibersMod.BossChampionNames[BossType.GURGLINGS] = {}
-PibersMod.BossChampionNames[BossType.GURGLINGS][0] = "yellow"
+PibersMod.BossChampionNames[BossType.GURGLINGS][0] = "triplo_yellow"
 PibersMod.BossChampionNames[BossType.GURGLINGS][1] = "boom"
 PibersMod.BossChampionNames[BossType.THE_HAUNT] = {}
 PibersMod.BossChampionNames[BossType.THE_HAUNT][0] = "infested"
@@ -96,6 +96,8 @@ PibersMod.BossChampionNames[BossType.THE_STAIN] = {}
 PibersMod.BossChampionNames[BossType.THE_STAIN][0] = "grey"
 PibersMod.BossChampionNames[BossType.THE_FORSAKEN] = {}
 PibersMod.BossChampionNames[BossType.THE_FORSAKEN][0] = "boom"
+PibersMod.BossChampionNames[BossType.SCOLEX] = {}
+PibersMod.BossChampionNames[BossType.SCOLEX][BossColors.SCOLEX_BLACK] = "tanky_black"
 PibersMod.BossChampionPortraits = {}
 PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
 PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
@@ -581,3 +583,30 @@ function PibersMod:onDukeUpdate(npc)
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onDukeUpdate, EntityType.ENTITY_DUKE)
+
+function PibersMod:onChubUpdate(npc)
+	local data = PibersMod.GetData(npc)
+	if npc.State == NpcState.STATE_SUMMON and data.lastState ~= npc.State then
+		if npc:GetBossColorIdx() == 1 and npc:QueryNPCsSpawnerType(EntityType.ENTITY_CHUB, EntityType.ENTITY_SPITTY, false).Size >= 2 then
+			npc.State = NpcState.STATE_MOVE
+		elseif npc.Child and not npc.Child.Child then
+			npc.State = NpcState.STATE_MOVE
+		end
+	end
+	if npc.FrameCount >= 2 and not npc.Child and not npc.Parent then
+		npc:Kill()
+	end
+	if npc.Variant == 2 then
+		if not data.ReplacedSprite and not npc.Child and npc.Parent and not npc.Parent.Parent then
+			local sprite = npc:GetSprite()
+			if npc.SubType == 1 then
+				sprite:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small_pink.png", true)
+			else
+				sprite:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small.png", true)
+			end
+			data.ReplacedSprite = true
+		end
+	end
+	data.lastState = npc.State
+end
+PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onChubUpdate, EntityType.ENTITY_CHUB)

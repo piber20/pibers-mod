@@ -50,8 +50,8 @@
 	<boss id="47" name="Mega Fatty" nameimage="BossName_264.0_MegaFatty.png" portrait="Portrait_264.0_MegaFatty.png" pivotX="88" pivotY="120" />
 	<boss id="48" name="The Cage" nameimage="BossName_265.0_Fatty2.png" portrait="Portrait_265.0_Fatty2.png" pivotX="92" pivotY="136" />
 	<boss id="49" name="Mega Gurdy" nameimage="BossName_266.0_MamaGurdy.png" portrait="Portrait_266.0_MamaGurdy.png" pivotX="84" pivotY="172" />
-	<boss id="50" name="Dark One" nameimage="BossName_267.0_DarkOne.png" portrait="Portrait_267.0_DarkOne.png" pivotX="104" pivotY="160" />
-	<boss id="51" name="The Adversary" nameimage="BossName_268.0_DarkOne2.png" portrait="Portrait_268.0_DarkOne2.png" pivotX="96" pivotY="160" achievement="88" />
+	<boss id="50" name="Dark One" nameimage="BossName_267.0_DarkOne.png" portrait="Portrait_267.0_DarkOne.png" pivotX="104" pivotY="160" achievement="346" />
+	<boss id="51" name="The Adversary" nameimage="BossName_268.0_DarkOne2.png" portrait="Portrait_268.0_DarkOne2.png" pivotX="96" pivotY="160" achievement="347" />
 	<boss id="52" name="Polycephalus" nameimage="BossName_269.0_Polycephalus.png" portrait="Portrait_269.0_Polycephalus.png" pivotX="84" pivotY="144" achievement="86" />
 	<boss id="53" name="Mega Fred" nameimage="BossName_270.0_MegaFred.png" portrait="Portrait_270.0_MegaFred.png" pivotX="96" pivotY="140" />
 	<boss id="54" name="The Lamb" nameimage="BossName_273.0_TheLamb.png" portrait="Portrait_273.0_TheLamb.png" pivotX="96" pivotY="120" />
