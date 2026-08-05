@@ -600,11 +600,10 @@ function PibersMod:onChubUpdate(npc)
 	end
 	if npc.Variant == 2 then
 		if not data.ReplacedSprite and not npc.Child and npc.Parent and not npc.Parent.Parent then
-			local sprite = npc:GetSprite()
 			if npc.SubType == 1 then
-				sprite:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small_pink.png", true)
+				npc:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small_pink.png", true)
 			else
-				sprite:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small.png", true)
+				npc:ReplaceSpritesheet(0, "gfx/bosses/classic/boss_045_carrionqueen_small.png", true)
 			end
 			data.ReplacedSprite = true
 		end

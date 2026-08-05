@@ -185,5 +185,11 @@ function PibersMod:OnModsLoaded()
 	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Sowilo"), 12)
 	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Ingwaz"), 13)
 
+	if LastJudgement and not PibersModLJPatch then
+		print("piber mod missing last judgement patch :(")
+	else
+		print("piber mod loaded correctly :)")
+	end
+
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoaded)

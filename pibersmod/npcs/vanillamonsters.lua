@@ -6,7 +6,7 @@ function PibersMod:onGusherInitUpdate(npc)
 			local anm2 = sprite:GetFilename()
 			sprite:Reset()
 			sprite:Load(anm2, false)
-			sprite:ReplaceSpritesheet(0, data.ReplaceSprite, true)
+			npc:ReplaceSpritesheet(0, data.ReplaceSprite, true)
 			data.ReplacedSprite = true
 		end
 	end
@@ -89,8 +89,7 @@ function PibersMod:onSpittyUpdate(npc)
 	if npc.SpawnerEntity and npc.SpawnerType == EntityType.ENTITY_CHUB and npc.SpawnerEntity.SubType == 2 then
 		local data = PibersMod.GetData(npc)
 		if not data.ReplacedSprite then
-			local sprite = npc:GetSprite()
-			sprite:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_115_spitty_orange.png", true)
+			npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_115_spitty_orange.png", true)
 			data.ReplacedSprite = true
 		end
 	end
@@ -209,11 +208,10 @@ function PibersMod:onLilHauntUpdate(npc)
 		if npc.Parent and npc.Parent.Type == EntityType.ENTITY_THE_HAUNT then
 			local data = PibersMod.GetData(npc)
 			if not data.ReplacedSprite then
-				local sprite = npc:GetSprite()
 				if npc.Parent.SubType == 1 then
-					sprite:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_black.png", true)
+					npc:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_black.png", true)
 				elseif npc.Parent.SubType == 2 then
-					sprite:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_pink.png", true)
+					npc:ReplaceSpritesheet(0, "gfx/monsters/rebirth/260.010_lilhaunt_pink.png", true)
 				end
 				data.ReplacedSprite = true
 			end
@@ -221,3 +219,26 @@ function PibersMod:onLilHauntUpdate(npc)
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onLilHauntUpdate, EntityType.ENTITY_THE_HAUNT)
+
+function PibersMod:onLumpUpdate(npc)
+	if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
+		local data = PibersMod.GetData(npc)
+		if not data.ReplacedSprite then
+			npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_198_lump_corpse2.png", false)
+			npc:ReplaceSpritesheet(1, "gfx/monsters/classic/monster_198_lump_corpse2.png", true)
+			data.ReplacedSprite = true
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onLumpUpdate, EntityType.ENTITY_LUMP)
+
+function PibersMod:onGasbagUpdate(npc)
+	if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
+		local data = PibersMod.GetData(npc)
+		if not data.ReplacedSprite then
+			npc:ReplaceSpritesheet(0, "gfx/monsters/repentance/856.000_gasbag2.png", true)
+			data.ReplacedSprite = true
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onGasbagUpdate, EntityType.ENTITY_GASBAG)
