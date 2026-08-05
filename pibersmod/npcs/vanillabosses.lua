@@ -372,13 +372,15 @@ PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onFamineUpdate, Enti
 
 PibersMod.Monstro2PoofOffset = Vector(0,-18)
 function PibersMod:onMonstro2Update(npc)
-	local sprite = npc:GetSprite()
-	if sprite:IsPlaying("Taunt") then
-		if sprite:GetFrame() == 20 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
-			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.Monstro2PoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleMid
+	if npc.Variant == 0 then
+		local sprite = npc:GetSprite()
+		if sprite:IsPlaying("Taunt") then
+			if sprite:GetFrame() == 20 then
+				local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+				local poofSprite = poof:GetSprite()
+				poofSprite.Offset = PibersMod.Monstro2PoofOffset
+				poofSprite.Scale = PibersMod.PoofScaleMid
+			end
 		end
 	end
 end
