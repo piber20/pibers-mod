@@ -41,7 +41,7 @@
 	<costume id="40" anm2path="t118_BatWing.anm2" type="none" hasSkinAlt="true" isFlying="true" />
 	<!-- Afterbirth+ -->
 	<costume id="43" anm2path="n043_Sacrificial Altar.anm2" type="none" />
-	<costume id="44" anm2path="Character_016_TheForgottenBody.anm2" type="none" priority="-1" />
+	<costume id="44" anm2path="Character_016_TheForgottenBody.anm2" type="none" priority="-1" hasSkinAlt="true" />
 	<costume id="45" anm2path="n045_Brimstone2.anm2" type="none" priority="24" skinColor="1" overwriteColor="true" />
 	
 	<costume id="47" anm2path="Character_014_KeeperNoose.anm2" type="none" priority="99" />
