@@ -1,13 +1,13 @@
 <bosses root="gfx/ui/boss/" anm2="versusscreen.anm2">
-	<boss id="1" name="Monstro" nameimage="BossName_20.0_Monstro.png" portrait="Portrait_20.0_Monstro.png" pivotX="96" pivotY="132" />
-	<boss id="2" name="Larry Jr." nameimage="BossName_19.0_LarryJr.png" portrait="Portrait_19.0_LarryJr.png" pivotX="96" pivotY="140" />
-	<boss id="3" name="Chub" nameimage="BossName_28.0_Chub.png" portrait="Portrait_28.0_Chub.png" pivotX="88" pivotY="160" />
-	<boss id="4" name="Gurdy" nameimage="BossName_36.0_Gurdy.png" portrait="Portrait_36.0_Gurdy.png" pivotX="88" pivotY="166" achievement="88" />
-	<boss id="5" name="Monstro II" nameimage="BossName_43.0_Monstro2.png" portrait="Portrait_43.0_Monstro2.png" pivotX="90" pivotY="132" />
-	<boss id="6" name="Mom" nameimage="BossName_45.0_Mom.png" portrait="Portrait_45.0_Mom.png" pivotX="82" pivotY="172" />
-	<boss id="7" name="Scolex" nameimage="BossName_62.1_Scolex.png" portrait="Portrait_62.1_Scolex.png" pivotX="92" pivotY="144" />
-	<boss id="8" name="Mom's Heart" nameimage="BossName_78.0_MomsHeart.png" portrait="Portrait_78.0_MomsHeart.png" pivotX="88" pivotY="172" />
-	<boss id="9" name="Famine" nameimage="BossName_63.0_Famine.png" portrait="Portrait_63.0_Famine.png" pivotX="96" pivotY="152" achievement="5" />
+	<boss id="1"  name="Monstro" nameimage="BossName_20.0_Monstro.png" portrait="Portrait_20.0_Monstro.png" pivotX="96" pivotY="132" />
+	<boss id="2"  name="Larry Jr." nameimage="BossName_19.0_LarryJr.png" portrait="Portrait_19.0_LarryJr.png" pivotX="96" pivotY="140" />
+	<boss id="3"  name="Chub" nameimage="BossName_28.0_Chub.png" portrait="Portrait_28.0_Chub.png" pivotX="88" pivotY="160" />
+	<boss id="4"  name="Gurdy" nameimage="BossName_36.0_Gurdy.png" portrait="Portrait_36.0_Gurdy.png" pivotX="88" pivotY="166" achievement="88" />
+	<boss id="5"  name="Monstro II" nameimage="BossName_43.0_Monstro2.png" portrait="Portrait_43.0_Monstro2.png" pivotX="90" pivotY="132" />
+	<boss id="6"  name="Mom" nameimage="BossName_45.0_Mom.png" portrait="Portrait_45.0_Mom.png" pivotX="82" pivotY="172" />
+	<boss id="7"  name="Scolex" nameimage="BossName_62.1_Scolex.png" portrait="Portrait_62.1_Scolex.png" pivotX="92" pivotY="144" />
+	<boss id="8"  name="Mom's Heart" nameimage="BossName_78.0_MomsHeart.png" portrait="Portrait_78.0_MomsHeart.png" pivotX="88" pivotY="172" />
+	<boss id="9"  name="Famine" nameimage="BossName_63.0_Famine.png" portrait="Portrait_63.0_Famine.png" pivotX="96" pivotY="152" achievement="5" />
 	<boss id="10" name="Pestilence" nameimage="BossName_64.0_Pestilence.png" portrait="Portrait_64.0_Pestilence.png" pivotX="88" pivotY="152" achievement="5" />
 	<boss id="11" name="War" nameimage="BossName_65.0_War.png" portrait="Portrait_65.0_War.png" pivotX="100" pivotY="152" achievement="5" />
 	<boss id="12" name="Death" nameimage="BossName_66.0_Death.png" portrait="Portrait_66.0_Death.png" pivotX="100" pivotY="152" achievement="5" />

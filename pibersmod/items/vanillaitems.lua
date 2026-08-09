@@ -469,6 +469,21 @@ function PibersMod:PostAddCollectible(collectibleID, charge, firstTime, slot, va
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PibersMod.PostAddCollectible)
 
+PibersMod.InfestationColor = Color(1,1,0.5,1,0,0,0)
+function PibersMod:PostAddCostume(itemconfigitem, player, itemstateonly)
+	if itemconfigitem.ID == CollectibleType.COLLECTIBLE_INFESTATION then
+		player.Color = PibersMod.InfestationColor
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_PLAYER_ADD_COSTUME, PibersMod.PostAddCostume)
+
+function PibersMod:PostRemoveCostume(itemconfigitem, player, itemstateonly)
+	if itemconfigitem.ID == CollectibleType.COLLECTIBLE_INFESTATION then
+		player.Color = Color.Default
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_PLAYER_REMOVE_COSTUME, PibersMod.PostRemoveCostume)
+
 PibersMod.IncubusShootToBrimstone = {
 	ShootDown = "Shoot2Down",
 	ShootSide = "Shoot2Side",

@@ -22,25 +22,25 @@
 	<card type="tarot" pickup="1" description="#THE_SUN_DESCRIPTION" id="20" name="#THE_SUN_NAME" announcer="384" announcerdelay="10" mimiccharge="12" />
 	<card type="tarot" pickup="1" description="#JUDGEMENT_DESCRIPTION" id="21" name="#JUDGEMENT_NAME" announcer="348" mimiccharge="6" />
 	<card type="tarot" pickup="1" description="#THE_WORLD_DESCRIPTION" id="22" name="#THE_WORLD_NAME" greedmode="false" announcer="386" mimiccharge="3" />
-	<card type="suit" pickup="2" description="#TWO_OF_CLUBS_DESCRIPTION" id="23" name="#TWO_OF_CLUBS_NAME" announcer="387" mimiccharge="12" />
-	<card type="suit" pickup="2" description="#TWO_OF_DIAMONDS_DESCRIPTION" id="24" name="#TWO_OF_DIAMONDS_NAME" announcer="388" mimiccharge="12" />
-	<card type="suit" pickup="2" description="#TWO_OF_SPADES_DESCRIPTION" id="25" name="#TWO_OF_SPADES_NAME" announcer="390" mimiccharge="12" />
-	<card type="suit" pickup="2" description="#TWO_OF_HEARTS_DESCRIPTION" id="26" name="#TWO_OF_HEARTS_NAME" announcer="389" mimiccharge="12" />
-	<card type="suit" pickup="2" achievement="322" description="#ACE_OF_CLUBS_DESCRIPTION" id="27" name="#ACE_OF_CLUBS_NAME" announcer="456" announcerdelay="90" mimiccharge="6" />
-	<card type="suit" pickup="2" achievement="326" description="#ACE_OF_DIAMONDS_DESCRIPTION" id="28" name="#ACE_OF_DIAMONDS_NAME" announcer="455" announcerdelay="90" mimiccharge="6" />
-	<card type="suit" pickup="2" achievement="327" description="#ACE_OF_SPADES_DESCRIPTION" id="29" name="#ACE_OF_SPADES_NAME" announcer="447" announcerdelay="90" mimiccharge="6" />
-	<card type="suit" pickup="2" achievement="329" description="#ACE_OF_HEARTS_DESCRIPTION" id="30" name="#ACE_OF_HEARTS_NAME" announcer="450" announcerdelay="90" mimiccharge="6" />
-	<card type="suit" pickup="2" description="#JOKER_DESCRIPTION" id="31" name="#JOKER_NAME" announcer="347" announcerdelay="60" mimiccharge="2" />
-	<rune type="rune" pickup="3" achievement="89" description="#HAGALAZ_DESCRIPTION" id="32" name="#HAGALAZ_NAME" announcer="341" mimiccharge="2" />
-	<rune type="rune" pickup="3" achievement="90" description="#JERA_DESCRIPTION" id="33" name="#JERA_NAME" announcer="346" mimiccharge="12" />
-	<rune type="rune" pickup="3" achievement="91" description="#EHWAZ_DESCRIPTION" id="34" name="#EHWAZ_NAME" announcer="338" mimiccharge="4" />
-	<rune type="rune" pickup="3" achievement="92" description="#DAGAZ_DESCRIPTION" id="35" name="#DAGAZ_NAME" announcer="336" mimiccharge="6" />
-	<rune type="rune" pickup="4" achievement="93" description="#ANSUZ_DESCRIPTION" id="36" name="#ANSUZ_NAME" announcer="327" mimiccharge="2" />
-	<rune type="rune" pickup="4" achievement="94" description="#PERTHRO_DESCRIPTION" id="37" name="#PERTHRO_NAME" announcer="354" mimiccharge="4" />
-	<rune type="rune" pickup="4" achievement="95" description="#BERKANO_DESCRIPTION" id="38" name="#BERKANO_NAME" announcer="331" mimiccharge="4" />
-	<rune type="rune" pickup="4" achievement="96" description="#ALGIZ_DESCRIPTION" id="39" name="#ALGIZ_NAME" announcer="325" mimiccharge="4" />
-	<rune type="rune" pickup="232" achievement="233" description="#BLANK_RUNE_DESCRIPTION" id="40" name="#BLANK_RUNE_NAME" mimiccharge="3" />
-	<rune type="rune" pickup="7" achievement="309" description="#BLACK_RUNE_DESCRIPTION" id="41" name="#BLACK_RUNE_NAME" announcer="457" announcerdelay="150" mimiccharge="4" />
+	<card type="suit"  pickup="2" description="#TWO_OF_CLUBS_DESCRIPTION" id="23" name="#TWO_OF_CLUBS_NAME" announcer="387" mimiccharge="12" />
+	<card type="suit"  pickup="2" description="#TWO_OF_DIAMONDS_DESCRIPTION" id="24" name="#TWO_OF_DIAMONDS_NAME" announcer="388" mimiccharge="12" />
+	<card type="suit"  pickup="2" description="#TWO_OF_SPADES_DESCRIPTION" id="25" name="#TWO_OF_SPADES_NAME" announcer="390" mimiccharge="12" />
+	<card type="suit"  pickup="2" description="#TWO_OF_HEARTS_DESCRIPTION" id="26" name="#TWO_OF_HEARTS_NAME" announcer="389" mimiccharge="12" />
+	<card type="suit"  pickup="2" achievement="322" description="#ACE_OF_CLUBS_DESCRIPTION" id="27" name="#ACE_OF_CLUBS_NAME" announcer="456" announcerdelay="90" mimiccharge="6" />
+	<card type="suit"  pickup="2" achievement="326" description="#ACE_OF_DIAMONDS_DESCRIPTION" id="28" name="#ACE_OF_DIAMONDS_NAME" announcer="455" announcerdelay="90" mimiccharge="6" />
+	<card type="suit"  pickup="2" achievement="327" description="#ACE_OF_SPADES_DESCRIPTION" id="29" name="#ACE_OF_SPADES_NAME" announcer="447" announcerdelay="90" mimiccharge="6" />
+	<card type="suit"  pickup="2" achievement="329" description="#ACE_OF_HEARTS_DESCRIPTION" id="30" name="#ACE_OF_HEARTS_NAME" announcer="450" announcerdelay="90" mimiccharge="6" />
+	<card type="suit"  pickup="2" description="#JOKER_DESCRIPTION" id="31" name="#JOKER_NAME" announcer="347" announcerdelay="60" mimiccharge="2" />
+	<rune type="rune"  pickup="3" achievement="89" description="#HAGALAZ_DESCRIPTION" id="32" name="#HAGALAZ_NAME" announcer="341" mimiccharge="2" />
+	<rune type="rune"  pickup="3" achievement="90" description="#JERA_DESCRIPTION" id="33" name="#JERA_NAME" announcer="346" mimiccharge="12" />
+	<rune type="rune"  pickup="3" achievement="91" description="#EHWAZ_DESCRIPTION" id="34" name="#EHWAZ_NAME" announcer="338" mimiccharge="4" />
+	<rune type="rune"  pickup="3" achievement="92" description="#DAGAZ_DESCRIPTION" id="35" name="#DAGAZ_NAME" announcer="336" mimiccharge="6" />
+	<rune type="rune"  pickup="4" achievement="93" description="#ANSUZ_DESCRIPTION" id="36" name="#ANSUZ_NAME" announcer="327" mimiccharge="2" />
+	<rune type="rune"  pickup="4" achievement="94" description="#PERTHRO_DESCRIPTION" id="37" name="#PERTHRO_NAME" announcer="354" mimiccharge="4" />
+	<rune type="rune"  pickup="4" achievement="95" description="#BERKANO_DESCRIPTION" id="38" name="#BERKANO_NAME" announcer="331" mimiccharge="4" />
+	<rune type="rune"  pickup="4" achievement="96" description="#ALGIZ_DESCRIPTION" id="39" name="#ALGIZ_NAME" announcer="325" mimiccharge="4" />
+	<rune type="rune"  pickup="232" achievement="233" description="#BLANK_RUNE_DESCRIPTION" id="40" name="#BLANK_RUNE_NAME" mimiccharge="3" />
+	<rune type="rune"  pickup="7" achievement="309" description="#BLACK_RUNE_DESCRIPTION" id="41" name="#BLACK_RUNE_NAME" announcer="457" announcerdelay="150" mimiccharge="4" />
 	<card type="special" pickup="8" achievement="97" description="#CHAOS_CARD_DESCRIPTION" id="42" name="#CHAOS_CARD_NAME" announcer="334" mimiccharge="6" />
 	<card type="special" pickup="10" achievement="98" description="#CREDIT_CARD_DESCRIPTION" id="43" name="#CREDIT_CARD_NAME" announcer="335" mimiccharge="6" />
 	<card type="special" pickup="2" achievement="99" description="#RULES_CARD_DESCRIPTION" id="44" name="#RULES_CARD_NAME" announcer="361" announcerdelay="30" mimiccharge="1" />
@@ -48,16 +48,16 @@
 	<card type="special" pickup="230" achievement="120" description="#SUICIDE_KING_DESCRIPTION" id="46" name="#SUICIDE_KING_NAME" announcer="366" announcerdelay="110" mimiccharge="1" />
 	<card type="special" pickup="12" achievement="225" description="#GET_OUT_OF_JAIL_FREE_CARD_DESCRIPTION" id="47" name="#GET_OUT_OF_JAIL_FREE_CARD_NAME" announcer="404" announcerdelay="30" mimiccharge="2" />
 	<card type="special" pickup="231" achievement="121" description="#Q_CARD_DESCRIPTION" id="48" name="#Q_CARD_NAME" announcer="408" announcerdelay="15" mimiccharge="1" />
-	<card type="object" pickup="6" achievement="49" description="#DICE_SHARD_DESCRIPTION" id="49" name="#DICE_SHARD_NAME" announcer="400" announcerdelay="3" mimiccharge="4" />
+	<card type="object"  pickup="6" achievement="49" description="#DICE_SHARD_DESCRIPTION" id="49" name="#DICE_SHARD_NAME" announcer="400" announcerdelay="3" mimiccharge="4" />
 	<card type="special" pickup="5" achievement="4" description="#EMERGENCY_CONTACT_DESCRIPTION" id="50" name="#EMERGENCY_CONTACT_NAME" announcer="401" announcerdelay="70" mimiccharge="3" />
 	<card type="special" pickup="11" achievement="293" description="#HOLY_CARD_DESCRIPTION" id="51" name="#HOLY_CARD_NAME" announcer="449" mimiccharge="4" />
 	<!-- Booster Pack #1 -->
-	<card type="special" pickup="8"  announcer="735" achievement="361" description="#HUGE_GROWTH_DESCRIPTION" name="#HUGE_GROWTH_NAME" id="52" mimiccharge="3" />
-	<card type="special" pickup="8"  announcer="733" achievement="362" description="#ANCIENT_RECALL_DESCRIPTION" name="#ANCIENT_RECALL_NAME" id="53" mimiccharge="12" />
-	<card type="special" pickup="8"  announcer="734" achievement="363" description="#ERA_WALK_DESCRIPTION" name="#ERA_WALK_NAME" id="54" mimiccharge="3" />
+	<card type="special" pickup="8" announcer="735" achievement="361" description="#HUGE_GROWTH_DESCRIPTION" name="#HUGE_GROWTH_NAME" id="52" mimiccharge="3" />
+	<card type="special" pickup="8" announcer="733" achievement="362" description="#ANCIENT_RECALL_DESCRIPTION" name="#ANCIENT_RECALL_NAME" id="53" mimiccharge="12" />
+	<card type="special" pickup="8" announcer="734" achievement="363" description="#ERA_WALK_DESCRIPTION" name="#ERA_WALK_NAME" id="54" mimiccharge="3" />
 
 	<!-- REPENTANCE BEGIN -->
-	<rune type="rune"    pickup="13" announcer="736" description="#RUNE_SHARD_DESCRIPTION" id="55" name="#RUNE_SHARD_NAME" mimiccharge="1" />
+	<rune type="rune" pickup="13" announcer="736" description="#RUNE_SHARD_DESCRIPTION" id="55" name="#RUNE_SHARD_NAME" mimiccharge="1" />
 	
 	<!-- Reverse tarot cards -->
 	<card type="tarot_reverse" pickup="14" achievement="524" announcer="512" announcerdelay="60" description="#THE_FOOL_R_DESCRIPTION" id="56" name="#THE_FOOL_R_NAME" mimiccharge="12" />

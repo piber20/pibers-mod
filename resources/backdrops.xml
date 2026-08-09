@@ -232,7 +232,7 @@
 		waterpitsmode	= "2"
 	/>
 <!-- REPENTANCE BEGIN -->
-	<backdrop id="31"  gfx="01x_Downpour.png" walls="2" wallvariants="3" floors="1" floorvariants="1"
+	<backdrop id="31" gfx="01x_Downpour.png" walls="2" wallvariants="3" floors="1" floorvariants="1"
 		lfloorgfx	= "01x_downpour_Lfloor.png"
 		nfloorgfx	= "01x_downpour_Nfloor.png"
 		watergfx	= "water.png"
@@ -243,7 +243,7 @@
 		door		= "door_14_depthsdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="32"  gfx="03x_Mines.png" walls="3" wallvariants="2" floors="1" floorvariants="2"
+	<backdrop id="32" gfx="03x_Mines.png" walls="3" wallvariants="2" floors="1" floorvariants="2"
 		lfloorgfx	= "03x_mines_Lfloor.png"
 		nfloorgfx	= "03x_mines_Nfloor.png"
 		props		= "props_03x_mines.anm2"
@@ -255,7 +255,7 @@
 		holeinwall	= "door_08_holeinwall_depths.png"
 		waterpitsmode	= "1"
 	/>
-	<backdrop id="33"  gfx="05x_Mausoleum.png" walls="1" wallvariants="4" floors="3" floorvariants="2"
+	<backdrop id="33" gfx="05x_Mausoleum.png" walls="1" wallvariants="4" floors="3" floorvariants="2"
 		lfloorgfx	= "05x_mausoleum_Lfloor.png"
 		nfloorgfx	= "05x_mausoleum_Nfloor.png"
 		watergfx	= "water_purple_smooth.png"
@@ -266,7 +266,7 @@
 		door		= "door_01_mausoleumdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="34"  gfx="07x_Corpse.png" walls="1" wallvariants="3" floors="1" floorvariants="3"
+	<backdrop id="34" gfx="07x_Corpse.png" walls="1" wallvariants="3" floors="1" floorvariants="3"
 		lfloorgfx	= "07x_Corpse_Lfloor.png"
 		nfloorgfx	= "07x_Corpse_Nfloor.png"
 		watergfx	= "water_blood_corpse.png"
@@ -283,7 +283,7 @@
 	<backdrop id="35" gfx="planetarium.anm2"
 		rocks		= "rocks_cathedral.png"
 	/>
-	<backdrop id="36"  gfx="0Ax_Downpour Entrance.png" walls="1" wallvariants="3" floors="1" floorvariants="1"
+	<backdrop id="36" gfx="0Ax_Downpour Entrance.png" walls="1" wallvariants="3" floors="1" floorvariants="1"
 		watergfx	= "water.png"
 		props		= "props_01x_downpour.anm2"
 		rocks		= "rocks_downpour.png"
@@ -293,7 +293,7 @@
 		door		= "door_14_depthsdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="37"  gfx="0Bx_Mines Entrance.png" walls="1" wallvariants="2" floors="1" floorvariants="2"
+	<backdrop id="37" gfx="0Bx_Mines Entrance.png" walls="1" wallvariants="2" floors="1" floorvariants="2"
 		props		= "props_03x_mines.anm2"
 		rocks		= "rocks_secretroom.png"
 		pit			= "grid_pit_catacombs.png"
@@ -302,7 +302,7 @@
 		door		= "door_01_normaldoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="38"  gfx="0Cx_Mausoleum Entrance.png" walls="1" wallvariants="1" floors="1" floorvariants="2"
+	<backdrop id="38" gfx="0Cx_Mausoleum Entrance.png" walls="1" wallvariants="1" floors="1" floorvariants="2"
 		watergfx	= "water_purple_smooth.png"
 		props		= "props_05_depths.anm2"
 		rocks		= "rocks_mausoleum.png"
@@ -311,7 +311,7 @@
 		door		= "door_01_mausoleumdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="39"  gfx="0Dx_Corpse Entrance.png" walls="1" wallvariants="1" floors="2" floorvariants="1"
+	<backdrop id="39" gfx="0Dx_Corpse Entrance.png" walls="1" wallvariants="1" floors="2" floorvariants="1"
 		props		= "props_05_depths.anm2"
 		rocks		= "rocks_corpseentrance.png"
 		pit			= "grid_pit_corpseentrance.png"
@@ -319,7 +319,7 @@
 		door		= "door_14_depthsdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="40"  gfx="05x_Mausoleum2.png" walls="1" wallvariants="4" floors="3" floorvariants="2"
+	<backdrop id="40" gfx="05x_Mausoleum2.png" walls="1" wallvariants="4" floors="3" floorvariants="2"
 		lfloorgfx	= "05x_mausoleum2_Lfloor.png"
 		nfloorgfx	= "05x_mausoleum2_Nfloor.png"
 		watergfx	= "water_purple_smooth.png"
@@ -330,7 +330,7 @@
 		door		= "door_01_mausoleumdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="41"  gfx="05x_MausoleumB.png" walls="1" wallvariants="4" floors="2" floorvariants="1"
+	<backdrop id="41" gfx="05x_MausoleumB.png" walls="1" wallvariants="4" floors="2" floorvariants="1"
 		lfloorgfx	= "05x_mausoleumB_Lfloor.png"
 		nfloorgfx	= "05x_mausoleumB_Nfloor.png"
 		watergfx	= "water_purple_smooth.png"
@@ -341,7 +341,7 @@
 		door		= "door_01_mausoleumdoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="42"  gfx="05x_Mausoleum_boss.png" walls="1" wallvariants="1" floors="3" floorvariants="2"
+	<backdrop id="42" gfx="05x_Mausoleum_boss.png" walls="1" wallvariants="1" floors="3" floorvariants="2"
 		watergfx	= "water_purple_smooth.png"
 		props		= "props_05_depths.anm2"
 		rocks		= "rocks_mausoleum.png"
@@ -377,7 +377,7 @@
 		spikes		= "grid_spikes_utero.png"
 		waterpitsmode	= "0"
 	/>
-	<backdrop id="45"  gfx="02x_Dross.png" walls="4" wallvariants="2" floors="3" floorvariants="1"
+	<backdrop id="45" gfx="02x_Dross.png" walls="4" wallvariants="2" floors="3" floorvariants="1"
 		lfloorgfx	= "02x_dross_Lfloor.png"
 		nfloorgfx	= "02x_dross_Nfloor.png"
 		watergfx	= "water.png"
@@ -388,7 +388,7 @@
 		door		= "door_14_depthsdoor.png"
 		holeinwall	= "door_08_holeinwall.png"
 	/>
-	<backdrop id="46"  gfx="04x_Ashpit.png" walls="3" wallvariants="2" floors="3" floorvariants="2"
+	<backdrop id="46" gfx="04x_Ashpit.png" walls="3" wallvariants="2" floors="3" floorvariants="2"
 		lfloorgfx	= "04x_ashpit_Lfloor.png"
 		nfloorgfx	= "04x_ashpit_Nfloor.png"
 		watergfx	= "water_fire2.png"
@@ -402,7 +402,7 @@
 		holeinwall	= "door_08_holeinwall_depths.png"
 		waterpitsmode	= "1"
 	/>
-	<backdrop id="47"  gfx="06x_Gehenna.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
+	<backdrop id="47" gfx="06x_Gehenna.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
 		lfloorgfx	= "06x_Gehenna_Lfloor.png"
 		nfloorgfx	= "06x_Gehenna_Nfloor.png"
 		watergfx	= "water_red_smooth.png"
@@ -413,7 +413,7 @@
 		door		= "door_01_gehennadoor.png"
 		holeinwall	= "door_08_holeinwall_depths.png"
 	/>
-	<backdrop id="48"  gfx="07x_Corpse.png" walls="1" wallvariants="3" floors="1" floorvariants="3"
+	<backdrop id="48" gfx="07x_Corpse.png" walls="1" wallvariants="3" floors="1" floorvariants="3"
 		lfloorgfx	= "07x_Corpse_Lfloor.png"
 		nfloorgfx	= "07x_Corpse_Nfloor.png"
 		watergfx	= "water_blood_corpse.png"
@@ -427,18 +427,18 @@
 		spikes		= "grid_spikes_corpse.png"
 		waterpitsmode	= "1"
 	/>
-	<backdrop id="49"  gfx="0Ex_Isaacs_Bedroom.png" walls="1" wallvariants="4" floors="1" floorvariants="1" props = "props_01_basement.anm2" />
-	<backdrop id="50"  gfx="0Fx_Hallway.png" walls="1" wallvariants="3" floors="1" floorvariants="1" nfloorgfx = "0Fx_Hallway_Nfloor.png" props = "" />
-	<backdrop id="51"  gfx="0Gx_Moms_Bedroom.png" walls="1" wallvariants="3" floors="1" floorvariants="1" props	= "" />
-	<backdrop id="52"  gfx="house_closet.anm2" props="props_01_basement.anm2" />
-	<backdrop id="53"  gfx="house_closet_b.anm2" props="props_05_depths.anm2" />
-	<backdrop id="54"  gfx="house_dogma.anm2" props="" walls="0" wallvariants="0" />
+	<backdrop id="49" gfx="0Ex_Isaacs_Bedroom.png" walls="1" wallvariants="4" floors="1" floorvariants="1" props = "props_01_basement.anm2" />
+	<backdrop id="50" gfx="0Fx_Hallway.png" walls="1" wallvariants="3" floors="1" floorvariants="1" nfloorgfx = "0Fx_Hallway_Nfloor.png" props = "" />
+	<backdrop id="51" gfx="0Gx_Moms_Bedroom.png" walls="1" wallvariants="3" floors="1" floorvariants="1" props	= "" />
+	<backdrop id="52" gfx="house_closet.anm2" props="props_01_basement.anm2" />
+	<backdrop id="53" gfx="house_closet_b.anm2" props="props_05_depths.anm2" />
+	<backdrop id="54" gfx="house_dogma.anm2" props="" walls="0" wallvariants="0" />
 	
 	<backdrop id="55" /> <!-- reserved ID for Gideon dungeon -->
 	<backdrop id="56" /> <!-- reserved ID for Rotgut dungeon -->
 	<backdrop id="57" /> <!-- reserved ID for Beast dungeon -->
 	
-	<backdrop id="58"  gfx="03x_Mines.png" walls="3" wallvariants="2" floors="1" floorvariants="2"
+	<backdrop id="58" gfx="03x_Mines.png" walls="3" wallvariants="2" floors="1" floorvariants="2"
 		lfloorgfx	= "03x_mines_Lfloor.png"
 		nfloorgfx	= "03x_mines_Nfloor.png"
 		props		= "props_03x_mines.anm2"
@@ -450,7 +450,7 @@
 		holeinwall	= "door_08_holeinwall_depths.png"
 		waterpitsmode	= "1"
 	/>
-	<backdrop id="59"  gfx="04x_Ashpit.png" walls="3" wallvariants="2" floors="3" floorvariants="2"
+	<backdrop id="59" gfx="04x_Ashpit.png" walls="3" wallvariants="2" floors="3" floorvariants="2"
 		lfloorgfx	= "04x_ashpit_Lfloor.png"
 		nfloorgfx	= "04x_ashpit_Nfloor.png"
 		watergfx	= "water_fire2.png"

@@ -1,15 +1,15 @@
 <babies root="gfx/Characters/Player2/">
 	<!--Special Babies-->
-	<baby id="0" name="Spider Baby" skin="000_Baby_Spider.png" />
-	<baby id="1" name="Love Baby" skin="001_Baby_Love.png" />
-	<baby id="2" name="Bloat Baby" skin="002_Baby_Bloat.png" />
-	<baby id="3" name="Water Baby" skin="003_Baby_Water.png" />
-	<baby id="4" name="Psy Baby" skin="004_Baby_Psy.png" />
-	<baby id="5" name="Cursed Baby" skin="005_Baby_Cursed.png" />
-	<baby id="6" name="Troll Baby" skin="006_Baby_Troll.png" />
-	<baby id="7" name="Ybab" skin="007_Baby_Ybab.png" />
-	<baby id="8" name="Cockeyed Baby" skin="008_Baby_Cockeyed.png" />
-	<baby id="9" name="Host Baby" skin="009_Baby_Host.png" />
+	<baby id="0"  name="Spider Baby" skin="000_Baby_Spider.png" />
+	<baby id="1"  name="Love Baby" skin="001_Baby_Love.png" />
+	<baby id="2"  name="Bloat Baby" skin="002_Baby_Bloat.png" />
+	<baby id="3"  name="Water Baby" skin="003_Baby_Water.png" />
+	<baby id="4"  name="Psy Baby" skin="004_Baby_Psy.png" />
+	<baby id="5"  name="Cursed Baby" skin="005_Baby_Cursed.png" />
+	<baby id="6"  name="Troll Baby" skin="006_Baby_Troll.png" />
+	<baby id="7"  name="Ybab" skin="007_Baby_Ybab.png" />
+	<baby id="8"  name="Cockeyed Baby" skin="008_Baby_Cockeyed.png" />
+	<baby id="9"  name="Host Baby" skin="009_Baby_Host.png" />
 	<baby id="10" name="Lost Baby" skin="010_Baby_Lost.png" achievement="167" />
 	<baby id="11" name="Cute Baby" skin="011_Baby_Cute.png" achievement="168" />
 	<baby id="12" name="Crow Baby" skin="012_Baby_Crow.png" achievement="169" />

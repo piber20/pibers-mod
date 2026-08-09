@@ -145,7 +145,7 @@
 		  
 	<player id="21" name="#ISAAC_NAME" skin="Character_001b_Isaac.png" costume="79" hp="6" bombs="1" achievement="474"
           nameimage="PlayerName_01_Isaac.png" 
-          portrait="PlayerPortrait_Isaac_b.png" skinColor="-1" costumeSuffix="isaac"
+          portrait="PlayerPortrait_Isaac_b.png" skinColor="-1" costumeSuffix="isaacb"
 		  birthright="#ISAAC_B_BIRTHRIGHT" />
 	<player id="22" name="#MAGDALENE_NAME" skin="Character_002b_Magdalene.png" costume="80" hp="8" pocketActive="45" achievement="475"
           nameimage="PlayerName_02_Magdalene.png"
@@ -153,7 +153,7 @@
 		  birthright="#MAGDALENE_B_BIRTHRIGHT" />
 	<player id="23" name="#CAIN_NAME" skin="Character_003b_Cain.png" costume="81" hp="4" keys="1" pocketActive="710" achievement="476"
           nameimage="PlayerName_03_Cain.png" 
-          portrait="PlayerPortrait_Cain_b.png" skinColor="-1" costumeSuffix="cain"
+          portrait="PlayerPortrait_Cain_b.png" skinColor="-1" costumeSuffix="cainb"
 		  birthright="#CAIN_B_BIRTHRIGHT" />
 	<player id="24" name="#JUDAS_NAME" skin="Character_004b_Judas.png" costume="82" black="4" coins="3" pocketActive="705" achievement="477"
           nameimage="PlayerName_04_Judas.png" 
@@ -205,7 +205,7 @@
 		  birthright="#THE_FORGOTTEN_B_BIRTHRIGHT" />
 	<player id="36" name="#BETHANY_NAME" skin="Character_018b_Bethany.png" costume="94" hp="6" armor="6" achievement="489"
           nameimage="PlayerName_01x_Bethany.png" 
-          portrait="PlayerPortrait_Bethany_b.png" skinColor="-1" costumeSuffix="bethany" pocketActive="712"
+          portrait="PlayerPortrait_Bethany_b.png" skinColor="-1" costumeSuffix="bethanyb" pocketActive="712"
 		  birthright="#BETHANY_B_BIRTHRIGHT" />
 	<player id="37" name="#JACOB_NAME" skin="Character_019b_Jacob.png" costume="95" hp="6" achievement="490"
           nameimage="PlayerName_02x_Jacob.png" 

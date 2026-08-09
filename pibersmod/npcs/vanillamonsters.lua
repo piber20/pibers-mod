@@ -180,7 +180,7 @@ PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onBabyUpdate, Entity
 PibersMod.EternalFlyOrbitDistParents = {}
 PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE] = 55
 function PibersMod:preEternalFlyUpdate(npc)
-	if npc.Parent then
+	if npc.Parent and npc.Parent:Exists() and not npc.Parent:IsDead() then
 		local parentData = PibersMod.GetData(npc.Parent)
 		if parentData.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[npc.Parent.Type] then
 			local orbitDist = parentData.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[npc.Parent.Type]
