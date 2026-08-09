@@ -2,7 +2,7 @@
     <Info CreatedBy="robot" CreatedOn="7/25/2014 10:43:46 AM" Fps="30" Version="104"/>
     <Content>
         <Spritesheets>
-            <Spritesheet Id="1" Path="costumes/costume_i found pills_head.png"/>
+            <Spritesheet Id="1" Path="costumes/costume_i found pills_base.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="head" SpritesheetId="1"/>

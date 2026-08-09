@@ -2,7 +2,7 @@
     <Info CreatedBy="robot" CreatedOn="22.03.2016 22:20:00" Fps="30" Version="105"/>
     <Content>
         <Spritesheets>
-            <Spritesheet Id="0" Path="costumes/costume_455_dadslostcoin_head.png"/>
+            <Spritesheet Id="0" Path="costumes/costume_455_dadslostcoin_base.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="head" SpritesheetId="0"/>

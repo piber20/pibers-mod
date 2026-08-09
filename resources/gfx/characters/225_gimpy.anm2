@@ -2,7 +2,7 @@
     <Info CreatedBy="robot" CreatedOn="13/03/2014 6:55:28 PM" Fps="30" Version="105"/>
     <Content>
         <Spritesheets>
-            <Spritesheet Id="0" Path="costumes/costume_225_gimpy_head.png"/>
+            <Spritesheet Id="0" Path="costumes/costume_225_gimpy_base.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="head" SpritesheetId="0"/>
