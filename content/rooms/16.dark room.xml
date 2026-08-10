@@ -224,7 +224,7 @@
 			<entity type="73" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3341" name="dank3 (anti)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="2" weight="1.0">
+	<room variant="3341" name="dank3 (anti)" type="1" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="False" x="6" y="-1"/>
