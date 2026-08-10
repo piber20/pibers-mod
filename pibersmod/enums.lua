@@ -42,7 +42,6 @@ CollectibleType.COUNTERFEIT_DOLLAR = Isaac.GetItemIdByName("Counterfeit Dollar")
 
 TrinketType.ORTHODOX_CROSS = Isaac.GetTrinketIdByName("Orthodox Cross")
 
-ItemPoolType.MOMS_CHEST_MAUSOLEUM = Isaac.GetPoolIdByName("momschestmaus")
 ItemPoolType.ISAACS_ROOM = Isaac.GetPoolIdByName("isaacsroom")
 ItemPoolType.BARREN_ROOM = Isaac.GetPoolIdByName("barrenroom")
 ItemPoolType.DICE_ROOM = Isaac.GetPoolIdByName("diceroom")
@@ -51,6 +50,7 @@ ItemPoolType.DUNGEON = ItemPoolType.CRAWLSPACE
 ItemPoolType.POOL_DUNGEON = ItemPoolType.CRAWLSPACE
 ItemPoolType.SACRIFICE_ROOM = Isaac.GetPoolIdByName("sacrificeroom")
 ItemPoolType.KRAMPUS = Isaac.GetPoolIdByName("krampus")
+ItemPoolType.PLANETARIUM_BLOATED = Isaac.GetPoolIdByName("planetariumBloated")
 
 NullItemID.MAGGYS_HAIR_HAT = Isaac.GetNullItemIdByName("maggys hair for hats")
 

@@ -26,6 +26,7 @@ include("pibersmod.roomsstages.grids")
 include("pibersmod.roomsstages.teledimension")
 include("pibersmod.roomsstages.optionalhardmode")
 include("pibersmod.roomsstages.greedmode")
+include("pibersmod.roomsstages.bluewomb")
 
 include("pibersmod.items.holyshield")
 include("pibersmod.items.vanillaitems")

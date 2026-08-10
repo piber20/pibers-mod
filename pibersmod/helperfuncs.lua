@@ -63,6 +63,118 @@ function PibersMod.GetScreenTopLeft(offset)
 	return PibersMod.RoundVector(pos)
 end
 
+function PibersMod:GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, forceDoors, roomSubtype, minVariant)
+	if not roomShape or roomShape < 0 then
+		roomShape = RoomShape.NUM_ROOMSHAPES
+	end
+	if not forceDoors or forceDoors < 0 then
+		forceDoors = 0
+	end
+	if not minVariant or minVariant < 0 then
+		minVariant = 0
+	end
+	local game = Game()
+	local level = game:GetLevel()
+	local stage = level:GetStage()
+	local minDifficulty = 0
+	local maxDifficulty = 10
+	if stage == LevelStage.STAGE7 then
+		minDifficulty = 15
+	elseif game:IsHardMode() then
+		if rng:GetSeed() % 8 == 0 then
+			minDifficulty = 1
+		else
+			minDifficulty = 2
+		end
+	end
+	if stage == LevelStage.STAGE7 then
+		maxDifficulty = 20
+	elseif game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
+		maxDifficulty = 15
+	end
+	local stbType = Isaac.GetCurrentStageConfigId()
+	local roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+	if minDifficulty > 0 and not roomConfig then
+		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+	end
+	if isSpecial and not roomConfig then
+		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+		if minDifficulty > 0 and not roomConfig then
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+		end
+	end
+	if not roomConfig and game:IsGreedMode() then
+		if not ignoreStage then
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+			if minDifficulty > 0 and not roomConfig then
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+			end
+		end
+		if isSpecial and not roomConfig then
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+			if minDifficulty > 0 and not roomConfig then
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+			end
+		end
+	end
+	return roomConfig
+end
+
+function PibersMod:TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant)
+	local game = Game()
+	local level = game:GetLevel()
+	local stage = level:GetStage()
+	local minDifficulty = 0
+	local maxDifficulty = 10
+	if stage == LevelStage.STAGE7 then
+		minDifficulty = 15
+	elseif game:IsHardMode() then
+		if rng:GetSeed() % 8 == 0 then
+			minDifficulty = 1
+		else
+			minDifficulty = 2
+		end
+	end
+	if stage == LevelStage.STAGE7 then
+		maxDifficulty = 20
+	elseif game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
+		maxDifficulty = 15
+	end
+	for i=0, 100 do
+		local roomConfig = PibersMod:GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant)
+		if not index or index < 0 then
+			local validGrids = level:FindValidRoomPlacementLocations(roomConfig, dimension, multipleDoors, specialNeighbors)
+			if #validGrids > 0 then
+				local useGrid = validGrids[rng:RandomInt(1, #validGrids)]
+				local maxIndex = -index
+				local canPlace = true
+				if maxIndex > 1 then
+					canPlace = false
+					for i=0, 100 do
+						if useGrid > maxIndex then
+							useGrid = validGrids[rng:RandomInt(1, #validGrids)]
+						else
+							canPlace = true
+							break
+						end
+					end
+				end
+				if canPlace then
+					local roomDesc = level:TryPlaceRoom(roomConfig, useGrid, dimension, rng:Next(), multipleDoors, specialNeighbors, noNeighbors)
+					if roomDesc then
+						return roomDesc
+					end
+				end
+			end
+		else
+			local roomDesc = level:TryPlaceRoom(roomConfig, index, dimension, rng:Next(), multipleDoors, specialNeighbors, noNeighbors)
+			if roomDesc then
+				return roomDesc
+			end
+		end
+	end
+end
+
 function PibersMod:TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, dimension, rng, index, minDifficulty, maxDifficulty, forceDoors, avoidGrid, avoidGridDistance, minDistance, ignoreStage)
 	local roomType = RoomType.ROOM_DEFAULT
 	if not roomConfig or type(roomConfig) == "number" then

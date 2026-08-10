@@ -1,13 +1,31 @@
-function PibersMod.AddTagsToItem(itemConfig, itemID, tags)
-	local currTags = itemConfig:GetCollectible(itemID).Tags
-	currTags = currTags | tags
-	itemConfig:GetCollectible(itemID).Tags = currTags
-end
-
 function PibersMod:OnModsLoadedVanillaItems()
 	local itemConfig = Isaac.GetItemConfig()
-	PibersMod.AddTagsToItem(itemConfig, CollectibleType.COLLECTIBLE_SERAPHIM, ItemConfig.TAG_ANGEL)
-	PibersMod.AddTagsToItem(itemConfig, CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON, ItemConfig.TAG_NO_EDEN)
+
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SERAPHIM).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SERAPHIM).Tags | ItemConfig.TAG_ANGEL
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON).Tags | ItemConfig.TAG_NO_EDEN
+
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_DECK_OF_CARDS).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_DECK_OF_CARDS).Tags ~ ItemConfig.TAG_STARS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_CARD_READING).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_CARD_READING).Tags ~ ItemConfig.TAG_STARS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ECHO_CHAMBER).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ECHO_CHAMBER).Tags ~ ItemConfig.TAG_STARS
+
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_TINY_PLANET).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_TINY_PLANET).Tags | ItemConfig.TAG_STARS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_BLACK_HOLE).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_BLACK_HOLE).Tags | ItemConfig.TAG_STARS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ANGELIC_PRISM).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ANGELIC_PRISM).Tags | ItemConfig.TAG_STARS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_GENESIS).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_GENESIS).Tags | ItemConfig.TAG_STARS
+
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SOL).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_LUNA).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_MERCURIUS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_VENUS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_TERRA).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_MARS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_JUPITER).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SATURNUS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_URANUS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_NEPTUNUS).AchievementID = Achievement.PLANETARIUMS
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_PLUTO).AchievementID = Achievement.PLANETARIUMS
+
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_DOGMA).AchievementID = Achievement.RED_KEY
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoadedVanillaItems)
 
@@ -64,6 +82,14 @@ function PibersMod:OnPlayerUpdate(player)
 		player:RemoveCollectible(CollectibleType.KEY_PIECE_COMPLETE)
 	end
 
+	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_KEY_PIECE_1) > 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) then
+		player:RemoveCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
+		player:AddCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
+	elseif player:GetCollectibleNum(CollectibleType.COLLECTIBLE_KEY_PIECE_2) > 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) then
+		player:RemoveCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2)
+		player:AddCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1)
+	end
+
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) and player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) then
 		if not player:HasCollectible(CollectibleType.KNIFE_PIECE_COMPLETE) then
 			PibersMod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
@@ -73,24 +99,38 @@ function PibersMod:OnPlayerUpdate(player)
 	elseif player:HasCollectible(CollectibleType.KNIFE_PIECE_COMPLETE) then
 		player:RemoveCollectible(CollectibleType.KNIFE_PIECE_COMPLETE)
 	end
+
+	if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) > 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) then
+		player:RemoveCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
+		player:AddCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2)
+	elseif player:GetCollectibleNum(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) > 1 and not player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) then
+		player:RemoveCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2)
+		player:AddCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
+	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PibersMod.OnPlayerUpdate)
 
+PibersMod.ReplaceCollectibleWithOnDupe = {}
+PibersMod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KEY_PIECE_1] = CollectibleType.COLLECTIBLE_KEY_PIECE_2
+PibersMod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KEY_PIECE_2] = CollectibleType.COLLECTIBLE_KEY_PIECE_1
+PibersMod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KNIFE_PIECE_1] = CollectibleType.COLLECTIBLE_KNIFE_PIECE_2
+PibersMod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KNIFE_PIECE_2] = CollectibleType.COLLECTIBLE_KNIFE_PIECE_1
 function PibersMod:OnCollectibleInit(pickup)
-	if pickup.SubType == CollectibleType.COLLECTIBLE_KEY_PIECE_1 and PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) then
-		pickup:Morph(pickup.Type, pickup.Variant, CollectibleType.COLLECTIBLE_KEY_PIECE_2, true, true, true)
-	end
-	if pickup.SubType == CollectibleType.COLLECTIBLE_KEY_PIECE_2 and not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) then
-		pickup:Morph(pickup.Type, pickup.Variant, CollectibleType.COLLECTIBLE_KEY_PIECE_1, true, true, true)
-	end
-	if pickup.SubType == CollectibleType.COLLECTIBLE_KNIFE_PIECE_1 and PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) then
-		pickup:Morph(pickup.Type, pickup.Variant, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, true, true, true)
-	end
-	if pickup.SubType == CollectibleType.COLLECTIBLE_KNIFE_PIECE_2 and not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) then
-		pickup:Morph(pickup.Type, pickup.Variant, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, true, true, true)
+	if PibersMod.ReplaceCollectibleWithOnDupe[pickup.SubType] and PlayerManager.AnyoneHasCollectible(pickup.SubType) then
+		pickup:Morph(pickup.Type, pickup.Variant, PibersMod.ReplaceCollectibleWithOnDupe[pickup.SubType], true, true, true)
 	end
 end
 PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, PibersMod.OnCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
+
+function PibersMod:OnCollectibleUpdate(pickup)
+	if pickup.FrameCount > 2 and PibersMod.ReplaceCollectibleWithOnDupe[pickup.SubType] then
+		if PlayerManager.AnyoneHasCollectible(pickup.SubType) and not PlayerManager.AnyoneHasCollectible(PibersMod.ReplaceCollectibleWithOnDupe[pickup.SubType]) then
+			pickup:Morph(pickup.Type, pickup.Variant, PibersMod.ReplaceCollectibleWithOnDupe[pickup.SubType], true, true, true)
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position-PibersMod.PoofSpawnOffset, Vector.Zero, pickup)
+		end
+	end
+end
+PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnCollectibleUpdate, PickupVariant.PICKUP_COLLECTIBLE)
 
 function PibersMod:OnNewRoomBuddy()
 	for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BUDDY_IN_A_BOX, -1, false, false)) do

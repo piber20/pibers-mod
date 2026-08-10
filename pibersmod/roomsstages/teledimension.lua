@@ -519,7 +519,7 @@ function PibersMod:PreGetLootList(pickup, advance)
 		if PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) and not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) then
 			itemID = CollectibleType.COLLECTIBLE_KNIFE_PIECE_2
 		else
-			itemID = game:GetItemPool():GetCollectible(ItemPoolType.MOMS_CHEST_MAUSOLEUM, true, pickup.DropSeed)
+			itemID = game:GetItemPool():GetCollectible(ItemPoolType.POOL_MOMS_CHEST, true, pickup.DropSeed)
 		end
 		local loot = LootList()
 		loot:PushEntry(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, pickup.DropSeed)

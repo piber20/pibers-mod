@@ -5,93 +5,12 @@ PibersMod.SecretSprite = Sprite("gfx/ui/main menu/todo.anm2", true)
 PibersMod.SecretSprite:Play("Icon1Unlocked")
 PibersMod.SecretSpriteLocked = Sprite("gfx/ui/main menu/todo.anm2", true)
 PibersMod.SecretSpriteLocked:Play("Icon1Locked")
-PibersMod.SecretBases = {}
-PibersMod.SecretOverlays = {}
-for index=0, XMLData.GetNumEntries(XMLNode.ACHIEVEMENT) do
-	local data = XMLData.GetEntryByOrder(XMLNode.ACHIEVEMENT, index)
-	if data and data.id then
-		if data.text then
-			if string.find(data.text, "You unlocked ") then
-				PibersMod.SecretBases[tonumber(data.id)] = "character"
-			end
-			if string.find(data.text, " in the basement") and not string.find(data.text, " appeared in the basement") then
-				PibersMod.SecretBases[tonumber(data.id)] = "basement"
-			end
-			if string.find(data.text, " in the caves") then
-				PibersMod.SecretBases[tonumber(data.id)] = "caves"
-			end
-			if string.find(data.text, " in the depths") then
-				PibersMod.SecretBases[tonumber(data.id)] = "depths"
-			end
-			if string.find(data.text, "Boy\" achieved") or string.find(data.text, " God") then
-				PibersMod.SecretBases[tonumber(data.id)] = "god"
-			end
-			if string.find(data.text, "Store Upgrade") then
-				PibersMod.SecretBases[tonumber(data.id)] = "donation"
-			end
-			if string.find(data.text, "You unlocked Challenge ") then
-				PibersMod.SecretBases[tonumber(data.id)] = "challenge"
-			end
-		end
-		if data.steam_name then
-			if string.find(data.steam_name, " God") then
-				PibersMod.SecretBases[tonumber(data.id)] = "god"
-			end
-		end
-		if data.steam_description then
-			if string.find(data.steam_description, "Complete the game") or string.find(data.steam_description, "Beat the game") then
-				PibersMod.SecretBases[tonumber(data.id)] = "womb"
-			end
-			if string.find(data.steam_description, "Complete everything") or string.find(data.steam_description, "Beat everything") then
-				PibersMod.SecretBases[tonumber(data.id)] = "god"
-			end
-			if string.find(data.steam_description, "in Hard mode") then
-				PibersMod.SecretOverlays[tonumber(data.id)] = "blood"
-			end
-			if string.find(data.steam_description, "Complete the Cathedral") or string.find(data.steam_description, "Beat the Cathedral") then
-				PibersMod.SecretBases[tonumber(data.id)] = "cathedral"
-			end
-			if string.find(data.steam_description, "Complete Sheol") or string.find(data.steam_description, "Beat Sheol") then
-				PibersMod.SecretBases[tonumber(data.id)] = "sheol"
-			end
-			if string.find(data.steam_description, "Complete the Chest") or string.find(data.steam_description, "Beat the Chest") then
-				PibersMod.SecretBases[tonumber(data.id)] = "chest"
-			end
-			if string.find(data.steam_description, "Complete the Dark Room") or string.find(data.steam_description, "Beat the Dark Room") then
-				PibersMod.SecretBases[tonumber(data.id)] = "darkroom"
-			end
-			if string.find(data.steam_description, "Complete Boss Rush") or string.find(data.steam_description, "Beat Boss Rush") then
-				PibersMod.SecretBases[tonumber(data.id)] = "bossrush"
-			end
-			if string.find(data.steam_description, "Complete Greed") or string.find(data.steam_description, "Beat Greed") then
-				PibersMod.SecretBases[tonumber(data.id)] = "greed"
-				if string.find(data.steam_description, "Complete Greedier") or string.find(data.steam_description, "Beat Greedier") then
-					PibersMod.SecretOverlays[tonumber(data.id)] = "blood"
-				end
-			end
-			--if string.find(data.steam_description, "Complete ???") or  string.find(data.steam_description, "Beat ???") then
-				--PibersMod.SecretBases[tonumber(data.id)] = "bluewomb"
-			--end
-			if string.find(data.steam_description, "Complete the Void") or string.find(data.steam_description, "Beat the Void") then
-				PibersMod.SecretBases[tonumber(data.id)] = "void"
-			end
-			if string.find(data.steam_description, "Defeat Mega Satan") then
-				PibersMod.SecretBases[tonumber(data.id)] = "megasatan"
-			end
-			if string.find(data.steam_description, "Complete the Corpse") or string.find(data.steam_description, "Beat the Corpse") then
-				PibersMod.SecretBases[tonumber(data.id)] = "corpse"
-				PibersMod.SecretOverlays[tonumber(data.id)] = "blooddark"
-			end
-			if string.find(data.steam_description, "Complete the final chapter") or string.find(data.steam_description, "Beat the final chapter") then
-				PibersMod.SecretBases[tonumber(data.id)] = "beast"
-			end
-			if string.find(data.steam_description, "Complete Challenge") or string.find(data.steam_description, "Beat Challenge") then
-				PibersMod.SecretBases[tonumber(data.id)] = "challenge"
-			end
-		end
-	end
-end
 
+PibersMod.CurrentlySelectedSecret = 1
+PibersMod.LastSecretPageFrame = -1
+PibersMod.LastSecretPageAnim = "Idle"
+
+PibersMod.SecretBases = {}
 PibersMod.SecretBases[4] = "womb"
 PibersMod.SecretBases[5] = "mom"
 PibersMod.SecretBases[6] = "mom"
@@ -560,6 +479,8 @@ PibersMod.SecretBases[633] = "bluewomb"
 PibersMod.SecretBases[634] = "bluewomb"
 PibersMod.SecretBases[635] = "corpse"
 PibersMod.SecretBases[636] = "god"
+
+PibersMod.SecretOverlays = {}
 PibersMod.SecretOverlays[30] = "blood"
 PibersMod.SecretOverlays[31] = "blood"
 PibersMod.SecretOverlays[147] = "blood"
@@ -742,23 +663,8 @@ PibersMod.SecretOverlays[632] = "tainted"
 PibersMod.SecretOverlays[633] = "tainted"
 PibersMod.SecretOverlays[634] = "tainted"
 PibersMod.SecretOverlays[636] = "tainted"
+
 PibersMod.SecretIconsItems = {}
-for index=0, XMLData.GetNumEntries(XMLNode.ITEM) do
-	local data = XMLData.GetEntryByOrder(XMLNode.ITEM, index)
-	if data and data.achievement then
-		local id = tonumber(data.id) or Isaac.GetItemIdByName(data.name)
-		if id then
-			if tonumber(data.achievement) and not PibersMod.SecretIconsItems[tonumber(data.achievement)] then
-				PibersMod.SecretIconsItems[tonumber(data.achievement)] = id
-			elseif string.len(data.achievement) > 0 then
-				local achivID = Isaac.GetAchievementIdByName(data.achievement)
-				if achivID and not PibersMod.SecretIconsItems[achivID] then
-					PibersMod.SecretIconsItems[achivID] = id
-				end
-			end
-		end
-	end
-end
 PibersMod.SecretIconsItems[154] = CollectibleType.COLLECTIBLE_DOLLAR
 PibersMod.SecretIconsItems[155] = CollectibleType.BLOODY_FEATHER
 PibersMod.SecretIconsItems[157] = CollectibleType.COLLECTIBLE_DARK_MATTER
@@ -777,25 +683,11 @@ PibersMod.SecretIconsItems[271] = CollectibleType.COLLECTIBLE_BOBS_BRAIN
 PibersMod.SecretIconsItems[272] = CollectibleType.COLLECTIBLE_RAINBOW_BABY
 PibersMod.SecretIconsItems[279] = CollectibleType.COLLECTIBLE_POKE_GO
 PibersMod.SecretIconsItems[508] = CollectibleType.COLLECTIBLE_BLOOD_OATH
+
 PibersMod.SecretIconsTrinkets = {}
-for index=0, XMLData.GetNumEntries(XMLNode.TRINKET) do
-	local data = XMLData.GetEntryByOrder(XMLNode.TRINKET, index)
-	if data and data.achievement then
-		local id = tonumber(data.id) or Isaac.GetTrinketIdByName(data.name)
-		if id then
-			if tonumber(data.achievement) and not PibersMod.SecretIconsTrinkets[tonumber(data.achievement)] then
-				PibersMod.SecretIconsTrinkets[tonumber(data.achievement)] = id
-			elseif string.len(data.achievement) > 0 then
-				local achivID = Isaac.GetAchievementIdByName(data.achievement)
-				if achivID and not PibersMod.SecretIconsTrinkets[achivID] then
-					PibersMod.SecretIconsTrinkets[achivID] = id
-				end
-			end
-		end
-	end
-end
 PibersMod.SecretIconsTrinkets[237] = TrinketType.TRINKET_STORE_KEY
 PibersMod.SecretIconsTrinkets[245] = TrinketType.TRINKET_PAPER_CLIP
+
 PibersMod.SecretIconsTrinketOffset = {}
 PibersMod.SecretIconsTrinketOffset[55] = true
 PibersMod.SecretIconsTrinketOffset[64] = true
@@ -809,6 +701,7 @@ PibersMod.SecretIconsTrinketOffset[556] = true
 PibersMod.SecretIconsTrinketOffset[562] = true
 PibersMod.SecretIconsTrinketOffset[563] = true
 PibersMod.SecretIconsTrinketOffset[573] = true
+
 PibersMod.SecretIconsTrinketOffsetSlight = {}
 PibersMod.SecretIconsTrinketOffsetSlight[71] = true
 PibersMod.SecretIconsTrinketOffsetSlight[72] = true
@@ -861,11 +754,13 @@ PibersMod.SecretIconsTrinketOffsetSlight[577] = true
 PibersMod.SecretIconsTrinketOffsetSlight[578] = true
 PibersMod.SecretIconsTrinketOffsetSlight[579] = true
 PibersMod.SecretIconsTrinketOffsetSlight[581] = true
+
 PibersMod.SecretIconsCoins = {}
 PibersMod.SecretIconsCoins[151] = "pickup_002_coin"
 PibersMod.SecretIconsCoins[152] = "pickup_002_coinblack"
 PibersMod.SecretIconsCoins[153] = "pickup_002_coinsilver"
 PibersMod.SecretIconsCoins[242] = "pickup_002_lucky_penny"
+
 PibersMod.SecretIcons32x = {}
 PibersMod.SecretIcons32x[89] = "ui/main menu/secrets/rune_of_hagalaz"
 PibersMod.SecretIcons32x[90] = "ui/main menu/secrets/rune_of_jera"
@@ -945,6 +840,7 @@ PibersMod.SecretIcons32x[541] = "ui/main menu/secrets/the_stars"
 PibersMod.SecretIcons32x[542] = "ui/main menu/secrets/the_sun_and_the_moon"
 PibersMod.SecretIcons32x[543] = "ui/main menu/secrets/judgement"
 PibersMod.SecretIcons32x[544] = "ui/main menu/secrets/the_world"
+
 PibersMod.SecretIcons48x = {}
 PibersMod.SecretIcons48x[5] = "ui/main menu/secrets/harbingers"
 PibersMod.SecretIcons48x[38] = "ui/main menu/secrets/spelunker_boy"
@@ -975,6 +871,7 @@ PibersMod.SecretIcons48x[412] = "ui/main menu/secrets/dross"
 PibersMod.SecretIcons48x[413] = "ui/main menu/secrets/ashpit"
 PibersMod.SecretIcons48x[414] = "ui/main menu/secrets/gehenna"
 PibersMod.SecretIcons48x[513] = "ui/main menu/secrets/hot_potato"
+
 PibersMod.SecretIcons64x = {}
 PibersMod.SecretIcons64x[4] = "grid/door_11_wombhole"
 PibersMod.SecretIcons64x[16] = "ui/main menu/secrets/steven"
@@ -1013,52 +910,183 @@ PibersMod.SecretIcons64x[512] = "ui/main menu/secrets/pica_run"
 PibersMod.SecretIcons64x[514] = "ui/main menu/secrets/cantripped"
 PibersMod.SecretIcons64x[515] = "ui/main menu/secrets/red_redemption"
 PibersMod.SecretIcons64x[593] = "ui/main menu/secrets/corrupted_data" --temp
+
 PibersMod.SecretIcons80x = {}
 PibersMod.SecretIcons80x[18] = "ui/main menu/secrets/gish"
 PibersMod.SecretIcons80x[34] = "ui/main menu/secrets/itlives"
 PibersMod.SecretIcons80x[68] = "ui/main menu/secrets/something_icky"
 PibersMod.SecretIcons80x[246] = "ui/main menu/secrets/everything_is_terrible_2"
+
 PibersMod.SecretIcons128x = {}
 PibersMod.SecretIcons128x[347] = "ui/main menu/secrets/something_wicked_this_way_comes_plus"
+
 PibersMod.SecretIconsCharacters = {}
-for index=0, XMLData.GetNumEntries(XMLNode.PLAYER) do
-	local data = XMLData.GetEntryByOrder(XMLNode.PLAYER, index)
-	if data and data.achievement then
-		local id = tonumber(data.id) or Isaac.GetPlayerTypeByName(data.name)
-		if id then
-			if tonumber(data.achievement) and not PibersMod.SecretIconsCharacters[tonumber(data.achievement)] and not PibersMod.SecretIconsItems[tonumber(data.achievement)] then
-				PibersMod.SecretIconsCharacters[tonumber(data.achievement)] = id
-				if not PibersMod.SecretBases[tonumber(data.achievement)] then
-					PibersMod.SecretBases[tonumber(data.achievement)] = "character"
+
+PibersMod.SecretIconsCharactersScream = {}
+PibersMod.SecretIconsCharactersScream[33] = PlayerType.PLAYER_ISAAC
+
+PibersMod.SecretIconsCharactersThumb = {}
+PibersMod.SecretIconsCharactersThumb[37] = PlayerType.PLAYER_ISAAC
+PibersMod.SecretIconsCharactersThumb[83] = PlayerType.PLAYER_THEFORGOTTEN
+PibersMod.SecretIconsCharactersThumb[334] = PlayerType.PLAYER_SAMSON
+
+PibersMod.SecretIconsCharactersDeath = {}
+PibersMod.SecretIconsCharactersDeath[166] = PlayerType.PLAYER_ISAAC
+
+PibersMod.SecretIconsBabies = {}
+
+function PibersMod.GenerateSecretsMenuData()
+	for index=0, XMLData.GetNumEntries(XMLNode.ACHIEVEMENT) do
+		local data = XMLData.GetEntryByOrder(XMLNode.ACHIEVEMENT, index)
+		if data and data.id then
+			if data.text then
+				if string.find(data.text, "You unlocked ") then
+					PibersMod.SecretBases[tonumber(data.id)] = "character"
 				end
-			elseif string.len(data.achievement) > 0 then
-				local achivID = Isaac.GetAchievementIdByName(data.achievement)
-				if achivID and not PibersMod.SecretIconsCharacters[achivID] and not PibersMod.SecretIconsItems[achivID] then
-					PibersMod.SecretIconsCharacters[achivID] = id
-					if not PibersMod.SecretBases[achivID] then
-						PibersMod.SecretBases[achivID] = "character"
+				if string.find(data.text, " in the basement") and not string.find(data.text, " appeared in the basement") then
+					PibersMod.SecretBases[tonumber(data.id)] = "basement"
+				end
+				if string.find(data.text, " in the caves") then
+					PibersMod.SecretBases[tonumber(data.id)] = "caves"
+				end
+				if string.find(data.text, " in the depths") then
+					PibersMod.SecretBases[tonumber(data.id)] = "depths"
+				end
+				if string.find(data.text, "Boy\" achieved") or string.find(data.text, " God") then
+					PibersMod.SecretBases[tonumber(data.id)] = "god"
+				end
+				if string.find(data.text, "Store Upgrade") then
+					PibersMod.SecretBases[tonumber(data.id)] = "donation"
+				end
+				if string.find(data.text, "You unlocked Challenge ") then
+					PibersMod.SecretBases[tonumber(data.id)] = "challenge"
+				end
+			end
+			if data.steam_name then
+				if string.find(data.steam_name, " God") then
+					PibersMod.SecretBases[tonumber(data.id)] = "god"
+				end
+			end
+			if data.steam_description then
+				if string.find(data.steam_description, "Complete the game") or string.find(data.steam_description, "Beat the game") then
+					PibersMod.SecretBases[tonumber(data.id)] = "womb"
+				end
+				if string.find(data.steam_description, "Complete everything") or string.find(data.steam_description, "Beat everything") then
+					PibersMod.SecretBases[tonumber(data.id)] = "god"
+				end
+				if string.find(data.steam_description, "in Hard mode") then
+					PibersMod.SecretOverlays[tonumber(data.id)] = "blood"
+				end
+				if string.find(data.steam_description, "Complete the Cathedral") or string.find(data.steam_description, "Beat the Cathedral") then
+					PibersMod.SecretBases[tonumber(data.id)] = "cathedral"
+				end
+				if string.find(data.steam_description, "Complete Sheol") or string.find(data.steam_description, "Beat Sheol") then
+					PibersMod.SecretBases[tonumber(data.id)] = "sheol"
+				end
+				if string.find(data.steam_description, "Complete the Chest") or string.find(data.steam_description, "Beat the Chest") then
+					PibersMod.SecretBases[tonumber(data.id)] = "chest"
+				end
+				if string.find(data.steam_description, "Complete the Dark Room") or string.find(data.steam_description, "Beat the Dark Room") then
+					PibersMod.SecretBases[tonumber(data.id)] = "darkroom"
+				end
+				if string.find(data.steam_description, "Complete Boss Rush") or string.find(data.steam_description, "Beat Boss Rush") then
+					PibersMod.SecretBases[tonumber(data.id)] = "bossrush"
+				end
+				if string.find(data.steam_description, "Complete Greed") or string.find(data.steam_description, "Beat Greed") then
+					PibersMod.SecretBases[tonumber(data.id)] = "greed"
+					if string.find(data.steam_description, "Complete Greedier") or string.find(data.steam_description, "Beat Greedier") then
+						PibersMod.SecretOverlays[tonumber(data.id)] = "blood"
+					end
+				end
+				--if string.find(data.steam_description, "Complete ???") or  string.find(data.steam_description, "Beat ???") then
+					--PibersMod.SecretBases[tonumber(data.id)] = "bluewomb"
+				--end
+				if string.find(data.steam_description, "Complete the Void") or string.find(data.steam_description, "Beat the Void") then
+					PibersMod.SecretBases[tonumber(data.id)] = "void"
+				end
+				if string.find(data.steam_description, "Defeat Mega Satan") then
+					PibersMod.SecretBases[tonumber(data.id)] = "megasatan"
+				end
+				if string.find(data.steam_description, "Complete the Corpse") or string.find(data.steam_description, "Beat the Corpse") then
+					PibersMod.SecretBases[tonumber(data.id)] = "corpse"
+					PibersMod.SecretOverlays[tonumber(data.id)] = "blooddark"
+				end
+				if string.find(data.steam_description, "Complete the final chapter") or string.find(data.steam_description, "Beat the final chapter") then
+					PibersMod.SecretBases[tonumber(data.id)] = "beast"
+				end
+				if string.find(data.steam_description, "Complete Challenge") or string.find(data.steam_description, "Beat Challenge") then
+					PibersMod.SecretBases[tonumber(data.id)] = "challenge"
+				end
+			end
+		end
+	end
+
+	for index=0, XMLData.GetNumEntries(XMLNode.ITEM) do
+		local data = XMLData.GetEntryByOrder(XMLNode.ITEM, index)
+		if data and data.achievement then
+			local id = tonumber(data.id) or Isaac.GetItemIdByName(data.name)
+			if id then
+				if tonumber(data.achievement) and not PibersMod.SecretIconsItems[tonumber(data.achievement)] then
+					PibersMod.SecretIconsItems[tonumber(data.achievement)] = id
+				elseif string.len(data.achievement) > 0 then
+					local achivID = Isaac.GetAchievementIdByName(data.achievement)
+					if achivID and not PibersMod.SecretIconsItems[achivID] then
+						PibersMod.SecretIconsItems[achivID] = id
 					end
 				end
 			end
 		end
 	end
-end
-PibersMod.SecretIconsCharactersScream = {}
-PibersMod.SecretIconsCharactersScream[33] = PlayerType.PLAYER_ISAAC
-PibersMod.SecretIconsCharactersThumb = {}
-PibersMod.SecretIconsCharactersThumb[37] = PlayerType.PLAYER_ISAAC
-PibersMod.SecretIconsCharactersThumb[83] = PlayerType.PLAYER_THEFORGOTTEN
-PibersMod.SecretIconsCharactersThumb[334] = PlayerType.PLAYER_SAMSON
-PibersMod.SecretIconsCharactersDeath = {}
-PibersMod.SecretIconsCharactersDeath[166] = PlayerType.PLAYER_ISAAC
-PibersMod.SecretIconsBabies = {}
-for index=0, EntityConfig.GetMaxBabyID() do
-	local data = EntityConfig.GetBaby(index)
-	if data and data:GetAchievementID() and not PibersMod.SecretIconsBabies[data:GetAchievementID()] then
-		PibersMod.SecretIconsBabies[data:GetAchievementID()] = data:GetID()
+
+	for index=0, XMLData.GetNumEntries(XMLNode.TRINKET) do
+		local data = XMLData.GetEntryByOrder(XMLNode.TRINKET, index)
+		if data and data.achievement then
+			local id = tonumber(data.id) or Isaac.GetTrinketIdByName(data.name)
+			if id then
+				if tonumber(data.achievement) and not PibersMod.SecretIconsTrinkets[tonumber(data.achievement)] then
+					PibersMod.SecretIconsTrinkets[tonumber(data.achievement)] = id
+				elseif string.len(data.achievement) > 0 then
+					local achivID = Isaac.GetAchievementIdByName(data.achievement)
+					if achivID and not PibersMod.SecretIconsTrinkets[achivID] then
+						PibersMod.SecretIconsTrinkets[achivID] = id
+					end
+				end
+			end
+		end
+	end
+
+	for index=0, XMLData.GetNumEntries(XMLNode.PLAYER) do
+		local data = XMLData.GetEntryByOrder(XMLNode.PLAYER, index)
+		if data and data.achievement then
+			local id = tonumber(data.id) or Isaac.GetPlayerTypeByName(data.name)
+			if id then
+				if tonumber(data.achievement) and not PibersMod.SecretIconsCharacters[tonumber(data.achievement)] and not PibersMod.SecretIconsItems[tonumber(data.achievement)] then
+					PibersMod.SecretIconsCharacters[tonumber(data.achievement)] = id
+					if not PibersMod.SecretBases[tonumber(data.achievement)] then
+						PibersMod.SecretBases[tonumber(data.achievement)] = "character"
+					end
+				elseif string.len(data.achievement) > 0 then
+					local achivID = Isaac.GetAchievementIdByName(data.achievement)
+					if achivID and not PibersMod.SecretIconsCharacters[achivID] and not PibersMod.SecretIconsItems[achivID] then
+						PibersMod.SecretIconsCharacters[achivID] = id
+						if not PibersMod.SecretBases[achivID] then
+							PibersMod.SecretBases[achivID] = "character"
+						end
+					end
+				end
+			end
+		end
+	end
+
+	for index=0, EntityConfig.GetMaxBabyID() do
+		local data = EntityConfig.GetBaby(index)
+		if data and data:GetAchievementID() and not PibersMod.SecretIconsBabies[data:GetAchievementID()] then
+			PibersMod.SecretIconsBabies[data:GetAchievementID()] = data:GetID()
+		end
 	end
 end
-PibersMod.CurrentlySelectedSecret = 1
+PibersMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, PibersMod.GenerateSecretsMenuData)
+
 function PibersMod:SetSecretIcon(sprite, id)
 	if sprite then
 		sprite:ReplaceSpritesheet(1, "gfx/ui/main menu/secrets/base_locked.png", false)
@@ -1158,8 +1186,6 @@ function PibersMod:SetSecretIcon(sprite, id)
 	return false
 end
 
-PibersMod.LastSecretPageFrame = -1
-PibersMod.LastSecretPageAnim = "Idle"
 function PibersMod:OnMainMenuRenderSecrets()
 	local gamedata = Isaac.GetPersistentGameData()
 	if StatsMenu.IsSecretsMenuVisible() then
