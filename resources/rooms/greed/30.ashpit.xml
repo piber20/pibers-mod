@@ -3504,8 +3504,17 @@
 		<door exists="True" x="6" y="14"/>
 		<door exists="True" x="13" y="3"/>
 		<door exists="True" x="13" y="10"/>
-		<spawn x="6" y="2">
+		<spawn x="6" y="1">
+			<entity type="889" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
 			<entity type="921" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="4">
+			<entity type="889" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="4">
+			<entity type="889" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="122" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="1.0">
