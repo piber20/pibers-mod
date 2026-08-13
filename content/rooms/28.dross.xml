@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="3330" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="1.0">
+	<room variant="33300" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -30,7 +30,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3331" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.25">
+	<room variant="33301" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.25">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -69,7 +69,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3332" name="void" type="1" subtype="0" shape="8" width="26" height="14" difficulty="20" weight="1.0">
+	<room variant="33302" name="void" type="1" subtype="0" shape="8" width="26" height="14" difficulty="20" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -610,7 +610,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3333" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="1.0">
+	<room variant="33303" name="void" type="1" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -646,7 +646,7 @@
 			<entity type="18" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3334" name="void" type="1" subtype="0" shape="4" width="13" height="14" difficulty="20" weight="1.0">
+	<room variant="33304" name="void" type="1" subtype="0" shape="4" width="13" height="14" difficulty="20" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -894,7 +894,7 @@
 			<entity type="918" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3330" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33300" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -939,7 +939,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3331" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33301" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1014,7 +1014,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3332" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33302" name="Lust Downpour" type="6" subtype="1" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1053,7 +1053,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3333" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33303" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1086,7 +1086,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3334" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33304" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1119,7 +1119,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3335" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33305" name="Super Lust Downpour" type="6" subtype="8" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1182,7 +1182,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3336" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33306" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1263,7 +1263,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3337" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33307" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1326,7 +1326,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3338" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33308" name="Wrath Downpour" type="6" subtype="2" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1425,7 +1425,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3339" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33309" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1434,7 +1434,7 @@
 			<entity type="48" variant="1" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3340" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33310" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1497,7 +1497,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3341" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33311" name="Super Wrath Downpour" type="6" subtype="9" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1536,7 +1536,7 @@
 			<entity type="1001" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3342" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33312" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1599,7 +1599,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3343" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33313" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1644,7 +1644,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3344" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33314" name="Sloth Downpour" type="6" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1683,7 +1683,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3345" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33315" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1779,7 +1779,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3346" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33316" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1830,7 +1830,7 @@
 			<entity type="1001" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3347" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33317" name="Super Sloth Downpour" type="6" subtype="7" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1875,7 +1875,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3348" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33318" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1926,7 +1926,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3349" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33319" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1965,7 +1965,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3350" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33320" name="Pride Downpour" type="6" subtype="6" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2016,7 +2016,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3351" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33321" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2103,7 +2103,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3352" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33322" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2136,7 +2136,7 @@
 			<entity type="1002" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3353" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33323" name="Super Pride Downpour" type="6" subtype="13" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2163,7 +2163,7 @@
 			<entity type="1931" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3354" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33324" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2172,7 +2172,7 @@
 			<entity type="51" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3355" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33325" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2193,7 +2193,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3356" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33326" name="Envy Downpour" type="6" subtype="5" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2220,7 +2220,7 @@
 			<entity type="1900" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3357" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33327" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2241,7 +2241,7 @@
 			<entity type="1931" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3358" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33328" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2268,7 +2268,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3359" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33329" name="Super Envy Downpour" type="6" subtype="12" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2283,7 +2283,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3360" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33330" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2346,7 +2346,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3361" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33331" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2379,7 +2379,7 @@
 			<entity type="1930" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3362" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33332" name="Gluttony Downpour" type="6" subtype="3" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2412,7 +2412,7 @@
 			<entity type="1500" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3363" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33333" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2439,7 +2439,7 @@
 			<entity type="1931" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3364" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33334" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2478,7 +2478,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3365" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33335" name="Super Gluttony Downpour" type="6" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2517,7 +2517,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3330" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33300" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2529,7 +2529,7 @@
 			<entity type="5" variant="100" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3331" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33301" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2553,7 +2553,7 @@
 			<entity type="1002" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3332" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33302" name="New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2580,7 +2580,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3330" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33300" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2622,7 +2622,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3331" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33301" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2652,7 +2652,7 @@
 			<entity type="1002" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3332" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33302" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2700,7 +2700,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3333" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33303" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2724,7 +2724,7 @@
 			<entity type="5" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3334" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33304" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2751,7 +2751,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3335" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33305" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2793,7 +2793,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3336" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="33306" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2817,7 +2817,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="3337" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="33307" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2835,7 +2835,7 @@
 			<entity type="5" variant="100" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="3338" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="33308" name="New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

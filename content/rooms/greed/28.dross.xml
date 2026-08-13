@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="121" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.5">
+	<room variant="33300" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -14,7 +14,7 @@
 			<entity type="237" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="124" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="0.5">
+	<room variant="33301" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="5" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
@@ -25,7 +25,7 @@
 			<entity type="261" variant="1" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="125" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+	<room variant="33302" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>
