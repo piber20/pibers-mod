@@ -1,9 +1,10 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
-	<passive id="0" name="Mixed Veggies"	  description="DMG & HP up + you ate too many veggies"	gfx="pibersmod_mixedveggies.png" damage="0.15" hearts="2" maxhearts="2" tags="nolostbr" quality="2" />
-	<passive id="1" name="Bloody Feather"	  description="Tears up + God's protection" 			gfx="pibersmod_bloodyfeather.png" tears="0.5" tags="angel tearsup" quality="1" />
-	<passive id="2" name="The Key"			  description="???"										gfx="pibersmod_key.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
-	<passive id="3" name="The Knife"		  description="???"										gfx="pibersmod_knife.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
-	<passive id="4" name="Counterfeit Dollar" description="DMG up + Luck down + Temporary money!"	gfx="pibersmod_counterfietdollar.png" tags="nogreed offensive" damage="0.2" luck="-1" coins="100" quality="2" />
+	<passive id="0" name="Mixed Veggies"	  description="HP + DMG up"					gfx="pibersmod_mixedveggies.png" damage="0.15" hearts="4" maxhearts="2" tags="nolostbr" quality="2" />
+	<passive id="1" name="Bloody Feather"	  description="Tears up + God's protection" gfx="pibersmod_bloodyfeather.png" tears="0.5" tags="angel tearsup" quality="1" />
+	<passive id="2" name="The Key"			  description="???"							gfx="pibersmod_key.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
+	<passive id="3" name="The Knife"		  description="???"							gfx="pibersmod_knife.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
+	<passive id="4" name="Counterfeit Dollar" description="DMG up + Temporary money!"	gfx="pibersmod_counterfietdollar.png" tags="nogreed offensive" damage="0.2" luck="-1" coins="100" quality="2" />
+	<passive id="5" name="Birthday Cake"	  description="HP + Tears up"				gfx="pibersmod_birthdaycake.png" tears="0.1" hearts="4" maxhearts="2" tags="nolostbr" />
 
 	<trinket id="0" name="Orthodox Cross"	  description="Follow the right path"		gfx="pibersmod_orthodoxcross.png" />
 

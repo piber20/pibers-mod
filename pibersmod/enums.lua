@@ -39,6 +39,7 @@ CollectibleType.BLOODY_FEATHER = Isaac.GetItemIdByName("Bloody Feather")
 CollectibleType.KEY_PIECE_COMPLETE = Isaac.GetItemIdByName("The Key")
 CollectibleType.KNIFE_PIECE_COMPLETE = Isaac.GetItemIdByName("The Knife")
 CollectibleType.COUNTERFEIT_DOLLAR = Isaac.GetItemIdByName("Counterfeit Dollar")
+CollectibleType.BIRTHDAY_CAKE = Isaac.GetItemIdByName("Birthday Cake")
 
 TrinketType.ORTHODOX_CROSS = Isaac.GetTrinketIdByName("Orthodox Cross")
 

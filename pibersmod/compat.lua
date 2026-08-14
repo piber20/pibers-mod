@@ -86,6 +86,7 @@ function PibersMod:OnModsLoaded()
 		EID:addCollectible(CollectibleType.MIXED_VEGGIES, "↑ {{Damage}} +0.15 Damage#↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart", nil, "en")
 		EID:addCollectible(CollectibleType.BLOODY_FEATHER, "{{Tears}} +0.5 Tears#Taking damage spawns a holy light effect#The holy light effect has a 60% chance to spawn on an enemy#Chance scales with luck", nil, "en")
 		EID:addCollectible(CollectibleType.COUNTERFEIT_DOLLAR, "{{Coin}} +100 Coins#↑ {{Damage}} +0.2 Damage#↓ {{Luck}} -1 Luck#After clearing a room, chance to remove coins#Only coins added by this item will be removed#Chance is affected by luck", nil, "en")
+		EID:addCollectible(CollectibleType.BIRTHDAY_CAKE, "↑ {{Tears}} +0.1 Tears#↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart", nil, "en")
 
 		for index, descData in pairs(EID.DescriptionConditions["5.100." .. CollectibleType.COLLECTIBLE_TOXIC_SHOCK]) do
 			if descData and descData.modifierText and descData.modifierText == "No Effect (Copies)" then

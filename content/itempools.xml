@@ -3,6 +3,7 @@
 	<!--<Pool Name="shop">-->
 	<Pool Name="boss">
 		<Item Id="Mixed Veggies" Weight="1" DecreaseBy="0.5" RemoveOn="0"/>
+		<Item Id="Birthday Cake" Weight="1" DecreaseBy="0.5" RemoveOn="0"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Counterfeit Dollar" Weight="1" DecreaseBy="1" RemoveOn="0"/>
@@ -20,6 +21,7 @@
 	<Pool Name="beggar">
 		<Item Id="Mixed Veggies" Weight="1" DecreaseBy="0.8" RemoveOn="0"/>
 		<Item Id="Counterfeit Dollar" Weight="0.5" DecreaseBy="0.5" RemoveOn="0"/>
+		<Item Id="Birthday Cake" Weight="1" DecreaseBy="0.5" RemoveOn="0"/>
 	</Pool>
 	<!--<Pool Name="demonBeggar">-->
 	<!--<Pool Name="curse">-->
@@ -28,7 +30,8 @@
 	<!--<Pool Name="momsChest">-->
 	<!--<Pool Name="greedTreasure">-->
 	<Pool Name="greedboss">
-		<Item Id="Mixed Veggies" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<Item Id="Mixed Veggies" Weight="1" DecreaseBy="0.5" RemoveOn="0"/>
+		<Item Id="Birthday Cake" Weight="1" DecreaseBy="0.5" RemoveOn="0"/>
 	</Pool>
 	<!--<Pool Name="greedShop">-->
 	<!--<Pool Name="greedCurse">-->
