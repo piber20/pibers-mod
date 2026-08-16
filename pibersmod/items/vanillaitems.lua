@@ -13,6 +13,8 @@ function PibersMod:OnModsLoadedVanillaItems()
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ANGELIC_PRISM).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_ANGELIC_PRISM).Tags | ItemConfig.TAG_STARS
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_GENESIS).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_GENESIS).Tags | ItemConfig.TAG_STARS
 
+	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_FINGER).Quality = 2
+
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SOL).AchievementID = Achievement.PLANETARIUMS
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_LUNA).AchievementID = Achievement.PLANETARIUMS
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_MERCURIUS).AchievementID = Achievement.PLANETARIUMS
