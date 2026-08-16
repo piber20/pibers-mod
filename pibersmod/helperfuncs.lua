@@ -93,27 +93,27 @@ function PibersMod:GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomSh
 		maxDifficulty = 15
 	end
 	local stbType = Isaac.GetCurrentStageConfigId()
-	local roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+	local roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
 	if minDifficulty > 0 and not roomConfig then
-		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
 	end
 	if isSpecial and not roomConfig then
-		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
 		if minDifficulty > 0 and not roomConfig then
-			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
 		end
 	end
 	if not roomConfig and game:IsGreedMode() then
 		if not ignoreStage then
-			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
 			if minDifficulty > 0 and not roomConfig then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
 			end
 		end
 		if isSpecial and not roomConfig then
-			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
 			if minDifficulty > 0 and not roomConfig then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
 			end
 		end
 	end
@@ -251,28 +251,28 @@ function PibersMod:TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, d
 	if not roomConfig then
 		local stbType = Isaac.GetCurrentStageConfigId()
 		if not ignoreStage then
-			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
 			if minDifficulty > 0 and not roomConfig then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype)
 			end
 		end
 		if isSpecial and not roomConfig then
-			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
+			roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
 			if minDifficulty > 0 and not roomConfig then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype)
 			end
 		end
 		if not roomConfig and game:IsGreedMode() then
 			if not ignoreStage then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
 				if minDifficulty > 0 and not roomConfig then
-					roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, stbType, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+					roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
 				end
 			end
 			if isSpecial and not roomConfig then
-				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
+				roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype, 0)
 				if minDifficulty > 0 and not roomConfig then
-					roomConfig = RoomConfig.GetRandomRoom(rng:Next(), not isSpecial, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
+					roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, StbType.SPECIAL_ROOMS, roomType, roomShape, 0, -1, 0, maxDifficulty, forceDoors, roomSubtype, 0)
 				end
 			end
 		end

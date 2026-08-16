@@ -58,6 +58,10 @@ NullItemID.MAGGYS_HAIR_HAT = Isaac.GetNullItemIdByName("maggys hair for hats")
 Card.RUNE_ISAZ = Isaac.GetCardIdByName("Isaz")
 Card.RUNE_WUNJO = Isaac.GetCardIdByName("Wunjo")
 
+CostumeID = CostumeID or {}
+CostumeID.PENTAGRAM_HORNS = Isaac.GetCostumeIdByPath("gfx/characters/051_Pentagram_Horns.anm2")
+CostumeID.BIRTHDAY_CAKE_CANDLE = Isaac.GetCostumeIdByPath("gfx/characters/pibersmod_birthdaycake_candle.anm2")
+
 BedSubType.BED_MOM = 10
 
 GridRooms.ROOM_FIRST_IDX = 0

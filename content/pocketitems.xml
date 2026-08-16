@@ -1,4 +1,4 @@
 <pocketitems>
-	<rune type="rune" pickup="3" description="Ice" name="Isaz" hud="Isaz" mimiccharge="3" />
-	<rune type="rune" pickup="4" description="Joy" name="Wunjo" hud="Wunjo" mimiccharge="6" />
+	<rune type="rune" pickup="3" description="Ice" name="Isaz" hud="Isaz" mimiccharge="3" collectionsprite="death items cards pibersmod" collectionframe="14" />
+	<rune type="rune" pickup="4" description="Joy" name="Wunjo" hud="Wunjo" mimiccharge="6" collectionsprite="death items cards pibersmod" collectionframe="15" />
 </pocketitems>

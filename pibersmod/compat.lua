@@ -74,7 +74,7 @@ PibersMod.MinimapSprite = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
 PibersMod.MinimapSpriteDefault = Sprite("gfx/ui/minimapapi_icons.anm2", true)
 PibersMod.MinimapSpriteDogma = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
 PibersMod.MinimapSpriteDogma:SetRenderFlags(AnimRenderFlags.STATIC)
-function PibersMod:OnModsLoaded()
+function PibersMod:OnModsLoadedCompat()
 
 	--External Item Descriptions
 	if EID then
@@ -193,4 +193,4 @@ function PibersMod:OnModsLoaded()
 	end
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoaded)
+PibersMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, PibersMod.OnModsLoadedCompat)

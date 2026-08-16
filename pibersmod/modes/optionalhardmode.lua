@@ -104,7 +104,7 @@ local skipHardmodeCheck = false
 local lastActiveMenu = 0
 function PibersMod:OnMainMenuRenderHardModeUnlocks()
 	local currentActive = MenuManager:GetActiveMenu()
-	if currentActive > MainMenuType.SAVES then
+	if currentActive >= MainMenuType.CHARACTER then
 		if lastActiveMenu ~= currentActive then
 			for playerType=0, (PlayerType.NUM_PLAYER_TYPES-1) do
 				skipHardmodeCheck = true

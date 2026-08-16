@@ -4,9 +4,9 @@
 	<passive id="2" name="The Key"			  description="???"							gfx="pibersmod_key.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
 	<passive id="3" name="The Knife"		  description="???"							gfx="pibersmod_knife.png" tags="offensive lazarusshared noeden nocantrip quest" quality="0" craftquality="-1" />
 	<passive id="4" name="Counterfeit Dollar" description="DMG up + Temporary money!"	gfx="pibersmod_counterfietdollar.png" tags="nogreed offensive" damage="0.2" luck="-1" coins="100" quality="2" />
-	<passive id="5" name="Birthday Cake"	  description="HP + Tears up"				gfx="pibersmod_birthdaycake.png" tears="0.1" hearts="4" maxhearts="2" tags="nolostbr" />
+	<passive id="5" name="Birthday Cake"	  description="HP + Tears up"				gfx="pibersmod_birthdaycake.png" tears="0.1" hearts="4" maxhearts="2" tags="nolostbr" extraCostume="pibersmod_birthdaycake_candle" />
 
-	<trinket id="0" name="Orthodox Cross"	  description="Follow the right path"		gfx="pibersmod_orthodoxcross.png" />
+	<trinket id="0" name="Orthodox Cross"	  description="Follow the right path"		gfx="pibersmod_orthodoxcross.png" collectionsprite="death items trinkets pibersmod" collectionframe="0" />
 
 	<null	 id="0" name="maggys hair for hats" persistent="true" />
 </items>

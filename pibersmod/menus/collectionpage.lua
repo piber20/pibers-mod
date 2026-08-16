@@ -87,6 +87,7 @@ PibersMod.CollectionPageItemsPerCol = 6
 PibersMod.CollectionPageItemsPerPage = PibersMod.CollectionPageItemsPerRow*PibersMod.CollectionPageItemsPerCol
 PibersMod.CollectionPageFakeCurrentPage = 0
 PibersMod.CollectionPageFakeNumPages = 0
+PibersMod.CollectionPageSortMode = 0
 PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage
 PibersMod.CollectionPageTrinketCustom = Sprite("gfx/ui/death items trinkets pibersmod.anm2", true)
 PibersMod.CollectionPageTrinketCustom:SetFrame(PibersMod.CollectionPageTrinketCustom:GetDefaultAnimation(), 0)
@@ -96,11 +97,7 @@ PibersMod.CollectionPageCardCustom = Sprite("gfx/ui/death items cards pibersmod.
 PibersMod.CollectionPageCardCustom:SetFrame(PibersMod.CollectionPageCardCustom:GetDefaultAnimation(), 0)
 PibersMod.CollectionPageIconOverrideCollectibles = {}
 PibersMod.CollectionPageIconOverrideTrinket = {}
-PibersMod.CollectionPageIconOverrideTrinket[TrinketType.ORTHODOX_CROSS] = {PibersMod.CollectionPageTrinketCustom, 0}
 PibersMod.CollectionPageIconOverridePickup = {}
-PibersMod.CollectionPageIconOverridePickup[PickupSubType.CARD_SUIT_BLOODY] = {PibersMod.CollectionPagePickupCustom, 0}
-PibersMod.CollectionPageIconOverridePickup[PickupSubType.CARD_CARD_QUESTION] = {PibersMod.CollectionPagePickupCustom, 1}
-PibersMod.CollectionPageIconOverridePickup[PickupSubType.CARD_RUNE_BLANK] = {PibersMod.CollectionPagePickupCustom, 2}
 PibersMod.CollectionPageIconOverrideCard = {}
 PibersMod.CollectionPageIconOverrideCard[Card.RUNE_HAGALAZ] = {PibersMod.CollectionPageCardCustom, 0}
 PibersMod.CollectionPageIconOverrideCard[Card.RUNE_JERA] = {PibersMod.CollectionPageCardCustom, 1}
@@ -110,11 +107,338 @@ PibersMod.CollectionPageIconOverrideCard[Card.RUNE_ANSUZ] = {PibersMod.Collectio
 PibersMod.CollectionPageIconOverrideCard[Card.RUNE_PERTHRO] = {PibersMod.CollectionPageCardCustom, 5}
 PibersMod.CollectionPageIconOverrideCard[Card.RUNE_BERKANO] = {PibersMod.CollectionPageCardCustom, 6}
 PibersMod.CollectionPageIconOverrideCard[Card.RUNE_ALGIZ] = {PibersMod.CollectionPageCardCustom, 7}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_ISAZ] = {PibersMod.CollectionPageCardCustom, 14}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_WUNJO] = {PibersMod.CollectionPageCardCustom, 15}
 PibersMod.CollectionPageDescriptionOverridePill = {}
 PibersMod.CollectionPageDescriptionOverridePill[PillEffect.PILLEFFECT_EXPERIMENTAL] = "One stat up, one stat down"
-local replaceitems = false
+PibersMod.CollectionPageSortPriority = {}
+PibersMod.CollectionPageSortPriority.ORIGINAL = 100
+PibersMod.CollectionPageSortPriority.WOTL = 200
+PibersMod.CollectionPageSortPriority.REBIRTH = 300
+PibersMod.CollectionPageSortPriority.AFTERBIRTH = 400
+PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS = 500
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX = 600
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1 = 610
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_2 = 620
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_3 = 630
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_4 = 640
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_5 = 650
+PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_6 = 660
+PibersMod.CollectionPageSortPriority.ANTIBIRTH = 700
+PibersMod.CollectionPageSortPriority.ANTIBIRTH_1 = 710
+PibersMod.CollectionPageSortPriority.ANTIBIRTH_2 = 720
+PibersMod.CollectionPageSortPriority.REPENTANCE = 800
+PibersMod.CollectionPageSortPriority.REPENTANCE_PLUS = 900
+PibersMod.CollectionPageSortPriority.PIBERSMOD = 1000
+PibersMod.CollectionPageSortPriority.MODDED_START = 2000
+PibersMod.CollectionPageSortPriority.MODDED_OFFSET = 10
+PibersMod.CollectionPageSortItem = {}
+PibersMod.CollectionPageSortTrinket = {}
+PibersMod.CollectionPageSortCard = {}
+PibersMod.CollectionPageSortPill = {}
+function PibersMod.GenerateCollectionMenuData()
+	local itemConfig = Isaac.GetItemConfig()
+	local lastItem = CollectibleType.NUM_COLLECTIBLES
+	local numHidden = 0
+	local id=0
+	while id >= 0 do
+		local item = itemConfig:GetCollectible(id)
+		if not item then
+			if id >= CollectibleType.NUM_COLLECTIBLES then
+				lastItem = id-1
+				id = -id
+			else
+				numHidden = numHidden + 1
+			end
+		elseif item.Hidden then
+			numHidden = numHidden + 1
+		else
+			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-CollectibleType.NUM_COLLECTIBLES)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+
+			if id < CollectibleType.COLLECTIBLE_GUPPYS_PAW then
+				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+
+			elseif id < CollectibleType.COLLECTIBLE_MOMS_KEY then
+				priority = PibersMod.CollectionPageSortPriority.WOTL
+
+			elseif id < CollectibleType.COLLECTIBLE_DIPLOPIA then
+				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+
+				if id == CollectibleType.COLLECTIBLE_POLAROID then
+					priority = PibersMod.CollectionPageSortPriority.WOTL
+				elseif id == CollectibleType.COLLECTIBLE_CLEAR_RUNE then
+					priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+				end
+
+			elseif id < CollectibleType.COLLECTIBLE_DARK_PRINCES_CROWN then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+
+			elseif id < CollectibleType.COLLECTIBLE_MUCORMYCOSIS then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+
+				if id == CollectibleType.COLLECTIBLE_SCHOOLBAG then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+				end
+
+			elseif id < CollectibleType.COLLECTIBLE_FRUITY_PLUM then
+				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+
+				if id < CollectibleType.COLLECTIBLE_GOLDEN_RAZOR then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+				elseif id < CollectibleType.COLLECTIBLE_GENESIS then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_1
+				end
+
+				if id == CollectibleType.COLLECTIBLE_GOLDEN_RAZOR
+					or id == CollectibleType.COLLECTIBLE_BLOOD_PUPPY
+					or id == CollectibleType.COLLECTIBLE_DREAM_CATCHER
+					or id == CollectibleType.COLLECTIBLE_DIVINE_INTERVENTION
+					or id == CollectibleType.COLLECTIBLE_LARYNX
+					or id == CollectibleType.COLLECTIBLE_GENESIS
+					or id == CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
+					or id == CollectibleType.COLLECTIBLE_DOGMA
+					or id == CollectibleType.COLLECTIBLE_PURGATORY then
+					priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+
+				elseif id == CollectibleType.COLLECTIBLE_FORTUNE_COOKIE then
+					-- id == jawbone
+					-- id == counterfeit dollar
+					-- id == box of wires
+					-- id == tammys paw
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+
+				elseif id == CollectibleType.COLLECTIBLE_IT_HURTS
+					or id == CollectibleType.COLLECTIBLE_NANCY_BOMBS
+					-- id == tammys tail
+					or id == CollectibleType.COLLECTIBLE_BLOOD_OATH then
+					-- id == d12
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1
+
+				elseif id == CollectibleType.COLLECTIBLE_SULFUR
+					-- id == bowl of tears
+					or id == CollectibleType.COLLECTIBLE_SOCKS then
+					-- id == book of despair
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_2
+
+				elseif id == CollectibleType.COLLECTIBLE_BAR_OF_SOAP then
+					-- id == cool bean
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_3
+
+				elseif id == CollectibleType.COLLECTIBLE_EYE_SORE
+					or id == CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES then
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_4
+
+				elseif id == CollectibleType.COLLECTIBLE_MUCORMYCOSIS
+					or id == CollectibleType.COLLECTIBLE_2SPOOKY
+					or id == CollectibleType.COLLECTIBLE_WAVY_CAP then
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_5
+
+				elseif id == CollectibleType.COLLECTIBLE_PLAYDOUGH_COOKIE
+					or id == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+					-- id == maxs paw
+					-- id == maxs tail
+					-- id == the apple
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_6
+				end
+
+			elseif id < CollectibleType.NUM_COLLECTIBLES then
+				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+
+				if id == CollectibleType.COLLECTIBLE_GIANT_CELL then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+				elseif id == CollectibleType.COLLECTIBLE_SAUSAGE then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_1
+				end
+
+			elseif id >= CollectibleType.MIXED_VEGGIES and id <= CollectibleType.BIRTHDAY_CAKE then
+				priority = PibersMod.CollectionPageSortPriority.PIBERSMOD
+
+				if id == CollectibleType.KEY_PIECE_COMPLETE then
+					priority = PibersMod.CollectionPageSortPriority.REBIRTH
+				elseif id == CollectibleType.KNIFE_PIECE_COMPLETE then
+					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+				elseif id == CollectibleType.COUNTERFEIT_DOLLAR then
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+				end
+			end
+
+			PibersMod.CollectionPageSortItem[priority] = PibersMod.CollectionPageSortItem[priority] or {}
+			PibersMod.CollectionPageSortItem[priority][#PibersMod.CollectionPageSortItem[priority]+1] = id
+			PibersMod.CollectionPageValidCollectibles[#PibersMod.CollectionPageValidCollectibles+1] = id
+		end
+		id = id + 1
+	end
+	local numItems = lastItem-numHidden
+	PibersMod.CollectionPageNumPagesCollectible = math.ceil(numItems/PibersMod.CollectionPageItemsPerPage)
+	PibersMod.CollectionPageNumPages = PibersMod.CollectionPageNumPagesCollectible
+
+	local lastTrinket = TrinketType.NUM_TRINKETS
+	numHidden = 0
+	id=0
+	while id >= 0 do
+		local trinket = itemConfig:GetTrinket(id)
+		if not trinket then
+			if id >= TrinketType.NUM_TRINKETS then
+				lastTrinket = id-1
+				id = -id
+			else
+				numHidden = numHidden + 1
+			end
+		elseif trinket.Hidden then
+			numHidden = numHidden + 1
+		else
+			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-TrinketType.NUM_TRINKETS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+
+			if id < TrinketType.TRINKET_FISH_HEAD then
+				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+
+				if id == TrinketType.TRINKET_WIGGLE_WORM then
+					priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+				end
+
+			elseif id < TrinketType.TRINKET_SHINY_ROCK then
+				priority = PibersMod.CollectionPageSortPriority.WOTL
+
+			elseif id < TrinketType.TRINKET_MECONIUM then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+
+			elseif id < TrinketType.TRINKET_JAW_BREAKER then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+
+			elseif id < TrinketType.TRINKET_SHORT_FUSE then
+				priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+
+				if id == TrinketType.TRINKET_BLESSED_PENNY then
+					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1
+				end
+
+			elseif id < TrinketType.TRINKET_BLUE_KEY then
+				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+
+			elseif id < TrinketType.NUM_TRINKETS then
+				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+			end
+
+			if id == TrinketType.ORTHODOX_CROSS then
+				priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+			end
+
+			PibersMod.CollectionPageSortTrinket[priority] = PibersMod.CollectionPageSortTrinket[priority] or {}
+			PibersMod.CollectionPageSortTrinket[priority][#PibersMod.CollectionPageSortTrinket[priority]+1] = id
+			PibersMod.CollectionPageValidTrinkets[#PibersMod.CollectionPageValidTrinkets+1] = id
+		end
+		id = id + 1
+	end
+	local numTrinkets = lastTrinket-numHidden
+	PibersMod.CollectionPageNumPagesTrinket = math.ceil(numTrinkets/PibersMod.CollectionPageItemsPerPage)
+
+	local lastCard = Card.NUM_CARDS
+	numHidden = 0
+	id=1 --manually skipping CARD_NULL
+	while id >= 0 do
+		local card = itemConfig:GetCard(id)
+		if not card then
+			if id >= Card.NUM_CARDS then
+				lastCard = id-1
+				id = -id
+			else
+				numHidden = numHidden + 1
+			end
+		elseif card.Hidden then
+			numHidden = numHidden + 1
+		else
+			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-Card.NUM_CARDS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+
+			if id < Card.CARD_CLUBS_2 then
+				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+
+			elseif id < Card.CARD_ACE_OF_CLUBS then
+				priority = PibersMod.CollectionPageSortPriority.WOTL
+
+			elseif id < Card.CARD_JOKER then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+
+			elseif id < Card.CARD_GET_OUT_OF_JAIL then
+				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+
+				if id == Card.RUNE_BLANK then
+					priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+				elseif id == Card.RUNE_BLACK then
+					priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				end
+
+			elseif id < Card.CARD_HOLY then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+
+			elseif id < Card.RUNE_SHARD then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+
+			elseif id < Card.NUM_CARDS then
+				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+			end
+
+			PibersMod.CollectionPageSortCard[priority] = PibersMod.CollectionPageSortCard[priority] or {}
+			PibersMod.CollectionPageSortCard[priority][#PibersMod.CollectionPageSortCard[priority]+1] = id
+			PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
+			if card.PickupSubtype and tonumber(card.PickupSubtype) then
+				PibersMod.CollectionPageCardPickup[id] = tonumber(card.PickupSubtype)
+			end
+		end
+		id = id + 1
+	end
+
+	local lastPill = PillEffect.NUM_PILL_EFFECTS
+	id=0
+	while id >= 0 do
+		local pill = itemConfig:GetPillEffect(id)
+		if not pill then
+			if id >= PillEffect.NUM_PILL_EFFECTS then
+				lastPill = id-1
+				id = -id
+			else
+				numHidden = numHidden + 1
+			end
+		elseif pill.Hidden then
+			numHidden = numHidden + 1
+		else
+			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-PillEffect.NUM_PILL_EFFECTS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+
+			if id < PillEffect.PILLEFFECT_48HOUR_ENERGY then
+				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+
+				if id == PillEffect.PILLEFFECT_PUBERTY
+				or id == PillEffect.PILLEFFECT_LUCK_DOWN
+				or id == PillEffect.PILLEFFECT_LUCK_UP then
+					priority = PibersMod.CollectionPageSortPriority.WOTL
+				end
+
+			elseif id < PillEffect.PILLEFFECT_PERCS then
+				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+
+				if id == PillEffect.PILLEFFECT_FRIENDS_TILL_THE_END then
+					priority = PibersMod.CollectionPageSortPriority.WOTL
+				end
+
+			elseif id < PillEffect.PILLEFFECT_X_LAX then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+
+			elseif id < PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then
+				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+
+			elseif id < PillEffect.NUM_PILL_EFFECTS then
+				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+			end
+
+			PibersMod.CollectionPageSortPill[priority] = PibersMod.CollectionPageSortPill[priority] or {}
+			PibersMod.CollectionPageSortPill[priority][#PibersMod.CollectionPageSortPill[priority]+1] = id
+			PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
+			PibersMod.CollectionPageValidCardIsPill[#PibersMod.CollectionPageValidCards] = true
+		end
+		id = id + 1
+	end
+	local numCards = (1+lastCard+lastPill)-numHidden
+	PibersMod.CollectionPageNumPagesCard = math.ceil(numCards/PibersMod.CollectionPageItemsPerPage)
+end
+PibersMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, PibersMod.GenerateCollectionMenuData)
+
 function PibersMod:OnMainMenuRenderCollectionPage()
 	local currentActive = MenuManager:GetActiveMenu()
 	if currentActive == MainMenuType.COLLECTION then
@@ -127,7 +451,7 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 			local numPages = PibersMod.CollectionPageNumPages
 			local eiddesc = nil
 			if PibersMod.CollectionPageMode == 0 then
-				if replaceitems then
+				if PibersMod.CollectionPageSortMode > 0 then
 					PibersMod.CollectionPageFakeNumPages = PibersMod.CollectionPageNumPagesCollectible
 					PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage-1
 					for i=1, PibersMod.CollectionPageItemsPerPage do
@@ -610,103 +934,7 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 				PibersMod.CollectionPageMode = 2
 			end
 		else
-			local lastItem = CollectibleType.NUM_COLLECTIBLES
-			local numHidden = 0
-			local id=0
-			while id >= 0 do
-				local item = itemConfig:GetCollectible(id)
-
-				if not item then
-					if id >= CollectibleType.NUM_COLLECTIBLES then
-						lastItem = id-1
-						id = -id
-					else
-						numHidden = numHidden + 1
-					end
-				elseif item.Hidden then
-					numHidden = numHidden + 1
-				else
-					PibersMod.CollectionPageValidCollectibles[#PibersMod.CollectionPageValidCollectibles+1] = id
-				end
-
-				id = id + 1
-			end
-			local numItems = lastItem-numHidden
-			PibersMod.CollectionPageNumPagesCollectible = math.ceil(numItems/PibersMod.CollectionPageItemsPerPage)
-			PibersMod.CollectionPageNumPages = PibersMod.CollectionPageNumPagesCollectible
-
-			local lastTrinket = TrinketType.NUM_TRINKETS
-			numHidden = 0
-			id=0
-			while id >= 0 do
-				local trinket = itemConfig:GetTrinket(id)
-
-				if not trinket then
-					if id >= TrinketType.NUM_TRINKETS then
-						lastTrinket = id-1
-						id = -id
-					else
-						numHidden = numHidden + 1
-					end
-				elseif trinket.Hidden then
-					numHidden = numHidden + 1
-				else
-					PibersMod.CollectionPageValidTrinkets[#PibersMod.CollectionPageValidTrinkets+1] = id
-				end
-
-				id = id + 1
-			end
-			local numTrinkets = lastTrinket-numHidden
-			PibersMod.CollectionPageNumPagesTrinket = math.ceil(numTrinkets/PibersMod.CollectionPageItemsPerPage)
-
-			local lastCard = Card.NUM_CARDS
-			numHidden = 0
-			id=1 --manually skipping CARD_NULL
-			while id >= 0 do
-				local card = itemConfig:GetCard(id)
-
-				if not card then
-					if id >= Card.NUM_CARDS then
-						lastCard = id-1
-						id = -id
-					else
-						numHidden = numHidden + 1
-					end
-				elseif card.Hidden then
-					numHidden = numHidden + 1
-				else
-					PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
-					if card.PickupSubtype and tonumber(card.PickupSubtype) then
-						PibersMod.CollectionPageCardPickup[id] = tonumber(card.PickupSubtype)
-					end
-				end
-
-				id = id + 1
-			end
-
-			local lastPill = PillEffect.NUM_PILL_EFFECTS
-			id=0
-			while id >= 0 do
-				local pill = itemConfig:GetPillEffect(id)
-
-				if not pill then
-					if id >= PillEffect.NUM_PILL_EFFECTS then
-						lastPill = id-1
-						id = -id
-					else
-						numHidden = numHidden + 1
-					end
-				elseif pill.Hidden then
-					numHidden = numHidden + 1
-				else
-					PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
-					PibersMod.CollectionPageValidCardIsPill[#PibersMod.CollectionPageValidCards] = true
-				end
-
-				id = id + 1
-			end
-			local numCards = (1+lastCard+lastPill)-numHidden
-			PibersMod.CollectionPageNumPagesCard = math.ceil(numCards/PibersMod.CollectionPageItemsPerPage)
+			PibersMod.GenerateCollectionMenuData()
 		end
 	elseif PibersMod.CollectionPageMode ~= 0 then
 		local collsprite = CollectionMenu.GetCollectionMenuSprite()

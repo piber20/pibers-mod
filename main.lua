@@ -29,6 +29,7 @@ include("pibersmod.rooms.specialrooms")
 include("pibersmod.rooms.fakewalls")
 include("pibersmod.rooms.grids")
 
+include("pibersmod.items.data")
 include("pibersmod.items.holyshield")
 include("pibersmod.items.vanillaitems")
 include("pibersmod.items.vanillapickups")
@@ -40,4 +41,5 @@ include("pibersmod.items.pickups")
 include("pibersmod.npcs.vanillamonsters")
 include("pibersmod.npcs.vanillabosses")
 
+include("pibersmod.xml")
 include("pibersmod.compat")

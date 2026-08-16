@@ -1,13 +1,13 @@
 <entities anm2root="gfx/" version="5">
-    <entity name="Bloody Suit Card" anm2path="005.335_Suit Card Bloody.anm2" id="5" variant="300" subtype="230" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+    <entity name="Bloody Suit Card" anm2path="005.335_Suit Card Bloody.anm2" id="5" variant="300" subtype="230" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0" collectionsprite="death items pickups pibersmod" collectionframe="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
         <preload-snd id="8"/>
     </entity>
-    <entity name="Question Card" anm2path="005.336_Question Card.anm2" id="5" variant="300" subtype="231" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+    <entity name="Question Card" anm2path="005.336_Question Card.anm2" id="5" variant="300" subtype="231" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0" collectionsprite="death items pickups pibersmod" collectionframe="1">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
         <preload-snd id="8"/>
     </entity>
-    <entity name="Blank Rune" anm2path="005.337_BlankRune.anm2" id="5" variant="300" subtype="232" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+    <entity name="Blank Rune" anm2path="005.337_BlankRune.anm2" id="5" variant="300" subtype="232" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0" collectionsprite="death items pickups pibersmod" collectionframe="2">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
         <preload-snd id="8"/>
     </entity>
