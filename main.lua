@@ -7,19 +7,24 @@ local modname = "Piber's Mod"
 PibersMod = {}
 PibersMod.Mod = RegisterMod(modname, 1)
 
+PibersMod.AddedCallbacks = {}
 function PibersMod.AddCallback(callbackId, callbackFn, entityId)
-	newFn = function(...)
+	PibersMod.AddedCallbacks[callbackId] = PibersMod.AddedCallbacks[callbackId] or {}
+	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]+1] = {callbackFn}
+	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2] = function(...)
 		local args = {...}
 		return callbackFn(table.unpack(args,2))
 	end
-	return PibersMod.Mod:AddCallback(callbackId, newFn, entityId)
+	return PibersMod.Mod:AddCallback(callbackId, PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2], entityId)
 end
 function PibersMod.AddPriorityCallback(callbackId, priority, callbackFn, entityId)
-	newFn = function(...)
+	PibersMod.AddedCallbacks[callbackId] = PibersMod.AddedCallbacks[callbackId] or {}
+	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]+1] = {callbackFn}
+	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2] = function(...)
 		local args = {...}
 		return callbackFn(table.unpack(args,2))
 	end
-	return PibersMod.Mod:AddPriorityCallback(callbackId, priority, newFn, entityId)
+	return PibersMod.Mod:AddPriorityCallback(callbackId, priority, PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2], entityId)
 end
 function PibersMod.HasData()
 	return PibersMod.Mod:HasData()
@@ -28,11 +33,13 @@ function PibersMod.LoadData()
 	return PibersMod.Mod:LoadData()
 end
 function PibersMod.RemoveCallback(callbackId, callbackFn)
-	newFn = function(...)
-		local args = {...}
-		return callbackFn(table.unpack(args,2))
+	if PibersMod.AddedCallbacks[callbackId] then
+		for index,funcs in ipairs(PibersMod.AddedCallbacks[callbackId]) do
+			if type(funcs) == "table" and funcs[1] == callbackFn then
+				return PibersMod.Mod:RemoveCallback(callbackId, funcs[2])
+			end
+		end
 	end
-	return PibersMod.Mod:RemoveCallback(callbackId, newFn)
 end
 function PibersMod.RemoveData()
 	return PibersMod.Mod:RemoveData()
