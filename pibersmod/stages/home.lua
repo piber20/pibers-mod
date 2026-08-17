@@ -1,9 +1,11 @@
-function PibersMod:SetWoods()
+local mod = PibersMod
+
+function mod.SetWoods()
 	Isaac.SetCurrentFloorMusic(Music.MUSIC_BOSS_OVER_TWISTED)
 	Isaac.SetCurrentFloorName("The Woods")
 end
 
-function PibersMod:OnNewRoomHome()
+function mod.OnNewRoomHome()
 
 	local game = Game()
 	local room = game:GetRoom()
@@ -49,10 +51,10 @@ function PibersMod:OnNewRoomHome()
 	end
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomHome)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomHome)
 
 --[[
-function PibersMod:OnNewLevelHome()
+function mod.OnNewLevelHome()
 	local game = Game()
 	local isHard = game:IsHardMode()
 	local isGreed = game:IsGreedMode()
@@ -63,7 +65,7 @@ function PibersMod:OnNewLevelHome()
 	local isAscent = level:IsAscent()
 	if stage == LevelStage.STAGE8 then
 		if level:GetDimension() == Dimension.MIRROR then
-			PibersMod:SetWoods()
+			mod.SetWoods()
 		else
 			local seed = level:GetDungeonPlacementSeed()
 			local kitchenIdx = GridRooms.ROOM_HOME_LIVINGROOM_BOTTOM_IDX + 1
@@ -130,10 +132,10 @@ function PibersMod:OnNewLevelHome()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PibersMod.OnNewLevelHome)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelHome)
 ]]
 
-function PibersMod:PreChangeRoomHome(roomIndex, dimension)
+function mod.PreChangeRoomHome(roomIndex, dimension)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -144,7 +146,7 @@ function PibersMod:PreChangeRoomHome(roomIndex, dimension)
 			MusicManager():Fadeout(0.01)
 		end
 		if roomIndex == woodsIdx and dimension ~= Dimension.MIRROR then
-			PibersMod:SetWoods()
+			mod.SetWoods()
 			--MusicManager():Fadein(Music.MUSIC_BOSS_OVER_TWISTED, Options.MusicVolume)
 			ItemOverlay.Show(Giantbook.CLICKER, 0)
 			return {GridRooms.ROOM_STARTING_IDX, Dimension.MIRROR}
@@ -155,9 +157,9 @@ function PibersMod:PreChangeRoomHome(roomIndex, dimension)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, PibersMod.PreChangeRoomHome)
+mod.AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, mod.PreChangeRoomHome)
 
-function PibersMod:PostSleepNightmareShow(giantbookID, player)
+function mod.PostSleepNightmareShow(giantbookID, player)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -170,4 +172,4 @@ function PibersMod:PostSleepNightmareShow(giantbookID, player)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_ITEM_OVERLAY_SHOW, PibersMod.PostSleepNightmareShow, Giantbook.SLEEP_NIGHTMARE)
+mod.AddCallback(ModCallbacks.MC_POST_ITEM_OVERLAY_SHOW, mod.PostSleepNightmareShow, Giantbook.SLEEP_NIGHTMARE)

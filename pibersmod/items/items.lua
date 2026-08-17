@@ -1,36 +1,38 @@
-function PibersMod:OnNewRoomItems()
+local mod = PibersMod
+
+function mod.OnNewRoomItems()
 	for _, player in ipairs(PlayerManager.GetPlayers()) do
-		local playerData = PibersMod.GetData(player)
+		local playerData = mod.GetData(player)
 		playerData.newRoom = true
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomItems)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomItems)
 
-PibersMod.LastMainPlayerType = PlayerType.PLAYER_ISAAC
-function PibersMod:OnUpdateItems()
+mod.LastMainPlayerType = PlayerType.PLAYER_ISAAC
+function mod.OnUpdateItems()
 	local player1 = Isaac.GetPlayer(0)
 	if player1 and player1:Exists() then
-		PibersMod.LastMainPlayerType = player1:GetPlayerType()
+		mod.LastMainPlayerType = player1:GetPlayerType()
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_UPDATE, PibersMod.OnUpdateItems)
+mod.AddCallback(ModCallbacks.MC_POST_UPDATE, mod.OnUpdateItems)
 
-function PibersMod:PreAddCounterfeitDollar(itemID, charge, firsttime, slot, varData, player)
-	local runSave = PibersMod.SaveManager.GetRunSave()
+function mod.PreAddCounterfeitDollar(itemID, charge, firsttime, slot, varData, player)
+	local runSave = mod.SaveManager.GetRunSave()
 	runSave.CounterfeitCoins = runSave.CounterfeitCoins or 0
 	runSave.PreCounterfeitCoins = player:GetNumCoins()
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, PibersMod.PreAddCounterfeitDollar, CollectibleType.COUNTERFEIT_DOLLAR)
+mod.AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, mod.PreAddCounterfeitDollar, CollectibleType.COUNTERFEIT_DOLLAR)
 
-function PibersMod:PostAddCounterfeitDollar(itemID, charge, firsttime, slot, varData, player)
-	local runSave = PibersMod.SaveManager.GetRunSave()
+function mod.PostAddCounterfeitDollar(itemID, charge, firsttime, slot, varData, player)
+	local runSave = mod.SaveManager.GetRunSave()
 	runSave.PreCounterfeitCoins = runSave.PreCounterfeitCoins or 0
 	runSave.CounterfeitCoins = runSave.CounterfeitCoins or 0
 	runSave.CounterfeitCoins = runSave.CounterfeitCoins + (player:GetNumCoins() - runSave.PreCounterfeitCoins)
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PibersMod.PostAddCounterfeitDollar, CollectibleType.COUNTERFEIT_DOLLAR)
+mod.AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.PostAddCounterfeitDollar, CollectibleType.COUNTERFEIT_DOLLAR)
 
-function PibersMod.GetCollectibleOwners(itemID)
+function mod.GetCollectibleOwners(itemID)
 	local players = PlayerManager.GetPlayers()
 	local ownerPlayers = {}
 	for _,player in ipairs(players) do
@@ -41,12 +43,12 @@ function PibersMod.GetCollectibleOwners(itemID)
 	return ownerPlayers
 end
 
-function PibersMod:OnRoomClearItems(silent)
+function mod.OnRoomClearItems(silent)
 	if PlayerManager.AnyoneHasCollectible(CollectibleType.COUNTERFEIT_DOLLAR) and not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE) then
-		local runSave = PibersMod.SaveManager.GetRunSave()
+		local runSave = mod.SaveManager.GetRunSave()
 		runSave.CounterfeitCoins = runSave.CounterfeitCoins or 0
 		if runSave.CounterfeitCoins > 0 then
-			local players = PibersMod.GetCollectibleOwners(CollectibleType.COUNTERFEIT_DOLLAR)
+			local players = mod.GetCollectibleOwners(CollectibleType.COUNTERFEIT_DOLLAR)
 			local highestLuck = -99
 			local minCoins = runSave.CounterfeitCoins
 			for _,player in ipairs(players) do
@@ -67,9 +69,9 @@ function PibersMod:OnRoomClearItems(silent)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, PibersMod.OnRoomClearItems)
+mod.AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, mod.OnRoomClearItems)
 
-function PibersMod.BloodyFeatherEffect(player)
+function mod.BloodyFeatherEffect(player)
 	local position = Isaac:GetRandomPosition()
 	local percentChance = 60
 	if player then
@@ -91,28 +93,28 @@ function PibersMod.BloodyFeatherEffect(player)
 	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY, 0, position, Vector.Zero, player)
 end
 
-function PibersMod:PreEntityTakeDMGItems(entity, amount, flags, source, cooldown)
+function mod.PreEntityTakeDMGItems(entity, amount, flags, source, cooldown)
 	if entity and entity.Type == EntityType.ENTITY_PLAYER then
 		local player = entity:ToPlayer()
 		for i=1, player:GetCollectibleNum(CollectibleType.BLOODY_FEATHER) do
-			PibersMod.BloodyFeatherEffect(player)
+			mod.BloodyFeatherEffect(player)
 		end
 	end
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, PibersMod.PreEntityTakeDMGItems)
+mod.AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, mod.PreEntityTakeDMGItems)
 
-PibersMod.VeggiesColor = Color(0.2, 1.0, 0.1, 1.0)
-function PibersMod:PostAddCollectibleVeggies(collectibleID, charge, firstTime, slot, varData, player)
+mod.VeggiesColor = Color(0.2, 1.0, 0.1, 1.0)
+function mod.PostAddCollectibleVeggies(collectibleID, charge, firstTime, slot, varData, player)
 	if collectibleID == CollectibleType.MIXED_VEGGIES then
-		player.Color = PibersMod.VeggiesColor
+		player.Color = mod.VeggiesColor
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, PibersMod.PostAddCollectibleVeggies)
+mod.AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.PostAddCollectibleVeggies)
 
-function PibersMod:PostDevilCalculate(chance)
+function mod.PostDevilCalculate(chance)
 	local game = Game()
 	local level = game:GetLevel()
-	local floorSave = PibersMod.SaveManager.GetFloorSave()
+	local floorSave = mod.SaveManager.GetFloorSave()
 	if PlayerManager.AnyoneHasTrinket(TrinketType.ORTHODOX_CROSS) then
 		if not floorSave.AppliedOrthodox then
 			level:AddAngelRoomChance(1.0)
@@ -124,4 +126,4 @@ function PibersMod:PostDevilCalculate(chance)
 		floorSave.AppliedOrthodox = false
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_DEVIL_CALCULATE, PibersMod.PostDevilCalculate)
+mod.AddCallback(ModCallbacks.MC_POST_DEVIL_CALCULATE, mod.PostDevilCalculate)

@@ -1,4 +1,6 @@
-function PibersMod:GetPlanetariumChance()
+local mod = PibersMod
+
+function mod.GetPlanetariumChance()
 	local game = Game()
 	local level = game:GetLevel()
 	local realChance = level:GetPlanetariumChance()
@@ -66,7 +68,7 @@ function PibersMod:GetPlanetariumChance()
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetSacrificeChance()
+function mod.GetSacrificeChance()
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -100,7 +102,7 @@ function PibersMod:GetSacrificeChance()
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetDiceChance()
+function mod.GetDiceChance()
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -115,7 +117,7 @@ function PibersMod:GetDiceChance()
 		return 0
 	end
 
-	local sacChance = PibersMod:GetSacrificeChance()
+	local sacChance = mod.GetSacrificeChance()
 	local chance = sacChance/50
 	for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
 		if player:GetNumKeys() > 0 then
@@ -127,7 +129,7 @@ function PibersMod:GetDiceChance()
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetArcadeChance(ignoreEven, ignoreCoins)
+function mod.GetArcadeChance(ignoreEven, ignoreCoins)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -167,7 +169,7 @@ function PibersMod:GetArcadeChance(ignoreEven, ignoreCoins)
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetChestChance(ignoreEven)
+function mod.GetChestChance(ignoreEven)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -182,7 +184,7 @@ function PibersMod:GetChestChance(ignoreEven)
 		return 0
 	end
 
-	local arcChance = PibersMod:GetArcadeChance(ignoreEven, true)
+	local arcChance = mod.GetArcadeChance(ignoreEven, true)
 	local chance = arcChance/10
 	local keys = 0
 	for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
@@ -196,7 +198,7 @@ function PibersMod:GetChestChance(ignoreEven)
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetLibraryChance()
+function mod.GetLibraryChance()
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -219,7 +221,7 @@ function PibersMod:GetLibraryChance()
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-function PibersMod:GetBedroomChance()
+function mod.GetBedroomChance()
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -245,11 +247,11 @@ function PibersMod:GetBedroomChance()
 	return math.max(math.min(10000, (chance*100)), 1) * 0.01
 end
 
-PibersMod.GreedStageBoss = {}
-PibersMod.GreedStageBoss[LevelStage.STAGE3_1] = BossType.MOM
-PibersMod.GreedStageBoss[LevelStage.STAGE4_1] = BossType.MOMS_HEART
-PibersMod.GreedStageBoss[LevelStage.STAGE5] = BossType.SATAN
-function PibersMod:OnNewLevelGreedMode()
+mod.GreedStageBoss = {}
+mod.GreedStageBoss[LevelStage.STAGE3_1] = BossType.MOM
+mod.GreedStageBoss[LevelStage.STAGE4_1] = BossType.MOMS_HEART
+mod.GreedStageBoss[LevelStage.STAGE5] = BossType.SATAN
+function mod.OnNewLevelGreedMode()
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if isGreed then
@@ -257,27 +259,27 @@ function PibersMod:OnNewLevelGreedMode()
 		local stage = level:GetAbsoluteStage()
 		local stageType = level:GetStageType()
 		local gamedata = Isaac.GetPersistentGameData()
-		if PibersMod.GreedStageBoss[stage] then
-			if PibersMod.GreedStageBoss[stage] == BossType.MOMS_HEART and gamedata:Unlocked(Achievement.IT_LIVES) then
-				PibersMod.GreedStageBoss[stage] = BossType.IT_LIVES
+		if mod.GreedStageBoss[stage] then
+			if mod.GreedStageBoss[stage] == BossType.MOMS_HEART and gamedata:Unlocked(Achievement.IT_LIVES) then
+				mod.GreedStageBoss[stage] = BossType.IT_LIVES
 			end
-			if PibersMod.GreedStageBoss[stage] == BossType.IT_LIVES and not gamedata:Unlocked(Achievement.IT_LIVES) then
-				PibersMod.GreedStageBoss[stage] = BossType.MOMS_HEART
+			if mod.GreedStageBoss[stage] == BossType.IT_LIVES and not gamedata:Unlocked(Achievement.IT_LIVES) then
+				mod.GreedStageBoss[stage] = BossType.MOMS_HEART
 			end
-			if PibersMod.GreedStageBoss[stage] == BossType.MOM and (stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B) then
-				PibersMod.GreedStageBoss[stage] = BossType.MOM_MAUSOLEUM
+			if mod.GreedStageBoss[stage] == BossType.MOM and (stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B) then
+				mod.GreedStageBoss[stage] = BossType.MOM_MAUSOLEUM
 			end
-			if PibersMod.GreedStageBoss[stage] == BossType.MOM_MAUSOLEUM and stageType ~= StageType.STAGETYPE_REPENTANCE and stageType ~= StageType.STAGETYPE_REPENTANCE_B then
-				PibersMod.GreedStageBoss[stage] = BossType.MOM
+			if mod.GreedStageBoss[stage] == BossType.MOM_MAUSOLEUM and stageType ~= StageType.STAGETYPE_REPENTANCE and stageType ~= StageType.STAGETYPE_REPENTANCE_B then
+				mod.GreedStageBoss[stage] = BossType.MOM
 			end
 			--[[
-			if (PibersMod.GreedStageBoss[stage] == BossType.MOMS_HEART or PibersMod.GreedStageBoss[stage] == BossType.IT_LIVES) and (stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B) then
-				PibersMod.GreedStageBoss[stage] = BossType.MOMS_HEART_MAUSOLEUM
+			if (mod.GreedStageBoss[stage] == BossType.MOMS_HEART or mod.GreedStageBoss[stage] == BossType.IT_LIVES) and (stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B) then
+				mod.GreedStageBoss[stage] = BossType.MOMS_HEART_MAUSOLEUM
 			end
-			if PibersMod.GreedStageBoss[stage] == BossType.MOMS_HEART_MAUSOLEUM and stageType ~= StageType.STAGETYPE_REPENTANCE and stageType ~= StageType.STAGETYPE_REPENTANCE_B then
-				PibersMod.GreedStageBoss[stage] = BossType.MOMS_HEART
+			if mod.GreedStageBoss[stage] == BossType.MOMS_HEART_MAUSOLEUM and stageType ~= StageType.STAGETYPE_REPENTANCE and stageType ~= StageType.STAGETYPE_REPENTANCE_B then
+				mod.GreedStageBoss[stage] = BossType.MOMS_HEART
 				if gamedata:Unlocked(Achievement.IT_LIVES) then
-					PibersMod.GreedStageBoss[stage] = BossType.IT_LIVES
+					mod.GreedStageBoss[stage] = BossType.IT_LIVES
 				end
 			end
 			]]
@@ -296,13 +298,13 @@ function PibersMod:OnNewLevelGreedMode()
 			local roomDesc = rooms:Get(i)
 			if roomDesc and roomDesc.Data then
 				if roomDesc.Data.Type == RoomType.ROOM_CURSE then
-					if PibersMod:GetPlanetariumChance() >= levelRNG:RandomFloat() then
+					if mod.GetPlanetariumChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_PLANETARIUM, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_PLANETARIUM)
 							curseDoor:SetLocked(true)
 						end
-					elseif PibersMod:GetBedroomChance() >= levelRNG:RandomFloat() then
+					elseif mod.GetBedroomChance() >= levelRNG:RandomFloat() then
 						if levelRNG:RandomInt(1, 2) == 1 then
 							roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_ISAACS, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 							if curseDoor then
@@ -316,30 +318,30 @@ function PibersMod:OnNewLevelGreedMode()
 								curseDoor:SetLocked(true)
 							end
 						end
-					elseif PibersMod:GetChestChance(true) >= levelRNG:RandomFloat() then
+					elseif mod.GetChestChance(true) >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_CHEST, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_CHEST)
 							curseDoor:SetLocked(true)
 						end
-					elseif PibersMod:GetDiceChance() >= levelRNG:RandomFloat() then
+					elseif mod.GetDiceChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_DICE, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DICE)
 							curseDoor:SetLocked(true)
 						end
-					elseif PibersMod:GetLibraryChance() >= levelRNG:RandomFloat() then
+					elseif mod.GetLibraryChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_LIBRARY, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_LIBRARY)
 							curseDoor:SetLocked(true)
 						end
-					elseif PibersMod:GetSacrificeChance() >= levelRNG:RandomFloat() then
+					elseif mod.GetSacrificeChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_SACRIFICE, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_SACRIFICE)
 						end
-					elseif PibersMod:GetArcadeChance(true)/3 >= levelRNG:RandomFloat() then
+					elseif mod.GetArcadeChance(true)/3 >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_ARCADE, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ARCADE)
@@ -348,20 +350,20 @@ function PibersMod:OnNewLevelGreedMode()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_GREED_EXIT then
 					local truestage = level:GetStage()
-					if PibersMod.GreedStageBoss[stage] then
+					if mod.GreedStageBoss[stage] then
 						--[[
-						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_BOSS, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, PibersMod.GreedStageBoss[stage], 0)
+						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_BOSS, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, mod.GreedStageBoss[stage], 0)
 						if exitDoor then
 							exitDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_GREED_EXIT)
 						end
 						]]
-						PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_BOSS, RoomShape.ROOMSHAPE_1x1, PibersMod.GreedStageBoss[stage], Dimension.NORMAL, levelRNG, roomDesc.GridIndex+GridRooms.WIDTH, 0, maxDifficulty, nil, nil, nil, nil, true)
+						mod.TryForcePlaceRandomRoom(RoomType.ROOM_BOSS, RoomShape.ROOMSHAPE_1x1, mod.GreedStageBoss[stage], Dimension.NORMAL, levelRNG, roomDesc.GridIndex+GridRooms.WIDTH, 0, maxDifficulty, nil, nil, nil, nil, true)
 					elseif truestage <= 3 and gamedata:Unlocked(Achievement.SECRET_EXIT) then
 						local exitsub = truestage
 						if stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
 							exitsub = exitsub + 1
 						end
-						PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_SECRET_EXIT, RoomShape.ROOMSHAPE_1x1, exitsub, Dimension.NORMAL, levelRNG, roomDesc.GridIndex+GridRooms.WIDTH, 0, maxDifficulty)
+						mod.TryForcePlaceRandomRoom(RoomType.ROOM_SECRET_EXIT, RoomShape.ROOMSHAPE_1x1, exitsub, Dimension.NORMAL, levelRNG, roomDesc.GridIndex+GridRooms.WIDTH, 0, maxDifficulty)
 					end
 					break
 				end
@@ -374,9 +376,9 @@ function PibersMod:OnNewLevelGreedMode()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PibersMod.OnNewLevelGreedMode)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelGreedMode)
 
-function PibersMod:OnRoomClearGreed(silent)
+function mod.OnRoomClearGreed(silent)
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if isGreed then
@@ -438,15 +440,15 @@ function PibersMod:OnRoomClearGreed(silent)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, PibersMod.OnRoomClearGreed)
+mod.AddCallback(ModCallbacks.MC_POST_ROOM_TRIGGER_CLEAR, mod.OnRoomClearGreed)
 
-function PibersMod:PreTrapdoorUpdate(grident)
+function mod.PreTrapdoorUpdate(grident)
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if isGreed then
 		local level = game:GetLevel()
 		local stage = level:GetAbsoluteStage()
-		if PibersMod.GreedStageBoss[stage] then
+		if mod.GreedStageBoss[stage] then
 			local currentDesc = level:GetCurrentRoomDesc()
 			if currentDesc.GridIndex == GridRooms.ROOM_GREEDMODE_EXIT_IDX then
 				local room = game:GetRoom()
@@ -455,47 +457,47 @@ function PibersMod:PreTrapdoorUpdate(grident)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TRAPDOOR_UPDATE, PibersMod.PreTrapdoorUpdate)
+mod.AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TRAPDOOR_UPDATE, mod.PreTrapdoorUpdate)
 
-PibersMod.NightmareGreedmodeState = false
-PibersMod.NightmareCharacterState = PlayerType.PLAYER_ISAAC
-function PibersMod:OnNightmareRender()
+mod.NightmareGreedmodeState = false
+mod.NightmareCharacterState = PlayerType.PLAYER_ISAAC
+function mod.OnNightmareRender()
 	local progressSprite = NightmareScene.GetProgressBarSprite()
 
-	if PibersMod.LastMainPlayerType and PibersMod.LastMainPlayerType ~= PibersMod.NightmareCharacterState then
+	if mod.LastMainPlayerType and mod.LastMainPlayerType ~= mod.NightmareCharacterState then
 		local progressSheet = "Progress_Isaac.png"
-		local playerData = XMLData.GetEntryById(XMLNode.PLAYER, PibersMod.LastMainPlayerType)
+		local playerData = XMLData.GetEntryById(XMLNode.PLAYER, mod.LastMainPlayerType)
 		if playerData and playerData.portrait then
 			progressSheet = string.gsub(playerData.portrait, "PlayerPortrait_", "Progress_")
 			progressSprite:ReplaceSpritesheet(3,"gfx/ui/stage/" .. progressSheet, true)
 		end
-		PibersMod.NightmareCharacterState = PibersMod.LastMainPlayerType
+		mod.NightmareCharacterState = mod.LastMainPlayerType
 	end
 
 	local game = Game()
 	local isGreed = game:IsGreedMode()
-	if PibersMod.NightmareGreedmodeState ~= isGreed then
+	if mod.NightmareGreedmodeState ~= isGreed then
 		if isGreed then
-			if not PibersMod.NightmareGreedmodeState then
+			if not mod.NightmareGreedmodeState then
 				progressSprite:ReplaceSpritesheet(2,"gfx/ui/stage/progress_shop.png", true)
 			end
 		else
-			if PibersMod.NightmareGreedmodeState then
+			if mod.NightmareGreedmodeState then
 				progressSprite:ReplaceSpritesheet(2,"gfx/ui/stage/progress.png", true)
 			end
 		end
-		PibersMod.NightmareGreedmodeState = isGreed
+		mod.NightmareGreedmodeState = isGreed
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NIGHTMARE_SCENE_RENDER, PibersMod.OnNightmareRender)
+mod.AddCallback(ModCallbacks.MC_POST_NIGHTMARE_SCENE_RENDER, mod.OnNightmareRender)
 
-PibersMod.DoGreedSecretExit = false
-PibersMod.SecretExitTrapdoorAnm2 = {}
-PibersMod.SecretExitTrapdoorAnm2[1] = "gfx/grid/trapdoor_downpour.anm2"
-PibersMod.SecretExitTrapdoorAnm2[2] = "gfx/grid/trapdoor_mines.anm2"
-PibersMod.SecretExitTrapdoorAnm2[3] = "gfx/grid/trapdoor_mausoleum.anm2"
-PibersMod.SecretExitTrapdoorAnm2[BossType.MOM] = "gfx/grid/door_11_corpsehole.anm2"
-function PibersMod:OnTrapdoorUpdate(grident)
+mod.DoGreedSecretExit = false
+mod.SecretExitTrapdoorAnm2 = {}
+mod.SecretExitTrapdoorAnm2[1] = "gfx/grid/trapdoor_downpour.anm2"
+mod.SecretExitTrapdoorAnm2[2] = "gfx/grid/trapdoor_mines.anm2"
+mod.SecretExitTrapdoorAnm2[3] = "gfx/grid/trapdoor_mausoleum.anm2"
+mod.SecretExitTrapdoorAnm2[BossType.MOM] = "gfx/grid/door_11_corpsehole.anm2"
+function mod.OnTrapdoorUpdate(grident)
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if isGreed then
@@ -505,26 +507,26 @@ function PibersMod:OnTrapdoorUpdate(grident)
 		local level = game:GetLevel()
 		local currentStageType = level:GetStageType()
 		if roomType == RoomType.ROOM_SECRET_EXIT or (bossID == BossType.MOM and (currentStageType == StageType.STAGETYPE_REPENTANCE or currentStageType == StageType.STAGETYPE_REPENTANCE_B)) then
-			if not PibersMod.DoGreedSecretExit then
+			if not mod.DoGreedSecretExit then
 				local roomDesc = level:GetCurrentRoomDesc()
 				local roomSubType = roomDesc.Data.Subtype
-				if PibersMod.SecretExitTrapdoorAnm2[roomSubType] then
+				if mod.SecretExitTrapdoorAnm2[roomSubType] then
 					local sprite = grident:GetSprite()
-					sprite:Load(PibersMod.SecretExitTrapdoorAnm2[roomSubType], true)
-				elseif PibersMod.SecretExitTrapdoorAnm2[bossID] then
+					sprite:Load(mod.SecretExitTrapdoorAnm2[roomSubType], true)
+				elseif mod.SecretExitTrapdoorAnm2[bossID] then
 					local sprite = grident:GetSprite()
-					sprite:Load(PibersMod.SecretExitTrapdoorAnm2[bossID], true)
+					sprite:Load(mod.SecretExitTrapdoorAnm2[bossID], true)
 				end
-				PibersMod.DoGreedSecretExit = true
+				mod.DoGreedSecretExit = true
 			end
 		else
-			PibersMod.DoGreedSecretExit = false
+			mod.DoGreedSecretExit = false
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_TRAPDOOR_UPDATE, PibersMod.OnTrapdoorUpdate)
+mod.AddCallback(ModCallbacks.MC_POST_GRID_ENTITY_TRAPDOOR_UPDATE, mod.OnTrapdoorUpdate)
 
-function PibersMod:PreLevelSelectGreedMode(stage, stageType)
+function mod.PreLevelSelectGreedMode(stage, stageType)
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if isGreed then
@@ -532,8 +534,8 @@ function PibersMod:PreLevelSelectGreedMode(stage, stageType)
 		local currentStageType = level:GetStageType()
 		local newStage = 0
 		local newStageType = 0
-		if PibersMod.DoGreedSecretExit then
-			PibersMod.DoGreedSecretExit = false
+		if mod.DoGreedSecretExit then
+			mod.DoGreedSecretExit = false
 			if currentStageType == StageType.STAGETYPE_REPENTANCE or currentStageType == StageType.STAGETYPE_REPENTANCE_B then
 				newStage = stage
 				newStageType = StageType.STAGETYPE_REPENTANCE
@@ -563,4 +565,4 @@ function PibersMod:PreLevelSelectGreedMode(stage, stageType)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_LEVEL_SELECT, PibersMod.PreLevelSelectGreedMode)
+mod.AddCallback(ModCallbacks.MC_PRE_LEVEL_SELECT, mod.PreLevelSelectGreedMode)

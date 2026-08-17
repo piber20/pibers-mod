@@ -3,7 +3,22 @@ if not REPENTOGON then
 	return
 end
 
-PibersMod = RegisterMod("Piber's Mod", 1)
+local modname = "Piber's Mod"
+PibersMod = RegisterMod(modname, 1)
+for funcname, func in pairs(PibersMod) do
+	if type(func) == "function" and not PibersMod["old"..funcname] then
+		PibersMod["old"..funcname] = func
+		PibersMod[funcname] = function(...)
+			local args = {...}
+			if not args or type(args[1]) ~= "table" or not args[1].Name or args[1].Name ~= modname then
+				PibersMod["old"..funcname](PibersMod,table.unpack(args))
+			else
+				PibersMod["old"..funcname](PibersMod,table.unpack(args, 2))
+			end
+		end
+	end
+end
+
 PibersMod.SaveManager = include("pibersmod.libs.save_manager")
 PibersMod.SaveManager.Init(PibersMod)
 Options.MouseControl = true

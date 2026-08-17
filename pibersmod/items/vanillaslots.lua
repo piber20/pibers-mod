@@ -1,5 +1,7 @@
-function PibersMod:PreShellGameUpdate(slot)
-	local data = PibersMod.GetData(slot)
+local mod = PibersMod
+
+function mod.PreShellGameUpdate(slot)
+	local data = mod.GetData(slot)
 	local state = slot:GetState()
 	local prizeSprite = slot:GetPrizeSprite()
 	if state == SlotState.IDLE or state == SlotState.CHOICE then
@@ -106,9 +108,9 @@ function PibersMod:PreShellGameUpdate(slot)
 	data.LastPrize = prizeType
 	data.LastState = state
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, PibersMod.PreShellGameUpdate, SlotVariant.SHELL_GAME)
+mod.AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, mod.PreShellGameUpdate, SlotVariant.SHELL_GAME)
 
-function PibersMod.SomeoneTakesFullHeartDMG()
+function mod.SomeoneTakesFullHeartDMG()
 	local game = Game()
 	local level = game:GetLevel()
 	if level:GetStage() > LevelStage.STAGE3_2 and not game:IsGreedMode() then
@@ -121,7 +123,7 @@ function PibersMod.SomeoneTakesFullHeartDMG()
 	return false
 end
 
-function PibersMod.PlayerTakesFullHeartDMG(player)
+function mod.PlayerTakesFullHeartDMG(player)
 	local game = Game()
 	local level = game:GetLevel()
 	if level:GetStage() > LevelStage.STAGE3_2 and not game:IsGreedMode() and not player:HasCollectible(CollectibleType.COLLECTIBLE_WAFER) then
@@ -130,22 +132,22 @@ function PibersMod.PlayerTakesFullHeartDMG(player)
 	return false
 end
 
-PibersMod.HeartSigns = {}
-PibersMod.HeartSigns[SlotVariant.DEVIL_BEGGAR] = "slot_005_devil_beggar"
-PibersMod.HeartSigns[SlotVariant.HELL_GAME] = "hell_game"
-function PibersMod:PreHeartSlotUpdate(slot)
-	local data = PibersMod.GetData(slot)
+mod.HeartSigns = {}
+mod.HeartSigns[SlotVariant.DEVIL_BEGGAR] = "slot_005_devil_beggar"
+mod.HeartSigns[SlotVariant.HELL_GAME] = "hell_game"
+function mod.PreHeartSlotUpdate(slot)
+	local data = mod.GetData(slot)
 	local sprite = slot:GetSprite()
-	if PibersMod.HeartSigns[slot.Variant] then
+	if mod.HeartSigns[slot.Variant] then
 		local game = Game()
 		local level = game:GetLevel()
-		if PibersMod.SomeoneTakesFullHeartDMG() then
+		if mod.SomeoneTakesFullHeartDMG() then
 			if not data.heartsign then
-				sprite:ReplaceSpritesheet(0,"gfx/items/slots/" .. PibersMod.HeartSigns[slot.Variant] .. "_full.png", true)
+				sprite:ReplaceSpritesheet(0,"gfx/items/slots/" .. mod.HeartSigns[slot.Variant] .. "_full.png", true)
 				data.heartsign = true
 			end
 		elseif data.heartsign then
-			sprite:ReplaceSpritesheet(0,"gfx/items/slots/" .. PibersMod.HeartSigns[slot.Variant] .. ".png", true)
+			sprite:ReplaceSpritesheet(0,"gfx/items/slots/" .. mod.HeartSigns[slot.Variant] .. ".png", true)
 			data.heartsign = false
 		end
 	end
@@ -171,10 +173,10 @@ function PibersMod:PreHeartSlotUpdate(slot)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, PibersMod.PreHeartSlotUpdate, SlotVariant.DEVIL_BEGGAR)
-PibersMod:AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, PibersMod.PreHeartSlotUpdate, SlotVariant.HELL_GAME)
+mod.AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, mod.PreHeartSlotUpdate, SlotVariant.DEVIL_BEGGAR)
+mod.AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, mod.PreHeartSlotUpdate, SlotVariant.HELL_GAME)
 
-function PibersMod:PreEntitySpawn(entType, entVariant, entSubType, pos, vel, spawner, seed)
+function mod.PreEntitySpawn(entType, entVariant, entSubType, pos, vel, spawner, seed)
 	if entType == EntityType.ENTITY_ATTACKFLY then
 		for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, SlotVariant.SHELL_GAME, -1, true, false)) do
 			if entity.Position:Distance(pos) < 50 then
@@ -197,13 +199,13 @@ function PibersMod:PreEntitySpawn(entType, entVariant, entSubType, pos, vel, spa
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, PibersMod.PreEntitySpawn)
+mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.PreEntitySpawn)
 
-function PibersMod:PrePlayerTakeDMGSlots(player, amount, flags, source, cooldown)
+function mod.PrePlayerTakeDMGSlots(player, amount, flags, source, cooldown)
 	if source and source.Entity and source.Type == EntityType.ENTITY_SLOT and (source.Variant == SlotVariant.DEVIL_BEGGAR or source.Variant == SlotVariant.HELL_GAME) then
 		local sourceent = source.Entity
-		local sourceData = PibersMod.GetData(sourceent)
-		local takesFullDMG = PibersMod.PlayerTakesFullHeartDMG(player)
+		local sourceData = mod.GetData(sourceent)
+		local takesFullDMG = mod.PlayerTakesFullHeartDMG(player)
 		local redHearts = player:GetHearts()
 		local rottenHearts = player:GetRottenHearts()
 		local eternalHearts = player:GetEternalHearts()
@@ -289,4 +291,4 @@ function PibersMod:PrePlayerTakeDMGSlots(player, amount, flags, source, cooldown
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, PibersMod.PrePlayerTakeDMGSlots)
+mod.AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, mod.PrePlayerTakeDMGSlots)

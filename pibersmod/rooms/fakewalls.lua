@@ -1,30 +1,32 @@
-PibersMod.FakeWallsEnabled = false
-PibersMod.FakeWallSprite = Sprite("gfx/backdrop/fake_walls.anm2", true)
-PibersMod.FakeWallSprite:Play("Walls")
-PibersMod.FakeWallSpriteFull = Sprite("gfx/backdrop/fake_walls.anm2", true)
-PibersMod.FakeWallSpriteFull:Play("WallsFull")
-PibersMod.FakeWallBackdrop = BackdropType.BACKDROP_NULL
-PibersMod.FakeWalls = {}
-function PibersMod:BackdropHasWalls(backdrop)
+local mod = PibersMod
+
+mod.FakeWallsEnabled = false
+mod.FakeWallSprite = Sprite("gfx/backdrop/fake_walls.anm2", true)
+mod.FakeWallSprite:Play("Walls")
+mod.FakeWallSpriteFull = Sprite("gfx/backdrop/fake_walls.anm2", true)
+mod.FakeWallSpriteFull:Play("WallsFull")
+mod.FakeWallBackdrop = BackdropType.BACKDROP_NULL
+mod.FakeWalls = {}
+function mod.BackdropHasWalls(backdrop)
 	return backdrop ~= BackdropType.DARKROOM and backdrop ~= BackdropType.MEGA_SATAN and backdrop ~= BackdropType.ERROR_ROOM and backdrop ~= BackdropType.DUNGEON and backdrop ~= BackdropType.PLANETARIUM and backdrop ~= BackdropType.DOGMA and backdrop ~= BackdropType.DUNGEON_GIDEON and backdrop ~= BackdropType.DUNGEON_ROTGUT and backdrop ~= BackdropType.DUNGEON_BEAST
 end
 
-function PibersMod:PreRenderFloorFakeWalls(color)
+function mod.PreRenderFloorFakeWalls(color)
 	local game = Game()
 	local room = game:GetRoom()
 	local backdropType = room:GetBackdropType()
-	if PibersMod.FakeWallsEnabled and PibersMod:BackdropHasWalls(backdropType) then
+	if mod.FakeWallsEnabled and mod.BackdropHasWalls(backdropType) then
 		local lastGrid = room:GetGridSize()-1
 		local gridWidth = room:GetGridWidth()
 		local foundFakeWall = true
 		while foundFakeWall do
 			foundFakeWall = false
 			for gridIndex=0, lastGrid do
-				if not PibersMod.FakeWalls[gridIndex] then
+				if not mod.FakeWalls[gridIndex] then
 					local gridEntity = room:GetGridEntity(gridIndex)
 					if gridEntity then
 						if gridEntity:GetType() == GridEntityType.GRID_WALL or gridEntity:GetType() == GridEntityType.GRID_DOOR then
-							PibersMod.FakeWalls[gridIndex] = true
+							mod.FakeWalls[gridIndex] = true
 						elseif gridEntity:GetType() == GridEntityType.GRID_PILLAR then
 							local gridLeft = gridIndex-1
 							local gridRight = gridIndex+1
@@ -35,18 +37,18 @@ function PibersMod:PreRenderFloorFakeWalls(color)
 							local gridEntityUp = room:GetGridEntity(gridUp)
 							local gridEntityDown = room:GetGridEntity(gridDown)
 							local adjWalls = 0
-							if PibersMod.FakeWalls[gridLeft] or (gridEntityLeft and gridEntityLeft:GetType() == GridEntityType.GRID_WALL) then
+							if mod.FakeWalls[gridLeft] or (gridEntityLeft and gridEntityLeft:GetType() == GridEntityType.GRID_WALL) then
 								adjWalls = adjWalls + 1
-							elseif PibersMod.FakeWalls[gridRight] or (gridEntityRight and gridEntityRight:GetType() == GridEntityType.GRID_WALL) then
+							elseif mod.FakeWalls[gridRight] or (gridEntityRight and gridEntityRight:GetType() == GridEntityType.GRID_WALL) then
 								adjWalls = adjWalls + 1
 							end
-							if PibersMod.FakeWalls[gridUp] or (gridEntityUp and (gridEntityUp:GetType() == GridEntityType.GRID_WALL or gridEntityUp:GetType() == GridEntityType.GRID_PILLAR)) then
+							if mod.FakeWalls[gridUp] or (gridEntityUp and (gridEntityUp:GetType() == GridEntityType.GRID_WALL or gridEntityUp:GetType() == GridEntityType.GRID_PILLAR)) then
 								adjWalls = adjWalls + 1
-							elseif PibersMod.FakeWalls[gridDown] or (gridEntityDown and (gridEntityDown:GetType() == GridEntityType.GRID_WALL or gridEntityDown:GetType() == GridEntityType.GRID_PILLAR)) then
+							elseif mod.FakeWalls[gridDown] or (gridEntityDown and (gridEntityDown:GetType() == GridEntityType.GRID_WALL or gridEntityDown:GetType() == GridEntityType.GRID_PILLAR)) then
 								adjWalls = adjWalls + 1
 							end
 							if adjWalls >= 2 then
-								PibersMod.FakeWalls[gridIndex] = true
+								mod.FakeWalls[gridIndex] = true
 								foundFakeWall = true
 							end
 						end
@@ -54,16 +56,16 @@ function PibersMod:PreRenderFloorFakeWalls(color)
 				end
 			end
 		end
-		if not foundFakeWall and Isaac.CountEntities(nil, EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, PibersMod.Effects.FAKE_WALL_HANDLER) < 1 then
-			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, PibersMod.Effects.FAKE_WALL_HANDLER, Vector(0,-1500), Vector.Zero, nil).SortingLayer = SortingLayer.SORTING_DOOR
+		if not foundFakeWall and Isaac.CountEntities(nil, EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, mod.Effects.FAKE_WALL_HANDLER) < 1 then
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, mod.Effects.FAKE_WALL_HANDLER, Vector(0,-1500), Vector.Zero, nil).SortingLayer = SortingLayer.SORTING_DOOR
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_BACKDROP_RENDER_FLOOR, PibersMod.PreRenderFloorFakeWalls)
+mod.AddCallback(ModCallbacks.MC_PRE_BACKDROP_RENDER_FLOOR, mod.PreRenderFloorFakeWalls)
 
-function PibersMod:RenderFakeWalls()
+function mod.RenderFakeWalls()
 
-	if not PibersMod.FakeWallsEnabled then
+	if not mod.FakeWallsEnabled then
 		return
 	end
 
@@ -71,66 +73,66 @@ function PibersMod:RenderFakeWalls()
 	local room = game:GetRoom()
 	local backdropType = room:GetBackdropType()
 
-	if PibersMod:BackdropHasWalls(backdropType) then
+	if mod.BackdropHasWalls(backdropType) then
 		local lastGrid = room:GetGridSize()-1
 		local gridWidth = room:GetGridWidth()
 
-		if PibersMod.FakeWallBackdrop ~= backdropType then
-			PibersMod.FakeWallBackdrop = backdropType
+		if mod.FakeWallBackdrop ~= backdropType then
+			mod.FakeWallBackdrop = backdropType
 			local backdropData = XMLData.GetEntryById(XMLNode.BACKDROP, backdropType)
 			if backdropData.gfx then
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(0, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(1, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(2, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(3, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(4, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(5, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSprite:ReplaceSpritesheet(6, "gfx/backdrop/" .. backdropData.gfx, true)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(0, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(1, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(2, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(3, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(4, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(5, "gfx/backdrop/" .. backdropData.gfx, false)
-				PibersMod.FakeWallSpriteFull:ReplaceSpritesheet(6, "gfx/backdrop/" .. backdropData.gfx, true)
+				mod.FakeWallSprite:ReplaceSpritesheet(0, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(1, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(2, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(3, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(4, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(5, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSprite:ReplaceSpritesheet(6, "gfx/backdrop/" .. backdropData.gfx, true)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(0, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(1, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(2, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(3, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(4, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(5, "gfx/backdrop/" .. backdropData.gfx, false)
+				mod.FakeWallSpriteFull:ReplaceSpritesheet(6, "gfx/backdrop/" .. backdropData.gfx, true)
 			end
 		end
 
-		PibersMod.FakeWallSprite:SetFrame(44)
-		PibersMod.FakeWallSpriteFull:SetFrame(44)
-		for gridIndex, isWall in pairs(PibersMod.FakeWalls) do
+		mod.FakeWallSprite:SetFrame(44)
+		mod.FakeWallSpriteFull:SetFrame(44)
+		for gridIndex, isWall in pairs(mod.FakeWalls) do
 			if isWall then
-				local isWallLeft = PibersMod.FakeWalls[gridIndex-1]
+				local isWallLeft = mod.FakeWalls[gridIndex-1]
 				if gridIndex-1 < 0 then
-					isWallLeft = PibersMod.FakeWalls[0]
+					isWallLeft = mod.FakeWalls[0]
 				end
-				local isWallRight = PibersMod.FakeWalls[gridIndex+1]
+				local isWallRight = mod.FakeWalls[gridIndex+1]
 				if gridIndex+1 > lastGrid then
-					isWallRight = PibersMod.FakeWalls[lastGrid]
+					isWallRight = mod.FakeWalls[lastGrid]
 				end
-				local isWallUp = PibersMod.FakeWalls[gridIndex-gridWidth]
+				local isWallUp = mod.FakeWalls[gridIndex-gridWidth]
 				if gridIndex-gridWidth < 0 then
-					isWallUp = PibersMod.FakeWalls[0]
+					isWallUp = mod.FakeWalls[0]
 				end
-				local isWallDown = PibersMod.FakeWalls[gridIndex+gridWidth]
+				local isWallDown = mod.FakeWalls[gridIndex+gridWidth]
 				if gridIndex+gridWidth > lastGrid then
-					isWallDown = PibersMod.FakeWalls[lastGrid]
+					isWallDown = mod.FakeWalls[lastGrid]
 				end
-				local isWallUpLeft = PibersMod.FakeWalls[(gridIndex-gridWidth)-1]
+				local isWallUpLeft = mod.FakeWalls[(gridIndex-gridWidth)-1]
 				if (gridIndex-gridWidth)-1 < 0 then
-					isWallUpLeft = PibersMod.FakeWalls[0]
+					isWallUpLeft = mod.FakeWalls[0]
 				end
-				local isWallUpRight = PibersMod.FakeWalls[(gridIndex-gridWidth)+1]
+				local isWallUpRight = mod.FakeWalls[(gridIndex-gridWidth)+1]
 				if (gridIndex-gridWidth)+1 < 0 then
-					isWallUpRight = PibersMod.FakeWalls[0]
+					isWallUpRight = mod.FakeWalls[0]
 				end
-				local isWallDownLeft = PibersMod.FakeWalls[(gridIndex+gridWidth)-1]
+				local isWallDownLeft = mod.FakeWalls[(gridIndex+gridWidth)-1]
 				if (gridIndex+gridWidth)-1 > lastGrid then
-					isWallDownLeft = PibersMod.FakeWalls[lastGrid]
+					isWallDownLeft = mod.FakeWalls[lastGrid]
 				end
-				local isWallDownRight = PibersMod.FakeWalls[(gridIndex+gridWidth)+1]
+				local isWallDownRight = mod.FakeWalls[(gridIndex+gridWidth)+1]
 				if (gridIndex+gridWidth)+1 > lastGrid then
-					isWallDownRight = PibersMod.FakeWalls[lastGrid]
+					isWallDownRight = mod.FakeWalls[lastGrid]
 				end
 
 				local wallFlag = 0
@@ -227,70 +229,70 @@ function PibersMod:RenderFakeWalls()
 					frame = 43
 				end
 
-				PibersMod.FakeWalls[gridIndex] = frame
+				mod.FakeWalls[gridIndex] = frame
 
 				local gridEntity = room:GetGridEntity(gridIndex)
 				if gridEntity and (gridEntity:GetType() == GridEntityType.GRID_WALL or gridEntity:GetType() == GridEntityType.GRID_DOOR) then
 					if frame ~= 44 then
 						if gridIndex == 0 or gridIndex == gridWidth-1 or gridIndex == lastGrid-(gridWidth-1) or gridIndex == lastGrid then
-							PibersMod.FakeWalls[gridIndex] = -1
+							mod.FakeWalls[gridIndex] = -1
 						elseif frame ~= 0 and frame ~= 14 and frame ~= 29 and frame ~= 43 then
-							PibersMod.FakeWalls[gridIndex] = -1
+							mod.FakeWalls[gridIndex] = -1
 						end
 					end
 				end
 
 				if frame == 44 then
 					local floorPos = room:GetGridPosition(gridIndex)
-					PibersMod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
+					mod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
 				end
 			end
 		end
 
-		for gridIndex, frame in pairs(PibersMod.FakeWalls) do
+		for gridIndex, frame in pairs(mod.FakeWalls) do
 			if type(frame) == "number" and frame >= 0 and frame ~= 44 then
 				local floorPos = room:GetGridPosition(gridIndex)
-				PibersMod.FakeWallSpriteFull:SetFrame(frame)
-				PibersMod.FakeWallSpriteFull:Render(Isaac.WorldToScreen(floorPos))
+				mod.FakeWallSpriteFull:SetFrame(frame)
+				mod.FakeWallSpriteFull:Render(Isaac.WorldToScreen(floorPos))
 			end
 		end
 
-		for gridIndex, frame in pairs(PibersMod.FakeWalls) do
+		for gridIndex, frame in pairs(mod.FakeWalls) do
 			if type(frame) == "number" and (frame == 45 or frame == 46 or frame == 47 or frame == 48) then
 				local floorPos = room:GetGridPosition(gridIndex)
-				PibersMod.FakeWallSprite:SetFrame(frame)
-				PibersMod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
+				mod.FakeWallSprite:SetFrame(frame)
+				mod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
 			end
 		end
 
-		for gridIndex, frame in pairs(PibersMod.FakeWalls) do
+		for gridIndex, frame in pairs(mod.FakeWalls) do
 			if type(frame) == "number" and (frame == 0 or frame == 14 or frame == 29 or frame == 43) then
 				local floorPos = room:GetGridPosition(gridIndex)
-				PibersMod.FakeWallSprite:SetFrame(frame)
-				PibersMod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
+				mod.FakeWallSprite:SetFrame(frame)
+				mod.FakeWallSprite:Render(Isaac.WorldToScreen(floorPos))
 			end
 		end
 	end
 end
 
-function PibersMod:PrePillarRender(gridEntity)
-	if PibersMod.FakeWallsEnabled then
+function mod.PrePillarRender(gridEntity)
+	if mod.FakeWallsEnabled then
 		local game = Game()
 		local room = game:GetRoom()
 		local backdropType = room:GetBackdropType()
-		if PibersMod:BackdropHasWalls(backdropType) and PibersMod.FakeWalls[gridEntity:GetGridIndex()] then
+		if mod.BackdropHasWalls(backdropType) and mod.FakeWalls[gridEntity:GetGridIndex()] then
 			gridEntity:GetSprite().Scale = Vector.Zero
 			return false
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, PibersMod.PrePillarRender, GridEntityType.GRID_PILLAR)
+mod.AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_RENDER, mod.PrePillarRender, GridEntityType.GRID_PILLAR)
 
-function PibersMod:OnNewRoomFakeWalls()
-	PibersMod.FakeWalls = {}
+function mod.OnNewRoomFakeWalls()
+	mod.FakeWalls = {}
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomFakeWalls)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomFakeWalls)
 
-PibersMod.ModEffectRenderFuncs[PibersMod.Effects.FAKE_WALL_HANDLER] = function(effect,sprite,data)
-	PibersMod:RenderFakeWalls()
+mod.ModEffectRenderFuncs[mod.Effects.FAKE_WALL_HANDLER] = function(effect,sprite,data)
+	mod.RenderFakeWalls()
 end

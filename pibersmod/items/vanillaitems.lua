@@ -1,4 +1,6 @@
-function PibersMod:OnModsLoadedVanillaItems()
+local mod = PibersMod
+
+function mod.OnModsLoadedVanillaItems()
 	local itemConfig = Isaac.GetItemConfig()
 
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SERAPHIM).Tags = itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_SERAPHIM).Tags | ItemConfig.TAG_ANGEL
@@ -29,9 +31,9 @@ function PibersMod:OnModsLoadedVanillaItems()
 
 	itemConfig:GetCollectible(CollectibleType.COLLECTIBLE_DOGMA).AchievementID = Achievement.RED_KEY
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, PibersMod.OnModsLoadedVanillaItems)
+mod.AddCallback(ModCallbacks.MC_POST_MODS_LOADED, mod.OnModsLoadedVanillaItems)
 
-function PibersMod:OnPlayerUpdate(player)
+function mod.OnPlayerUpdate(player)
 
 	local game = Game()
 	local itemPool = game:GetItemPool()
@@ -76,8 +78,8 @@ function PibersMod:OnPlayerUpdate(player)
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) and player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) then
 		if not player:HasCollectible(CollectibleType.KEY_PIECE_COMPLETE) then
-			PibersMod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KEY_PIECE_1)
-			PibersMod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KEY_PIECE_2)
+			mod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KEY_PIECE_1)
+			mod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KEY_PIECE_2)
 			player:AddCollectible(CollectibleType.KEY_PIECE_COMPLETE)
 		end
 	elseif player:HasCollectible(CollectibleType.KEY_PIECE_COMPLETE) then
@@ -94,8 +96,8 @@ function PibersMod:OnPlayerUpdate(player)
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) and player:HasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) then
 		if not player:HasCollectible(CollectibleType.KNIFE_PIECE_COMPLETE) then
-			PibersMod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
-			PibersMod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2)
+			mod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
+			mod.RemoveItemFromHistory(player, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2)
 			player:AddCollectible(CollectibleType.KNIFE_PIECE_COMPLETE)
 		end
 	elseif player:HasCollectible(CollectibleType.KNIFE_PIECE_COMPLETE) then
@@ -110,17 +112,17 @@ function PibersMod:OnPlayerUpdate(player)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PibersMod.OnPlayerUpdate)
+mod.AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnPlayerUpdate)
 
-function PibersMod:OnNewRoomBuddy()
+function mod.OnNewRoomBuddy()
 	for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BUDDY_IN_A_BOX, -1, false, false)) do
-		local familiarData = PibersMod.GetData(entity)
+		local familiarData = mod.GetData(entity)
 		familiarData.BlankedBuddySpritesheet = false
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomBuddy)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomBuddy)
 
-function PibersMod:PreUseMoonCard(cardID, player, useFlags)
+function mod.PreUseMoonCard(cardID, player, useFlags)
 	local isTarotUse = useFlags & UseFlag.USE_CARBATTERY > 0
 	if isTarotUse then
 		return true
@@ -133,7 +135,7 @@ function PibersMod:PreUseMoonCard(cardID, player, useFlags)
 		local stageType = level:GetStageType()
 		if stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
 			if dimension == Dimension.MIRROR then
-				if PibersMod:PreUseCardMausTeleporterStart(cardID, player, useFlags) then
+				if mod.PreUseCardMausTeleporterStart(cardID, player, useFlags) then
 					return true
 				end
 			end
@@ -174,30 +176,30 @@ function PibersMod:PreUseMoonCard(cardID, player, useFlags)
 		return true
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_USE_CARD, PibersMod.PreUseMoonCard, Card.CARD_MOON)
+mod.AddCallback(ModCallbacks.MC_PRE_USE_CARD, mod.PreUseMoonCard, Card.CARD_MOON)
 
-function PibersMod:OnTwoOfHeartsUse(cardType, player, useFlags)
+function mod.OnTwoOfHeartsUse(cardType, player, useFlags)
 	if player:GetMaxHearts() <= 0 then
 		player:AddSoulHearts(2)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_USE_CARD, PibersMod.OnTwoOfHeartsUse, Card.CARD_HEARTS_2)
+mod.AddCallback(ModCallbacks.MC_USE_CARD, mod.OnTwoOfHeartsUse, Card.CARD_HEARTS_2)
 
-function PibersMod:OnGetPillRangeDown(effect, color, player)
+function mod.OnGetPillRangeDown(effect, color, player)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_NUMBER_ONE) then
 		return PillEffect.PILLEFFECT_RANGE_UP
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, PibersMod.OnGetPillRangeDown, PillEffect.PILLEFFECT_RANGE_DOWN)
+mod.AddCallback(ModCallbacks.MC_GET_PILL_EFFECT, mod.OnGetPillRangeDown, PillEffect.PILLEFFECT_RANGE_DOWN)
 
-function PibersMod:PreChangeRoomItems(roomIndex, dimension)
+function mod.PreChangeRoomItems(roomIndex, dimension)
 	for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
 		player:BlockCollectible(CollectibleType.COLLECTIBLE_TOXIC_SHOCK)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, PibersMod.PreChangeRoomItems)
+mod.AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, mod.PreChangeRoomItems)
 
-function PibersMod:OnLilChestUpdate(familiar)
+function mod.OnLilChestUpdate(familiar)
 
 	local sprite = familiar:GetSprite()
 	if sprite:IsFinished("Spawn") then
@@ -205,9 +207,9 @@ function PibersMod:OnLilChestUpdate(familiar)
 	end
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, PibersMod.OnLilChestUpdate, FamiliarVariant.LIL_CHEST)
+mod.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnLilChestUpdate, FamiliarVariant.LIL_CHEST)
 
-PibersMod.BuddyAnimations = {
+mod.BuddyAnimations = {
 	[Direction.LEFT] = {
 		[0] = "LeftFloat",
 		[1] = "LeftFloatShoot"
@@ -225,9 +227,9 @@ PibersMod.BuddyAnimations = {
 		[1] = "DownFloatShoot"
 	}
 }
-function PibersMod:OnBuddyBoxRender(familiar, offset)
+function mod.OnBuddyBoxRender(familiar, offset)
 
-	local sprite, data = familiar:GetSprite(), PibersMod.GetData(familiar)
+	local sprite, data = familiar:GetSprite(), mod.GetData(familiar)
 
 	if not Game():IsPaused() then
 		if familiar.FrameCount >= 5 and not data.BlankedBuddySpritesheet then
@@ -246,19 +248,19 @@ function PibersMod:OnBuddyBoxRender(familiar, offset)
 			end
 		end
 
-		if not sprite:IsOverlayPlaying(PibersMod.BuddyAnimations[shootDirection][currentFrame]) then
+		if not sprite:IsOverlayPlaying(mod.BuddyAnimations[shootDirection][currentFrame]) then
 			data.ShootDirection = nil
 			if currentFrame == 1 then
 				data.ShootDirection = shootDirection
 			end
-			sprite:PlayOverlay(PibersMod.BuddyAnimations[shootDirection][currentFrame], true)
+			sprite:PlayOverlay(mod.BuddyAnimations[shootDirection][currentFrame], true)
 		end
 	end
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, PibersMod.OnBuddyBoxRender, FamiliarVariant.BUDDY_IN_A_BOX)
+mod.AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, mod.OnBuddyBoxRender, FamiliarVariant.BUDDY_IN_A_BOX)
 
-function PibersMod:PreEntityTakeDMGVanillaItems(entity, amount, flags, source, cooldown)
+function mod.PreEntityTakeDMGVanillaItems(entity, amount, flags, source, cooldown)
 	if entity and entity:IsVulnerableEnemy() and entity.HitPoints - amount <= 0 and source and source.Entity then
 		local sourceEntity = source.Entity
 		for _, matchEntity in pairs(Isaac.FindByType(source.Entity.Type, source.Entity.Variant, source.Entity.SubType, false, false)) do
@@ -305,52 +307,52 @@ function PibersMod:PreEntityTakeDMGVanillaItems(entity, amount, flags, source, c
 		end
 	end
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, PibersMod.PreEntityTakeDMGVanillaItems)
+mod.AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, mod.PreEntityTakeDMGVanillaItems)
 
-PibersMod.AnalogStickTears = 0.35
-function PibersMod:OnEvaluateTearsUp(player, statStage, value)
+mod.AnalogStickTears = 0.35
+function mod.OnEvaluateTearsUp(player, statStage, value)
 	local effects = player:GetEffects()
 	local valueMod = 0
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_ANALOG_STICK, false, false) then
 		-- Remove innate Analog Stick's tears up, but make later pick ups of the item stackable
-		valueMod = valueMod + ((PibersMod.AnalogStickTears * player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ANALOG_STICK, true, true)) - PibersMod.AnalogStickTears)
+		valueMod = valueMod + ((mod.AnalogStickTears * player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ANALOG_STICK, true, true)) - mod.AnalogStickTears)
 	end
 	if valueMod ~= 0 then
 		return value + valueMod
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_EVALUATE_STAT, PibersMod.OnEvaluateTearsUp, EvaluateStatStage.TEARS_UP)
+mod.AddCallback(ModCallbacks.MC_EVALUATE_STAT, mod.OnEvaluateTearsUp, EvaluateStatStage.TEARS_UP)
 
-PibersMod.SpeedMin = 0.8 -- Minimum speed is now 0.8 instead of 0.2
-function PibersMod:OnEvaluateSpeedMin(player, cacheFlag)
+mod.SpeedMin = 0.8 -- Minimum speed is now 0.8 instead of 0.2
+function mod.OnEvaluateSpeedMin(player, cacheFlag)
 	-- Speed downs that go below 1 are less punishing
 	local currSpeed = player.MoveSpeed
 	if currSpeed < 1 then
-		currSpeed = PibersMod.SpeedMin - ((currSpeed-0.2)*(PibersMod.SpeedMin-1))
-		if currSpeed < PibersMod.SpeedMin then
-			currSpeed = PibersMod.SpeedMin
+		currSpeed = mod.SpeedMin - ((currSpeed-0.2)*(mod.SpeedMin-1))
+		if currSpeed < mod.SpeedMin then
+			currSpeed = mod.SpeedMin
 		end
 		player.MoveSpeed = currSpeed
 	end
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, PibersMod.OnEvaluateSpeedMin, CacheFlag.CACHE_SPEED)
+mod.AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.LATE, mod.OnEvaluateSpeedMin, CacheFlag.CACHE_SPEED)
 
-PibersMod.InfestationColor = Color(1,1,0.5,1,0,0,0)
-function PibersMod:PostAddCostume(itemconfigitem, player, itemstateonly)
+mod.InfestationColor = Color(1,1,0.5,1,0,0,0)
+function mod.PostAddCostume(itemconfigitem, player, itemstateonly)
 	if itemconfigitem.ID == CollectibleType.COLLECTIBLE_INFESTATION then
-		player.Color = PibersMod.InfestationColor
+		player.Color = mod.InfestationColor
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PLAYER_ADD_COSTUME, PibersMod.PostAddCostume)
+mod.AddCallback(ModCallbacks.MC_POST_PLAYER_ADD_COSTUME, mod.PostAddCostume)
 
-function PibersMod:PostRemoveCostume(itemconfigitem, player, itemstateonly)
+function mod.PostRemoveCostume(itemconfigitem, player, itemstateonly)
 	if itemconfigitem.ID == CollectibleType.COLLECTIBLE_INFESTATION then
 		player.Color = Color.Default
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PLAYER_REMOVE_COSTUME, PibersMod.PostRemoveCostume)
+mod.AddCallback(ModCallbacks.MC_POST_PLAYER_REMOVE_COSTUME, mod.PostRemoveCostume)
 
-PibersMod.IncubusShootToBrimstone = {
+mod.IncubusShootToBrimstone = {
 	ShootDown = "Shoot2Down",
 	ShootSide = "Shoot2Side",
 	ShootUp = "Shoot2Up",
@@ -358,7 +360,7 @@ PibersMod.IncubusShootToBrimstone = {
 	FloatShootSide = "Shoot2Side",
 	FloatShootUp = "Shoot2Up"
 }
-PibersMod.IncubusShootToBrimstoneFloat = {
+mod.IncubusShootToBrimstoneFloat = {
 	ShootDown = "FloatShoot2Down",
 	ShootSide = "FloatShoot2Side",
 	ShootUp = "FloatShoot2Up",
@@ -372,16 +374,16 @@ PibersMod.IncubusShootToBrimstoneFloat = {
 	FloatShoot2Side = "FloatShoot2Side",
 	FloatShoot2Up = "FloatShoot2Up"
 }
-function PibersMod:OnIncubusUpdate(incubus)
+function mod.OnIncubusUpdate(incubus)
 	local player = incubus.Player
 	if player ~= nil and player:Exists() and player.Type == EntityType.ENTITY_PLAYER then
 		if player:ToPlayer() then
 			player = player:ToPlayer()
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then
-				local data = PibersMod.GetData(incubus)
+				local data = mod.GetData(incubus)
 				local sprite = incubus:GetSprite()
 				local foundAnim = nil
-				for animationPlaying, animationShouldPlay in pairs(PibersMod.IncubusShootToBrimstone) do
+				for animationPlaying, animationShouldPlay in pairs(mod.IncubusShootToBrimstone) do
 					if sprite:IsPlaying(animationPlaying) then
 						sprite:Play(animationShouldPlay, true)
 						foundAnim = animationShouldPlay
@@ -397,7 +399,7 @@ function PibersMod:OnIncubusUpdate(incubus)
 					end
 					local diff = math.floor((incubus.FrameCount-data.BrimShootFrame)/2)
 					if diff >= 8 then
-						foundAnim = PibersMod.IncubusShootToBrimstoneFloat[data.BrimShootAnim]
+						foundAnim = mod.IncubusShootToBrimstoneFloat[data.BrimShootAnim]
 						if data.BrimShootAnim ~= foundAnim then
 							data.BrimShootAnim = foundAnim
 						end
@@ -412,4 +414,4 @@ function PibersMod:OnIncubusUpdate(incubus)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, PibersMod.OnIncubusUpdate, FamiliarVariant.INCUBUS)
+mod.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnIncubusUpdate, FamiliarVariant.INCUBUS)

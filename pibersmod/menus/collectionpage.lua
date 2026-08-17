@@ -1,140 +1,142 @@
-function PibersMod:IsXMLUnlocked(itemID, xml)
+local mod = PibersMod
+
+function mod.IsXMLUnlocked(itemID, xml)
 	local data = XMLData.GetEntryById(xml, itemID)
 	if data and data.achievement and not Isaac.GetPersistentGameData():Unlocked(tonumber(data.achievement)) then
 		return false
 	end
 	return true
 end
-function PibersMod:IsCollectibleUnlocked(itemID)
-	return PibersMod:IsXMLUnlocked(itemID, XMLNode.ITEM)
+function mod.IsCollectibleUnlocked(itemID)
+	return mod.IsXMLUnlocked(itemID, XMLNode.ITEM)
 end
-function PibersMod:IsTrinketUnlocked(itemID)
-	return PibersMod:IsXMLUnlocked(itemID, XMLNode.TRINKET)
+function mod.IsTrinketUnlocked(itemID)
+	return mod.IsXMLUnlocked(itemID, XMLNode.TRINKET)
 end
-function PibersMod:IsCardUnlocked(itemID)
-	return PibersMod:IsXMLUnlocked(itemID, XMLNode.CARD)
+function mod.IsCardUnlocked(itemID)
+	return mod.IsXMLUnlocked(itemID, XMLNode.CARD)
 end
-function PibersMod:IsPillUnlocked(itemID)
-	return PibersMod:IsXMLUnlocked(itemID, XMLNode.PILL)
+function mod.IsPillUnlocked(itemID)
+	return mod.IsXMLUnlocked(itemID, XMLNode.PILL)
 end
-function PibersMod:IsBabyUnlocked(itemID)
+function mod.IsBabyUnlocked(itemID)
 	local data = EntityConfig.GetBaby(itemID)
 	if data and data:GetAchievementID() and Isaac.GetPersistentGameData():Unlocked(data:GetAchievementID()) then
 		return false
 	end
 	return true
 end
-PibersMod.CollectionPageTabs = Sprite("gfx/ui/main menu/collectionmenu_tabs.anm2", true)
-PibersMod.CollectionPageTabs:SetFrame("Tabs", 0)
-PibersMod.CollectionPageTabsPos = Vector(70,166)
-PibersMod.CollectionPageBulletOn = Sprite("gfx/ui/main menu/collectionmenu_bullet.anm2", true)
-PibersMod.CollectionPageBulletOn:SetFrame("Idle", 0)
-PibersMod.CollectionPageBulletOff = Sprite("gfx/ui/main menu/collectionmenu_bullet.anm2", true)
-PibersMod.CollectionPageBulletOff:SetFrame("Idle", 1)
-PibersMod.CollectionPageCollectible = Sprite("gfx/ui/death screen.anm2", true)
-PibersMod.CollectionPageCollectible:SetFrame("Diary", 0)
-for _,layer in pairs(PibersMod.CollectionPageCollectible:GetAllLayers()) do
+mod.CollectionPageTabs = Sprite("gfx/ui/main menu/collectionmenu_tabs.anm2", true)
+mod.CollectionPageTabs:SetFrame("Tabs", 0)
+mod.CollectionPageTabsPos = Vector(70,166)
+mod.CollectionPageBulletOn = Sprite("gfx/ui/main menu/collectionmenu_bullet.anm2", true)
+mod.CollectionPageBulletOn:SetFrame("Idle", 0)
+mod.CollectionPageBulletOff = Sprite("gfx/ui/main menu/collectionmenu_bullet.anm2", true)
+mod.CollectionPageBulletOff:SetFrame("Idle", 1)
+mod.CollectionPageCollectible = Sprite("gfx/ui/death screen.anm2", true)
+mod.CollectionPageCollectible:SetFrame("Diary", 0)
+for _,layer in pairs(mod.CollectionPageCollectible:GetAllLayers()) do
 	if layer:GetLayerID() == 6 then
 		layer:SetVisible(true)
 	else
 		layer:SetVisible(false)
 	end
 end
-PibersMod.CollectionPageTrinket = Sprite("gfx/ui/death items trinkets.anm2", true)
-PibersMod.CollectionPageTrinket:SetFrame("Diary", 0)
-PibersMod.CollectionPageCard = Sprite("gfx/ui/death items pickups.anm2", true)
-PibersMod.CollectionPageCard:SetFrame("Diary", 0)
-PibersMod.CollectionPagePill = Sprite("gfx/ui/death items pills.anm2", true)
-PibersMod.CollectionPagePill:SetFrame("Diary", 0)
-PibersMod.CollectionPageDupe = Sprite("gfx/ui/main menu/collectionmenu.anm2", true)
-PibersMod.CollectionPageDupe:SetFrame("Idle", 0)
-PibersMod.CollectionPageItem = Sprite("gfx/005.100_collectible.anm2", true)
-PibersMod.CollectionPageItem:SetFrame("PlayerPickup", 0)
-PibersMod.CollectionPageItemPickup = Sprite("gfx/005.301_tarot card", true)
-PibersMod.CollectionPageItemPickup:SetFrame("HUD", 0)
-PibersMod.CollectionPageItemCard = Sprite("gfx/ui/ui_cardspills.anm2", true)
-PibersMod.CollectionPageItemCard:SetFrame("CardFronts", 0)
-PibersMod.CollectionPageItemCardModded = nil
-PibersMod.CollectionPageDisplayItem = true
-PibersMod.CollectionPageForceDisplayPickup = false
-PibersMod.CollectionPageFont = Font("font/teammeatex/teammeatex12.fnt")
-PibersMod.CollectionPageFontColor = KColor(0.47,0.45,0.38,1.0)
-PibersMod.CollectionPageNumPages = 0
-PibersMod.CollectionPageNumPagesCollectible = 0
-PibersMod.CollectionPageNumPagesTrinket = 0
-PibersMod.CollectionPageNumPagesCard = 0
-PibersMod.CollectionPageValidCollectibles = {}
-PibersMod.CollectionPageValidTrinkets = {}
-PibersMod.CollectionPageValidCards = {}
-PibersMod.CollectionPageValidCardIsPill = {}
-PibersMod.CollectionPageCardPickup = {}
-PibersMod.CollectionPageFirstItem = Vector(121,43)
-PibersMod.CollectionPageFirstItemCentered = Vector(37,63)
-PibersMod.CollectionPageBulletPos = Vector(-39,-57)
-PibersMod.CollectionPageItemNotePos = Vector(-39,-15)
-PibersMod.CollectionPageItemIconPos = Vector(-38,-8)
-PibersMod.CollectionPageItemIconPosCard = Vector(-41,-13)
-PibersMod.CollectionPageItemNamePos = Vector(-20,-31)
-PibersMod.CollectionPageItemDescPos = Vector(-20,-16)
-PibersMod.CollectionPageItemName = ""
-PibersMod.CollectionPageItemDesc = ""
-PibersMod.CollectionPageBulletHeight = 84
-PibersMod.CollectionPageMode = 0
-PibersMod.CollectionPageLastMode = 0
-PibersMod.CollectionPageLastElement = 0
-PibersMod.CollectionPageItemsPerRow = 20
-PibersMod.CollectionPageItemsPerCol = 6
-PibersMod.CollectionPageItemsPerPage = PibersMod.CollectionPageItemsPerRow*PibersMod.CollectionPageItemsPerCol
-PibersMod.CollectionPageFakeCurrentPage = 0
-PibersMod.CollectionPageFakeNumPages = 0
-PibersMod.CollectionPageSortMode = 0
-PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage
-PibersMod.CollectionPageTrinketCustom = Sprite("gfx/ui/death items trinkets pibersmod.anm2", true)
-PibersMod.CollectionPageTrinketCustom:SetFrame(PibersMod.CollectionPageTrinketCustom:GetDefaultAnimation(), 0)
-PibersMod.CollectionPagePickupCustom = Sprite("gfx/ui/death items pickups pibersmod.anm2", true)
-PibersMod.CollectionPagePickupCustom:SetFrame(PibersMod.CollectionPagePickupCustom:GetDefaultAnimation(), 0)
-PibersMod.CollectionPageCardCustom = Sprite("gfx/ui/death items cards pibersmod.anm2", true)
-PibersMod.CollectionPageCardCustom:SetFrame(PibersMod.CollectionPageCardCustom:GetDefaultAnimation(), 0)
-PibersMod.CollectionPageIconOverrideCollectibles = {}
-PibersMod.CollectionPageIconOverrideTrinket = {}
-PibersMod.CollectionPageIconOverridePickup = {}
-PibersMod.CollectionPageIconOverrideCard = {}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_HAGALAZ] = {PibersMod.CollectionPageCardCustom, 0}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_JERA] = {PibersMod.CollectionPageCardCustom, 1}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_EHWAZ] = {PibersMod.CollectionPageCardCustom, 2}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_DAGAZ] = {PibersMod.CollectionPageCardCustom, 3}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_ANSUZ] = {PibersMod.CollectionPageCardCustom, 4}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_PERTHRO] = {PibersMod.CollectionPageCardCustom, 5}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_BERKANO] = {PibersMod.CollectionPageCardCustom, 6}
-PibersMod.CollectionPageIconOverrideCard[Card.RUNE_ALGIZ] = {PibersMod.CollectionPageCardCustom, 7}
-PibersMod.CollectionPageDescriptionOverridePill = {}
-PibersMod.CollectionPageDescriptionOverridePill[PillEffect.PILLEFFECT_EXPERIMENTAL] = "One stat up, one stat down"
-PibersMod.CollectionPageSortPriority = {}
-PibersMod.CollectionPageSortPriority.ORIGINAL = 100
-PibersMod.CollectionPageSortPriority.WOTL = 200
-PibersMod.CollectionPageSortPriority.REBIRTH = 300
-PibersMod.CollectionPageSortPriority.AFTERBIRTH = 400
-PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS = 500
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX = 600
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1 = 610
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_2 = 620
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_3 = 630
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_4 = 640
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_5 = 650
-PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_6 = 660
-PibersMod.CollectionPageSortPriority.ANTIBIRTH = 700
-PibersMod.CollectionPageSortPriority.ANTIBIRTH_1 = 710
-PibersMod.CollectionPageSortPriority.ANTIBIRTH_2 = 720
-PibersMod.CollectionPageSortPriority.REPENTANCE = 800
-PibersMod.CollectionPageSortPriority.REPENTANCE_PLUS = 900
-PibersMod.CollectionPageSortPriority.PIBERSMOD = 1000
-PibersMod.CollectionPageSortPriority.MODDED_START = 2000
-PibersMod.CollectionPageSortPriority.MODDED_OFFSET = 10
-PibersMod.CollectionPageSortItem = {}
-PibersMod.CollectionPageSortTrinket = {}
-PibersMod.CollectionPageSortCard = {}
-PibersMod.CollectionPageSortPill = {}
-function PibersMod.GenerateCollectionMenuData()
+mod.CollectionPageTrinket = Sprite("gfx/ui/death items trinkets.anm2", true)
+mod.CollectionPageTrinket:SetFrame("Diary", 0)
+mod.CollectionPageCard = Sprite("gfx/ui/death items pickups.anm2", true)
+mod.CollectionPageCard:SetFrame("Diary", 0)
+mod.CollectionPagePill = Sprite("gfx/ui/death items pills.anm2", true)
+mod.CollectionPagePill:SetFrame("Diary", 0)
+mod.CollectionPageDupe = Sprite("gfx/ui/main menu/collectionmenu.anm2", true)
+mod.CollectionPageDupe:SetFrame("Idle", 0)
+mod.CollectionPageItem = Sprite("gfx/005.100_collectible.anm2", true)
+mod.CollectionPageItem:SetFrame("PlayerPickup", 0)
+mod.CollectionPageItemPickup = Sprite("gfx/005.301_tarot card", true)
+mod.CollectionPageItemPickup:SetFrame("HUD", 0)
+mod.CollectionPageItemCard = Sprite("gfx/ui/ui_cardspills.anm2", true)
+mod.CollectionPageItemCard:SetFrame("CardFronts", 0)
+mod.CollectionPageItemCardModded = nil
+mod.CollectionPageDisplayItem = true
+mod.CollectionPageForceDisplayPickup = false
+mod.CollectionPageFont = Font("font/teammeatex/teammeatex12.fnt")
+mod.CollectionPageFontColor = KColor(0.47,0.45,0.38,1.0)
+mod.CollectionPageNumPages = 0
+mod.CollectionPageNumPagesCollectible = 0
+mod.CollectionPageNumPagesTrinket = 0
+mod.CollectionPageNumPagesCard = 0
+mod.CollectionPageValidCollectibles = {}
+mod.CollectionPageValidTrinkets = {}
+mod.CollectionPageValidCards = {}
+mod.CollectionPageValidCardIsPill = {}
+mod.CollectionPageCardPickup = {}
+mod.CollectionPageFirstItem = Vector(121,43)
+mod.CollectionPageFirstItemCentered = Vector(37,63)
+mod.CollectionPageBulletPos = Vector(-39,-57)
+mod.CollectionPageItemNotePos = Vector(-39,-15)
+mod.CollectionPageItemIconPos = Vector(-38,-8)
+mod.CollectionPageItemIconPosCard = Vector(-41,-13)
+mod.CollectionPageItemNamePos = Vector(-20,-31)
+mod.CollectionPageItemDescPos = Vector(-20,-16)
+mod.CollectionPageItemName = ""
+mod.CollectionPageItemDesc = ""
+mod.CollectionPageBulletHeight = 84
+mod.CollectionPageMode = 0
+mod.CollectionPageLastMode = 0
+mod.CollectionPageLastElement = 0
+mod.CollectionPageItemsPerRow = 20
+mod.CollectionPageItemsPerCol = 6
+mod.CollectionPageItemsPerPage = mod.CollectionPageItemsPerRow*mod.CollectionPageItemsPerCol
+mod.CollectionPageFakeCurrentPage = 0
+mod.CollectionPageFakeNumPages = 0
+mod.CollectionPageSortMode = 0
+mod.CollectionPageFakeElementsInPage = mod.CollectionPageItemsPerPage
+mod.CollectionPageTrinketCustom = Sprite("gfx/ui/death items trinkets pibersmod.anm2", true)
+mod.CollectionPageTrinketCustom:SetFrame(mod.CollectionPageTrinketCustom:GetDefaultAnimation(), 0)
+mod.CollectionPagePickupCustom = Sprite("gfx/ui/death items pickups pibersmod.anm2", true)
+mod.CollectionPagePickupCustom:SetFrame(mod.CollectionPagePickupCustom:GetDefaultAnimation(), 0)
+mod.CollectionPageCardCustom = Sprite("gfx/ui/death items cards pibersmod.anm2", true)
+mod.CollectionPageCardCustom:SetFrame(mod.CollectionPageCardCustom:GetDefaultAnimation(), 0)
+mod.CollectionPageIconOverrideCollectibles = {}
+mod.CollectionPageIconOverrideTrinket = {}
+mod.CollectionPageIconOverridePickup = {}
+mod.CollectionPageIconOverrideCard = {}
+mod.CollectionPageIconOverrideCard[Card.RUNE_HAGALAZ] = {mod.CollectionPageCardCustom, 0}
+mod.CollectionPageIconOverrideCard[Card.RUNE_JERA] = {mod.CollectionPageCardCustom, 1}
+mod.CollectionPageIconOverrideCard[Card.RUNE_EHWAZ] = {mod.CollectionPageCardCustom, 2}
+mod.CollectionPageIconOverrideCard[Card.RUNE_DAGAZ] = {mod.CollectionPageCardCustom, 3}
+mod.CollectionPageIconOverrideCard[Card.RUNE_ANSUZ] = {mod.CollectionPageCardCustom, 4}
+mod.CollectionPageIconOverrideCard[Card.RUNE_PERTHRO] = {mod.CollectionPageCardCustom, 5}
+mod.CollectionPageIconOverrideCard[Card.RUNE_BERKANO] = {mod.CollectionPageCardCustom, 6}
+mod.CollectionPageIconOverrideCard[Card.RUNE_ALGIZ] = {mod.CollectionPageCardCustom, 7}
+mod.CollectionPageDescriptionOverridePill = {}
+mod.CollectionPageDescriptionOverridePill[PillEffect.PILLEFFECT_EXPERIMENTAL] = "One stat up, one stat down"
+mod.CollectionPageSortPriority = {}
+mod.CollectionPageSortPriority.ORIGINAL = 100
+mod.CollectionPageSortPriority.WOTL = 200
+mod.CollectionPageSortPriority.REBIRTH = 300
+mod.CollectionPageSortPriority.AFTERBIRTH = 400
+mod.CollectionPageSortPriority.AFTERBIRTH_PLUS = 500
+mod.CollectionPageSortPriority.COMMUNITY_REMIX = 600
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_1 = 610
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_2 = 620
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_3 = 630
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_4 = 640
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_5 = 650
+mod.CollectionPageSortPriority.COMMUNITY_REMIX_6 = 660
+mod.CollectionPageSortPriority.ANTIBIRTH = 700
+mod.CollectionPageSortPriority.ANTIBIRTH_1 = 710
+mod.CollectionPageSortPriority.ANTIBIRTH_2 = 720
+mod.CollectionPageSortPriority.REPENTANCE = 800
+mod.CollectionPageSortPriority.REPENTANCE_PLUS = 900
+mod.CollectionPageSortPriority.PIBERSMOD = 1000
+mod.CollectionPageSortPriority.MODDED_START = 2000
+mod.CollectionPageSortPriority.MODDED_OFFSET = 10
+mod.CollectionPageSortItem = {}
+mod.CollectionPageSortTrinket = {}
+mod.CollectionPageSortCard = {}
+mod.CollectionPageSortPill = {}
+function mod.GenerateCollectionMenuData()
 	local itemConfig = Isaac.GetItemConfig()
 	local lastItem = CollectibleType.NUM_COLLECTIBLES
 	local numHidden = 0
@@ -151,40 +153,40 @@ function PibersMod.GenerateCollectionMenuData()
 		elseif item.Hidden then
 			numHidden = numHidden + 1
 		else
-			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-CollectibleType.NUM_COLLECTIBLES)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+			local priority = mod.CollectionPageSortPriority.MODDED_START+((id-CollectibleType.NUM_COLLECTIBLES)*mod.CollectionPageSortPriority.MODDED_OFFSET)
 
 			if id < CollectibleType.COLLECTIBLE_GUPPYS_PAW then
-				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+				priority = mod.CollectionPageSortPriority.ORIGINAL
 
 			elseif id < CollectibleType.COLLECTIBLE_MOMS_KEY then
-				priority = PibersMod.CollectionPageSortPriority.WOTL
+				priority = mod.CollectionPageSortPriority.WOTL
 
 			elseif id < CollectibleType.COLLECTIBLE_DIPLOPIA then
-				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+				priority = mod.CollectionPageSortPriority.REBIRTH
 
 				if id == CollectibleType.COLLECTIBLE_POLAROID then
-					priority = PibersMod.CollectionPageSortPriority.WOTL
+					priority = mod.CollectionPageSortPriority.WOTL
 				elseif id == CollectibleType.COLLECTIBLE_CLEAR_RUNE then
-					priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+					priority = mod.CollectionPageSortPriority.REPENTANCE
 				end
 
 			elseif id < CollectibleType.COLLECTIBLE_DARK_PRINCES_CROWN then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH
 
 			elseif id < CollectibleType.COLLECTIBLE_MUCORMYCOSIS then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 
 				if id == CollectibleType.COLLECTIBLE_SCHOOLBAG then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH_2
 				end
 
 			elseif id < CollectibleType.COLLECTIBLE_FRUITY_PLUM then
-				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+				priority = mod.CollectionPageSortPriority.ANTIBIRTH_2
 
 				if id < CollectibleType.COLLECTIBLE_GOLDEN_RAZOR then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH
 				elseif id < CollectibleType.COLLECTIBLE_GENESIS then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_1
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH_1
 				end
 
 				if id == CollectibleType.COLLECTIBLE_GOLDEN_RAZOR
@@ -196,79 +198,79 @@ function PibersMod.GenerateCollectionMenuData()
 					or id == CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
 					or id == CollectibleType.COLLECTIBLE_DOGMA
 					or id == CollectibleType.COLLECTIBLE_PURGATORY then
-					priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+					priority = mod.CollectionPageSortPriority.REPENTANCE
 
 				elseif id == CollectibleType.COLLECTIBLE_FORTUNE_COOKIE then
 					-- id == jawbone
 					-- id == counterfeit dollar
 					-- id == box of wires
 					-- id == tammys paw
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX
 
 				elseif id == CollectibleType.COLLECTIBLE_IT_HURTS
 					or id == CollectibleType.COLLECTIBLE_NANCY_BOMBS
 					-- id == tammys tail
 					or id == CollectibleType.COLLECTIBLE_BLOOD_OATH then
 					-- id == d12
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_1
 
 				elseif id == CollectibleType.COLLECTIBLE_SULFUR
 					-- id == bowl of tears
 					or id == CollectibleType.COLLECTIBLE_SOCKS then
 					-- id == book of despair
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_2
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_2
 
 				elseif id == CollectibleType.COLLECTIBLE_BAR_OF_SOAP then
 					-- id == cool bean
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_3
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_3
 
 				elseif id == CollectibleType.COLLECTIBLE_EYE_SORE
 					or id == CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES then
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_4
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_4
 
 				elseif id == CollectibleType.COLLECTIBLE_MUCORMYCOSIS
 					or id == CollectibleType.COLLECTIBLE_2SPOOKY
 					or id == CollectibleType.COLLECTIBLE_WAVY_CAP then
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_5
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_5
 
 				elseif id == CollectibleType.COLLECTIBLE_PLAYDOUGH_COOKIE
 					or id == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 					-- id == maxs paw
 					-- id == maxs tail
 					-- id == the apple
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_6
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_6
 				end
 
 			elseif id < CollectibleType.NUM_COLLECTIBLES then
-				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+				priority = mod.CollectionPageSortPriority.REPENTANCE
 
 				if id == CollectibleType.COLLECTIBLE_GIANT_CELL then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH_2
 				elseif id == CollectibleType.COLLECTIBLE_SAUSAGE then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_1
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH_1
 				end
 
 			elseif id >= CollectibleType.MIXED_VEGGIES and id <= CollectibleType.BIRTHDAY_CAKE then
-				priority = PibersMod.CollectionPageSortPriority.PIBERSMOD
+				priority = mod.CollectionPageSortPriority.PIBERSMOD
 
 				if id == CollectibleType.KEY_PIECE_COMPLETE then
-					priority = PibersMod.CollectionPageSortPriority.REBIRTH
+					priority = mod.CollectionPageSortPriority.REBIRTH
 				elseif id == CollectibleType.KNIFE_PIECE_COMPLETE then
-					priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH_2
+					priority = mod.CollectionPageSortPriority.ANTIBIRTH_2
 				elseif id == CollectibleType.COUNTERFEIT_DOLLAR then
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX
 				end
 			end
 
-			PibersMod.CollectionPageSortItem[priority] = PibersMod.CollectionPageSortItem[priority] or {}
-			PibersMod.CollectionPageSortItem[priority][#PibersMod.CollectionPageSortItem[priority]+1] = id
-			PibersMod.CollectionPageValidCollectibles[#PibersMod.CollectionPageValidCollectibles+1] = id
+			mod.CollectionPageSortItem[priority] = mod.CollectionPageSortItem[priority] or {}
+			mod.CollectionPageSortItem[priority][#mod.CollectionPageSortItem[priority]+1] = id
+			mod.CollectionPageValidCollectibles[#mod.CollectionPageValidCollectibles+1] = id
 		end
 		id = id + 1
 	end
 	local numItems = lastItem-numHidden
-	PibersMod.CollectionPageNumPagesCollectible = math.ceil(numItems/PibersMod.CollectionPageItemsPerPage)
-	PibersMod.CollectionPageNumPages = PibersMod.CollectionPageNumPagesCollectible
+	mod.CollectionPageNumPagesCollectible = math.ceil(numItems/mod.CollectionPageItemsPerPage)
+	mod.CollectionPageNumPages = mod.CollectionPageNumPagesCollectible
 
 	local lastTrinket = TrinketType.NUM_TRINKETS
 	numHidden = 0
@@ -285,50 +287,50 @@ function PibersMod.GenerateCollectionMenuData()
 		elseif trinket.Hidden then
 			numHidden = numHidden + 1
 		else
-			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-TrinketType.NUM_TRINKETS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+			local priority = mod.CollectionPageSortPriority.MODDED_START+((id-TrinketType.NUM_TRINKETS)*mod.CollectionPageSortPriority.MODDED_OFFSET)
 
 			if id < TrinketType.TRINKET_FISH_HEAD then
-				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+				priority = mod.CollectionPageSortPriority.REBIRTH
 
 				if id == TrinketType.TRINKET_WIGGLE_WORM then
-					priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+					priority = mod.CollectionPageSortPriority.ORIGINAL
 				end
 
 			elseif id < TrinketType.TRINKET_SHINY_ROCK then
-				priority = PibersMod.CollectionPageSortPriority.WOTL
+				priority = mod.CollectionPageSortPriority.WOTL
 
 			elseif id < TrinketType.TRINKET_MECONIUM then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH
 
 			elseif id < TrinketType.TRINKET_JAW_BREAKER then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 
 			elseif id < TrinketType.TRINKET_SHORT_FUSE then
-				priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+				priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX
 
 				if id == TrinketType.TRINKET_BLESSED_PENNY then
-					priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX_1
+					priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX_1
 				end
 
 			elseif id < TrinketType.TRINKET_BLUE_KEY then
-				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+				priority = mod.CollectionPageSortPriority.ANTIBIRTH
 
 			elseif id < TrinketType.NUM_TRINKETS then
-				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+				priority = mod.CollectionPageSortPriority.REPENTANCE
 			end
 
 			if id == TrinketType.ORTHODOX_CROSS then
-				priority = PibersMod.CollectionPageSortPriority.COMMUNITY_REMIX
+				priority = mod.CollectionPageSortPriority.COMMUNITY_REMIX
 			end
 
-			PibersMod.CollectionPageSortTrinket[priority] = PibersMod.CollectionPageSortTrinket[priority] or {}
-			PibersMod.CollectionPageSortTrinket[priority][#PibersMod.CollectionPageSortTrinket[priority]+1] = id
-			PibersMod.CollectionPageValidTrinkets[#PibersMod.CollectionPageValidTrinkets+1] = id
+			mod.CollectionPageSortTrinket[priority] = mod.CollectionPageSortTrinket[priority] or {}
+			mod.CollectionPageSortTrinket[priority][#mod.CollectionPageSortTrinket[priority]+1] = id
+			mod.CollectionPageValidTrinkets[#mod.CollectionPageValidTrinkets+1] = id
 		end
 		id = id + 1
 	end
 	local numTrinkets = lastTrinket-numHidden
-	PibersMod.CollectionPageNumPagesTrinket = math.ceil(numTrinkets/PibersMod.CollectionPageItemsPerPage)
+	mod.CollectionPageNumPagesTrinket = math.ceil(numTrinkets/mod.CollectionPageItemsPerPage)
 
 	local lastCard = Card.NUM_CARDS
 	numHidden = 0
@@ -345,41 +347,41 @@ function PibersMod.GenerateCollectionMenuData()
 		elseif card.Hidden then
 			numHidden = numHidden + 1
 		else
-			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-Card.NUM_CARDS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+			local priority = mod.CollectionPageSortPriority.MODDED_START+((id-Card.NUM_CARDS)*mod.CollectionPageSortPriority.MODDED_OFFSET)
 
 			if id < Card.CARD_CLUBS_2 then
-				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+				priority = mod.CollectionPageSortPriority.ORIGINAL
 
 			elseif id < Card.CARD_ACE_OF_CLUBS then
-				priority = PibersMod.CollectionPageSortPriority.WOTL
+				priority = mod.CollectionPageSortPriority.WOTL
 
 			elseif id < Card.CARD_JOKER then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 
 			elseif id < Card.CARD_GET_OUT_OF_JAIL then
-				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+				priority = mod.CollectionPageSortPriority.REBIRTH
 
 				if id == Card.RUNE_BLANK then
-					priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+					priority = mod.CollectionPageSortPriority.AFTERBIRTH
 				elseif id == Card.RUNE_BLACK then
-					priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+					priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 				end
 
 			elseif id < Card.CARD_HOLY then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH
 
 			elseif id < Card.RUNE_SHARD then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 
 			elseif id < Card.NUM_CARDS then
-				priority = PibersMod.CollectionPageSortPriority.REPENTANCE
+				priority = mod.CollectionPageSortPriority.REPENTANCE
 			end
 
-			PibersMod.CollectionPageSortCard[priority] = PibersMod.CollectionPageSortCard[priority] or {}
-			PibersMod.CollectionPageSortCard[priority][#PibersMod.CollectionPageSortCard[priority]+1] = id
-			PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
+			mod.CollectionPageSortCard[priority] = mod.CollectionPageSortCard[priority] or {}
+			mod.CollectionPageSortCard[priority][#mod.CollectionPageSortCard[priority]+1] = id
+			mod.CollectionPageValidCards[#mod.CollectionPageValidCards+1] = id
 			if card.PickupSubtype and tonumber(card.PickupSubtype) then
-				PibersMod.CollectionPageCardPickup[id] = tonumber(card.PickupSubtype)
+				mod.CollectionPageCardPickup[id] = tonumber(card.PickupSubtype)
 			end
 		end
 		id = id + 1
@@ -399,122 +401,122 @@ function PibersMod.GenerateCollectionMenuData()
 		elseif pill.Hidden then
 			numHidden = numHidden + 1
 		else
-			local priority = PibersMod.CollectionPageSortPriority.MODDED_START+((id-PillEffect.NUM_PILL_EFFECTS)*PibersMod.CollectionPageSortPriority.MODDED_OFFSET)
+			local priority = mod.CollectionPageSortPriority.MODDED_START+((id-PillEffect.NUM_PILL_EFFECTS)*mod.CollectionPageSortPriority.MODDED_OFFSET)
 
 			if id < PillEffect.PILLEFFECT_48HOUR_ENERGY then
-				priority = PibersMod.CollectionPageSortPriority.ORIGINAL
+				priority = mod.CollectionPageSortPriority.ORIGINAL
 
 				if id == PillEffect.PILLEFFECT_PUBERTY
 				or id == PillEffect.PILLEFFECT_LUCK_DOWN
 				or id == PillEffect.PILLEFFECT_LUCK_UP then
-					priority = PibersMod.CollectionPageSortPriority.WOTL
+					priority = mod.CollectionPageSortPriority.WOTL
 				end
 
 			elseif id < PillEffect.PILLEFFECT_PERCS then
-				priority = PibersMod.CollectionPageSortPriority.REBIRTH
+				priority = mod.CollectionPageSortPriority.REBIRTH
 
 				if id == PillEffect.PILLEFFECT_FRIENDS_TILL_THE_END then
-					priority = PibersMod.CollectionPageSortPriority.WOTL
+					priority = mod.CollectionPageSortPriority.WOTL
 				end
 
 			elseif id < PillEffect.PILLEFFECT_X_LAX then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH
 
 			elseif id < PillEffect.PILLEFFECT_SHOT_SPEED_DOWN then
-				priority = PibersMod.CollectionPageSortPriority.AFTERBIRTH_PLUS
+				priority = mod.CollectionPageSortPriority.AFTERBIRTH_PLUS
 
 			elseif id < PillEffect.NUM_PILL_EFFECTS then
-				priority = PibersMod.CollectionPageSortPriority.ANTIBIRTH
+				priority = mod.CollectionPageSortPriority.ANTIBIRTH
 			end
 
-			PibersMod.CollectionPageSortPill[priority] = PibersMod.CollectionPageSortPill[priority] or {}
-			PibersMod.CollectionPageSortPill[priority][#PibersMod.CollectionPageSortPill[priority]+1] = id
-			PibersMod.CollectionPageValidCards[#PibersMod.CollectionPageValidCards+1] = id
-			PibersMod.CollectionPageValidCardIsPill[#PibersMod.CollectionPageValidCards] = true
+			mod.CollectionPageSortPill[priority] = mod.CollectionPageSortPill[priority] or {}
+			mod.CollectionPageSortPill[priority][#mod.CollectionPageSortPill[priority]+1] = id
+			mod.CollectionPageValidCards[#mod.CollectionPageValidCards+1] = id
+			mod.CollectionPageValidCardIsPill[#mod.CollectionPageValidCards] = true
 		end
 		id = id + 1
 	end
 	local numCards = (1+lastCard+lastPill)-numHidden
-	PibersMod.CollectionPageNumPagesCard = math.ceil(numCards/PibersMod.CollectionPageItemsPerPage)
+	mod.CollectionPageNumPagesCard = math.ceil(numCards/mod.CollectionPageItemsPerPage)
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, PibersMod.GenerateCollectionMenuData)
+mod.AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, mod.GenerateCollectionMenuData)
 
-function PibersMod:OnMainMenuRenderCollectionPage()
+function mod.OnMainMenuRenderCollectionPage()
 	local currentActive = MenuManager:GetActiveMenu()
 	if currentActive == MainMenuType.COLLECTION then
 		local itemConfig = Isaac.GetItemConfig()
-		if PibersMod.CollectionPageNumPages > 0 then
+		if mod.CollectionPageNumPages > 0 then
 			local collsprite = CollectionMenu.GetCollectionMenuSprite()
 			local iconsprite = CollectionMenu.GetDeathScreenSprite()
 			local currentPage = CollectionMenu.GetSelectedPage()
 			local currentElement = CollectionMenu.GetSelectedElement()
-			local numPages = PibersMod.CollectionPageNumPages
+			local numPages = mod.CollectionPageNumPages
 			local eiddesc = nil
-			if PibersMod.CollectionPageMode == 0 then
-				if PibersMod.CollectionPageSortMode > 0 then
-					PibersMod.CollectionPageFakeNumPages = PibersMod.CollectionPageNumPagesCollectible
-					PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage-1
-					for i=1, PibersMod.CollectionPageItemsPerPage do
-						local id = PibersMod.CollectionPageValidCollectibles[i+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)]
+			if mod.CollectionPageMode == 0 then
+				if mod.CollectionPageSortMode > 0 then
+					mod.CollectionPageFakeNumPages = mod.CollectionPageNumPagesCollectible
+					mod.CollectionPageFakeElementsInPage = mod.CollectionPageItemsPerPage-1
+					for i=1, mod.CollectionPageItemsPerPage do
+						local id = mod.CollectionPageValidCollectibles[i+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)]
 						if id then
 							local renderIcon = true
-							local renderPosOffset = Vector(16*((i-1)%PibersMod.CollectionPageItemsPerRow),16*(math.floor((i-1)/PibersMod.CollectionPageItemsPerRow)))
-							if not PibersMod:IsCollectibleUnlocked(id) then
-								PibersMod.CollectionPageCollectible:SetFrame(0)
-							elseif PibersMod.CollectionPageIconOverrideCollectibles[id] then
-								if type(PibersMod.CollectionPageIconOverrideCollectibles[id]) == "number" then
-									PibersMod.CollectionPageCollectible:SetFrame(id-1)
-								elseif type(PibersMod.CollectionPageIconOverrideCollectibles[id]) == "table" and PibersMod.CollectionPageIconOverrideCollectibles[id][1] and type(PibersMod.CollectionPageIconOverrideCollectibles[id][2]) == "number" then
-									PibersMod.CollectionPageIconOverrideCollectibles[id][1]:SetFrame(PibersMod.CollectionPageIconOverrideCollectibles[id][2])
-									PibersMod.CollectionPageIconOverrideCollectibles[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItemCentered+renderPosOffset))
+							local renderPosOffset = Vector(16*((i-1)%mod.CollectionPageItemsPerRow),16*(math.floor((i-1)/mod.CollectionPageItemsPerRow)))
+							if not mod.IsCollectibleUnlocked(id) then
+								mod.CollectionPageCollectible:SetFrame(0)
+							elseif mod.CollectionPageIconOverrideCollectibles[id] then
+								if type(mod.CollectionPageIconOverrideCollectibles[id]) == "number" then
+									mod.CollectionPageCollectible:SetFrame(id-1)
+								elseif type(mod.CollectionPageIconOverrideCollectibles[id]) == "table" and mod.CollectionPageIconOverrideCollectibles[id][1] and type(mod.CollectionPageIconOverrideCollectibles[id][2]) == "number" then
+									mod.CollectionPageIconOverrideCollectibles[id][1]:SetFrame(mod.CollectionPageIconOverrideCollectibles[id][2])
+									mod.CollectionPageIconOverrideCollectibles[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItemCentered+renderPosOffset))
 									renderIcon = false
 								else
-									PibersMod.CollectionPageCollectible:SetFrame(CollectibleType.NUM_COLLECTIBLES)
+									mod.CollectionPageCollectible:SetFrame(CollectibleType.NUM_COLLECTIBLES)
 								end
 							elseif id >= CollectibleType.NUM_COLLECTIBLES then
-								PibersMod.CollectionPageCollectible:SetFrame(CollectibleType.NUM_COLLECTIBLES)
+								mod.CollectionPageCollectible:SetFrame(CollectibleType.NUM_COLLECTIBLES)
 							else
-								PibersMod.CollectionPageCollectible:SetFrame(id)
+								mod.CollectionPageCollectible:SetFrame(id)
 							end
 							if renderIcon then
-								PibersMod.CollectionPageCollectible:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItem+renderPosOffset))
+								mod.CollectionPageCollectible:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItem+renderPosOffset))
 							end
-							PibersMod.CollectionPageFakeElementsInPage = i-1
+							mod.CollectionPageFakeElementsInPage = i-1
 						end
 					end
-					local currentCollectible = PibersMod.CollectionPageValidCollectibles[(currentElement+1)+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)]
+					local currentCollectible = mod.CollectionPageValidCollectibles[(currentElement+1)+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)]
 					if currentCollectible then
-						if PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 0 then
-							if not PibersMod:IsCollectibleUnlocked(currentCollectible) then
-								PibersMod.CollectionPageDisplayItem = false
-								PibersMod.CollectionPageItemName = ""
-								PibersMod.CollectionPageItemDesc = ""
+						if mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 0 then
+							if not mod.IsCollectibleUnlocked(currentCollectible) then
+								mod.CollectionPageDisplayItem = false
+								mod.CollectionPageItemName = ""
+								mod.CollectionPageItemDesc = ""
 							else
 								local data = XMLData.GetEntryById(XMLNode.ITEM, currentCollectible)
 								if data then
 									if data.gfx then
-										PibersMod.CollectionPageItem:ReplaceSpritesheet(1, "gfx/items/collectibles/" .. data.gfx, true)
-										PibersMod.CollectionPageDisplayItem = true
+										mod.CollectionPageItem:ReplaceSpritesheet(1, "gfx/items/collectibles/" .. data.gfx, true)
+										mod.CollectionPageDisplayItem = true
 									else
-										PibersMod.CollectionPageDisplayItem = false
+										mod.CollectionPageDisplayItem = false
 									end
 									if data.name then
 										if string.sub(data.name, 1, 2) == "#" then
-											PibersMod.CollectionPageItemName = Isaac.GetString("Items", data.name)
+											mod.CollectionPageItemName = Isaac.GetString("Items", data.name)
 										else
-											PibersMod.CollectionPageItemName = data.name
+											mod.CollectionPageItemName = data.name
 										end
 									else
-										PibersMod.CollectionPageItemName = ""
+										mod.CollectionPageItemName = ""
 									end
 									if data.description then
 										if string.sub(data.description, 1, 2) == "#" then
-											PibersMod.CollectionPageItemDesc = Isaac.GetString("Items", data.description)
+											mod.CollectionPageItemDesc = Isaac.GetString("Items", data.description)
 										else
-											PibersMod.CollectionPageItemDesc = data.description
+											mod.CollectionPageItemDesc = data.description
 										end
 									else
-										PibersMod.CollectionPageItemDesc = ""
+										mod.CollectionPageItemDesc = ""
 									end
 								end
 							end
@@ -523,7 +525,7 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 							if EID.Config["RGON_ShowOnCollectionPage"] then
 								EID:HandleRenderingKeys()
 								if not EID.isHidden then
-									if not PibersMod:IsCollectibleUnlocked(currentCollectible) then
+									if not mod.IsCollectibleUnlocked(currentCollectible) then
 										eiddesc = {Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity}
 									else
 										eiddesc = EID:getDescriptionObj(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, currentCollectible, nil, false)
@@ -531,14 +533,14 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 								end
 							end
 						end
-					elseif PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 0 then
-						PibersMod.CollectionPageDisplayItem = false
-						PibersMod.CollectionPageItemName = ""
-						PibersMod.CollectionPageItemDesc = ""
+					elseif mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 0 then
+						mod.CollectionPageDisplayItem = false
+						mod.CollectionPageItemName = ""
+						mod.CollectionPageItemDesc = ""
 					end
 				else
-					if PibersMod.CollectionPageLastMode ~= 0 then
-						PibersMod.CollectionPageTabs:SetFrame(0)
+					if mod.CollectionPageLastMode ~= 0 then
+						mod.CollectionPageTabs:SetFrame(0)
 						CollectionMenu.SetSelectedPage(0)
 						collsprite:ReplaceSpritesheet(2, "gfx/ui/main menu/collectionmenu.png", true)
 						collsprite:ReplaceSpritesheet(3, "gfx/ui/main menu/collectionmenu.png", true)
@@ -550,70 +552,70 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 						EID:OnMenuRender()
 					end
 				end
-			elseif PibersMod.CollectionPageMode == 1 then
-				PibersMod.CollectionPageFakeNumPages = PibersMod.CollectionPageNumPagesTrinket
-				PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage-1
-				for i=1, PibersMod.CollectionPageItemsPerPage do
-					local id = PibersMod.CollectionPageValidTrinkets[i+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)]
+			elseif mod.CollectionPageMode == 1 then
+				mod.CollectionPageFakeNumPages = mod.CollectionPageNumPagesTrinket
+				mod.CollectionPageFakeElementsInPage = mod.CollectionPageItemsPerPage-1
+				for i=1, mod.CollectionPageItemsPerPage do
+					local id = mod.CollectionPageValidTrinkets[i+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)]
 					if id then
 						local renderIcon = true
-						local renderPosOffset = Vector(16*((i-1)%PibersMod.CollectionPageItemsPerRow),16*(math.floor((i-1)/PibersMod.CollectionPageItemsPerRow)))
-						if not PibersMod:IsTrinketUnlocked(id) then
-							PibersMod.CollectionPageTrinket:SetFrame(0)
-						elseif PibersMod.CollectionPageIconOverrideTrinket[id] then
-							if type(PibersMod.CollectionPageIconOverrideTrinket[id]) == "number" then
-								PibersMod.CollectionPageTrinket:SetFrame(id)
-							elseif type(PibersMod.CollectionPageIconOverrideTrinket[id]) == "table" and PibersMod.CollectionPageIconOverrideTrinket[id][1] and type(PibersMod.CollectionPageIconOverrideTrinket[id][2]) == "number" then
-								PibersMod.CollectionPageIconOverrideTrinket[id][1]:SetFrame(PibersMod.CollectionPageIconOverrideTrinket[id][2])
-								PibersMod.CollectionPageIconOverrideTrinket[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItemCentered+renderPosOffset))
+						local renderPosOffset = Vector(16*((i-1)%mod.CollectionPageItemsPerRow),16*(math.floor((i-1)/mod.CollectionPageItemsPerRow)))
+						if not mod.IsTrinketUnlocked(id) then
+							mod.CollectionPageTrinket:SetFrame(0)
+						elseif mod.CollectionPageIconOverrideTrinket[id] then
+							if type(mod.CollectionPageIconOverrideTrinket[id]) == "number" then
+								mod.CollectionPageTrinket:SetFrame(id)
+							elseif type(mod.CollectionPageIconOverrideTrinket[id]) == "table" and mod.CollectionPageIconOverrideTrinket[id][1] and type(mod.CollectionPageIconOverrideTrinket[id][2]) == "number" then
+								mod.CollectionPageIconOverrideTrinket[id][1]:SetFrame(mod.CollectionPageIconOverrideTrinket[id][2])
+								mod.CollectionPageIconOverrideTrinket[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItemCentered+renderPosOffset))
 								renderIcon = false
 							else
-								PibersMod.CollectionPageTrinket:SetFrame(TrinketType.NUM_TRINKETS)
+								mod.CollectionPageTrinket:SetFrame(TrinketType.NUM_TRINKETS)
 							end
 						elseif id >= TrinketType.NUM_TRINKETS then
-							PibersMod.CollectionPageTrinket:SetFrame(TrinketType.NUM_TRINKETS)
+							mod.CollectionPageTrinket:SetFrame(TrinketType.NUM_TRINKETS)
 						else
-							PibersMod.CollectionPageTrinket:SetFrame(id)
+							mod.CollectionPageTrinket:SetFrame(id)
 						end
 						if renderIcon then
-							PibersMod.CollectionPageTrinket:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItem+renderPosOffset))
+							mod.CollectionPageTrinket:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItem+renderPosOffset))
 						end
-						PibersMod.CollectionPageFakeElementsInPage = i-1
+						mod.CollectionPageFakeElementsInPage = i-1
 					end
 				end
-				local currentTrinket = PibersMod.CollectionPageValidTrinkets[(currentElement+1)+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)]
+				local currentTrinket = mod.CollectionPageValidTrinkets[(currentElement+1)+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)]
 				if currentTrinket then
-					if PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 1 then
-						if not PibersMod:IsTrinketUnlocked(currentTrinket) then
-							PibersMod.CollectionPageDisplayItem = false
-							PibersMod.CollectionPageItemName = ""
-							PibersMod.CollectionPageItemDesc = ""
+					if mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 1 then
+						if not mod.IsTrinketUnlocked(currentTrinket) then
+							mod.CollectionPageDisplayItem = false
+							mod.CollectionPageItemName = ""
+							mod.CollectionPageItemDesc = ""
 						else
 							local data = XMLData.GetEntryById(XMLNode.TRINKET, currentTrinket)
 							if data then
 								if data.gfx then
-									PibersMod.CollectionPageItem:ReplaceSpritesheet(1, "gfx/items/trinkets/" .. data.gfx, true)
-									PibersMod.CollectionPageDisplayItem = true
+									mod.CollectionPageItem:ReplaceSpritesheet(1, "gfx/items/trinkets/" .. data.gfx, true)
+									mod.CollectionPageDisplayItem = true
 								else
-									PibersMod.CollectionPageDisplayItem = false
+									mod.CollectionPageDisplayItem = false
 								end
 								if data.name then
 									if string.sub(data.name, 1, 2) == "#" then
-										PibersMod.CollectionPageItemName = Isaac.GetString("Items", data.name)
+										mod.CollectionPageItemName = Isaac.GetString("Items", data.name)
 									else
-										PibersMod.CollectionPageItemName = data.name
+										mod.CollectionPageItemName = data.name
 									end
 								else
-									PibersMod.CollectionPageItemName = ""
+									mod.CollectionPageItemName = ""
 								end
 								if data.description then
 									if string.sub(data.description, 1, 2) == "#" then
-										PibersMod.CollectionPageItemDesc = Isaac.GetString("Items", data.description)
+										mod.CollectionPageItemDesc = Isaac.GetString("Items", data.description)
 									else
-										PibersMod.CollectionPageItemDesc = data.description
+										mod.CollectionPageItemDesc = data.description
 									end
 								else
-									PibersMod.CollectionPageItemDesc = ""
+									mod.CollectionPageItemDesc = ""
 								end
 							end
 						end
@@ -622,7 +624,7 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 						if EID.Config["RGON_ShowOnCollectionPage"] then
 							EID:HandleRenderingKeys()
 							if not EID.isHidden then
-								if not PibersMod:IsTrinketUnlocked(currentTrinket) then
+								if not mod.IsTrinketUnlocked(currentTrinket) then
 									eiddesc = {Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity}
 								else
 									eiddesc = EID:getDescriptionObj(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, currentTrinket, nil, false)
@@ -630,139 +632,139 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 							end
 						end
 					end
-				elseif PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 1 then
-					PibersMod.CollectionPageDisplayItem = false
-					PibersMod.CollectionPageItemName = ""
-					PibersMod.CollectionPageItemDesc = ""
+				elseif mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 1 then
+					mod.CollectionPageDisplayItem = false
+					mod.CollectionPageItemName = ""
+					mod.CollectionPageItemDesc = ""
 				end
-			elseif PibersMod.CollectionPageMode == 2 then
-				PibersMod.CollectionPageFakeNumPages = PibersMod.CollectionPageNumPagesCard
-				PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage-1
-				for i=1, PibersMod.CollectionPageItemsPerPage do
-					local elementindex = i+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)
-					local id = PibersMod.CollectionPageValidCards[elementindex]
+			elseif mod.CollectionPageMode == 2 then
+				mod.CollectionPageFakeNumPages = mod.CollectionPageNumPagesCard
+				mod.CollectionPageFakeElementsInPage = mod.CollectionPageItemsPerPage-1
+				for i=1, mod.CollectionPageItemsPerPage do
+					local elementindex = i+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)
+					local id = mod.CollectionPageValidCards[elementindex]
 					if id then
 						local renderIcon = true
-						local renderPosOffset = Vector(16*((i-1)%PibersMod.CollectionPageItemsPerRow),16*(math.floor((i-1)/PibersMod.CollectionPageItemsPerRow)))
+						local renderPosOffset = Vector(16*((i-1)%mod.CollectionPageItemsPerRow),16*(math.floor((i-1)/mod.CollectionPageItemsPerRow)))
 						local useFrame = PickupSubType.NUM_PICKUPS
-						local pickup = PibersMod.CollectionPageCardPickup[id]
+						local pickup = mod.CollectionPageCardPickup[id]
 						if pickup then
 							useFrame = pickup
 						end
-						if PibersMod.CollectionPageValidCardIsPill[elementindex] then
-							if not PibersMod:IsPillUnlocked(id) then
-								PibersMod.CollectionPageCard:SetFrame(0)
+						if mod.CollectionPageValidCardIsPill[elementindex] then
+							if not mod.IsPillUnlocked(id) then
+								mod.CollectionPageCard:SetFrame(0)
 							else
-								PibersMod.CollectionPagePill:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItem+renderPosOffset))
+								mod.CollectionPagePill:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItem+renderPosOffset))
 								renderIcon = false
 							end
-						elseif not PibersMod:IsCardUnlocked(id) then
-							PibersMod.CollectionPageCard:SetFrame(0)
-						elseif PibersMod.CollectionPageIconOverrideCard[id] and type(PibersMod.CollectionPageIconOverrideCard[id]) == "table" and PibersMod.CollectionPageIconOverrideCard[id][1] and type(PibersMod.CollectionPageIconOverrideCard[id][2]) == "number" then
-								PibersMod.CollectionPageIconOverrideCard[id][1]:SetFrame(PibersMod.CollectionPageIconOverrideCard[id][2])
-								PibersMod.CollectionPageIconOverrideCard[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItemCentered+renderPosOffset))
+						elseif not mod.IsCardUnlocked(id) then
+							mod.CollectionPageCard:SetFrame(0)
+						elseif mod.CollectionPageIconOverrideCard[id] and type(mod.CollectionPageIconOverrideCard[id]) == "table" and mod.CollectionPageIconOverrideCard[id][1] and type(mod.CollectionPageIconOverrideCard[id][2]) == "number" then
+								mod.CollectionPageIconOverrideCard[id][1]:SetFrame(mod.CollectionPageIconOverrideCard[id][2])
+								mod.CollectionPageIconOverrideCard[id][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItemCentered+renderPosOffset))
 								renderIcon = false
-						elseif PibersMod.CollectionPageIconOverridePickup[useFrame] then
-							if type(PibersMod.CollectionPageIconOverridePickup[useFrame]) == "number" then
-								PibersMod.CollectionPageCard:SetFrame(useFrame)
-							elseif type(PibersMod.CollectionPageIconOverridePickup[useFrame]) == "table" and PibersMod.CollectionPageIconOverridePickup[useFrame][1] and type(PibersMod.CollectionPageIconOverridePickup[useFrame][2]) == "number" then
-								PibersMod.CollectionPageIconOverridePickup[useFrame][1]:SetFrame(PibersMod.CollectionPageIconOverridePickup[useFrame][2])
-								PibersMod.CollectionPageIconOverridePickup[useFrame][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItemCentered+renderPosOffset))
+						elseif mod.CollectionPageIconOverridePickup[useFrame] then
+							if type(mod.CollectionPageIconOverridePickup[useFrame]) == "number" then
+								mod.CollectionPageCard:SetFrame(useFrame)
+							elseif type(mod.CollectionPageIconOverridePickup[useFrame]) == "table" and mod.CollectionPageIconOverridePickup[useFrame][1] and type(mod.CollectionPageIconOverridePickup[useFrame][2]) == "number" then
+								mod.CollectionPageIconOverridePickup[useFrame][1]:SetFrame(mod.CollectionPageIconOverridePickup[useFrame][2])
+								mod.CollectionPageIconOverridePickup[useFrame][1]:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItemCentered+renderPosOffset))
 								renderIcon = false
 							else
-								PibersMod.CollectionPageCard:SetFrame(PickupSubType.NUM_PICKUPS)
+								mod.CollectionPageCard:SetFrame(PickupSubType.NUM_PICKUPS)
 							end
 						elseif useFrame >= PickupSubType.NUM_PICKUPS then
-							PibersMod.CollectionPageCard:SetFrame(PickupSubType.NUM_PICKUPS)
+							mod.CollectionPageCard:SetFrame(PickupSubType.NUM_PICKUPS)
 						else
-							PibersMod.CollectionPageCard:SetFrame(useFrame)
+							mod.CollectionPageCard:SetFrame(useFrame)
 						end
 						if renderIcon then
-							PibersMod.CollectionPageCard:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageFirstItem+renderPosOffset))
+							mod.CollectionPageCard:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageFirstItem+renderPosOffset))
 						end
-						PibersMod.CollectionPageFakeElementsInPage = i-1
+						mod.CollectionPageFakeElementsInPage = i-1
 					end
 				end
-				local currentElementIndex = (currentElement+1)+(PibersMod.CollectionPageFakeCurrentPage*PibersMod.CollectionPageItemsPerPage)
-				local currentCard = PibersMod.CollectionPageValidCards[currentElementIndex]
+				local currentElementIndex = (currentElement+1)+(mod.CollectionPageFakeCurrentPage*mod.CollectionPageItemsPerPage)
+				local currentCard = mod.CollectionPageValidCards[currentElementIndex]
 				if currentCard then
-					if PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 1 then
-						PibersMod.CollectionPageForceDisplayPickup = false
-						if PibersMod.CollectionPageValidCardIsPill[currentElementIndex] then
-							if not PibersMod:IsPillUnlocked(currentCard) then
-								PibersMod.CollectionPageDisplayItem = false
-								PibersMod.CollectionPageItemName = ""
-								PibersMod.CollectionPageItemDesc = ""
+					if mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 1 then
+						mod.CollectionPageForceDisplayPickup = false
+						if mod.CollectionPageValidCardIsPill[currentElementIndex] then
+							if not mod.IsPillUnlocked(currentCard) then
+								mod.CollectionPageDisplayItem = false
+								mod.CollectionPageItemName = ""
+								mod.CollectionPageItemDesc = ""
 							else
-								PibersMod.CollectionPageItemPickup:Load("gfx/ui/ui_pills_unknown.anm2", true)
-								PibersMod.CollectionPageItemPickup:SetFrame("HUD", 0)
-								PibersMod.CollectionPageForceDisplayPickup = true
-								PibersMod.CollectionPageDisplayItem = true
+								mod.CollectionPageItemPickup:Load("gfx/ui/ui_pills_unknown.anm2", true)
+								mod.CollectionPageItemPickup:SetFrame("HUD", 0)
+								mod.CollectionPageForceDisplayPickup = true
+								mod.CollectionPageDisplayItem = true
 								local data = XMLData.GetEntryById(XMLNode.PILL, currentCard)
 								if data.name then
 									if string.sub(data.name, 1, 2) == "#" then
-										PibersMod.CollectionPageItemName = Isaac.GetString("Pills", data.name)
+										mod.CollectionPageItemName = Isaac.GetString("Pills", data.name)
 									else
-										PibersMod.CollectionPageItemName = data.name
+										mod.CollectionPageItemName = data.name
 									end
 								else
-									PibersMod.CollectionPageItemName = ""
+									mod.CollectionPageItemName = ""
 								end
-								if PibersMod.CollectionPageDescriptionOverridePill[currentCard] then
-									PibersMod.CollectionPageItemDesc = PibersMod.CollectionPageDescriptionOverridePill[currentCard]
+								if mod.CollectionPageDescriptionOverridePill[currentCard] then
+									mod.CollectionPageItemDesc = mod.CollectionPageDescriptionOverridePill[currentCard]
 								elseif data.description then
 									if string.sub(data.description, 1, 2) == "#" then
-										PibersMod.CollectionPageItemDesc = Isaac.GetString("Pills", data.description)
+										mod.CollectionPageItemDesc = Isaac.GetString("Pills", data.description)
 									else
-										PibersMod.CollectionPageItemDesc = data.description
+										mod.CollectionPageItemDesc = data.description
 									end
 								else
-									PibersMod.CollectionPageItemDesc = ""
+									mod.CollectionPageItemDesc = ""
 								end
 							end
-						elseif not PibersMod:IsCardUnlocked(currentCard) then
-							PibersMod.CollectionPageDisplayItem = false
-							PibersMod.CollectionPageItemName = ""
-							PibersMod.CollectionPageItemDesc = ""
+						elseif not mod.IsCardUnlocked(currentCard) then
+							mod.CollectionPageDisplayItem = false
+							mod.CollectionPageItemName = ""
+							mod.CollectionPageItemDesc = ""
 						else
 							local data = XMLData.GetEntryById(XMLNode.CARD, currentCard)
 							if data then
-								PibersMod.CollectionPageItemCard:SetFrame("CardFronts", currentCard)
-								PibersMod.CollectionPageItemCardModded = nil
+								mod.CollectionPageItemCard:SetFrame("CardFronts", currentCard)
+								mod.CollectionPageItemCardModded = nil
 								if data.hud then
 									local cardconfig = itemConfig:GetCard(currentCard)
 									if cardconfig and cardconfig.ModdedCardFront then
-										PibersMod.CollectionPageItemCardModded = cardconfig.ModdedCardFront
-										PibersMod.CollectionPageItemCardModded:SetFrame(data.hud, 0)
+										mod.CollectionPageItemCardModded = cardconfig.ModdedCardFront
+										mod.CollectionPageItemCardModded:SetFrame(data.hud, 0)
 									end
 								end
 								if data.pickup and tonumber(data.pickup) then
 									local pickupXML = XMLData.GetEntityByTypeVarSub(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, tonumber(data.pickup))
 									if pickupXML and pickupXML.anm2path then
-										PibersMod.CollectionPageItemPickup:Load("gfx/" .. pickupXML.anm2path, true)
-										PibersMod.CollectionPageItemPickup:SetFrame("HUD", 0)
-										PibersMod.CollectionPageDisplayItem = true
+										mod.CollectionPageItemPickup:Load("gfx/" .. pickupXML.anm2path, true)
+										mod.CollectionPageItemPickup:SetFrame("HUD", 0)
+										mod.CollectionPageDisplayItem = true
 									end
 								else
-									PibersMod.CollectionPageDisplayItem = false
+									mod.CollectionPageDisplayItem = false
 								end
 								if data.name then
 									if string.sub(data.name, 1, 2) == "#" then
-										PibersMod.CollectionPageItemName = Isaac.GetString("Cards", data.name)
+										mod.CollectionPageItemName = Isaac.GetString("Cards", data.name)
 									else
-										PibersMod.CollectionPageItemName = data.name
+										mod.CollectionPageItemName = data.name
 									end
 								else
-									PibersMod.CollectionPageItemName = ""
+									mod.CollectionPageItemName = ""
 								end
 								if data.description then
 									if string.sub(data.description, 1, 2) == "#" then
-										PibersMod.CollectionPageItemDesc = Isaac.GetString("Cards", data.description)
+										mod.CollectionPageItemDesc = Isaac.GetString("Cards", data.description)
 									else
-										PibersMod.CollectionPageItemDesc = data.description
+										mod.CollectionPageItemDesc = data.description
 									end
 								else
-									PibersMod.CollectionPageItemDesc = ""
+									mod.CollectionPageItemDesc = ""
 								end
 							end
 						end
@@ -771,14 +773,14 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 						if EID.Config["RGON_ShowOnCollectionPage"] then
 							EID:HandleRenderingKeys()
 							if not EID.isHidden then
-								if PibersMod.CollectionPageValidCardIsPill[currentElementIndex] then
-									if not PibersMod:IsPillUnlocked(currentCard) then
+								if mod.CollectionPageValidCardIsPill[currentElementIndex] then
+									if not mod.IsPillUnlocked(currentCard) then
 										eiddesc = {Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity}
 									else
 										--eiddesc = EID:getDescriptionObj(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, currentCard, nil, false)
 									end
 								else
-									if not PibersMod:IsCardUnlocked(currentCard) then
+									if not mod.IsCardUnlocked(currentCard) then
 										eiddesc = {Icon = EID.InlineIcons["QuestionMark"], Description = description or "", Entity = entity}
 									else
 										eiddesc = EID:getDescriptionObj(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, currentCard, nil, false)
@@ -787,44 +789,44 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 							end
 						end
 					end
-				elseif PibersMod.CollectionPageLastElement ~= currentElement or PibersMod.CollectionPageLastMode ~= 2 then
-					PibersMod.CollectionPageDisplayItem = false
-					PibersMod.CollectionPageForceDisplayPickup = false
-					PibersMod.CollectionPageItemName = ""
-					PibersMod.CollectionPageItemDesc = ""
+				elseif mod.CollectionPageLastElement ~= currentElement or mod.CollectionPageLastMode ~= 2 then
+					mod.CollectionPageDisplayItem = false
+					mod.CollectionPageForceDisplayPickup = false
+					mod.CollectionPageItemName = ""
+					mod.CollectionPageItemDesc = ""
 				end
 			end
-			if PibersMod.CollectionPageMode ~= 0 then
-				PibersMod.CollectionPageDupe:RenderLayer(2, Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageItemNotePos))
+			if mod.CollectionPageMode ~= 0 then
+				mod.CollectionPageDupe:RenderLayer(2, Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageItemNotePos))
 				local iconPos = collsprite:GetNullFrame("BigItemIcon"):GetPos()
-				if PibersMod.CollectionPageDisplayItem then
-					if PibersMod.CollectionPageMode == 2 then
-						if PibersMod.CollectionPageItemCardModded then
-							PibersMod.CollectionPageItemCardModded:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemIconPosCard))
+				if mod.CollectionPageDisplayItem then
+					if mod.CollectionPageMode == 2 then
+						if mod.CollectionPageItemCardModded then
+							mod.CollectionPageItemCardModded:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemIconPosCard))
 						else
 							local renderFront = false
-							local frame = PibersMod.CollectionPageItemCard:GetFrame()
-							for _,animlayer in ipairs(PibersMod.CollectionPageItemCard:GetCurrentAnimationData():GetAllLayers()) do
+							local frame = mod.CollectionPageItemCard:GetFrame()
+							for _,animlayer in ipairs(mod.CollectionPageItemCard:GetCurrentAnimationData():GetAllLayers()) do
 								local animframe = animlayer:GetFrame(frame)
 								if animframe and animframe:IsVisible() then
 									renderFront = true
 									break
 								end
 							end
-							if renderFront and not PibersMod.CollectionPageForceDisplayPickup then
-								PibersMod.CollectionPageItemCard:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemIconPosCard))
+							if renderFront and not mod.CollectionPageForceDisplayPickup then
+								mod.CollectionPageItemCard:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemIconPosCard))
 							else
-								PibersMod.CollectionPageItemPickup:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemIconPosCard))
+								mod.CollectionPageItemPickup:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemIconPosCard))
 							end
 						end
 					else
-						PibersMod.CollectionPageItem:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemIconPos))
+						mod.CollectionPageItem:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemIconPos))
 					end
 				end
-				local namePos = Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemNamePos)
-				PibersMod.CollectionPageFont:DrawString(PibersMod.CollectionPageItemName, namePos.X, namePos.Y, PibersMod.CollectionPageFontColor)
-				local descPos = Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+PibersMod.CollectionPageItemDescPos)
-				PibersMod.CollectionPageFont:DrawString(PibersMod.CollectionPageItemDesc, descPos.X, descPos.Y, PibersMod.CollectionPageFontColor)
+				local namePos = Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemNamePos)
+				mod.CollectionPageFont:DrawString(mod.CollectionPageItemName, namePos.X, namePos.Y, mod.CollectionPageFontColor)
+				local descPos = Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, iconPos+mod.CollectionPageItemDescPos)
+				mod.CollectionPageFont:DrawString(mod.CollectionPageItemDesc, descPos.X, descPos.Y, mod.CollectionPageFontColor)
 				if EID and eiddesc then
 					if EID.Config["RGON_ShowOnCollectionPage"] then
 						EID:HandleRenderingKeys()
@@ -833,22 +835,22 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 						end
 					end
 				end
-				if PibersMod.CollectionPageLastMode == 0 then
+				if mod.CollectionPageLastMode == 0 then
 					CollectionMenu.SetSelectedPage(2)
 					currentPage = 2
 					collsprite:ReplaceSpritesheet(2, "blank.png", true)
 					collsprite:ReplaceSpritesheet(4, "blank.png", true)
 					collsprite:ReplaceSpritesheet(5, "blank.png", true)
 					iconsprite:ReplaceSpritesheet(6, "blank.png", true)
-					if PibersMod.CollectionPageFakeNumPages > 1 then
+					if mod.CollectionPageFakeNumPages > 1 then
 						collsprite:ReplaceSpritesheet(3, "gfx/ui/main menu/collectionmenu.png", true)
 					end
 				end
-				if PibersMod.CollectionPageLastMode ~= PibersMod.CollectionPageMode then
-					PibersMod.CollectionPageTabs:SetFrame(PibersMod.CollectionPageMode)
-					PibersMod.CollectionPageFakeCurrentPage = 0
+				if mod.CollectionPageLastMode ~= mod.CollectionPageMode then
+					mod.CollectionPageTabs:SetFrame(mod.CollectionPageMode)
+					mod.CollectionPageFakeCurrentPage = 0
 					collsprite:ReplaceSpritesheet(4, "blank.png", true)
-					if PibersMod.CollectionPageFakeNumPages > 1 then
+					if mod.CollectionPageFakeNumPages > 1 then
 						collsprite:ReplaceSpritesheet(3, "gfx/ui/main menu/collectionmenu.png", true)
 					else
 						collsprite:ReplaceSpritesheet(3, "blank.png", true)
@@ -857,25 +859,25 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 				if currentPage ~= 2 then
 					if currentPage > 2 then
 						CollectionMenu.SetSelectedPage(2)
-						PibersMod.CollectionPageFakeCurrentPage = PibersMod.CollectionPageFakeCurrentPage + 1
+						mod.CollectionPageFakeCurrentPage = mod.CollectionPageFakeCurrentPage + 1
 					elseif currentPage < 2 then
 						CollectionMenu.SetSelectedPage(2)
-						PibersMod.CollectionPageFakeCurrentPage = PibersMod.CollectionPageFakeCurrentPage - 1
+						mod.CollectionPageFakeCurrentPage = mod.CollectionPageFakeCurrentPage - 1
 					end
-					if PibersMod.CollectionPageFakeCurrentPage > PibersMod.CollectionPageFakeNumPages-1 then
-						PibersMod.CollectionPageFakeCurrentPage = 0
+					if mod.CollectionPageFakeCurrentPage > mod.CollectionPageFakeNumPages-1 then
+						mod.CollectionPageFakeCurrentPage = 0
 					end
-					if PibersMod.CollectionPageFakeCurrentPage < 0 then
-						PibersMod.CollectionPageFakeCurrentPage = PibersMod.CollectionPageFakeNumPages-1
+					if mod.CollectionPageFakeCurrentPage < 0 then
+						mod.CollectionPageFakeCurrentPage = mod.CollectionPageFakeNumPages-1
 					end
-					if PibersMod.CollectionPageFakeCurrentPage == 0 then
+					if mod.CollectionPageFakeCurrentPage == 0 then
 						collsprite:ReplaceSpritesheet(4, "blank.png", true)
-						if PibersMod.CollectionPageFakeNumPages > 1 then
+						if mod.CollectionPageFakeNumPages > 1 then
 							collsprite:ReplaceSpritesheet(3, "gfx/ui/main menu/collectionmenu.png", true)
 						else
 							collsprite:ReplaceSpritesheet(3, "blank.png", true)
 						end
-					elseif PibersMod.CollectionPageFakeCurrentPage == PibersMod.CollectionPageFakeNumPages-1 then
+					elseif mod.CollectionPageFakeCurrentPage == mod.CollectionPageFakeNumPages-1 then
 						collsprite:ReplaceSpritesheet(3, "blank.png", true)
 						collsprite:ReplaceSpritesheet(4, "gfx/ui/main menu/collectionmenu.png", true)
 					else
@@ -884,62 +886,62 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 					end
 				end
 				--[[
-				if currentElement > PibersMod.CollectionPageFakeElementsInPage then
-					if currentElement - PibersMod.CollectionPageLastElement == 1 then
+				if currentElement > mod.CollectionPageFakeElementsInPage then
+					if currentElement - mod.CollectionPageLastElement == 1 then
 						currentElement = 0
 						CollectionMenu.SetSelectedElement(currentElement)
-						PibersMod.CollectionPageFakeCurrentPage = 0
-					elseif currentElement&PibersMod.CollectionPageItemsPerRow == PibersMod.CollectionPageFakeElementsInPage&PibersMod.CollectionPageItemsPerRow then
-						currentElement = PibersMod.CollectionPageFakeElementsInPage
+						mod.CollectionPageFakeCurrentPage = 0
+					elseif currentElement&mod.CollectionPageItemsPerRow == mod.CollectionPageFakeElementsInPage&mod.CollectionPageItemsPerRow then
+						currentElement = mod.CollectionPageFakeElementsInPage
 						CollectionMenu.SetSelectedElement(currentElement)
 					else
-						currentElement = currentElement&PibersMod.CollectionPageItemsPerRow
+						currentElement = currentElement&mod.CollectionPageItemsPerRow
 						CollectionMenu.SetSelectedElement(currentElement)
-						PibersMod.CollectionPageFakeCurrentPage = 0
+						mod.CollectionPageFakeCurrentPage = 0
 					end
 					CollectionMenu.SetSelectedPage(2)
 				end
 				]]
-				numPages = PibersMod.CollectionPageFakeNumPages
-				currentPage = PibersMod.CollectionPageFakeCurrentPage
+				numPages = mod.CollectionPageFakeNumPages
+				currentPage = mod.CollectionPageFakeCurrentPage
 			else
-				PibersMod.CollectionPageFakeCurrentPage = 0
-				PibersMod.CollectionPageFakeElementsInPage = PibersMod.CollectionPageItemsPerPage
+				mod.CollectionPageFakeCurrentPage = 0
+				mod.CollectionPageFakeElementsInPage = mod.CollectionPageItemsPerPage
 			end
 			if numPages > 1 then
-				local bulletGap = Vector(0,PibersMod.CollectionPageBulletHeight/numPages)
-				local bulletPos = (collsprite:GetNullFrame("Bullet"):GetPos()+PibersMod.CollectionPageBulletPos)-(bulletGap/2)
+				local bulletGap = Vector(0,mod.CollectionPageBulletHeight/numPages)
+				local bulletPos = (collsprite:GetNullFrame("Bullet"):GetPos()+mod.CollectionPageBulletPos)-(bulletGap/2)
 				for i=1,numPages do
 					local currentPos = bulletPos+(bulletGap*i)
 					if i-1 == currentPage then
-						PibersMod.CollectionPageBulletOn:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, currentPos))
+						mod.CollectionPageBulletOn:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, currentPos))
 					else
-						PibersMod.CollectionPageBulletOff:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, currentPos))
+						mod.CollectionPageBulletOff:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, currentPos))
 					end
 				end
 			end
-			PibersMod.CollectionPageTabs:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, PibersMod.CollectionPageTabsPos))
-			PibersMod.CollectionPageLastMode = PibersMod.CollectionPageMode
-			PibersMod.CollectionPageLastElement = currentElement
+			mod.CollectionPageTabs:Render(Isaac.WorldToMenuPosition(MainMenuType.COLLECTION, mod.CollectionPageTabsPos))
+			mod.CollectionPageLastMode = mod.CollectionPageMode
+			mod.CollectionPageLastElement = currentElement
 			if Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, 0) then
-				PibersMod.CollectionPageMode = PibersMod.CollectionPageMode - 1
+				mod.CollectionPageMode = mod.CollectionPageMode - 1
 			end
 			if Input.IsActionTriggered(ButtonAction.ACTION_BOMB, 0) then
-				PibersMod.CollectionPageMode = PibersMod.CollectionPageMode + 1
+				mod.CollectionPageMode = mod.CollectionPageMode + 1
 			end
-			if PibersMod.CollectionPageMode > 2 then
-				PibersMod.CollectionPageMode = 0
+			if mod.CollectionPageMode > 2 then
+				mod.CollectionPageMode = 0
 			end
-			if PibersMod.CollectionPageMode < 0 then
-				PibersMod.CollectionPageMode = 2
+			if mod.CollectionPageMode < 0 then
+				mod.CollectionPageMode = 2
 			end
 		else
-			PibersMod.GenerateCollectionMenuData()
+			mod.GenerateCollectionMenuData()
 		end
-	elseif PibersMod.CollectionPageMode ~= 0 then
+	elseif mod.CollectionPageMode ~= 0 then
 		local collsprite = CollectionMenu.GetCollectionMenuSprite()
 		local iconsprite = CollectionMenu.GetDeathScreenSprite()
-		PibersMod.CollectionPageMode = 0
+		mod.CollectionPageMode = 0
 		CollectionMenu.SetSelectedPage(0)
 		collsprite:ReplaceSpritesheet(2, "gfx/ui/main menu/collectionmenu.png", true)
 		collsprite:ReplaceSpritesheet(3, "gfx/ui/main menu/collectionmenu.png", true)
@@ -947,4 +949,4 @@ function PibersMod:OnMainMenuRenderCollectionPage()
 		iconsprite:ReplaceSpritesheet(6, "gfx/ui/death items.png", true)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, PibersMod.OnMainMenuRenderCollectionPage)
+mod.AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, mod.OnMainMenuRenderCollectionPage)

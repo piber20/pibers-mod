@@ -1,10 +1,12 @@
-function PibersMod:OnCoinInit(pickup)
+local mod = PibersMod
+
+function mod.OnCoinInit(pickup)
 	if pickup.SubType == CoinSubType.COIN_STICKYNICKEL then
-		local sprite, data = pickup:GetSprite(), PibersMod.GetData(pickup)
+		local sprite, data = pickup:GetSprite(), mod.GetData(pickup)
 
 		--spawn the effect
-		local stickyEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, PibersMod.Effects.STICKY_NICKEL_PUDDLE, pickup.Position, Vector.Zero, pickup)
-		local stickySprite, stickyData = stickyEffect:GetSprite(), PibersMod.GetData(stickyEffect)
+		local stickyEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PIBERSMOD, mod.Effects.STICKY_NICKEL_PUDDLE, pickup.Position, Vector.Zero, pickup)
+		local stickySprite, stickyData = stickyEffect:GetSprite(), mod.GetData(stickyEffect)
 
 		--get what animation to use
 		local animation = "Idle"
@@ -21,49 +23,49 @@ function PibersMod:OnCoinInit(pickup)
 		stickyEffect.RenderZOffset = -10000
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, PibersMod.OnCoinInit, PickupVariant.PICKUP_COIN)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.OnCoinInit, PickupVariant.PICKUP_COIN)
 
-PibersMod.PoofSpawnOffset = Vector(0,2)
-PibersMod.PickupPoofScale = {}
-PibersMod.PickupPoofScale[0] = {}
-PibersMod.PickupPoofScale[0][0] = Vector(1.0,0.75)
-PibersMod.PickupPoofColor = {}
-PibersMod.PickupPoofColor[0] = {}
-PibersMod.PickupPoofColor[0][0] = Color(0.5,0.4,0.4,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART] = {}
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][0] = Color(0.6,0.2,0.2,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL] = Color(0.6,0.6,0.8,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_HALF_SOUL] = PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL]
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.BLESSING] = PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL]
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_ETERNAL] = Color(1.0,1.0,1.0,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_GOLDEN] = Color(0.8,0.6,0.45,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_BONE] = PibersMod.PickupPoofColor[0][0]
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_ROTTEN] = Color(0.6,0.6,0.2,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_KEY] = {}
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_KEY][KeySubType.KEY_GOLDEN] = Color(0.8,0.6,0.45,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_BOMB] = {}
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_BOMB][BombSubType.BOMB_GOLDEN] = Color(0.8,0.6,0.45,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_LIL_BATTERY] = {}
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_LIL_BATTERY][BatterySubType.BATTERY_GOLDEN] = Color(0.8,0.6,0.45,0.4)
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_POOP] = {}
-PibersMod.PickupPoofColor[PickupVariant.PICKUP_POOP][0] = Color(0.6,0.5,0.0,0.4)
-PibersMod.PickupPoofBig = {}
-PibersMod.PickupPoofBig[PickupVariant.PICKUP_BOMB] = {}
-PibersMod.PickupPoofBig[PickupVariant.PICKUP_BOMB][BombSubType.BOMB_GIGA] = {}
-PibersMod.PickupPoofBlacklist = {}
-PibersMod.PickupPoofBlacklist[PickupVariant.PICKUP_COIN] = {}
-PibersMod.PickupPoofBlacklist[PickupVariant.PICKUP_COIN][0] = true
-PibersMod.PickupPoofBlacklist[PickupVariant.PICKUP_BIGCHEST] = {}
-PibersMod.PickupPoofBlacklist[PickupVariant.PICKUP_BIGCHEST][0] = true
-PibersMod.PickupPoofOffset = Vector(0,-2)
-PibersMod.PickupPoofChestOffset = Vector(0,-12)
-function PibersMod:PrePickupUpdate(pickup)
+mod.PoofSpawnOffset = Vector(0,2)
+mod.PickupPoofScale = {}
+mod.PickupPoofScale[0] = {}
+mod.PickupPoofScale[0][0] = Vector(1.0,0.75)
+mod.PickupPoofColor = {}
+mod.PickupPoofColor[0] = {}
+mod.PickupPoofColor[0][0] = Color(0.5,0.4,0.4,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART] = {}
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][0] = Color(0.6,0.2,0.2,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL] = Color(0.6,0.6,0.8,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_HALF_SOUL] = mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL]
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.BLESSING] = mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_SOUL]
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_ETERNAL] = Color(1.0,1.0,1.0,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_GOLDEN] = Color(0.8,0.6,0.45,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_BONE] = mod.PickupPoofColor[0][0]
+mod.PickupPoofColor[PickupVariant.PICKUP_HEART][HeartSubType.HEART_ROTTEN] = Color(0.6,0.6,0.2,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_KEY] = {}
+mod.PickupPoofColor[PickupVariant.PICKUP_KEY][KeySubType.KEY_GOLDEN] = Color(0.8,0.6,0.45,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_BOMB] = {}
+mod.PickupPoofColor[PickupVariant.PICKUP_BOMB][BombSubType.BOMB_GOLDEN] = Color(0.8,0.6,0.45,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_LIL_BATTERY] = {}
+mod.PickupPoofColor[PickupVariant.PICKUP_LIL_BATTERY][BatterySubType.BATTERY_GOLDEN] = Color(0.8,0.6,0.45,0.4)
+mod.PickupPoofColor[PickupVariant.PICKUP_POOP] = {}
+mod.PickupPoofColor[PickupVariant.PICKUP_POOP][0] = Color(0.6,0.5,0.0,0.4)
+mod.PickupPoofBig = {}
+mod.PickupPoofBig[PickupVariant.PICKUP_BOMB] = {}
+mod.PickupPoofBig[PickupVariant.PICKUP_BOMB][BombSubType.BOMB_GIGA] = {}
+mod.PickupPoofBlacklist = {}
+mod.PickupPoofBlacklist[PickupVariant.PICKUP_COIN] = {}
+mod.PickupPoofBlacklist[PickupVariant.PICKUP_COIN][0] = true
+mod.PickupPoofBlacklist[PickupVariant.PICKUP_BIGCHEST] = {}
+mod.PickupPoofBlacklist[PickupVariant.PICKUP_BIGCHEST][0] = true
+mod.PickupPoofOffset = Vector(0,-2)
+mod.PickupPoofChestOffset = Vector(0,-12)
+function mod.PrePickupUpdate(pickup)
 	local doPoof = true
-	if PibersMod.PickupPoofBlacklist[pickup.Variant] then
-		if PibersMod.PickupPoofBlacklist[pickup.Variant][0] then
+	if mod.PickupPoofBlacklist[pickup.Variant] then
+		if mod.PickupPoofBlacklist[pickup.Variant][0] then
 			doPoof = false
 		end
-		if PibersMod.PickupPoofBlacklist[pickup.Variant][pickup.SubType] then
+		if mod.PickupPoofBlacklist[pickup.Variant][pickup.SubType] then
 			doPoof = false
 		end
 	end
@@ -71,11 +73,11 @@ function PibersMod:PrePickupUpdate(pickup)
 	if doPoof then
 		if sprite:GetFrame() == 0 and (sprite:IsPlaying("Collect") or sprite:IsPlaying("collect")) then
 			local useBig = false
-			if PibersMod.PickupPoofBig[pickup.Variant] then
-				if PibersMod.PickupPoofBig[pickup.Variant][0] then
+			if mod.PickupPoofBig[pickup.Variant] then
+				if mod.PickupPoofBig[pickup.Variant][0] then
 					useBig = true
 				end
-				if PibersMod.PickupPoofBig[pickup.Variant][pickup.SubType] then
+				if mod.PickupPoofBig[pickup.Variant][pickup.SubType] then
 					useBig = true
 				end
 			end
@@ -83,72 +85,72 @@ function PibersMod:PrePickupUpdate(pickup)
 			if useBig then
 				useSubType = Poof02Subtype.LARGE
 			end
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, useSubType, pickup.Position+PibersMod.PoofSpawnOffset, Vector.Zero, pickup)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, useSubType, pickup.Position+mod.PoofSpawnOffset, Vector.Zero, pickup)
 			local poofSprite = poof:GetSprite()
 
-			local scale = PibersMod.PickupPoofScale[0][0]
-			if PibersMod.PickupPoofScale[pickup.Variant] then
-				if PibersMod.PickupPoofScale[pickup.Variant][0] then
-					scale = PibersMod.PickupPoofScale[pickup.Variant][0]
+			local scale = mod.PickupPoofScale[0][0]
+			if mod.PickupPoofScale[pickup.Variant] then
+				if mod.PickupPoofScale[pickup.Variant][0] then
+					scale = mod.PickupPoofScale[pickup.Variant][0]
 				end
-				if PibersMod.PickupPoofScale[pickup.Variant][pickup.SubType] then
-					scale = PibersMod.PickupPoofScale[pickup.Variant][pickup.SubType]
-				end
-			end
-
-			local color = PibersMod.PickupPoofColor[0][0]
-			if PibersMod.PickupPoofColor[pickup.Variant] then
-				if PibersMod.PickupPoofColor[pickup.Variant][0] then
-					color = PibersMod.PickupPoofColor[pickup.Variant][0]
-				end
-				if PibersMod.PickupPoofColor[pickup.Variant][pickup.SubType] then
-					color = PibersMod.PickupPoofColor[pickup.Variant][pickup.SubType]
+				if mod.PickupPoofScale[pickup.Variant][pickup.SubType] then
+					scale = mod.PickupPoofScale[pickup.Variant][pickup.SubType]
 				end
 			end
 
-			poofSprite.Offset = PibersMod.PickupPoofOffset
+			local color = mod.PickupPoofColor[0][0]
+			if mod.PickupPoofColor[pickup.Variant] then
+				if mod.PickupPoofColor[pickup.Variant][0] then
+					color = mod.PickupPoofColor[pickup.Variant][0]
+				end
+				if mod.PickupPoofColor[pickup.Variant][pickup.SubType] then
+					color = mod.PickupPoofColor[pickup.Variant][pickup.SubType]
+				end
+			end
+
+			poofSprite.Offset = mod.PickupPoofOffset
 			poofSprite.Scale = scale
 			poofSprite.Color = color
 		end
 		if sprite:GetFrame() == 4 and (sprite:IsPlaying("Open") or sprite:IsPlaying("open")) then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.LARGE, pickup.Position+PibersMod.PoofSpawnOffset, Vector.Zero, pickup)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.LARGE, pickup.Position+mod.PoofSpawnOffset, Vector.Zero, pickup)
 			local poofSprite = poof:GetSprite()
 
-			local scale = PibersMod.PickupPoofScale[0][0]
-			if PibersMod.PickupPoofScale[pickup.Variant] then
-				if PibersMod.PickupPoofScale[pickup.Variant][0] then
-					scale = PibersMod.PickupPoofScale[pickup.Variant][0]
+			local scale = mod.PickupPoofScale[0][0]
+			if mod.PickupPoofScale[pickup.Variant] then
+				if mod.PickupPoofScale[pickup.Variant][0] then
+					scale = mod.PickupPoofScale[pickup.Variant][0]
 				end
-				if PibersMod.PickupPoofScale[pickup.Variant][pickup.SubType] then
-					scale = PibersMod.PickupPoofScale[pickup.Variant][pickup.SubType]
-				end
-			end
-
-			local color = PibersMod.PickupPoofColor[0][0]
-			if PibersMod.PickupPoofColor[pickup.Variant] then
-				if PibersMod.PickupPoofColor[pickup.Variant][0] then
-					color = PibersMod.PickupPoofColor[pickup.Variant][0]
-				end
-				if PibersMod.PickupPoofColor[pickup.Variant][pickup.SubType] then
-					color = PibersMod.PickupPoofColor[pickup.Variant][pickup.SubType]
+				if mod.PickupPoofScale[pickup.Variant][pickup.SubType] then
+					scale = mod.PickupPoofScale[pickup.Variant][pickup.SubType]
 				end
 			end
 
-			poofSprite.Offset = PibersMod.PickupPoofChestOffset
+			local color = mod.PickupPoofColor[0][0]
+			if mod.PickupPoofColor[pickup.Variant] then
+				if mod.PickupPoofColor[pickup.Variant][0] then
+					color = mod.PickupPoofColor[pickup.Variant][0]
+				end
+				if mod.PickupPoofColor[pickup.Variant][pickup.SubType] then
+					color = mod.PickupPoofColor[pickup.Variant][pickup.SubType]
+				end
+			end
+
+			poofSprite.Offset = mod.PickupPoofChestOffset
 			poofSprite.Scale = scale
 			poofSprite.Color = color
 		end
 	end
 	if pickup.Variant == PickupVariant.PICKUP_BIGCHEST and sprite:IsPlaying("Appear") and sprite:IsEventTriggered("DropSound") then
-		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.GROUND_FOREGROUND, pickup.Position+PibersMod.PoofSpawnOffset, Vector.Zero, pickup)
+		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.GROUND_FOREGROUND, pickup.Position+mod.PoofSpawnOffset, Vector.Zero, pickup)
 		local poofSprite = poof:GetSprite()
-		poofSprite.Offset = PibersMod.PickupPoofChestOffset
+		poofSprite.Offset = mod.PickupPoofChestOffset
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_UPDATE, PibersMod.PrePickupUpdate)
+mod.AddCallback(ModCallbacks.MC_PRE_PICKUP_UPDATE, mod.PrePickupUpdate)
 
-function PibersMod:OnCoinUpdate(pickup)
-	local sprite, data = pickup:GetSprite(), PibersMod.GetData(pickup)
+function mod.OnCoinUpdate(pickup)
+	local sprite, data = pickup:GetSprite(), mod.GetData(pickup)
 	if pickup.SubType == CoinSubType.COIN_STICKYNICKEL then
 		if sprite:IsPlaying("Touched") then
 			sprite:Play("TouchedStick", true)
@@ -159,9 +161,9 @@ function PibersMod:OnCoinUpdate(pickup)
 		sprite:Play("Idle", true)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnCoinUpdate, PickupVariant.PICKUP_COIN)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnCoinUpdate, PickupVariant.PICKUP_COIN)
 
-PibersMod.ModEffectRenderFuncs[PibersMod.Effects.STICKY_NICKEL_PUDDLE] = function(effect,sprite,data)
+mod.ModEffectRenderFuncs[mod.Effects.STICKY_NICKEL_PUDDLE] = function(effect,sprite,data)
 	local removeEffect = true
 	if data.StickyNickel then --check if StickyNickel isnt nil
 		local coin = data.StickyNickel
@@ -184,28 +186,28 @@ PibersMod.ModEffectRenderFuncs[PibersMod.Effects.STICKY_NICKEL_PUDDLE] = functio
 	end
 end
 
-function PibersMod:OnUpdateChest(pickup)
+function mod.OnUpdateChest(pickup)
 	local sprite = pickup:GetSprite()
 	if sprite:IsPlaying("Appear") and sprite:GetFrame() == 1 then
 		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_CHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_BOMBCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_SPIKEDCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_ETERNALCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_MIMICCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_OLDCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_WOODENCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_MEGACHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_HAUNTEDCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_LOCKEDCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_REDCHEST)
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateChest, PickupVariant.PICKUP_MOMSCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_CHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_BOMBCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_SPIKEDCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_ETERNALCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_MIMICCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_OLDCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_WOODENCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_MEGACHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_HAUNTEDCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_LOCKEDCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_REDCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateChest, PickupVariant.PICKUP_MOMSCHEST)
 
-function PibersMod:PreEntitySpawnRedKey(entType, entVariant, entSubType, pos, vel, spawner, seed)
+function mod.PreEntitySpawnRedKey(entType, entVariant, entSubType, pos, vel, spawner, seed)
 	if entType == EntityType.ENTITY_PICKUP then
-		local floorSave = PibersMod.SaveManager.GetFloorSave()
+		local floorSave = mod.SaveManager.GetFloorSave()
 		if entVariant == PickupVariant.PICKUP_COLLECTIBLE then
 			if entSubType == CollectibleType.COLLECTIBLE_RED_KEY then
 				floorSave.FoundRedKey = true
@@ -237,4 +239,4 @@ function PibersMod:PreEntitySpawnRedKey(entType, entVariant, entSubType, pos, ve
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, PibersMod.PreEntitySpawnRedKey)
+mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.PreEntitySpawnRedKey)

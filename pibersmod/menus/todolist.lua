@@ -1,7 +1,9 @@
-PibersMod.TodoListSprite = Sprite("gfx/ui/main menu/todo.anm2", true)
-PibersMod.TodoListSprite:Play("Idle")
-PibersMod.TodoListFont = Font("font/teammeatex/teammeatex12.fnt")
-PibersMod.TodoListTasks = {
+local mod = PibersMod
+
+mod.TodoListSprite = Sprite("gfx/ui/main menu/todo.anm2", true)
+mod.TodoListSprite:Play("Idle")
+mod.TodoListFont = Font("font/teammeatex/teammeatex12.fnt")
+mod.TodoListTasks = {
 	FindMom = "Descend the Depths",
 	KillMom = "Kill Mom!",
 	KillMomAgain = "Kill Mom... Again!",
@@ -156,26 +158,26 @@ PibersMod.TodoListTasks = {
 	Spend40 = "Spend 40 cents in one shop",
 	Spend99 = "Collect 99 cents and then spend it all"
 }
-PibersMod.TodoListVisibleTasks = {}
-PibersMod.TodoListPos = Vector(0,125)
-PibersMod.TodoListTextPos = Vector(-24,152)
-PibersMod.WinStreakFont = Font("font/teammeatex/teammeatex12.fnt")
-PibersMod.WinStreakPos = Vector(-82,180)
-PibersMod.WinStreakTextPos = Vector(-90,200)
-function PibersMod:TodoListSetVisibleBossTask(bossType, bossName, seen, reqUnlock, lastUnlock, counter)
+mod.TodoListVisibleTasks = {}
+mod.TodoListPos = Vector(0,125)
+mod.TodoListTextPos = Vector(-24,152)
+mod.WinStreakFont = Font("font/teammeatex/teammeatex12.fnt")
+mod.WinStreakPos = Vector(-82,180)
+mod.WinStreakTextPos = Vector(-90,200)
+function mod.TodoListSetVisibleBossTask(bossType, bossName, seen, reqUnlock, lastUnlock, counter)
 	local gamedata = Isaac.GetPersistentGameData()
 	if gamedata:IsBossKilled(bossType) then
 		seen = true
 	end
 	if reqUnlock ~= false and (reqUnlock == nil or reqUnlock == true or seen or gamedata:Unlocked(reqUnlock)) then
 		if not seen then
-			PibersMod.TodoListVisibleTasks["Find" .. bossName] = true
+			mod.TodoListVisibleTasks["Find" .. bossName] = true
 			return "Find" .. bossName
 		elseif not gamedata:IsBossKilled(bossType) then
-			PibersMod.TodoListVisibleTasks["Kill" .. bossName] = true
+			mod.TodoListVisibleTasks["Kill" .. bossName] = true
 			return "Kill" .. bossName
 		elseif lastUnlock and (lastUnlock == true or not gamedata:Unlocked(lastUnlock)) then
-			PibersMod.TodoListVisibleTasks["Kill" .. bossName .. "Again"] = true
+			mod.TodoListVisibleTasks["Kill" .. bossName .. "Again"] = true
 			return "Kill" .. bossName .. "Again"
 		end
 	end
@@ -185,7 +187,7 @@ function PibersMod:TodoListSetVisibleBossTask(bossType, bossName, seen, reqUnloc
 	return false
 end
 
-function PibersMod:OnMainMenuRenderToDoList()
+function mod.OnMainMenuRenderToDoList()
 
 	local gamedata = Isaac.GetPersistentGameData()
 	local currentActive = MenuManager:GetActiveMenu()
@@ -193,13 +195,13 @@ function PibersMod:OnMainMenuRenderToDoList()
 	--todo list
 	if CharacterMenu.GetActiveStatus() ~= CharacterMenuStatus.SEED then
 		local taskCounter = 0
-		for i,v in pairs(PibersMod.TodoListVisibleTasks) do
-			if v == true and PibersMod.TodoListTasks[i] then
+		for i,v in pairs(mod.TodoListVisibleTasks) do
+			if v == true and mod.TodoListTasks[i] then
 				taskCounter = taskCounter + 1
 			end
 		end
 		if taskCounter >= 1 then
-			PibersMod.TodoListSprite:Render(Isaac.WorldToMenuPosition(MainMenuType.CHARACTER, PibersMod.TodoListPos))
+			mod.TodoListSprite:Render(Isaac.WorldToMenuPosition(MainMenuType.CHARACTER, mod.TodoListPos))
 		end
 	end
 
@@ -207,80 +209,80 @@ function PibersMod:OnMainMenuRenderToDoList()
 	local winstreakSprite = CharacterMenu.GetWinStreakPageSprite()
 	if not StatsMenu.IsSecretsMenuVisible() then
 		winstreakSprite.Scale = Vector.One
-		winstreakSprite:Render(Isaac.WorldToMenuPosition(MainMenuType.STATS, PibersMod.WinStreakPos))
+		winstreakSprite:Render(Isaac.WorldToMenuPosition(MainMenuType.STATS, mod.WinStreakPos))
 	end
 	winstreakSprite.Scale = Vector.Zero
 
 	--shift stats camera a bit to fit win streak
 	if currentActive == MainMenuType.STATS then
 		if StatsMenu.IsSecretsMenuVisible() then
-			--MenuManager.SetViewPosition(Isaac.WorldToMenuPosition(MainMenuType.STATS, PibersMod.SecretViewPos))
+			--MenuManager.SetViewPosition(Isaac.WorldToMenuPosition(MainMenuType.STATS, mod.SecretViewPos))
 		else
-			MenuManager.SetViewPosition(Isaac.WorldToMenuPosition(MainMenuType.STATS, PibersMod.StatViewPos))
+			MenuManager.SetViewPosition(Isaac.WorldToMenuPosition(MainMenuType.STATS, mod.StatViewPos))
 		end
 	end
 
 	--todo list
 	if currentActive > MainMenuType.SAVES and CharacterMenu.GetActiveStatus() ~= CharacterMenuStatus.SEED then
 		local difficulty = CharacterMenu.GetDifficulty()
-		local persistentSave = PibersMod.SaveManager.GetPersistentSave()
+		local persistentSave = mod.SaveManager.GetPersistentSave()
 		local bossesDone = 0
 		local isMainMode = difficulty == Difficulty.DIFFICULTY_NORMAL or difficulty == Difficulty.DIFFICULTY_HARD
 		local isGreedMode = difficulty == Difficulty.DIFFICULTY_GREED or difficulty == Difficulty.DIFFICULTY_GREEDIER
-		PibersMod.TodoListVisibleTasks = {}
+		mod.TodoListVisibleTasks = {}
 
 		--final bosses
 		if isMainMode then
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.MOM, "Mom", persistentSave.SeenMom, nil, nil, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.MOM, "Mom", persistentSave.SeenMom, nil, nil, bossesDone)
 			if gamedata:IsBossKilled(BossType.MOM) then
 				if not gamedata:Unlocked(Achievement.HALO) then
-					PibersMod.TodoListVisibleTasks["KillMomBible"] = true
+					mod.TodoListVisibleTasks["KillMomBible"] = true
 				end
 			end
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.MOMS_HEART, "Heart", persistentSave.SeenHeart, gamedata:IsBossKilled(BossType.MOM), Achievement.IT_LIVES, bossesDone)
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.IT_LIVES, "ItLives", persistentSave.SeenItLives, Achievement.IT_LIVES, Achievement.SCARRED_WOMB, bossesDone)
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.SATAN, "Satan", persistentSave.SeenSatan, gamedata:IsBossKilled(BossType.IT_LIVES), Achievement.THE_NEGATIVE, bossesDone)
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.ISAAC, "Isaac", persistentSave.SeenIsaac, gamedata:IsBossKilled(BossType.IT_LIVES), Achievement.THE_POLAROID, bossesDone)
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.THE_LAMB, "Lamb", persistentSave.SeenLamb, Achievement.THE_NEGATIVE, nil, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.MOMS_HEART, "Heart", persistentSave.SeenHeart, gamedata:IsBossKilled(BossType.MOM), Achievement.IT_LIVES, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.IT_LIVES, "ItLives", persistentSave.SeenItLives, Achievement.IT_LIVES, Achievement.SCARRED_WOMB, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.SATAN, "Satan", persistentSave.SeenSatan, gamedata:IsBossKilled(BossType.IT_LIVES), Achievement.THE_NEGATIVE, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.ISAAC, "Isaac", persistentSave.SeenIsaac, gamedata:IsBossKilled(BossType.IT_LIVES), Achievement.THE_POLAROID, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.THE_LAMB, "Lamb", persistentSave.SeenLamb, Achievement.THE_NEGATIVE, nil, bossesDone)
 			if gamedata:IsBossKilled(BossType.THE_LAMB) then
 				if not gamedata:Unlocked(Achievement.ZIP) then
-					PibersMod.TodoListVisibleTasks["KillLamb20Mins"] = true
+					mod.TodoListVisibleTasks["KillLamb20Mins"] = true
 				elseif not gamedata:Unlocked(Achievement.ITS_THE_KEY) then
-					PibersMod.TodoListVisibleTasks["KillLambLowPickup"] = true
+					mod.TodoListVisibleTasks["KillLambLowPickup"] = true
 				end
 			end
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.BLUE_BABY, "BlueBaby", persistentSave.SeenBlueBaby, Achievement.THE_POLAROID, nil, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.BLUE_BABY, "BlueBaby", persistentSave.SeenBlueBaby, Achievement.THE_POLAROID, nil, bossesDone)
 			if gamedata:Unlocked(Achievement.ANGELS) then
 				if not gamedata:Unlocked(Achievement.DADS_KEY) then
-					PibersMod.TodoListVisibleTasks["Key"] = true
+					mod.TodoListVisibleTasks["Key"] = true
 				else
-					PibersMod:TodoListSetVisibleBossTask(BossType.MEGA_SATAN, "MegaSatan", persistentSave.SeenMegaSatan, nil, nil, bossesDone)
+					mod.TodoListSetVisibleBossTask(BossType.MEGA_SATAN, "MegaSatan", persistentSave.SeenMegaSatan, nil, nil, bossesDone)
 				end
 			end
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.HUSH, "Hush", persistentSave.SeenHush, Achievement.BLUE_WOMB, Achievement.SECRET_EXIT, bossesDone)
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.DELIRIUM, "Delirium", persistentSave.SeenDelirium, Achievement.THE_VOID, nil, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.HUSH, "Hush", persistentSave.SeenHush, Achievement.BLUE_WOMB, Achievement.SECRET_EXIT, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.DELIRIUM, "Delirium", persistentSave.SeenDelirium, Achievement.THE_VOID, nil, bossesDone)
 			if gamedata:Unlocked(Achievement.SECRET_EXIT) then
 				if not gamedata:Unlocked(Achievement.ROTTEN_HEARTS) then
-					PibersMod.TodoListVisibleTasks["Knife"] = true
+					mod.TodoListVisibleTasks["Knife"] = true
 				else
-					PibersMod:TodoListSetVisibleBossTask(BossType.MOTHER, "Mother", persistentSave.SeenMother, nil, nil, bossesDone)
+					mod.TodoListSetVisibleBossTask(BossType.MOTHER, "Mother", persistentSave.SeenMother, nil, nil, bossesDone)
 				end
 			end
-			bossesDone = PibersMod:TodoListSetVisibleBossTask(BossType.DOGMA, "Dogma", persistentSave.SeenDogma, Achievement.STRANGE_DOOR, nil, bossesDone)
+			bossesDone = mod.TodoListSetVisibleBossTask(BossType.DOGMA, "Dogma", persistentSave.SeenDogma, Achievement.STRANGE_DOOR, nil, bossesDone)
 			if gamedata:GetEventCounter(EventCounter.DONATION_MACHINE_COUNTER) > 0 and not gamedata:Unlocked(Achievement.STOP_WATCH) then
-				PibersMod.TodoListVisibleTasks["Donate"] = true
+				mod.TodoListVisibleTasks["Donate"] = true
 			end
 		elseif isGreedMode then
-			--if not PibersMod:TodoListSetVisibleBossTask(BossType.ULTRA_GREED, "Greed", persistentSave.SeenGreed) then
+			--if not mod.TodoListSetVisibleBossTask(BossType.ULTRA_GREED, "Greed", persistentSave.SeenGreed) then
 				bossesDone = 12
 			--end
 			if gamedata:GetEventCounter(EventCounter.GREED_DONATION_MACHINE_COUNTER) > 0 and not gamedata:Unlocked(Achievement.KEEPER) then
-				PibersMod.TodoListVisibleTasks["Donate"] = true
+				mod.TodoListVisibleTasks["Donate"] = true
 			end
 		end
 
 		if gamedata:GetEventCounter(EventCounter.BLOOD_DONATION_MACHINE_USED) > 0 and not gamedata:Unlocked(Achievement.BLOOD_BAG) then
-			PibersMod.TodoListVisibleTasks["DonateBlood"] = true
+			mod.TodoListVisibleTasks["DonateBlood"] = true
 		end
 
 		--extra stuff to show if final bosses are done
@@ -288,345 +290,345 @@ function PibersMod:OnMainMenuRenderToDoList()
 			local needMoreBosses = false
 			if isMainMode then
 				if not gamedata:Unlocked(Achievement.THE_BOOK_OF_SIN) then
-					PibersMod.TodoListVisibleTasks["KillSins"] = true
+					mod.TodoListVisibleTasks["KillSins"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.THE_BOOK_OF_REVELATIONS) then
-					PibersMod.TodoListVisibleTasks["KillHarbinger"] = true
+					mod.TodoListVisibleTasks["KillHarbinger"] = true
 				elseif not gamedata:Unlocked(Achievement.SEVEN_SEALS) then
-					PibersMod.TodoListVisibleTasks["KillHarbingerAll"] = true
+					mod.TodoListVisibleTasks["KillHarbingerAll"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.CELLAR) then
-					PibersMod.TodoListVisibleTasks["Chapter1Bosses"] = true
+					mod.TodoListVisibleTasks["Chapter1Bosses"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.CATACOMBS) then
-					PibersMod.TodoListVisibleTasks["Chapter2Bosses"] = true
+					mod.TodoListVisibleTasks["Chapter2Bosses"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.NECROPOLIS) then
-					PibersMod.TodoListVisibleTasks["Chapter3Bosses"] = true
+					mod.TodoListVisibleTasks["Chapter3Bosses"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.DROSS) then
-					PibersMod.TodoListVisibleTasks["Chapter1BossesAlt"] = true
+					mod.TodoListVisibleTasks["Chapter1BossesAlt"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.ASHPIT) then
-					PibersMod.TodoListVisibleTasks["Chapter2BossesAlt"] = true
+					mod.TodoListVisibleTasks["Chapter2BossesAlt"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.GEHENNA) then
-					PibersMod.TodoListVisibleTasks["Chapter3BossesAlt"] = true
+					mod.TodoListVisibleTasks["Chapter3BossesAlt"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.LITTLE_GISH) then
-					PibersMod.TodoListVisibleTasks["KillGish"] = true
+					mod.TodoListVisibleTasks["KillGish"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.LITTLE_STEVEN) then
-					PibersMod.TodoListVisibleTasks["KillSteven"] = true
+					mod.TodoListVisibleTasks["KillSteven"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.LITTLE_CHAD) then
-					PibersMod.TodoListVisibleTasks["KillChad"] = true
+					mod.TodoListVisibleTasks["KillChad"] = true
 					needMoreBosses = true
 				end
 				if gamedata:Unlocked(Achievement.SOMETHING_WICKED) then
 					if not gamedata:Unlocked(Achievement.FAST_BOMBS) then
 						if not gamedata:IsBossKilled(BossType.LITTLE_HORN) then
-							PibersMod.TodoListVisibleTasks["KillLittleHorn"] = true
+							mod.TodoListVisibleTasks["KillLittleHorn"] = true
 						else
-							PibersMod.TodoListVisibleTasks["KillLittleHornAgain"] = true
+							mod.TodoListVisibleTasks["KillLittleHornAgain"] = true
 						end
 						needMoreBosses = true
 					end
 				end
 				if gamedata:Unlocked(Achievement.SOMETHING_WICKED_2) then
 					if not gamedata:Unlocked(Achievement.PLUM_FLUTE) then
-						PibersMod.TodoListVisibleTasks["SparePlum"] = true
+						mod.TodoListVisibleTasks["SparePlum"] = true
 						needMoreBosses = true
 					end
 					if not gamedata:Unlocked(Achievement.FRUITY_PLUM) then
 						if not gamedata:IsBossKilled(BossType.BABY_PLUM) then
-							PibersMod.TodoListVisibleTasks["KillPlum"] = true
+							mod.TodoListVisibleTasks["KillPlum"] = true
 						else
-							PibersMod.TodoListVisibleTasks["KillPlumAgain"] = true
+							mod.TodoListVisibleTasks["KillPlumAgain"] = true
 						end
 						needMoreBosses = true
 					end
 				end
 				if not gamedata:Unlocked(Achievement.BRIMSTONE_BOMBS) then
-					PibersMod.TodoListVisibleTasks["KillHornfel"] = true
+					mod.TodoListVisibleTasks["KillHornfel"] = true
 				end
 				if not gamedata:IsBossKilled(BossType.THE_SIREN) then
-					PibersMod.TodoListVisibleTasks["KillSiren"] = true
+					mod.TodoListVisibleTasks["KillSiren"] = true
 					needMoreBosses = true
 				elseif not gamedata:Unlocked(Achievement.FORGOTTEN_LULLABY) then
-					PibersMod.TodoListVisibleTasks["KillSirenSong"] = true
+					mod.TodoListVisibleTasks["KillSirenSong"] = true
 					needMoreBosses = true
 				end
 				if not gamedata:Unlocked(Achievement.ANGELIC_PRISM) then
-					PibersMod.TodoListVisibleTasks["KillAngelAgain"] = true
+					mod.TodoListVisibleTasks["KillAngelAgain"] = true
 				end
 				if not gamedata:Unlocked(Achievement.BLACK_HOLE) then
-					PibersMod.TodoListVisibleTasks["KillPortals"] = true
+					mod.TodoListVisibleTasks["KillPortals"] = true
 				end
 				if not gamedata:Unlocked(Achievement.OLD_CAPACITOR) then
-					PibersMod.TodoListVisibleTasks["KillBatteryBum"] = true
+					mod.TodoListVisibleTasks["KillBatteryBum"] = true
 				end
 			end
 			if not gamedata:Unlocked(Achievement.SACRIFICAL_ALTAR) then
 				if gamedata:GetEventCounter(EventCounter.DEVIL_DEALS_TAKEN) > 1 then
-					PibersMod.TodoListVisibleTasks["DevilDealAgain"] = true
+					mod.TodoListVisibleTasks["DevilDealAgain"] = true
 				else
-					PibersMod.TodoListVisibleTasks["DevilDeal"] = true
+					mod.TodoListVisibleTasks["DevilDeal"] = true
 				end
 			elseif not gamedata:Unlocked(Achievement.KRAMPUS) then
-				PibersMod.TodoListVisibleTasks["KillKrampus"] = true
+				mod.TodoListVisibleTasks["KillKrampus"] = true
 				needMoreBosses = true
 			end
 			if not gamedata:Unlocked(Achievement.ANGELIC_PRISM) then
 				if gamedata:GetEventCounter(EventCounter.ANGEL_DEALS_TAKEN) > 1 then
-					PibersMod.TodoListVisibleTasks["AngelDealAgain"] = true
+					mod.TodoListVisibleTasks["AngelDealAgain"] = true
 				else
-					PibersMod.TodoListVisibleTasks["AngelDeal"] = true
+					mod.TodoListVisibleTasks["AngelDeal"] = true
 				end
 			end
 			local chaptersDone = 0
 			if isMainMode then
 				if not gamedata:Unlocked(Achievement.STEVEN) then
-					PibersMod.TodoListVisibleTasks["Chapter1Again"] = true
+					mod.TodoListVisibleTasks["Chapter1Again"] = true
 					chaptersDone = chaptersDone + 1
 				elseif not gamedata:Unlocked(Achievement.BASEMENT_BOY) then
-					PibersMod.TodoListVisibleTasks["Chapter1NoDmg"] = true
+					mod.TodoListVisibleTasks["Chapter1NoDmg"] = true
 				end
 				if not gamedata:Unlocked(Achievement.CHAD) then
-					PibersMod.TodoListVisibleTasks["Chapter2Again"] = true
+					mod.TodoListVisibleTasks["Chapter2Again"] = true
 					chaptersDone = chaptersDone + 1
 				elseif not gamedata:Unlocked(Achievement.SPELUNKER_BOY) then
-					PibersMod.TodoListVisibleTasks["Chapter2NoDmg"] = true
+					mod.TodoListVisibleTasks["Chapter2NoDmg"] = true
 				end
 				if not gamedata:Unlocked(Achievement.GISH) then
-					PibersMod.TodoListVisibleTasks["Chapter3Again"] = true
+					mod.TodoListVisibleTasks["Chapter3Again"] = true
 					chaptersDone = chaptersDone + 1
 				elseif not gamedata:Unlocked(Achievement.DARK_BOY) then
-					PibersMod.TodoListVisibleTasks["Chapter3NoDmg"] = true
+					mod.TodoListVisibleTasks["Chapter3NoDmg"] = true
 				end
 				if not gamedata:Unlocked(Achievement.MAMAS_BOY) then
-					PibersMod.TodoListVisibleTasks["Chapter4NoDmg"] = true
+					mod.TodoListVisibleTasks["Chapter4NoDmg"] = true
 				end
 				if not gamedata:Unlocked(Achievement.DEAD_BOY) then
-					PibersMod.TodoListVisibleTasks["Chapter6NoDmg"] = true
+					mod.TodoListVisibleTasks["Chapter6NoDmg"] = true
 				end
 				if not gamedata:Unlocked(Achievement.LIVING_ON_THE_EDGE) then
-					PibersMod.TodoListVisibleTasks["LowHealth"] = true
+					mod.TodoListVisibleTasks["LowHealth"] = true
 				end
 				if not gamedata:Unlocked(Achievement.THE_LOST) then
-					PibersMod.TodoListVisibleTasks["MissingPoster"] = true
+					mod.TodoListVisibleTasks["MissingPoster"] = true
 				end
 				if not gamedata:Unlocked(Achievement.THE_FORGOTTEN) then
 					if not persistentSave.LastForgottenState then
 						persistentSave.LastForgottenState = "ForgottenBoss"
 					end
-					PibersMod.TodoListVisibleTasks[persistentSave.LastForgottenState] = true
+					mod.TodoListVisibleTasks[persistentSave.LastForgottenState] = true
 				end
 			end
 
 			--extra stuff if chapter tasks are done
 			if chaptersDone >= 3 and not needMoreBosses then
 				if not gamedata:Unlocked(Achievement.LUCKY_TOE) then
-					PibersMod.TodoListVisibleTasks["KillShopkeeper"] = true
+					mod.TodoListVisibleTasks["KillShopkeeper"] = true
 				end
 				if not gamedata:Unlocked(Achievement.GAMEKID) then
 					if gamedata:GetEventCounter(EventCounter.ARCADES_ENTERED) > 1 then
-						PibersMod.TodoListVisibleTasks["ArcadeAgain"] = true
+						mod.TodoListVisibleTasks["ArcadeAgain"] = true
 					else
-						PibersMod.TodoListVisibleTasks["Arcade"] = true
+						mod.TodoListVisibleTasks["Arcade"] = true
 					end
 				else
 					if not gamedata:Unlocked(Achievement.COUNTERFEIT_PENNY) then
 						if gamedata:GetEventCounter(EventCounter.SHELLGAMES_PLAYED) > 1 then
-							PibersMod.TodoListVisibleTasks["ShellGameAgain"] = true
+							mod.TodoListVisibleTasks["ShellGameAgain"] = true
 						else
-							PibersMod.TodoListVisibleTasks["ShellGame"] = true
+							mod.TodoListVisibleTasks["ShellGame"] = true
 						end
 					end
 					if gamedata:GetEventCounter(EventCounter.SLOT_MACHINES_BROKEN) > 0 and not gamedata:Unlocked(Achievement.D4) then
-						PibersMod.TodoListVisibleTasks["SlotMachineBreak"] = true
+						mod.TodoListVisibleTasks["SlotMachineBreak"] = true
 					end
 				end
 				if not gamedata:Unlocked(Achievement.MYSTERY_GIFT) then
-					PibersMod.TodoListVisibleTasks["RocksAgain"] = true
+					mod.TodoListVisibleTasks["RocksAgain"] = true
 				elseif not gamedata:Unlocked(Achievement.A_SMALL_ROCK) then
-					PibersMod.TodoListVisibleTasks["TintedRocksAgain"] = true
+					mod.TodoListVisibleTasks["TintedRocksAgain"] = true
 				end
 				if not gamedata:Unlocked(Achievement.BUTTER_BEAN) then
-					PibersMod.TodoListVisibleTasks["PoopsAgain"] = true
+					mod.TodoListVisibleTasks["PoopsAgain"] = true
 				elseif not gamedata:Unlocked(Achievement.BOZO) then
-					PibersMod.TodoListVisibleTasks["RainbowPoopsAgain"] = true
+					mod.TodoListVisibleTasks["RainbowPoopsAgain"] = true
 				end
 				if not gamedata:Unlocked(Achievement.DOOR_STOP) then
-					PibersMod.TodoListVisibleTasks["BlowUpDoors"] = true
+					mod.TodoListVisibleTasks["BlowUpDoors"] = true
 				end
 
 				local hasAllItemUnlocks = true
 				if not gamedata:Unlocked(Achievement.SUPER_MEAT_BOY) then
-					PibersMod.TodoListVisibleTasks["MeatBoy"] = true
+					mod.TodoListVisibleTasks["MeatBoy"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.SUPER_BANDAGE) then
-					PibersMod.TodoListVisibleTasks["BandageGirl"] = true
+					mod.TodoListVisibleTasks["BandageGirl"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.THE_PARASITE) then
-					PibersMod.TodoListVisibleTasks["DeadItems"] = true
+					mod.TodoListVisibleTasks["DeadItems"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.MOMS_CONTACT) then
-					PibersMod.TodoListVisibleTasks["MomItems"] = true
+					mod.TodoListVisibleTasks["MomItems"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.GUPPYS_HAIRBALL) then
-					PibersMod.TodoListVisibleTasks["GuppyItems"] = true
+					mod.TodoListVisibleTasks["GuppyItems"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.LITTLE_BAGGY) then
-					PibersMod.TodoListVisibleTasks["SyringeItems"] = true
+					mod.TodoListVisibleTasks["SyringeItems"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.BECAME_LORD_OF_THE_FLIES) then
-					PibersMod.TodoListVisibleTasks["FlyItems"] = true
+					mod.TodoListVisibleTasks["FlyItems"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.BUDDY_IN_A_BOX) then
-					PibersMod.TodoListVisibleTasks["Familiars"] = true
+					mod.TodoListVisibleTasks["Familiars"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.MYSTERY_EGG) then
-					PibersMod.TodoListVisibleTasks["Friendly"] = true
+					mod.TodoListVisibleTasks["Friendly"] = true
 					end
 				if not gamedata:Unlocked(Achievement.ROTTEN_PENNY) then
-					PibersMod.TodoListVisibleTasks["FriendlyFlies"] = true
+					mod.TodoListVisibleTasks["FriendlyFlies"] = true
 				end
 				if not gamedata:Unlocked(Achievement.HAIRPIN) then
-					PibersMod.TodoListVisibleTasks["Batteries"] = true
+					mod.TodoListVisibleTasks["Batteries"] = true
 					hasAllItemUnlocks = false
 				elseif not gamedata:Unlocked(Achievement.JUMPER_CABLES) or not gamedata:Unlocked(Achievement.EXTENSION_CORD) then
-					PibersMod.TodoListVisibleTasks["BatteriesBig"] = true
+					mod.TodoListVisibleTasks["BatteriesBig"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.ERA_WALK) then
-					PibersMod.TodoListVisibleTasks["Watches"] = true
+					mod.TodoListVisibleTasks["Watches"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.TECHNOLOGY_ZERO) then
-					PibersMod.TodoListVisibleTasks["Tech"] = true
+					mod.TodoListVisibleTasks["Tech"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.MR_ME) then
-					PibersMod.TodoListVisibleTasks["UnlockChests"] = true
+					mod.TodoListVisibleTasks["UnlockChests"] = true
 					hasAllItemUnlocks = false
 				end
 				if not gamedata:Unlocked(Achievement.COUPON) then
 					if gamedata:GetEventCounter(EventCounter.SHOP_ITEMS_BOUGHT) > 1 then
-						PibersMod.TodoListVisibleTasks["BuyItemsAgain"] = true
+						mod.TodoListVisibleTasks["BuyItemsAgain"] = true
 					else
-						PibersMod.TodoListVisibleTasks["BuyItems"] = true
+						mod.TodoListVisibleTasks["BuyItems"] = true
 					end
 					hasAllItemUnlocks = false
 				elseif not gamedata:Unlocked(Achievement.SCHOOLBAG) then
-					PibersMod.TodoListVisibleTasks["ShopsAll"] = true
+					mod.TodoListVisibleTasks["ShopsAll"] = true
 				end
 				if not gamedata:Unlocked(Achievement.MEMBER_CARD) then
-					PibersMod.TodoListVisibleTasks["Spend40"] = true
+					mod.TodoListVisibleTasks["Spend40"] = true
 				end
 				if not gamedata:Unlocked(Achievement.GOLDEN_RAZOR) then
-					PibersMod.TodoListVisibleTasks["Spend99"] = true
+					mod.TodoListVisibleTasks["Spend99"] = true
 				end
 				if not gamedata:Unlocked(Achievement.HAEMOLACRIA) then
-					PibersMod.TodoListVisibleTasks["Clots"] = true
+					mod.TodoListVisibleTasks["Clots"] = true
 				end
 				if not gamedata:Unlocked(Achievement.FLAT_STONE) then
-					PibersMod.TodoListVisibleTasks["RubberCements"] = true
+					mod.TodoListVisibleTasks["RubberCements"] = true
 				end
 				if hasAllItemUnlocks and not gamedata:Unlocked(Achievement.U_BROKE_IT) then
-					PibersMod.TodoListVisibleTasks["MoreItems"] = true
+					mod.TodoListVisibleTasks["MoreItems"] = true
 				end
 				if not gamedata:Unlocked(Achievement.ANCIENT_RECALL) then
-					PibersMod.TodoListVisibleTasks["Cards"] = true
+					mod.TodoListVisibleTasks["Cards"] = true
 				end
 				if not gamedata:Unlocked(Achievement.MOVING_BOX) then
-					PibersMod.TodoListVisibleTasks["Pandora"] = true
+					mod.TodoListVisibleTasks["Pandora"] = true
 				end
 				if not gamedata:Unlocked(Achievement.MARBLES) then
-					PibersMod.TodoListVisibleTasks["Gulp"] = true
+					mod.TodoListVisibleTasks["Gulp"] = true
 				end
 				if not gamedata:Unlocked(Achievement.RED_KEY) then
-					PibersMod.TodoListVisibleTasks["RedKey"] = true
+					mod.TodoListVisibleTasks["RedKey"] = true
 				end
 				if not gamedata:Unlocked(Achievement.CHARGED_PENNY) then
-					PibersMod.TodoListVisibleTasks["BatteryBum"] = true
+					mod.TodoListVisibleTasks["BatteryBum"] = true
 				end
 
 				if not gamedata:Unlocked(Achievement.HUGE_GROWTH) then
-					PibersMod.TodoListVisibleTasks["Big"] = true
+					mod.TodoListVisibleTasks["Big"] = true
 				end
 				if isMainMode then
 					if not gamedata:Unlocked(Achievement.ONCE_MORE_WITH_FEELING) then
-						PibersMod.TodoListVisibleTasks["VictoryLap"] = true
+						mod.TodoListVisibleTasks["VictoryLap"] = true
 					elseif not gamedata:Unlocked(Achievement.RERUNS) then
-						PibersMod.TodoListVisibleTasks["VictoryLapAgain"] = true
+						mod.TodoListVisibleTasks["VictoryLapAgain"] = true
 					end
 				end
 
 				if not gamedata:Unlocked(Achievement.LACHRYPHAGY) then
-					PibersMod.TodoListVisibleTasks["TearsUp"] = true
+					mod.TodoListVisibleTasks["TearsUp"] = true
 				end
 				if not gamedata:Unlocked(Achievement.MR_RESETTER) then
-					PibersMod.TodoListVisibleTasks["Reset"] = true
+					mod.TodoListVisibleTasks["Reset"] = true
 				end
 				if not gamedata:Unlocked(Achievement.BLANKET) then
 					if gamedata:GetEventCounter(EventCounter.BEDS_USED) > 1 then
-						PibersMod.TodoListVisibleTasks["SleepAgain"] = true
+						mod.TodoListVisibleTasks["SleepAgain"] = true
 					else
-						PibersMod.TodoListVisibleTasks["Sleep"] = true
+						mod.TodoListVisibleTasks["Sleep"] = true
 					end
 				end
 				if not gamedata:Unlocked(Achievement.LIL_SPEWER) then
-					PibersMod.TodoListVisibleTasks["DieExplosion"] = true
+					mod.TodoListVisibleTasks["DieExplosion"] = true
 				elseif not gamedata:Unlocked(Achievement.SCISSORS) then
 					if gamedata:GetEventCounter(EventCounter.DEATHS) > 1 then
-						PibersMod.TodoListVisibleTasks["DieAgain"] = true
+						mod.TodoListVisibleTasks["DieAgain"] = true
 					else
-						PibersMod.TodoListVisibleTasks["Die"] = true
+						mod.TodoListVisibleTasks["Die"] = true
 					end
 				end
 				if not gamedata:Unlocked(Achievement.PLANETARIUMS) then
-					PibersMod.TodoListVisibleTasks["Stars"] = true
+					mod.TodoListVisibleTasks["Stars"] = true
 				end
 				if not gamedata:Unlocked(Achievement.BABY_BENDER) then
-					PibersMod.TodoListVisibleTasks["Homing"] = true
+					mod.TodoListVisibleTasks["Homing"] = true
 				end
 				if not gamedata:Unlocked(Achievement.BLINDING_BABY) then
-					PibersMod.TodoListVisibleTasks["Blinding"] = true
+					mod.TodoListVisibleTasks["Blinding"] = true
 				end
 			end
 		end
 
 		local taskCounter = 0
-		for i,v in pairs(PibersMod.TodoListVisibleTasks) do
-			if v == true and PibersMod.TodoListTasks[i] then
-				local tasktextpos = Isaac.WorldToMenuPosition(MainMenuType.CHARACTER, PibersMod.TodoListTextPos)
-				PibersMod.TodoListFont:DrawStringScaledUTF8(tostring(taskCounter+1) .. ". " .. PibersMod.TodoListTasks[i],tasktextpos.X+(taskCounter*1.5),tasktextpos.Y+(taskCounter*8),0.5,0.5, KColor.Black)
+		for i,v in pairs(mod.TodoListVisibleTasks) do
+			if v == true and mod.TodoListTasks[i] then
+				local tasktextpos = Isaac.WorldToMenuPosition(MainMenuType.CHARACTER, mod.TodoListTextPos)
+				mod.TodoListFont:DrawStringScaledUTF8(tostring(taskCounter+1) .. ". " .. mod.TodoListTasks[i],tasktextpos.X+(taskCounter*1.5),tasktextpos.Y+(taskCounter*8),0.5,0.5, KColor.Black)
 				taskCounter = taskCounter + 1
 			end
 		end
 
 		--manually render win streak text at new position
 		if not StatsMenu.IsSecretsMenuVisible() then
-			local textpos = Isaac.WorldToMenuPosition(MainMenuType.STATS, PibersMod.WinStreakTextPos)
+			local textpos = Isaac.WorldToMenuPosition(MainMenuType.STATS, mod.WinStreakTextPos)
 			local currentStreak = gamedata:GetEventCounter(EventCounter.STREAK_COUNTER)
 			local streakString = tostring(currentStreak)
 			if currentStreak >= 2 then
@@ -644,17 +646,17 @@ function PibersMod:OnMainMenuRenderToDoList()
 					winstreakSprite:Play("Idle", false)
 				end
 			end
-			PibersMod.WinStreakFont:DrawString(streakString,textpos.X,textpos.Y,KColor.Black,100,true)
+			mod.WinStreakFont:DrawString(streakString,textpos.X,textpos.Y,KColor.Black,100,true)
 		end
 	end
 end
---PibersMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, PibersMod.OnMainMenuRenderToDoList)
+--mod.AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, mod.OnMainMenuRenderToDoList)
 
-function PibersMod:OnNewRoomToDoList()
+function mod.OnNewRoomToDoList()
 
 	local game = Game()
 	local level = game:GetLevel()
-	local persistentSave = PibersMod.SaveManager.GetPersistentSave()
+	local persistentSave = mod.SaveManager.GetPersistentSave()
 	if PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_MOMS_SHOVEL) then
 		if persistentSave.LastForgottenState ~= "ForgottenDigGrave" then
 			local stage = level:GetStage()
@@ -713,4 +715,4 @@ function PibersMod:OnNewRoomToDoList()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomToDoList)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomToDoList)

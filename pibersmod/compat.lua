@@ -1,63 +1,65 @@
-function PibersMod.PickupNotTouched(pickup)
+local mod = PibersMod
+
+function mod.PickupNotTouched(pickup)
 	return not pickup:ToPickup().Touched
 end
 
-function PibersMod.AddRuneCompat(runeID, pageFrame)
+function mod.AddRuneCompat(runeID, pageFrame)
 	if runeID and runeID > 0 then
 		local runeXML = XMLData.GetEntryById(XMLNode.CARD, runeID)
 		if runeXML and runeXML.pickup and tonumber(runeXML.pickup) then
-			PibersMod.CollectionPageIconOverridePickup[tonumber(runeXML.pickup)] = {PibersMod.CollectionPagePickupCustom, 3}
+			mod.CollectionPageIconOverridePickup[tonumber(runeXML.pickup)] = {mod.CollectionPagePickupCustom, 3}
 		end
 		local itemConfig = Isaac.GetItemConfig()
 		local runeConfig = itemConfig:GetCard(runeID)
 		if runeConfig.ModdedCardFront then
 			runeConfig.ModdedCardFront:Load("gfx/ui/ui_runes.anm2",true)
 		end
-		PibersMod.CollectionPageIconOverrideCard[runeID] = {PibersMod.CollectionPageCardCustom, pageFrame}
+		mod.CollectionPageIconOverrideCard[runeID] = {mod.CollectionPageCardCustom, pageFrame}
 	end
 end
 
-function PibersMod.AddTrinketCompat(trinketID, pageFrame)
+function mod.AddTrinketCompat(trinketID, pageFrame)
 	if trinketID and trinketID > 0 then
-		PibersMod.CollectionPageIconOverrideTrinket[trinketID] = {PibersMod.CollectionPageTrinketCustom, pageFrame}
+		mod.CollectionPageIconOverrideTrinket[trinketID] = {mod.CollectionPageTrinketCustom, pageFrame}
 	end
 end
 
-PibersMod.ItemsAddedToPool = {}
-PibersMod.ItemsRemovedFromPool = {}
-function PibersMod.AddModItemToPool(collID, poolID, weight)
+mod.ItemsAddedToPool = {}
+mod.ItemsRemovedFromPool = {}
+function mod.AddModItemToPool(collID, poolID, weight)
 	if itemID and itemID > 0 and poolID and poolID > 0 then
-		if PibersMod.ItemsRemovedFromPool[poolID] and PibersMod.ItemsAddedToPool[poolID][collID] then
-			PibersMod.ItemsRemovedFromPool[poolID][collID] = nil
+		if mod.ItemsRemovedFromPool[poolID] and mod.ItemsAddedToPool[poolID][collID] then
+			mod.ItemsRemovedFromPool[poolID][collID] = nil
 		else
 			weight = weight or 1.0
 			local game = Game()
 			local itemPool = game:GetItemPool()
-			PibersMod.ItemsAddedToPool[poolID] = PibersMod.ItemsAddedToPool[poolID] or {}
-			PibersMod.ItemsAddedToPool[poolID][collID] = {itemID=collID,weight=weight,decreaseBy=0.5,removeOn=0.1}
-			itemPool:AddCollectible(poolID, PibersMod.ItemsAddedToPool[poolID][collID])
+			mod.ItemsAddedToPool[poolID] = mod.ItemsAddedToPool[poolID] or {}
+			mod.ItemsAddedToPool[poolID][collID] = {itemID=collID,weight=weight,decreaseBy=0.5,removeOn=0.1}
+			itemPool:AddCollectible(poolID, mod.ItemsAddedToPool[poolID][collID])
 		end
 	end
 end
-function PibersMod.RemoveModItemFromPool(collID, poolID)
+function mod.RemoveModItemFromPool(collID, poolID)
 	if itemID and itemID > 0 and poolID and poolID > 0 then
-		if PibersMod.ItemsAddedToPool[poolID] and PibersMod.ItemsAddedToPool[poolID][collID] then
-			PibersMod.ItemsAddedToPool[poolID][collID].weight = 0
+		if mod.ItemsAddedToPool[poolID] and mod.ItemsAddedToPool[poolID][collID] then
+			mod.ItemsAddedToPool[poolID][collID].weight = 0
 		else
-			PibersMod.ItemsRemovedFromPool[poolID] = PibersMod.ItemsRemovedFromPool[poolID] or {}
-			PibersMod.ItemsRemovedFromPool[poolID][collID] = true
+			mod.ItemsRemovedFromPool[poolID] = mod.ItemsRemovedFromPool[poolID] or {}
+			mod.ItemsRemovedFromPool[poolID][collID] = true
 		end
 	end
 end
 
-function PibersMod:OnGetCollectible(itemID, poolID, decrease, seed)
+function mod.OnGetCollectible(itemID, poolID, decrease, seed)
 	local game = Game()
 	local itemPool = game:GetItemPool()
 	local lastPool = itemPool:GetLastPool()
 	if not lastPool then
 		lastPool = poolID
 	end
-	if PibersMod.ItemsRemovedFromPool[poolID] and PibersMod.ItemsRemovedFromPool[poolID][itemID] then
+	if mod.ItemsRemovedFromPool[poolID] and mod.ItemsRemovedFromPool[poolID][itemID] then
 		local attempts = 0
 		while attempts < 100 do
 			local newID = itemPool:GetCollectible(poolID, decrease, seed+attempts)
@@ -68,13 +70,13 @@ function PibersMod:OnGetCollectible(itemID, poolID, decrease, seed)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, PibersMod.OnGetCollectible)
+mod.AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, mod.OnGetCollectible)
 
-PibersMod.MinimapSprite = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
-PibersMod.MinimapSpriteDefault = Sprite("gfx/ui/minimapapi_icons.anm2", true)
-PibersMod.MinimapSpriteDogma = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
-PibersMod.MinimapSpriteDogma:SetRenderFlags(AnimRenderFlags.STATIC)
-function PibersMod:OnModsLoadedCompat()
+mod.MinimapSprite = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
+mod.MinimapSpriteDefault = Sprite("gfx/ui/minimapapi_icons.anm2", true)
+mod.MinimapSpriteDogma = Sprite("gfx/ui/minimap_icons_pibersmod.anm2", true)
+mod.MinimapSpriteDogma:SetRenderFlags(AnimRenderFlags.STATIC)
+function mod.OnModsLoadedCompat()
 
 	--External Item Descriptions
 	if EID then
@@ -114,31 +116,31 @@ function PibersMod:OnModsLoadedCompat()
 
 	--Minimap API
 	if MinimapAPI then
-		MinimapAPI:AddIcon("MicroBattery", PibersMod.MinimapSprite, "MicroBattery", 1)
-		MinimapAPI:AddIcon("MegaBattery", PibersMod.MinimapSprite, "MegaBattery", 1)
-		MinimapAPI:AddIcon("MomTreasureRoom", PibersMod.MinimapSprite, "MomTreasureRoom", 1)
-		MinimapAPI:AddIcon("Blessing", PibersMod.MinimapSprite, "Blessing", 1)
-		MinimapAPI:AddIcon("MomsChest", PibersMod.MinimapSpriteDefault, "ItemPoolChests", 5)
-		MinimapAPI:AddIcon("Bed", PibersMod.MinimapSprite, "Bed", 1)
-		MinimapAPI:AddIcon("TeleporterRoomRed", PibersMod.MinimapSprite, "TeleporterRoomRed", 1)
-		MinimapAPI:AddIcon("MomsBed", PibersMod.MinimapSprite, "MomsBed", 1)
-		MinimapAPI:AddIcon("TV", PibersMod.MinimapSprite, "TV", 1)
-		MinimapAPI:AddIcon("TVOn", PibersMod.MinimapSpriteDogma, "TVOn", 1)
-		MinimapAPI:AddIcon("TeleporterRoom1", PibersMod.MinimapSprite, "TeleporterRoom1", 1)
-		MinimapAPI:AddIcon("TeleporterRoom2", PibersMod.MinimapSprite, "TeleporterRoom2", 1)
-		MinimapAPI:AddIcon("TeleporterRoom3", PibersMod.MinimapSprite, "TeleporterRoom3", 1)
-		MinimapAPI:AddIcon("TeleporterRoom1Red", PibersMod.MinimapSprite, "TeleporterRoom1Red", 1)
-		MinimapAPI:AddIcon("TeleporterRoom2Red", PibersMod.MinimapSprite, "TeleporterRoom2Red", 1)
-		MinimapAPI:AddIcon("TeleporterRoom3Red", PibersMod.MinimapSprite, "TeleporterRoom3Red", 1)
-		MinimapAPI:AddIcon("MomsBedroom", PibersMod.MinimapSprite, "MomsBedroom", 1)
-		MinimapAPI:AddIcon("BabyShop", PibersMod.MinimapSprite, "BabyShop", 1)
-		MinimapAPI:AddIcon("Grave", PibersMod.MinimapSprite, "Grave", 1)
+		MinimapAPI:AddIcon("MicroBattery", mod.MinimapSprite, "MicroBattery", 1)
+		MinimapAPI:AddIcon("MegaBattery", mod.MinimapSprite, "MegaBattery", 1)
+		MinimapAPI:AddIcon("MomTreasureRoom", mod.MinimapSprite, "MomTreasureRoom", 1)
+		MinimapAPI:AddIcon("Blessing", mod.MinimapSprite, "Blessing", 1)
+		MinimapAPI:AddIcon("MomsChest", mod.MinimapSpriteDefault, "ItemPoolChests", 5)
+		MinimapAPI:AddIcon("Bed", mod.MinimapSprite, "Bed", 1)
+		MinimapAPI:AddIcon("TeleporterRoomRed", mod.MinimapSprite, "TeleporterRoomRed", 1)
+		MinimapAPI:AddIcon("MomsBed", mod.MinimapSprite, "MomsBed", 1)
+		MinimapAPI:AddIcon("TV", mod.MinimapSprite, "TV", 1)
+		MinimapAPI:AddIcon("TVOn", mod.MinimapSpriteDogma, "TVOn", 1)
+		MinimapAPI:AddIcon("TeleporterRoom1", mod.MinimapSprite, "TeleporterRoom1", 1)
+		MinimapAPI:AddIcon("TeleporterRoom2", mod.MinimapSprite, "TeleporterRoom2", 1)
+		MinimapAPI:AddIcon("TeleporterRoom3", mod.MinimapSprite, "TeleporterRoom3", 1)
+		MinimapAPI:AddIcon("TeleporterRoom1Red", mod.MinimapSprite, "TeleporterRoom1Red", 1)
+		MinimapAPI:AddIcon("TeleporterRoom2Red", mod.MinimapSprite, "TeleporterRoom2Red", 1)
+		MinimapAPI:AddIcon("TeleporterRoom3Red", mod.MinimapSprite, "TeleporterRoom3Red", 1)
+		MinimapAPI:AddIcon("MomsBedroom", mod.MinimapSprite, "MomsBedroom", 1)
+		MinimapAPI:AddIcon("BabyShop", mod.MinimapSprite, "BabyShop", 1)
+		MinimapAPI:AddIcon("Grave", mod.MinimapSprite, "Grave", 1)
 		MinimapAPI:AddPickup("MicroBattery", "MicroBattery", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MICRO, MinimapAPI.PickupNotCollected, "batteries", 4033)
 		MinimapAPI:AddPickup("MegaBattery", "MegaBattery", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA, MinimapAPI.PickupNotCollected, "batteries", 3933)
 		MinimapAPI:AddPickup("Blessing", "Blessing", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.BLESSING, MinimapAPI.PickupNotCollected, "hearts", 15833)
 		MinimapAPI:AddPickup("MomsChest", "MomsChest", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_MOMSCHEST, -1, MinimapAPI.PickupChestNotCollected, "chests", 12833)
-		MinimapAPI:AddPickup("Bed", "Bed", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BED, BedSubType.BED_ISAAC, PibersMod.PickupNotTouched, "beds", 3333)
-		MinimapAPI:AddPickup("MomsBed", "MomsBed", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BED, BedSubType.BED_MOM, PibersMod.PickupNotTouched, "beds", 3433)
+		MinimapAPI:AddPickup("Bed", "Bed", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BED, BedSubType.BED_ISAAC, mod.PickupNotTouched, "beds", 3333)
+		MinimapAPI:AddPickup("MomsBed", "MomsBed", EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BED, BedSubType.BED_MOM, mod.PickupNotTouched, "beds", 3433)
 	end
 
 	--Enhanced Boss Bars
@@ -154,37 +156,37 @@ function PibersMod:OnModsLoadedCompat()
 	end
 
 	--Restored Collection
-	PibersMod.AddTrinketCompat(Isaac.GetTrinketIdByName("​Game Squid"), 1)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_GREED_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_GREED_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("Safety Bombs"), ItemPoolType.POOL_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("Safety Bombs"), ItemPoolType.POOL_GREED_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_TREASURE)
-	PibersMod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_GREED_TREASURE)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.CRAWLSPACE)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.DICE_ROOM)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Checked Mate"), ItemPoolType.POOL_CRANE_GAME)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("Pumpkin Mask"), ItemPoolType.KRAMPUS)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("Pill Crusher"), ItemPoolType.POOL_MOMS_CHEST, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("Pill Crusher"), ItemPoolType.MOMS_CHEST_MAUSOLEUM, 0.5)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("Ol' Lopper"), ItemPoolType.CRAWLSPACE)
-	PibersMod.AddModItemToPool(Isaac.GetItemIdByName("​Keeper's Rope"), ItemPoolType.BARREN_ROOM)
+	mod.AddTrinketCompat(Isaac.GetTrinketIdByName("​Game Squid"), 1)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_GREED_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_GREED_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("Safety Bombs"), ItemPoolType.POOL_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("Safety Bombs"), ItemPoolType.POOL_GREED_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_TREASURE)
+	mod.RemoveModItemFromPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_GREED_TREASURE)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Stone Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Blank Bombs"), ItemPoolType.CRAWLSPACE)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.POOL_GREED_SHOP, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Dice Bombs"), ItemPoolType.DICE_ROOM)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Checked Mate"), ItemPoolType.POOL_CRANE_GAME)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("Pumpkin Mask"), ItemPoolType.KRAMPUS)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("Pill Crusher"), ItemPoolType.POOL_MOMS_CHEST, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("Pill Crusher"), ItemPoolType.MOMS_CHEST_MAUSOLEUM, 0.5)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("Ol' Lopper"), ItemPoolType.CRAWLSPACE)
+	mod.AddModItemToPool(Isaac.GetItemIdByName("​Keeper's Rope"), ItemPoolType.BARREN_ROOM)
 
 	--Antibirth Runes
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Gebo"), 8)
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Kenaz"), 9)
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Fehu"), 10)
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Othala"), 11)
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Sowilo"), 12)
-	PibersMod.AddRuneCompat(Isaac.GetCardIdByName("Ingwaz"), 13)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Gebo"), 8)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Kenaz"), 9)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Fehu"), 10)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Othala"), 11)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Sowilo"), 12)
+	mod.AddRuneCompat(Isaac.GetCardIdByName("Ingwaz"), 13)
 
 	if LastJudgement and not PibersModLJPatch then
 		print("piber mod missing last judgement patch :(")
@@ -193,4 +195,4 @@ function PibersMod:OnModsLoadedCompat()
 	end
 
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, PibersMod.OnModsLoadedCompat)
+mod.AddPriorityCallback(ModCallbacks.MC_POST_MODS_LOADED, CallbackPriority.LATE, mod.OnModsLoadedCompat)

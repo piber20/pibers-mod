@@ -1,4 +1,6 @@
-PibersMod.MomsHeartUnlocks = {
+local mod = PibersMod
+
+mod.MomsHeartUnlocks = {
 	[PlayerType.PLAYER_ISAAC] = Achievement.LOST_BABY,
 	[PlayerType.PLAYER_MAGDALENE] = Achievement.CUTE_BABY,
 	[PlayerType.PLAYER_CAIN] = Achievement.GLASS_BABY,
@@ -22,7 +24,7 @@ PibersMod.MomsHeartUnlocks = {
 	[PlayerType.PLAYER_ESAU] = Achievement.DOUBLE_BABY
 }
 
-PibersMod.AllMarkUnlocks = {
+mod.AllMarkUnlocks = {
 	[PlayerType.PLAYER_ISAAC] = Achievement.BUDDY_BABY,
 	[PlayerType.PLAYER_MAGDALENE] = Achievement.COLORFUL_BABY,
 	[PlayerType.PLAYER_CAIN] = Achievement.PICKY_BABY,
@@ -46,7 +48,7 @@ PibersMod.AllMarkUnlocks = {
 	[PlayerType.PLAYER_ESAU] = Achievement.SOLOMONS_BABY
 }
 
-PibersMod.GreedierUnlocks = {
+mod.GreedierUnlocks = {
 	[PlayerType.PLAYER_ISAAC] = Achievement.D1,
 	[PlayerType.PLAYER_MAGDALENE] = Achievement.GLYPH_OF_BALANCE,
 	[PlayerType.PLAYER_CAIN] = Achievement.SACK_OF_SACKS,
@@ -90,33 +92,33 @@ PibersMod.GreedierUnlocks = {
 	[PlayerType.PLAYER_THESOUL_B] = Achievement.REVERSED_DEATH
 }
 
-PibersMod.AllNormalPlayerTypesUnlock = Achievement.MEGA_MUSH
-PibersMod.AllNormalPlayerTypes = {
+mod.AllNormalPlayerTypesUnlock = Achievement.MEGA_MUSH
+mod.AllNormalPlayerTypes = {
 	PlayerType.PLAYER_ISAAC, PlayerType.PLAYER_MAGDALENE, PlayerType.PLAYER_CAIN, PlayerType.PLAYER_JUDAS, PlayerType.PLAYER_BLUEBABY, PlayerType.PLAYER_EVE, PlayerType.PLAYER_SAMSON, PlayerType.PLAYER_AZAZEL, PlayerType.PLAYER_LAZARUS, PlayerType.PLAYER_EDEN, PlayerType.PLAYER_THELOST, PlayerType.PLAYER_LAZARUS2, PlayerType.PLAYER_BLACKJUDAS, PlayerType.PLAYER_LILITH, PlayerType.PLAYER_KEEPER, PlayerType.PLAYER_APOLLYON, PlayerType.PLAYER_THEFORGOTTEN, PlayerType.PLAYER_THESOUL, PlayerType.PLAYER_BETHANY, PlayerType.PLAYER_JACOB, PlayerType.PLAYER_ESAU
 }
 
-PibersMod.AllNormalPlusTaintedPlayerTypesUnlock = Achievement.DEATH_CERTIFICATE
-PibersMod.AllTaintedPlayerTypes = {
+mod.AllNormalPlusTaintedPlayerTypesUnlock = Achievement.DEATH_CERTIFICATE
+mod.AllTaintedPlayerTypes = {
 	PlayerType.PLAYER_ISAAC_B, PlayerType.PLAYER_MAGDALENE_B, PlayerType.PLAYER_CAIN_B, PlayerType.PLAYER_JUDAS_B, PlayerType.PLAYER_BLUEBABY_B, PlayerType.PLAYER_EVE_B, PlayerType.PLAYER_SAMSON_B, PlayerType.PLAYER_AZAZEL_B, PlayerType.PLAYER_LAZARUS_B, PlayerType.PLAYER_EDEN_B, PlayerType.PLAYER_THELOST_B, PlayerType.PLAYER_LILITH_B, PlayerType.PLAYER_KEEPER_B, PlayerType.PLAYER_APOLLYON_B, PlayerType.PLAYER_THEFORGOTTEN_B, PlayerType.PLAYER_BETHANY_B, PlayerType.PLAYER_JACOB_B, PlayerType.PLAYER_LAZARUS2_B, PlayerType.PLAYER_JACOB2_B, PlayerType.PLAYER_THESOUL_B
 }
 
 local skipHardmodeCheck = false
 local lastActiveMenu = 0
-function PibersMod:OnMainMenuRenderHardModeUnlocks()
+function mod.OnMainMenuRenderHardModeUnlocks()
 	local currentActive = MenuManager:GetActiveMenu()
 	if currentActive >= MainMenuType.CHARACTER then
 		if lastActiveMenu ~= currentActive then
 			for playerType=0, (PlayerType.NUM_PLAYER_TYPES-1) do
 				skipHardmodeCheck = true
-				PibersMod:OnMarkGet(nil, playerType)
+				mod.OnMarkGet(nil, playerType)
 			end
 		end
 	end
 	lastActiveMenu = currentActive
 end
-PibersMod:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, PibersMod.OnMainMenuRenderHardModeUnlocks)
+mod.AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, mod.OnMainMenuRenderHardModeUnlocks)
 
-function PibersMod:OnMarkGet(completionType, playerType)
+function mod.OnMarkGet(completionType, playerType)
 
 	if playerType then
 		local persistentGameData = Isaac.GetPersistentGameData()
@@ -125,8 +127,8 @@ function PibersMod:OnMarkGet(completionType, playerType)
 
 		-- moms heart
 		if completionType == CompletionType.MOMS_HEART or skipHardmodeCheck == true then
-			if completionMarks.MomsHeart >= 1 and (isHard == false or skipHardmodeCheck == true) and PibersMod.MomsHeartUnlocks[playerType] then
-				local hardModeUnlock = PibersMod.MomsHeartUnlocks[playerType]
+			if completionMarks.MomsHeart >= 1 and (isHard == false or skipHardmodeCheck == true) and mod.MomsHeartUnlocks[playerType] then
+				local hardModeUnlock = mod.MomsHeartUnlocks[playerType]
 
 				-- if it's only a single unlock
 				if type(hardModeUnlock) == "number" then
@@ -147,8 +149,8 @@ function PibersMod:OnMarkGet(completionType, playerType)
 
 		-- greed mode
 		if completionType == CompletionType.ULTRA_GREED or skipHardmodeCheck == true then
-			if completionMarks.UltraGreed >= 1 and (isHard == false or skipHardmodeCheck == true) and PibersMod.GreedierUnlocks[playerType] then
-				local hardModeUnlock = PibersMod.GreedierUnlocks[playerType]
+			if completionMarks.UltraGreed >= 1 and (isHard == false or skipHardmodeCheck == true) and mod.GreedierUnlocks[playerType] then
+				local hardModeUnlock = mod.GreedierUnlocks[playerType]
 
 				-- if it's only a single unlock
 				if type(hardModeUnlock) == "number" then
@@ -170,8 +172,8 @@ function PibersMod:OnMarkGet(completionType, playerType)
 		skipHardmodeCheck = false
 
 		-- all marks
-		if completionMarks.MomsHeart >= 1 and completionMarks.Isaac >= 1 and completionMarks.Satan >= 1 and completionMarks.BossRush >= 1 and completionMarks.BlueBaby >= 1 and completionMarks.Lamb >= 1 and completionMarks.MegaSatan >= 1 and completionMarks.UltraGreed >= 1 and completionMarks.Hush >= 1 and completionMarks.Delirium >= 1 and completionMarks.Mother >= 1 and completionMarks.Beast >= 1 and PibersMod.AllMarkUnlocks[completionMarks.PlayerType] then
-			local hardModeUnlock = PibersMod.AllMarkUnlocks[completionMarks.PlayerType]
+		if completionMarks.MomsHeart >= 1 and completionMarks.Isaac >= 1 and completionMarks.Satan >= 1 and completionMarks.BossRush >= 1 and completionMarks.BlueBaby >= 1 and completionMarks.Lamb >= 1 and completionMarks.MegaSatan >= 1 and completionMarks.UltraGreed >= 1 and completionMarks.Hush >= 1 and completionMarks.Delirium >= 1 and completionMarks.Mother >= 1 and completionMarks.Beast >= 1 and mod.AllMarkUnlocks[completionMarks.PlayerType] then
+			local hardModeUnlock = mod.AllMarkUnlocks[completionMarks.PlayerType]
 
 			-- if it's only a single unlock
 			if type(hardModeUnlock) == "number" then
@@ -190,9 +192,9 @@ function PibersMod:OnMarkGet(completionType, playerType)
 
 			-- all normal characters
 			local allCharsDone = true
-			for index=0, (#PibersMod.AllNormalPlayerTypes) do
-				if PibersMod.AllNormalPlayerTypes[index] then
-					local otherPlayerType = PibersMod.AllNormalPlayerTypes[index]
+			for index=0, (#mod.AllNormalPlayerTypes) do
+				if mod.AllNormalPlayerTypes[index] then
+					local otherPlayerType = mod.AllNormalPlayerTypes[index]
 					local otherCompletionMarks = Isaac.GetCompletionMarks(otherPlayerType)
 					if otherCompletionMarks.MomsHeart < 1 or otherCompletionMarks.Isaac < 1 or otherCompletionMarks.Satan < 1 or otherCompletionMarks.BossRush < 1 or otherCompletionMarks.BlueBaby < 1 or otherCompletionMarks.Lamb < 1 or otherCompletionMarks.MegaSatan < 1 or otherCompletionMarks.UltraGreed < 1 or otherCompletionMarks.Hush < 1 or otherCompletionMarks.Delirium < 1 or otherCompletionMarks.Mother < 1 or otherCompletionMarks.Beast < 1 then
 						allCharsDone = false
@@ -203,13 +205,13 @@ function PibersMod:OnMarkGet(completionType, playerType)
 
 			if allCharsDone then
 				-- unlock all character unlock
-				if persistentGameData:Unlocked(PibersMod.AllNormalPlayerTypesUnlock) == false then
-					persistentGameData:TryUnlock(PibersMod.AllNormalPlayerTypesUnlock, false)
+				if persistentGameData:Unlocked(mod.AllNormalPlayerTypesUnlock) == false then
+					persistentGameData:TryUnlock(mod.AllNormalPlayerTypesUnlock, false)
 				end
 				-- all tainted characters
 				local allTaintedDone = true
-				for index=0, (#PibersMod.AllTaintedPlayerTypes) do
-					local otherPlayerType = PibersMod.AllTaintedPlayerTypes[index]
+				for index=0, (#mod.AllTaintedPlayerTypes) do
+					local otherPlayerType = mod.AllTaintedPlayerTypes[index]
 					if otherPlayerType then
 						local otherCompletionMarks = Isaac.GetCompletionMarks(otherPlayerType)
 						if otherCompletionMarks.MomsHeart < 1 or otherCompletionMarks.Isaac < 1 or otherCompletionMarks.Satan < 1 or otherCompletionMarks.BossRush < 1 or otherCompletionMarks.BlueBaby < 1 or otherCompletionMarks.Lamb < 1 or otherCompletionMarks.MegaSatan < 1 or otherCompletionMarks.UltraGreed < 1 or otherCompletionMarks.Hush < 1 or otherCompletionMarks.Delirium < 1 or otherCompletionMarks.Mother < 1 or otherCompletionMarks.Beast < 1 then
@@ -219,8 +221,8 @@ function PibersMod:OnMarkGet(completionType, playerType)
 					end
 				end
 				if allTaintedDone then
-					if persistentGameData:Unlocked(PibersMod.AllNormalPlusTaintedPlayerTypesUnlock) == false then
-						persistentGameData:TryUnlock(PibersMod.AllNormalPlusTaintedPlayerTypesUnlock, false)
+					if persistentGameData:Unlocked(mod.AllNormalPlusTaintedPlayerTypesUnlock) == false then
+						persistentGameData:TryUnlock(mod.AllNormalPlusTaintedPlayerTypesUnlock, false)
 					end
 				end
 			end
@@ -229,4 +231,4 @@ function PibersMod:OnMarkGet(completionType, playerType)
 	end
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_COMPLETION_MARK_GET, PibersMod.OnMarkGet)
+mod.AddCallback(ModCallbacks.MC_POST_COMPLETION_MARK_GET, mod.OnMarkGet)

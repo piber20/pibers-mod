@@ -1,20 +1,22 @@
-PibersMod.MantleSprite = {}
-PibersMod.MantleSprite.Empty = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.Empty:Play("Empty")
-PibersMod.MantleSprite.Unknown = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.Unknown:Play("Unknown")
-PibersMod.MantleSprite.HolyMantle = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.HolyMantle:Play("HolyMantle")
-PibersMod.MantleSprite.WoodenCross = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.WoodenCross:Play("WoodenCross")
-PibersMod.MantleSprite.Blanket = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.Blanket:Play("Blanket")
-PibersMod.MantleSprite.HolyCard = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.HolyCard:Play("HolyCard")
-PibersMod.MantleSprite.Dogma = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
-PibersMod.MantleSprite.Dogma:Play("Dogma")
-PibersMod.MantleSprite.Dogma:SetRenderFlags(AnimRenderFlags.STATIC)
-function PibersMod:OnRenderHearts(offset, heartSprite, pos, scale, player)
+local mod = PibersMod
+
+mod.MantleSprite = {}
+mod.MantleSprite.Empty = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.Empty:Play("Empty")
+mod.MantleSprite.Unknown = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.Unknown:Play("Unknown")
+mod.MantleSprite.HolyMantle = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.HolyMantle:Play("HolyMantle")
+mod.MantleSprite.WoodenCross = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.WoodenCross:Play("WoodenCross")
+mod.MantleSprite.Blanket = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.Blanket:Play("Blanket")
+mod.MantleSprite.HolyCard = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.HolyCard:Play("HolyCard")
+mod.MantleSprite.Dogma = Sprite("gfx/ui/ui_hearts_mantle.anm2", true)
+mod.MantleSprite.Dogma:Play("Dogma")
+mod.MantleSprite.Dogma:SetRenderFlags(AnimRenderFlags.STATIC)
+function mod.OnRenderHearts(offset, heartSprite, pos, scale, player)
 
 	local game = Game()
 	local level = game:GetLevel()
@@ -47,19 +49,19 @@ function PibersMod:OnRenderHearts(offset, heartSprite, pos, scale, player)
 			end
 		end
 	end
-	PibersMod.RenderMantles(pos, currentMantles, doIndex, player, isLost, isForgotten)
+	mod.RenderMantles(pos, currentMantles, doIndex, player, isLost, isForgotten)
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, PibersMod.OnRenderHearts)
+mod.AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, mod.OnRenderHearts)
 
-function PibersMod.RenderMantles(pos, num, index, player, isLost, isForgotten)
+function mod.RenderMantles(pos, num, index, player, isLost, isForgotten)
 
 	local game = Game()
 	local room = game:GetRoom()
 	local level = game:GetLevel()
 	local roomType = room:GetType()
-	local floorSave = PibersMod.SaveManager.GetFloorSave(player)
-	local tempSave = PibersMod.SaveManager.GetTempSave(player)
+	local floorSave = mod.SaveManager.GetFloorSave(player)
+	local tempSave = mod.SaveManager.GetTempSave(player)
 	local gameData = Isaac.GetPersistentGameData()
 
 	local heldDogma = 0
@@ -95,11 +97,11 @@ function PibersMod.RenderMantles(pos, num, index, player, isLost, isForgotten)
 	end
 
 	if level:GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN > 0 then
-		local data = PibersMod.GetData(player)
+		local data = mod.GetData(player)
 		data.MostMantlesInRoom = data.MostMantlesInRoom or 0
 		if data.MostMantlesInRoom > 0 or heldDogma > 0 or heldMantles > 0 or heldBlankets > 0 or heldCross > 0 or num > 0 then
 			local mantlePos = pos+Vector((index)*12,0)
-			PibersMod.MantleSprite.Unknown:RenderLayer(0, mantlePos)
+			mod.MantleSprite.Unknown:RenderLayer(0, mantlePos)
 		end
 	else
 		local rowSize = 6
@@ -117,25 +119,25 @@ function PibersMod.RenderMantles(pos, num, index, player, isLost, isForgotten)
 				mantlePos = pos+Vector((index+displayIndex)*12,0)
 			end
 			if mantleIndex > num then
-				PibersMod.MantleSprite.Empty:RenderLayer(1, mantlePos)
+				mod.MantleSprite.Empty:RenderLayer(1, mantlePos)
 			else
 				if dogmaCounter < heldDogma then
 					dogmaCounter = dogmaCounter + 1
-					PibersMod.MantleSprite.Dogma:RenderLayer(1, mantlePos)
+					mod.MantleSprite.Dogma:RenderLayer(1, mantlePos)
 				elseif holyCardCounter < suspectedHolyCards then
 					holyCardCounter = holyCardCounter + 1
-					PibersMod.MantleSprite.HolyCard:RenderLayer(1, mantlePos)
+					mod.MantleSprite.HolyCard:RenderLayer(1, mantlePos)
 				elseif mantleCounter < heldMantles then
 					mantleCounter = mantleCounter + 1
-					PibersMod.MantleSprite.HolyMantle:RenderLayer(1, mantlePos)
+					mod.MantleSprite.HolyMantle:RenderLayer(1, mantlePos)
 				elseif blanketCounter < heldBlankets then
 					blanketCounter = blanketCounter + 1
-					PibersMod.MantleSprite.Blanket:RenderLayer(1, mantlePos)
+					mod.MantleSprite.Blanket:RenderLayer(1, mantlePos)
 				elseif crossCounter < heldCross then
 					crossCounter = crossCounter + 1
-					PibersMod.MantleSprite.WoodenCross:RenderLayer(1, mantlePos)
+					mod.MantleSprite.WoodenCross:RenderLayer(1, mantlePos)
 				else
-					PibersMod.MantleSprite.HolyMantle:RenderLayer(1, mantlePos)
+					mod.MantleSprite.HolyMantle:RenderLayer(1, mantlePos)
 				end
 			end
 		end
@@ -154,54 +156,54 @@ function PibersMod.RenderMantles(pos, num, index, player, isLost, isForgotten)
 			if isForgotten then
 				mantlePos = pos+Vector((index+displayIndex)*12,0)
 			end
-			PibersMod.MantleSprite.Empty:RenderLayer(0, mantlePos)
+			mod.MantleSprite.Empty:RenderLayer(0, mantlePos)
 			if mantleIndex <= num then
 				if dogmaCounter < heldDogma then
 					dogmaCounter = dogmaCounter + 1
-					PibersMod.MantleSprite.Dogma:RenderLayer(0, mantlePos)
+					mod.MantleSprite.Dogma:RenderLayer(0, mantlePos)
 				elseif holyCardCounter < suspectedHolyCards then
 					holyCardCounter = holyCardCounter + 1
-					PibersMod.MantleSprite.HolyCard:RenderLayer(0, mantlePos)
+					mod.MantleSprite.HolyCard:RenderLayer(0, mantlePos)
 				elseif mantleCounter < heldMantles then
 					mantleCounter = mantleCounter + 1
-					PibersMod.MantleSprite.HolyMantle:RenderLayer(0, mantlePos)
+					mod.MantleSprite.HolyMantle:RenderLayer(0, mantlePos)
 				elseif blanketCounter < heldBlankets then
 					blanketCounter = blanketCounter + 1
-					PibersMod.MantleSprite.Blanket:RenderLayer(0, mantlePos)
+					mod.MantleSprite.Blanket:RenderLayer(0, mantlePos)
 				elseif crossCounter < heldCross then
 					crossCounter = crossCounter + 1
-					PibersMod.MantleSprite.WoodenCross:RenderLayer(0, mantlePos)
+					mod.MantleSprite.WoodenCross:RenderLayer(0, mantlePos)
 				else
-					PibersMod.MantleSprite.HolyMantle:RenderLayer(0, mantlePos)
+					mod.MantleSprite.HolyMantle:RenderLayer(0, mantlePos)
 				end
 			end
 		end
 	end
 end
 
-PibersMod.Player1HeartOffset = Vector(68,30)
-function PibersMod:OnRenderHud()
+mod.Player1HeartOffset = Vector(68,30)
+function mod.OnRenderHud()
 	if Isaac.GetFrameCount() % 2 == 0 then
-		PibersMod.MantleSprite.Empty:Update()
-		PibersMod.MantleSprite.HolyMantle:Update()
-		PibersMod.MantleSprite.WoodenCross:Update()
-		PibersMod.MantleSprite.Blanket:Update()
-		PibersMod.MantleSprite.HolyCard:Update()
-		PibersMod.MantleSprite.Dogma:Update()
+		mod.MantleSprite.Empty:Update()
+		mod.MantleSprite.HolyMantle:Update()
+		mod.MantleSprite.WoodenCross:Update()
+		mod.MantleSprite.Blanket:Update()
+		mod.MantleSprite.HolyCard:Update()
+		mod.MantleSprite.Dogma:Update()
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_HUD_RENDER, PibersMod.OnRenderHud)
+mod.AddCallback(ModCallbacks.MC_POST_HUD_RENDER, mod.OnRenderHud)
 
-function PibersMod:OnPlayerUpdateMantles(player)
+function mod.OnPlayerUpdateMantles(player)
 
 	local game = Game()
 	local effects = player:GetEffects()
-	local playerData = PibersMod.GetData(player)
+	local playerData = mod.GetData(player)
 	local room = game:GetRoom()
 	local roomType = room:GetType()
 
-	local floorSave = PibersMod.SaveManager.GetFloorSave(player)
-	local tempSave = PibersMod.SaveManager.GetTempSave(player)
+	local floorSave = mod.SaveManager.GetFloorSave(player)
+	local tempSave = mod.SaveManager.GetTempSave(player)
 	local currentMantles = effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 	playerData.preDMGMantles = playerData.preDMGMantles or currentMantles
 
@@ -251,7 +253,7 @@ function PibersMod:OnPlayerUpdateMantles(player)
 			floorSave.takenHolyDamage = true
 		end
 		for i=1, player:GetCollectibleNum(CollectibleType.BLOODY_FEATHER) do
-			PibersMod.BloodyFeatherEffect(player)
+			mod.BloodyFeatherEffect(player)
 		end
 		playerData.preDMGMantles = currentMantles
 	end
@@ -259,18 +261,18 @@ function PibersMod:OnPlayerUpdateMantles(player)
 	playerData.MostMantlesInRoom = math.max(playerData.MostMantlesInRoom,player:GetCollectibleNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false))
 
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, PibersMod.OnPlayerUpdateMantles)
+mod.AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnPlayerUpdateMantles)
 
-function PibersMod:PrePlayerTakeDMGMantles(player, amount, flags, source, cooldown)
+function mod.PrePlayerTakeDMGMantles(player, amount, flags, source, cooldown)
 	local effects = player:GetEffects()
 	local currentMantles = effects:GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-	local playerData = PibersMod.GetData(player)
+	local playerData = mod.GetData(player)
 	playerData.preDMGMantles = currentMantles
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, PibersMod.PrePlayerTakeDMGMantles)
+mod.AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, mod.PrePlayerTakeDMGMantles)
 
-function PibersMod:OnHolyCardUse(cardType, player, useFlags)
-	local floorSave = PibersMod.SaveManager.GetFloorSave(player)
+function mod.OnHolyCardUse(cardType, player, useFlags)
+	local floorSave = mod.SaveManager.GetFloorSave(player)
 	floorSave.HolyCards = floorSave.HolyCards or 0
 	floorSave.HolyCards = floorSave.HolyCards + 1
 	if floorSave.HolyCards > 1 or (player:HasTrinket(TrinketType.TRINKET_WOODEN_CROSS) and not floorSave.takenCrossDamage) then
@@ -278,4 +280,4 @@ function PibersMod:OnHolyCardUse(cardType, player, useFlags)
 		effects:AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, 1)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_USE_CARD, PibersMod.OnHolyCardUse, Card.CARD_HOLY)
+mod.AddCallback(ModCallbacks.MC_USE_CARD, mod.OnHolyCardUse, Card.CARD_HOLY)

@@ -1,107 +1,109 @@
+local mod = PibersMod
+
 local lastRoomTransMode = false
-PibersMod.BossChampionNames = {}
-PibersMod.BossChampionNames[BossType.LARRY_JR] = {}
-PibersMod.BossChampionNames[BossType.LARRY_JR][0] = "gush_green"
-PibersMod.BossChampionNames[BossType.LARRY_JR][1] = "tanky_blue"
-PibersMod.BossChampionNames[BossType.THE_HOLLOW] = {}
-PibersMod.BossChampionNames[BossType.THE_HOLLOW][0] = "gush_green"
-PibersMod.BossChampionNames[BossType.THE_HOLLOW][1] = "boom"
-PibersMod.BossChampionNames[BossType.THE_HOLLOW][2] = "gilded"
-PibersMod.BossChampionNames[BossType.MONSTRO] = {}
-PibersMod.BossChampionNames[BossType.MONSTRO][0] = "duplo_red"
-PibersMod.BossChampionNames[BossType.MONSTRO][1] = "tanky_black"
-PibersMod.BossChampionNames[BossType.CHUB] = {}
-PibersMod.BossChampionNames[BossType.CHUB][0] = "tanky_blue"
-PibersMod.BossChampionNames[BossType.CHUB][1] = "orange"
-PibersMod.BossChampionNames[BossType.THE_CARRION_QUEEN] = {}
-PibersMod.BossChampionNames[BossType.THE_CARRION_QUEEN][0] = "tanky_pink"
-PibersMod.BossChampionNames[BossType.GURDY] = {}
-PibersMod.BossChampionNames[BossType.GURDY][0] = "green"
-PibersMod.BossChampionNames[BossType.MONSTRO_2] = {}
-PibersMod.BossChampionNames[BossType.MONSTRO_2][0] = "red"
-PibersMod.BossChampionNames[BossType.MOM] = {}
-PibersMod.BossChampionNames[BossType.MOM][0] = "tanky_blue"
-PibersMod.BossChampionNames[BossType.MOM][1] = "red"
-PibersMod.BossChampionNames[BossType.PIN] = {}
-PibersMod.BossChampionNames[BossType.PIN][0] = "tanky_black"
-PibersMod.BossChampionNames[BossType.FAMINE] = {}
-PibersMod.BossChampionNames[BossType.FAMINE][0] = "blue"
-PibersMod.BossChampionNames[BossType.PESTILENCE] = {}
-PibersMod.BossChampionNames[BossType.PESTILENCE][0] = "infested"
-PibersMod.BossChampionNames[BossType.WAR] = {}
-PibersMod.BossChampionNames[BossType.WAR][0] = "tanky_black"
-PibersMod.BossChampionNames[BossType.DEATH] = {}
-PibersMod.BossChampionNames[BossType.DEATH][0] = "tanky_black"
-PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES] = {}
-PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES][0] = "gush_green"
-PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES][1] = "tanky_orange"
-PibersMod.BossChampionNames[BossType.DUKE_OF_FLIES][BossColors.DUKE_ETERNAL] = "dry"
-PibersMod.BossChampionNames[BossType.THE_HUSK] = {}
-PibersMod.BossChampionNames[BossType.THE_HUSK][0] = "boom"
-PibersMod.BossChampionNames[BossType.THE_HUSK][1] = "gush_red"
-PibersMod.BossChampionNames[BossType.PEEP] = {}
-PibersMod.BossChampionNames[BossType.PEEP][0] = "yellow"
-PibersMod.BossChampionNames[BossType.PEEP][1] = "cyan"
-PibersMod.BossChampionNames[BossType.THE_BLOAT] = {}
-PibersMod.BossChampionNames[BossType.THE_BLOAT][0] = "green"
-PibersMod.BossChampionNames[BossType.FISTULA] = {}
-PibersMod.BossChampionNames[BossType.FISTULA][0] = "boom"
-PibersMod.BossChampionNames[BossType.GEMINI] = {}
-PibersMod.BossChampionNames[BossType.GEMINI][0] = "green"
-PibersMod.BossChampionNames[BossType.GEMINI][1] = "blue"
-PibersMod.BossChampionNames[BossType.GEMINI][BossColors.GEMINI_STEVEN] = "black"
-PibersMod.BossChampionNames[BossType.MASK_OF_INFAMY] = {}
-PibersMod.BossChampionNames[BossType.MASK_OF_INFAMY][0] = "tanky_black"
-PibersMod.BossChampionNames[BossType.GURDY_JR] = {}
-PibersMod.BossChampionNames[BossType.GURDY_JR][0] = "duplo_blue"
-PibersMod.BossChampionNames[BossType.GURDY_JR][1] = "tanky_yellow"
-PibersMod.BossChampionNames[BossType.WIDOW] = {}
-PibersMod.BossChampionNames[BossType.WIDOW][0] = "black"
-PibersMod.BossChampionNames[BossType.WIDOW][1] = "pink"
-PibersMod.BossChampionNames[BossType.GURGLINGS] = {}
-PibersMod.BossChampionNames[BossType.GURGLINGS][0] = "triplo_yellow"
-PibersMod.BossChampionNames[BossType.GURGLINGS][1] = "boom"
-PibersMod.BossChampionNames[BossType.THE_HAUNT] = {}
-PibersMod.BossChampionNames[BossType.THE_HAUNT][0] = "infested"
-PibersMod.BossChampionNames[BossType.THE_HAUNT][1] = "gush_pink"
-PibersMod.BossChampionNames[BossType.DINGLE] = {}
-PibersMod.BossChampionNames[BossType.DINGLE][0] = "red"
-PibersMod.BossChampionNames[BossType.DINGLE][1] = "infested"
-PibersMod.BossChampionNames[BossType.MEGA_MAW] = {}
-PibersMod.BossChampionNames[BossType.MEGA_MAW][0] = "gush_red"
-PibersMod.BossChampionNames[BossType.MEGA_MAW][1] = "infested"
-PibersMod.BossChampionNames[BossType.THE_GATE] = {}
-PibersMod.BossChampionNames[BossType.THE_GATE][0] = "gush_red"
-PibersMod.BossChampionNames[BossType.THE_GATE][1] = "tanky_black"
-PibersMod.BossChampionNames[BossType.MEGA_FATTY] = {}
-PibersMod.BossChampionNames[BossType.MEGA_FATTY][0] = "gush_red"
-PibersMod.BossChampionNames[BossType.MEGA_FATTY][1] = "brown"
-PibersMod.BossChampionNames[BossType.THE_CAGE] = {}
-PibersMod.BossChampionNames[BossType.THE_CAGE][0] = "green"
-PibersMod.BossChampionNames[BossType.THE_CAGE][1] = "pink"
-PibersMod.BossChampionNames[BossType.POLYCEPHALUS] = {}
-PibersMod.BossChampionNames[BossType.POLYCEPHALUS][0] = "red"
-PibersMod.BossChampionNames[BossType.POLYCEPHALUS][1] = "pink"
-PibersMod.BossChampionNames[BossType.LITTLE_HORN] = {}
-PibersMod.BossChampionNames[BossType.LITTLE_HORN][0] = "flaming"
-PibersMod.BossChampionNames[BossType.LITTLE_HORN][1] = "dark"
-PibersMod.BossChampionNames[BossType.RAG_MAN] = {}
-PibersMod.BossChampionNames[BossType.RAG_MAN][0] = "red"
-PibersMod.BossChampionNames[BossType.RAG_MAN][1] = "infested"
-PibersMod.BossChampionNames[BossType.THE_FRAIL] = {}
-PibersMod.BossChampionNames[BossType.THE_FRAIL][0] = "black"
-PibersMod.BossChampionNames[BossType.BROWNIE] = {}
-PibersMod.BossChampionNames[BossType.BROWNIE][0] = "infested"
-PibersMod.BossChampionNames[BossType.THE_STAIN] = {}
-PibersMod.BossChampionNames[BossType.THE_STAIN][0] = "grey"
-PibersMod.BossChampionNames[BossType.THE_FORSAKEN] = {}
-PibersMod.BossChampionNames[BossType.THE_FORSAKEN][0] = "boom"
-PibersMod.BossChampionNames[BossType.SCOLEX] = {}
-PibersMod.BossChampionNames[BossType.SCOLEX][BossColors.SCOLEX_BLACK] = "tanky_black"
-PibersMod.BossChampionPortraits = {}
-PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
-PibersMod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
-function PibersMod:onRenderBossIntro()
+mod.BossChampionNames = {}
+mod.BossChampionNames[BossType.LARRY_JR] = {}
+mod.BossChampionNames[BossType.LARRY_JR][0] = "gush_green"
+mod.BossChampionNames[BossType.LARRY_JR][1] = "tanky_blue"
+mod.BossChampionNames[BossType.THE_HOLLOW] = {}
+mod.BossChampionNames[BossType.THE_HOLLOW][0] = "gush_green"
+mod.BossChampionNames[BossType.THE_HOLLOW][1] = "boom"
+mod.BossChampionNames[BossType.THE_HOLLOW][2] = "gilded"
+mod.BossChampionNames[BossType.MONSTRO] = {}
+mod.BossChampionNames[BossType.MONSTRO][0] = "duplo_red"
+mod.BossChampionNames[BossType.MONSTRO][1] = "tanky_black"
+mod.BossChampionNames[BossType.CHUB] = {}
+mod.BossChampionNames[BossType.CHUB][0] = "tanky_blue"
+mod.BossChampionNames[BossType.CHUB][1] = "orange"
+mod.BossChampionNames[BossType.THE_CARRION_QUEEN] = {}
+mod.BossChampionNames[BossType.THE_CARRION_QUEEN][0] = "tanky_pink"
+mod.BossChampionNames[BossType.GURDY] = {}
+mod.BossChampionNames[BossType.GURDY][0] = "green"
+mod.BossChampionNames[BossType.MONSTRO_2] = {}
+mod.BossChampionNames[BossType.MONSTRO_2][0] = "red"
+mod.BossChampionNames[BossType.MOM] = {}
+mod.BossChampionNames[BossType.MOM][0] = "tanky_blue"
+mod.BossChampionNames[BossType.MOM][1] = "red"
+mod.BossChampionNames[BossType.PIN] = {}
+mod.BossChampionNames[BossType.PIN][0] = "tanky_black"
+mod.BossChampionNames[BossType.FAMINE] = {}
+mod.BossChampionNames[BossType.FAMINE][0] = "blue"
+mod.BossChampionNames[BossType.PESTILENCE] = {}
+mod.BossChampionNames[BossType.PESTILENCE][0] = "infested"
+mod.BossChampionNames[BossType.WAR] = {}
+mod.BossChampionNames[BossType.WAR][0] = "tanky_black"
+mod.BossChampionNames[BossType.DEATH] = {}
+mod.BossChampionNames[BossType.DEATH][0] = "tanky_black"
+mod.BossChampionNames[BossType.DUKE_OF_FLIES] = {}
+mod.BossChampionNames[BossType.DUKE_OF_FLIES][0] = "gush_green"
+mod.BossChampionNames[BossType.DUKE_OF_FLIES][1] = "tanky_orange"
+mod.BossChampionNames[BossType.DUKE_OF_FLIES][BossColors.DUKE_ETERNAL] = "dry"
+mod.BossChampionNames[BossType.THE_HUSK] = {}
+mod.BossChampionNames[BossType.THE_HUSK][0] = "boom"
+mod.BossChampionNames[BossType.THE_HUSK][1] = "gush_red"
+mod.BossChampionNames[BossType.PEEP] = {}
+mod.BossChampionNames[BossType.PEEP][0] = "yellow"
+mod.BossChampionNames[BossType.PEEP][1] = "cyan"
+mod.BossChampionNames[BossType.THE_BLOAT] = {}
+mod.BossChampionNames[BossType.THE_BLOAT][0] = "green"
+mod.BossChampionNames[BossType.FISTULA] = {}
+mod.BossChampionNames[BossType.FISTULA][0] = "boom"
+mod.BossChampionNames[BossType.GEMINI] = {}
+mod.BossChampionNames[BossType.GEMINI][0] = "green"
+mod.BossChampionNames[BossType.GEMINI][1] = "blue"
+mod.BossChampionNames[BossType.GEMINI][BossColors.GEMINI_STEVEN] = "black"
+mod.BossChampionNames[BossType.MASK_OF_INFAMY] = {}
+mod.BossChampionNames[BossType.MASK_OF_INFAMY][0] = "tanky_black"
+mod.BossChampionNames[BossType.GURDY_JR] = {}
+mod.BossChampionNames[BossType.GURDY_JR][0] = "duplo_blue"
+mod.BossChampionNames[BossType.GURDY_JR][1] = "tanky_yellow"
+mod.BossChampionNames[BossType.WIDOW] = {}
+mod.BossChampionNames[BossType.WIDOW][0] = "black"
+mod.BossChampionNames[BossType.WIDOW][1] = "pink"
+mod.BossChampionNames[BossType.GURGLINGS] = {}
+mod.BossChampionNames[BossType.GURGLINGS][0] = "triplo_yellow"
+mod.BossChampionNames[BossType.GURGLINGS][1] = "boom"
+mod.BossChampionNames[BossType.THE_HAUNT] = {}
+mod.BossChampionNames[BossType.THE_HAUNT][0] = "infested"
+mod.BossChampionNames[BossType.THE_HAUNT][1] = "gush_pink"
+mod.BossChampionNames[BossType.DINGLE] = {}
+mod.BossChampionNames[BossType.DINGLE][0] = "red"
+mod.BossChampionNames[BossType.DINGLE][1] = "infested"
+mod.BossChampionNames[BossType.MEGA_MAW] = {}
+mod.BossChampionNames[BossType.MEGA_MAW][0] = "gush_red"
+mod.BossChampionNames[BossType.MEGA_MAW][1] = "infested"
+mod.BossChampionNames[BossType.THE_GATE] = {}
+mod.BossChampionNames[BossType.THE_GATE][0] = "gush_red"
+mod.BossChampionNames[BossType.THE_GATE][1] = "tanky_black"
+mod.BossChampionNames[BossType.MEGA_FATTY] = {}
+mod.BossChampionNames[BossType.MEGA_FATTY][0] = "gush_red"
+mod.BossChampionNames[BossType.MEGA_FATTY][1] = "brown"
+mod.BossChampionNames[BossType.THE_CAGE] = {}
+mod.BossChampionNames[BossType.THE_CAGE][0] = "green"
+mod.BossChampionNames[BossType.THE_CAGE][1] = "pink"
+mod.BossChampionNames[BossType.POLYCEPHALUS] = {}
+mod.BossChampionNames[BossType.POLYCEPHALUS][0] = "red"
+mod.BossChampionNames[BossType.POLYCEPHALUS][1] = "pink"
+mod.BossChampionNames[BossType.LITTLE_HORN] = {}
+mod.BossChampionNames[BossType.LITTLE_HORN][0] = "flaming"
+mod.BossChampionNames[BossType.LITTLE_HORN][1] = "dark"
+mod.BossChampionNames[BossType.RAG_MAN] = {}
+mod.BossChampionNames[BossType.RAG_MAN][0] = "red"
+mod.BossChampionNames[BossType.RAG_MAN][1] = "infested"
+mod.BossChampionNames[BossType.THE_FRAIL] = {}
+mod.BossChampionNames[BossType.THE_FRAIL][0] = "black"
+mod.BossChampionNames[BossType.BROWNIE] = {}
+mod.BossChampionNames[BossType.BROWNIE][0] = "infested"
+mod.BossChampionNames[BossType.THE_STAIN] = {}
+mod.BossChampionNames[BossType.THE_STAIN][0] = "grey"
+mod.BossChampionNames[BossType.THE_FORSAKEN] = {}
+mod.BossChampionNames[BossType.THE_FORSAKEN][0] = "boom"
+mod.BossChampionNames[BossType.SCOLEX] = {}
+mod.BossChampionNames[BossType.SCOLEX][BossColors.SCOLEX_BLACK] = "tanky_black"
+mod.BossChampionPortraits = {}
+mod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
+mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
+function mod.onRenderBossIntro()
 	local isRendering = RoomTransition.IsRenderingBossIntro()
 	if isRendering and not lastRoomTransMode then
 		local game = Game()
@@ -120,14 +122,14 @@ function PibersMod:onRenderBossIntro()
 		local sprite = RoomTransition.GetVersusScreenSprite()
 		if likelyBossColor == -1 then
 			sprite:ReplaceSpritesheet(24, "blank.png", true)
-		elseif PibersMod.BossChampionNames[likelyBossID] and PibersMod.BossChampionNames[likelyBossID][likelyBossColor] then
-			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
-			if PibersMod.BossChampionPortraits[likelyBossID] and PibersMod.BossChampionPortraits[likelyBossID][likelyBossColor] then
+		elseif mod.BossChampionNames[likelyBossID] and mod.BossChampionNames[likelyBossID][likelyBossColor] then
+			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+			if mod.BossChampionPortraits[likelyBossID] and mod.BossChampionPortraits[likelyBossID][likelyBossColor] then
 				local bosssheet = XMLData.GetEntryById(XMLNode.BOSSPORTRAIT, likelyBossID)
 				if bosssheet and type(bosssheet) == "string" then
 					print(bosssheet)
-					sprite:ReplaceSpritesheet(4, bosssheet .. "_" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
-					sprite:ReplaceSpritesheet(13, bosssheet .. "_" .. tostring(PibersMod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+					sprite:ReplaceSpritesheet(4, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
+					sprite:ReplaceSpritesheet(13, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
 				end
 			end
 		else
@@ -136,17 +138,17 @@ function PibersMod:onRenderBossIntro()
 	end
 	lastRoomTransMode = isRendering
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_RENDER, PibersMod.onRenderBossIntro)
+mod.AddCallback(ModCallbacks.MC_POST_RENDER, mod.onRenderBossIntro)
 
-function PibersMod:PreEntityTakeDMGVanillaBosses(entity, amount, flags, source, cooldown)
+function mod.PreEntityTakeDMGVanillaBosses(entity, amount, flags, source, cooldown)
 	local ignoresArmor = flags & DamageFlag.DAMAGE_IGNORE_ARMOR > 0
 	if not ignoresArmor then
 		return {DamageFlags = flags | DamageFlag.DAMAGE_IGNORE_ARMOR}
 	end
 end
-PibersMod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, PibersMod.PreEntityTakeDMGVanillaBosses)
+mod.AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, mod.PreEntityTakeDMGVanillaBosses)
 
-function PibersMod:onGeminiUpdate(npc)
+function mod.onGeminiUpdate(npc)
 	if npc.ChildNPC then
 		if npc.ChildNPC.Variant ~= npc.Variant+10 or npc.ChildNPC.SubType ~= npc.SubType then
 			npc.ChildNPC:Morph(EntityType.ENTITY_GEMINI, npc.Variant+10, npc.SubType, npc:GetChampionColorIdx())
@@ -174,10 +176,10 @@ function PibersMod:onGeminiUpdate(npc)
 		npc:Remove()
 	end
 	if (npc.Variant == GeminiVariant.STEVEN and bossColor ~= BossColors.GEMINI_STEVEN) or (npc.Variant == GeminiVariant.STEVEN_BABY and bossColor ~= BossColors.GEMINI_STEVEN_BABY) then
-		local runSave = PibersMod.SaveManager.GetRunSave()
+		local runSave = mod.SaveManager.GetRunSave()
 		if not runSave.EncounteredSteven then
 			runSave.EncounteredSteven = true
-			runSave.Weirdness = runSave.Weirdness or PibersMod.StartingWeirdness
+			runSave.Weirdness = runSave.Weirdness or mod.StartingWeirdness
 			runSave.Weirdness = runSave.Weirdness + 15
 		end
 		if HPBars and HPBars.BossDefinitions then
@@ -190,9 +192,9 @@ function PibersMod:onGeminiUpdate(npc)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onGeminiUpdate, EntityType.ENTITY_GEMINI)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onGeminiUpdate, EntityType.ENTITY_GEMINI)
 
-function PibersMod:preGeminiUpdate(npc)
+function mod.preGeminiUpdate(npc)
 	if npc.Variant == GeminiVariant.STEVEN_BABY and npc.SubType == 0 then
 		local sprite = npc:GetSprite()
 		if sprite:IsPlaying("Rage") then
@@ -207,25 +209,25 @@ function PibersMod:preGeminiUpdate(npc)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, PibersMod.preGeminiUpdate, EntityType.ENTITY_GEMINI)
+mod.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, mod.preGeminiUpdate, EntityType.ENTITY_GEMINI)
 
-PibersMod.StevenBabyOffsetL = Vector(32,-2)
-PibersMod.StevenBabyOffsetR = Vector(-32,-2)
-function PibersMod:onGeminiRender(npc, offset)
+mod.StevenBabyOffsetL = Vector(32,-2)
+mod.StevenBabyOffsetR = Vector(-32,-2)
+function mod.onGeminiRender(npc, offset)
 	if npc.Variant == GeminiVariant.STEVEN and npc.SubType == 0 and npc.ChildNPC and npc.HitPoints >= 60 then
 		local flipx = npc:GetSprite().FlipX == true or npc.FlipX == true
 		if flipx then
-			npc.ChildNPC.Position = npc.Position + PibersMod.StevenBabyOffsetL
+			npc.ChildNPC.Position = npc.Position + mod.StevenBabyOffsetL
 		else
-			npc.ChildNPC.Position = npc.Position + PibersMod.StevenBabyOffsetR
+			npc.ChildNPC.Position = npc.Position + mod.StevenBabyOffsetR
 		end
 		npc.ChildNPC.Velocity = npc.Velocity
 		npc.ChildNPC.DepthOffset = 10
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, PibersMod.onGeminiRender, EntityType.ENTITY_GEMINI)
+mod.AddCallback(ModCallbacks.MC_POST_NPC_RENDER, mod.onGeminiRender, EntityType.ENTITY_GEMINI)
 
-function PibersMod:onStevenProjectileUpdate(proj)
+function mod.onStevenProjectileUpdate(proj)
 	if proj.SpawnerEntity and proj.SpawnerEntity:ToNPC() then
 		if proj.SpawnerEntity.Type == EntityType.ENTITY_GEMINI then
 			local spawnerBossColor = proj.SpawnerEntity:ToNPC():GetBossColorIdx()
@@ -245,40 +247,40 @@ function PibersMod:onStevenProjectileUpdate(proj)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, PibersMod.onStevenProjectileUpdate, ProjectileVariant.PROJECTILE_FCUK)
+mod.AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, mod.onStevenProjectileUpdate, ProjectileVariant.PROJECTILE_FCUK)
 
-PibersMod.StartingWeirdness = 5
-PibersMod.DontReplaceBosses = {}
-PibersMod.DontReplaceBosses[BossType.MOM] = true
-PibersMod.DontReplaceBosses[BossType.MOMS_HEART] = true
-PibersMod.DontReplaceBosses[BossType.FAMINE] = true
-PibersMod.DontReplaceBosses[BossType.PESTILENCE] = true
-PibersMod.DontReplaceBosses[BossType.WAR] = true
-PibersMod.DontReplaceBosses[BossType.DEATH] = true
-PibersMod.DontReplaceBosses[BossType.STEVEN] = true
-PibersMod.DontReplaceBosses[BossType.HEADLESS_HORSEMAN] = true
-PibersMod.DontReplaceBosses[BossType.THE_FALLEN] = true
-PibersMod.DontReplaceBosses[BossType.SATAN] = true
-PibersMod.DontReplaceBosses[BossType.IT_LIVES] = true
-PibersMod.DontReplaceBosses[BossType.CONQUEST] = true
-PibersMod.DontReplaceBosses[BossType.ISAAC] = true
-PibersMod.DontReplaceBosses[BossType.BLUE_BABY] = true
-PibersMod.DontReplaceBosses[BossType.THE_LAMB] = true
-PibersMod.DontReplaceBosses[BossType.MEGA_SATAN] = true
-PibersMod.DontReplaceBosses[BossType.ULTRA_GREED] = true
-PibersMod.DontReplaceBosses[BossType.HUSH] = true
-PibersMod.DontReplaceBosses[BossType.DELIRIUM] = true
-PibersMod.DontReplaceBosses[BossType.ULTRA_GREEDIER] = true
-PibersMod.DontReplaceBosses[BossType.MOTHER] = true
-PibersMod.DontReplaceBosses[BossType.MOM_MAUSOLEUM] = true
-PibersMod.DontReplaceBosses[BossType.MOMS_HEART_MAUSOLEUM] = true
-PibersMod.DontReplaceBosses[BossType.DOGMA] = true
-PibersMod.DontReplaceBosses[BossType.THE_BEAST] = true
-function PibersMod:preBossSelect(bossType, bossPool, stage, stagetype)
-	if not PibersMod.DontReplaceBosses[bossType] then
-		local runSave = PibersMod.SaveManager.GetRunSave()
+mod.StartingWeirdness = 5
+mod.DontReplaceBosses = {}
+mod.DontReplaceBosses[BossType.MOM] = true
+mod.DontReplaceBosses[BossType.MOMS_HEART] = true
+mod.DontReplaceBosses[BossType.FAMINE] = true
+mod.DontReplaceBosses[BossType.PESTILENCE] = true
+mod.DontReplaceBosses[BossType.WAR] = true
+mod.DontReplaceBosses[BossType.DEATH] = true
+mod.DontReplaceBosses[BossType.STEVEN] = true
+mod.DontReplaceBosses[BossType.HEADLESS_HORSEMAN] = true
+mod.DontReplaceBosses[BossType.THE_FALLEN] = true
+mod.DontReplaceBosses[BossType.SATAN] = true
+mod.DontReplaceBosses[BossType.IT_LIVES] = true
+mod.DontReplaceBosses[BossType.CONQUEST] = true
+mod.DontReplaceBosses[BossType.ISAAC] = true
+mod.DontReplaceBosses[BossType.BLUE_BABY] = true
+mod.DontReplaceBosses[BossType.THE_LAMB] = true
+mod.DontReplaceBosses[BossType.MEGA_SATAN] = true
+mod.DontReplaceBosses[BossType.ULTRA_GREED] = true
+mod.DontReplaceBosses[BossType.HUSH] = true
+mod.DontReplaceBosses[BossType.DELIRIUM] = true
+mod.DontReplaceBosses[BossType.ULTRA_GREEDIER] = true
+mod.DontReplaceBosses[BossType.MOTHER] = true
+mod.DontReplaceBosses[BossType.MOM_MAUSOLEUM] = true
+mod.DontReplaceBosses[BossType.MOMS_HEART_MAUSOLEUM] = true
+mod.DontReplaceBosses[BossType.DOGMA] = true
+mod.DontReplaceBosses[BossType.THE_BEAST] = true
+function mod.preBossSelect(bossType, bossPool, stage, stagetype)
+	if not mod.DontReplaceBosses[bossType] then
+		local runSave = mod.SaveManager.GetRunSave()
 		if not runSave.EncounteredSteven then
-			runSave.Weirdness = runSave.Weirdness or PibersMod.StartingWeirdness --might use weirdness for other things
+			runSave.Weirdness = runSave.Weirdness or mod.StartingWeirdness --might use weirdness for other things
 			local bossRNG = bossPool:GetRNG()
 			if bossRNG:RandomInt(1, 100) <= runSave.Weirdness then
 				return BossType.STEVEN
@@ -286,164 +288,164 @@ function PibersMod:preBossSelect(bossType, bossPool, stage, stagetype)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_BOSS_SELECT, PibersMod.preBossSelect)
+mod.AddCallback(ModCallbacks.MC_PRE_BOSS_SELECT, mod.preBossSelect)
 
-function PibersMod:onBlastocystBigUpdate(npc)
+function mod.onBlastocystBigUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Walk") and sprite:IsEventTriggered("Land") then
-		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.GROUND_FOREGROUND, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.GROUND_FOREGROUND, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 		local poofSprite = poof:GetSprite()
-		poofSprite.Offset = -PibersMod.PickupPoofOffset
+		poofSprite.Offset = -mod.PickupPoofOffset
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onBlastocystBigUpdate, EntityType.ENTITY_BLASTOCYST_BIG)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onBlastocystBigUpdate, EntityType.ENTITY_BLASTOCYST_BIG)
 
-function PibersMod:onHeartOfInfamyUpdate(npc)
+function mod.onHeartOfInfamyUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("HeartAttack") and sprite:IsEventTriggered("Shoot") then
-		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 		local poofSprite = poof:GetSprite()
-		poofSprite.Offset = -PibersMod.PickupPoofOffset
+		poofSprite.Offset = -mod.PickupPoofOffset
 		if npc.SubType == 1 then
 			poofSprite.Color = Color.ProjectileHoming
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onHeartOfInfamyUpdate, EntityType.ENTITY_HEART_OF_INFAMY)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHeartOfInfamyUpdate, EntityType.ENTITY_HEART_OF_INFAMY)
 
-PibersMod.PoofScaleMid = Vector(0.75,0.75)
-PibersMod.PoofScaleSmall = Vector(0.5,0.5)
-PibersMod.SatanPoofOffset = Vector(0,-40)
-PibersMod.SatanPoofOffsetLeft = Vector(-64,-42)
-PibersMod.SatanPoofOffsetRight = Vector(64,-42)
-PibersMod.BloodPoofColor = Color(0.8,0,0,0.5)
-function PibersMod:onSatanUpdate(npc)
+mod.PoofScaleMid = Vector(0.75,0.75)
+mod.PoofScaleSmall = Vector(0.5,0.5)
+mod.SatanPoofOffset = Vector(0,-40)
+mod.SatanPoofOffsetLeft = Vector(-64,-42)
+mod.SatanPoofOffsetRight = Vector(64,-42)
+mod.BloodPoofColor = Color(0.8,0,0,0.5)
+function mod.onSatanUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack01") then
 		if sprite:IsEventTriggered("Shoot") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.SatanPoofOffset
-			poofSprite.Color = PibersMod.BloodPoofColor
+			poofSprite.Offset = mod.SatanPoofOffset
+			poofSprite.Color = mod.BloodPoofColor
 		end
 		if sprite:IsEventTriggered("Shoot2") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.SatanPoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleMid
+			poofSprite.Offset = mod.SatanPoofOffset
+			poofSprite.Scale = mod.PoofScaleMid
 		end
 	end
 	if sprite:IsPlaying("Attack02") then
 		if sprite:IsEventTriggered("Shoot") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.SatanPoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleMid
+			poofSprite.Offset = mod.SatanPoofOffset
+			poofSprite.Scale = mod.PoofScaleMid
 		end
 	end
 	if sprite:IsPlaying("Attack03") then
 		if sprite:IsEventTriggered("Shoot") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.SatanPoofOffsetLeft
-			poofSprite.Color = PibersMod.BloodPoofColor
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			poofSprite.Offset = mod.SatanPoofOffsetLeft
+			poofSprite.Color = mod.BloodPoofColor
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.SatanPoofOffsetRight
-			poofSprite.Color = PibersMod.BloodPoofColor
+			poofSprite.Offset = mod.SatanPoofOffsetRight
+			poofSprite.Color = mod.BloodPoofColor
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onSatanUpdate, EntityType.ENTITY_SATAN)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onSatanUpdate, EntityType.ENTITY_SATAN)
 
-PibersMod.FaminePoofOffset = Vector(2,-18)
-function PibersMod:onFamineUpdate(npc)
+mod.FaminePoofOffset = Vector(2,-18)
+function mod.onFamineUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("HeadAttack") then
 		if sprite:IsEventTriggered("Shoot") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.FaminePoofOffset
-			poofSprite.Color = PibersMod.BloodPoofColor
+			poofSprite.Offset = mod.FaminePoofOffset
+			poofSprite.Color = mod.BloodPoofColor
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onFamineUpdate, EntityType.ENTITY_FAMINE)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onFamineUpdate, EntityType.ENTITY_FAMINE)
 
-PibersMod.Monstro2PoofOffset = Vector(0,-18)
-function PibersMod:onMonstro2Update(npc)
+mod.Monstro2PoofOffset = Vector(0,-18)
+function mod.onMonstro2Update(npc)
 	if npc.Variant == 0 then
 		local sprite = npc:GetSprite()
 		if sprite:IsPlaying("Taunt") then
 			if sprite:GetFrame() == 20 then
-				local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+				local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 				local poofSprite = poof:GetSprite()
-				poofSprite.Offset = PibersMod.Monstro2PoofOffset
-				poofSprite.Scale = PibersMod.PoofScaleMid
+				poofSprite.Offset = mod.Monstro2PoofOffset
+				poofSprite.Scale = mod.PoofScaleMid
 			end
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onMonstro2Update, EntityType.ENTITY_MONSTRO2)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onMonstro2Update, EntityType.ENTITY_MONSTRO2)
 
-function PibersMod:onLokiUpdate(npc)
+function mod.onLokiUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack01") then
 		if sprite:GetFrame() == 50 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = -PibersMod.PickupPoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleSmall
+			poofSprite.Offset = -mod.PickupPoofOffset
+			poofSprite.Scale = mod.PoofScaleSmall
 		end
 		if sprite:GetFrame() == 25 or sprite:GetFrame() == 75 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = -PibersMod.PickupPoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleSmall
+			poofSprite.Offset = -mod.PickupPoofOffset
+			poofSprite.Scale = mod.PoofScaleSmall
 		end
 	end
 	if sprite:IsPlaying("Attack03") then
 		if sprite:IsEventTriggered("Shoot") then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = -PibersMod.PickupPoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleMid
+			poofSprite.Offset = -mod.PickupPoofOffset
+			poofSprite.Scale = mod.PoofScaleMid
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onLokiUpdate, EntityType.ENTITY_LOKI)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onLokiUpdate, EntityType.ENTITY_LOKI)
 
-PibersMod.HourglassPoofColor = Color(0.5,0.4,0.25,0.5)
-PibersMod.HourglassPoofOffset = Vector(23,-30)
-PibersMod.HourglassPoofOffsetFlip = Vector(-23,-30)
-function PibersMod:onDeathUpdate(npc)
+mod.HourglassPoofColor = Color(0.5,0.4,0.25,0.5)
+mod.HourglassPoofOffset = Vector(23,-30)
+mod.HourglassPoofOffsetFlip = Vector(-23,-30)
+function mod.onDeathUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack02") then
 		if sprite:GetFrame() == 21 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.SMALL, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
 			if sprite.FlipX then
-				poofSprite.Offset = PibersMod.HourglassPoofOffsetFlip
+				poofSprite.Offset = mod.HourglassPoofOffsetFlip
 			else
-				poofSprite.Offset = PibersMod.HourglassPoofOffset
+				poofSprite.Offset = mod.HourglassPoofOffset
 			end
-			poofSprite.Color = PibersMod.HourglassPoofColor
+			poofSprite.Color = mod.HourglassPoofColor
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onDeathUpdate, EntityType.ENTITY_DEATH)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onDeathUpdate, EntityType.ENTITY_DEATH)
 
-PibersMod.PestilencePoofOffset = Vector(0,-34)
-PibersMod.WhiteCreepColor = Color(0,0,0,1,1,1,1)
-function PibersMod:onPestilenceUpdate(npc)
+mod.PestilencePoofOffset = Vector(0,-34)
+mod.WhiteCreepColor = Color(0,0,0,1,1,1,1)
+function mod.onPestilenceUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack1") then
 		if sprite:GetFrame() == 17 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.PestilencePoofOffset
+			poofSprite.Offset = mod.PestilencePoofOffset
 			if npc.SubType == 1 then
-				poofSprite.Color = PibersMod.WhiteCreepColor
+				poofSprite.Color = mod.WhiteCreepColor
 			else
 				poofSprite.Color = Color.ProjectileIpecac
 			end
@@ -451,112 +453,112 @@ function PibersMod:onPestilenceUpdate(npc)
 	end
 	if sprite:IsPlaying("Attack2") then
 		if sprite:GetFrame() == 22 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = -PibersMod.PickupPoofOffset
+			poofSprite.Offset = -mod.PickupPoofOffset
 			if npc.SubType == 1 then
-				poofSprite.Color = PibersMod.WhiteCreepColor
+				poofSprite.Color = mod.WhiteCreepColor
 			else
 				poofSprite.Color = Color.ProjectileIpecac
 			end
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_FOREGROUND, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_FOREGROUND, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.PickupPoofOffset
+			poofSprite.Offset = mod.PickupPoofOffset
 			if npc.SubType == 1 then
-				poofSprite.Color = PibersMod.WhiteCreepColor
+				poofSprite.Color = mod.WhiteCreepColor
 			else
 				poofSprite.Color = Color.ProjectileIpecac
 			end
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onPestilenceUpdate, EntityType.ENTITY_PESTILENCE)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onPestilenceUpdate, EntityType.ENTITY_PESTILENCE)
 
-function PibersMod:onWarUpdate(npc)
+function mod.onWarUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack1") then
 		if sprite:GetFrame() == 5 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position-PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, Poof02Subtype.BLOOD_CLOUD, npc.Position-mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.PestilencePoofOffset
-			poofSprite.Scale = PibersMod.PoofScaleMid
+			poofSprite.Offset = mod.PestilencePoofOffset
+			poofSprite.Scale = mod.PoofScaleMid
 			if npc.Variant == 1 then
 				poofSprite.Color = Color.ProjectileHoming
 			end
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onWarUpdate, EntityType.ENTITY_WAR)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onWarUpdate, EntityType.ENTITY_WAR)
 
-PibersMod.HeadlessHorsemanHeadPoofOffset = Vector(0,-12)
-function PibersMod:onHeadlessHorsemanHeadUpdate(npc)
+mod.HeadlessHorsemanHeadPoofOffset = Vector(0,-12)
+function mod.onHeadlessHorsemanHeadUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack") then
 		if sprite:GetFrame() == 16 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.HeadlessHorsemanHeadPoofOffset
+			poofSprite.Offset = mod.HeadlessHorsemanHeadPoofOffset
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onHeadlessHorsemanHeadUpdate, EntityType.ENTITY_HORSEMAN_HEAD)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHeadlessHorsemanHeadUpdate, EntityType.ENTITY_HORSEMAN_HEAD)
 
-PibersMod.HeadlessHorsemanPoofOffset = Vector(0,-28)
-function PibersMod:onHeadlessHorsemanUpdate(npc)
+mod.HeadlessHorsemanPoofOffset = Vector(0,-28)
+function mod.onHeadlessHorsemanUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack") then
 		if sprite:GetFrame() == 8 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.HeadlessHorsemanPoofOffset
+			poofSprite.Offset = mod.HeadlessHorsemanPoofOffset
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onHeadlessHorsemanUpdate, EntityType.ENTITY_HEADLESS_HORSEMAN)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHeadlessHorsemanUpdate, EntityType.ENTITY_HEADLESS_HORSEMAN)
 
-PibersMod.FallenPoofOffset = Vector(0,-18)
-function PibersMod:onFallenUpdate(npc)
+mod.FallenPoofOffset = Vector(0,-18)
+function mod.onFallenUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsEventTriggered("Shoot") or sprite:IsEventTriggered("Shoot2") then
-		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+		local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 		local poofSprite = poof:GetSprite()
-		poofSprite.Offset = PibersMod.FallenPoofOffset
+		poofSprite.Offset = mod.FallenPoofOffset
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onFallenUpdate, EntityType.ENTITY_FALLEN)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onFallenUpdate, EntityType.ENTITY_FALLEN)
 
-function PibersMod:onSlothUpdate(npc)
+function mod.onSlothUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack") then
 		if sprite:GetFrame() == 4 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.FallenPoofOffset
+			poofSprite.Offset = mod.FallenPoofOffset
 			poofSprite.Color = Color.ProjectileIpecac
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onSlothUpdate, EntityType.ENTITY_SLOTH)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onSlothUpdate, EntityType.ENTITY_SLOTH)
 
-PibersMod.PinPoofOffset = Vector(0,-56)
-function PibersMod:onPinUpdate(npc)
+mod.PinPoofOffset = Vector(0,-56)
+function mod.onPinUpdate(npc)
 	local sprite = npc:GetSprite()
 	if sprite:IsPlaying("Attack1") then
 		if sprite:GetFrame() == 44 then
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+PibersMod.PoofSpawnOffset, Vector.Zero, npc)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BLOOD_EXPLOSION, 2, npc.Position+mod.PoofSpawnOffset, Vector.Zero, npc)
 			local poofSprite = poof:GetSprite()
-			poofSprite.Offset = PibersMod.PinPoofOffset
+			poofSprite.Offset = mod.PinPoofOffset
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onPinUpdate, EntityType.ENTITY_PIN)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onPinUpdate, EntityType.ENTITY_PIN)
 
-PibersMod.DukeFlyOrbitMaxDist = 120
-PibersMod.DukeFlySlowedDist = 100
-function PibersMod:onDukeUpdate(npc)
+mod.DukeFlyOrbitMaxDist = 120
+mod.DukeFlySlowedDist = 100
+function mod.onDukeUpdate(npc)
 	if npc:GetBossColorIdx() == BossColors.DUKE_ETERNAL then
 		local sprite = npc:GetSprite()
-		local data = PibersMod.GetData(npc)
+		local data = mod.GetData(npc)
 		if not data.SpawnedFlies then
 			for i=1, 3 do
 				local fly = Isaac.Spawn(EntityType.ENTITY_ETERNALFLY, 0, 0, npc.Position, Vector.Zero, npc):ToNPC()
@@ -573,21 +575,21 @@ function PibersMod:onDukeUpdate(npc)
 			data.FlySpread = false
 		end
 		if data.FlySpread then
-			data.FlyOrbitDist = data.FlyOrbitDist or PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE]
-			if data.FlyOrbitDist >= PibersMod.DukeFlySlowedDist then
-				data.FlyOrbitDist = math.min(data.FlyOrbitDist+2, PibersMod.DukeFlyOrbitMaxDist)
+			data.FlyOrbitDist = data.FlyOrbitDist or mod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE]
+			if data.FlyOrbitDist >= mod.DukeFlySlowedDist then
+				data.FlyOrbitDist = math.min(data.FlyOrbitDist+2, mod.DukeFlyOrbitMaxDist)
 			else
-				data.FlyOrbitDist = math.min(data.FlyOrbitDist+5, PibersMod.DukeFlyOrbitMaxDist)
+				data.FlyOrbitDist = math.min(data.FlyOrbitDist+5, mod.DukeFlyOrbitMaxDist)
 			end
-		elseif data.FlyOrbitDist and data.FlyOrbitDist > PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE] then
-			data.FlyOrbitDist = math.max(data.FlyOrbitDist-2, PibersMod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE])
+		elseif data.FlyOrbitDist and data.FlyOrbitDist > mod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE] then
+			data.FlyOrbitDist = math.max(data.FlyOrbitDist-2, mod.EternalFlyOrbitDistParents[EntityType.ENTITY_DUKE])
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onDukeUpdate, EntityType.ENTITY_DUKE)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onDukeUpdate, EntityType.ENTITY_DUKE)
 
-function PibersMod:onChubUpdate(npc)
-	local data = PibersMod.GetData(npc)
+function mod.onChubUpdate(npc)
+	local data = mod.GetData(npc)
 	if npc.State == NpcState.STATE_SUMMON and data.lastState ~= npc.State then
 		if npc:GetBossColorIdx() == 1 and npc:QueryNPCsSpawnerType(EntityType.ENTITY_CHUB, EntityType.ENTITY_SPITTY, false).Size >= 2 then
 			npc.State = NpcState.STATE_MOVE
@@ -610,4 +612,4 @@ function PibersMod:onChubUpdate(npc)
 	end
 	data.lastState = npc.State
 end
-PibersMod:AddCallback(ModCallbacks.MC_NPC_UPDATE, PibersMod.onChubUpdate, EntityType.ENTITY_CHUB)
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onChubUpdate, EntityType.ENTITY_CHUB)

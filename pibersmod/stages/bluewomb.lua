@@ -1,4 +1,6 @@
-function PibersMod:OnNewLevelBlueWomb()
+local mod = PibersMod
+
+function mod.OnNewLevelBlueWomb()
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if not isGreed then
@@ -49,7 +51,7 @@ function PibersMod:OnNewLevelBlueWomb()
 			bossroomDesc.Data = replaceBossConfig
 			local numRooms = rng:RandomInt(4, 5)
 			for i=0, numRooms do
-				PibersMod:TryPlaceRandomRoom(-60, Dimension.NORMAL, rng, true, true, false, 2)
+				mod.TryPlaceRandomRoom(-60, Dimension.NORMAL, rng, true, true, false, 2)
 			end
 			local room = game:GetRoom()
 			local bossDoor = room:GetDoor(DoorSlot.UP0)
@@ -85,4 +87,4 @@ function PibersMod:OnNewLevelBlueWomb()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PibersMod.OnNewLevelBlueWomb)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelBlueWomb)

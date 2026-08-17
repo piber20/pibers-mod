@@ -1,4 +1,6 @@
-function PibersMod:PostPickupSelection(pickup, variant, subtype, requestedVariant, requestedSubType, rng)
+local mod = PibersMod
+
+function mod.PostPickupSelection(pickup, variant, subtype, requestedVariant, requestedSubType, rng)
 	if requestedVariant == 0 or requestedSubType == 0 then
 		if variant == PickupVariant.PICKUP_HEART then
 			local blessingChance = 0.2
@@ -23,9 +25,9 @@ function PibersMod:PostPickupSelection(pickup, variant, subtype, requestedVarian
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, PibersMod.PostPickupSelection)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_SELECTION, mod.PostPickupSelection)
 
-function PibersMod:PreHeartCollision(pickup, collider, low)
+function mod.PreHeartCollision(pickup, collider, low)
 	if pickup:Exists() and collider:ToPlayer() and pickup.SubType == HeartSubType.BLESSING then
 		local player = collider:ToPlayer()
 		local sprite = pickup:GetSprite()
@@ -64,7 +66,7 @@ function PibersMod:PreHeartCollision(pickup, collider, low)
 					end
 				end
 				if game:IsGreedMode() or PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_RESTOCK) then
-					local roomSave = PibersMod.SaveManager.GetRoomSave()
+					local roomSave = mod.SaveManager.GetRoomSave()
 					local pickupData = {
 						Variant = variant,
 						SubType = subtype,
@@ -91,10 +93,10 @@ function PibersMod:PreHeartCollision(pickup, collider, low)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, PibersMod.PreHeartCollision, PickupVariant.PICKUP_HEART)
+mod.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PreHeartCollision, PickupVariant.PICKUP_HEART)
 
-function PibersMod:CheckPickupRestock()
-	local roomSave = PibersMod.SaveManager.GetRoomSave()
+function mod.CheckPickupRestock()
+	local roomSave = mod.SaveManager.GetRoomSave()
 	if roomSave.pickupToRestock and #roomSave.pickupToRestock >= 1 then
 		for i=1, #roomSave.pickupToRestock do
 			if roomSave.pickupToRestock[i] then
@@ -115,5 +117,5 @@ function PibersMod:CheckPickupRestock()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_UPDATE, PibersMod.CheckPickupRestock)
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.CheckPickupRestock)
+mod.AddCallback(ModCallbacks.MC_POST_UPDATE, mod.CheckPickupRestock)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.CheckPickupRestock)

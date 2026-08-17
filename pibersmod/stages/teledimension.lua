@@ -1,17 +1,19 @@
-PibersMod.TeleportingToMausAlt = false
-function PibersMod:OnNewRoomTeleDimension()
+local mod = PibersMod
+
+mod.TeleportingToMausAlt = false
+function mod.OnNewRoomTeleDimension()
 
 	local game = Game()
 	local room = game:GetRoom()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 
-	if PibersMod.TeleportingToMausAlt then
+	if mod.TeleportingToMausAlt then
 		for i=0, room:GetGridSize() do
 			local gridEntity = room:GetGridEntity(i)
 			if gridEntity then
 				if gridEntity:GetType() == GridEntityType.GRID_TELEPORTER then
-					if gridEntity.State == PibersMod.TeleportingToMausAlt then
+					if gridEntity.State == mod.TeleportingToMausAlt then
 						for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
 							player.Position = gridEntity.Position
 						end
@@ -20,7 +22,7 @@ function PibersMod:OnNewRoomTeleDimension()
 				end
 			end
 		end
-		PibersMod.TeleportingToMausAlt = false
+		mod.TeleportingToMausAlt = false
 	end
 
 	if stage == LevelStage.STAGE3_2 then
@@ -49,7 +51,7 @@ function PibersMod:OnNewRoomTeleDimension()
 				local rooms = level:GetRooms()
 				for i=0, rooms.Size-1 do
 					local roomDesc = rooms:Get(i)
-					local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+					local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 					if roomDesc:GetDimension() == dimension then
 						local minimapRoom = MinimapAPI:GetRoomByIdx(roomDesc.GridIndex)
 						if minimapRoom then
@@ -110,18 +112,18 @@ function PibersMod:OnNewRoomTeleDimension()
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PibersMod.OnNewRoomTeleDimension)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoomTeleDimension)
 
-PibersMod.AddedFakeKnifePiece = false
-function PibersMod:OnNewLevelTeleDimension()
+mod.AddedFakeKnifePiece = false
+function mod.OnNewLevelTeleDimension()
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if not isGreed then
-		if PibersMod.AddedFakeKnifePiece then
+		if mod.AddedFakeKnifePiece then
 			for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
 				player:RemoveCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
 			end
-			PibersMod.AddedFakeKnifePiece = false
+			mod.AddedFakeKnifePiece = false
 		end
 		local level = game:GetLevel()
 		local stage = level:GetAbsoluteStage()
@@ -129,9 +131,9 @@ function PibersMod:OnNewLevelTeleDimension()
 			local stageType = level:GetStageType()
 			local isAscent = level:IsAscent()
 			if (stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B) and not isAscent then
-				local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+				local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 				local teleRNG = RNG(level:GetDungeonPlacementSeed())
-				local teleporterRoomDesc = PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER, -1, -1, Dimension.NORMAL, teleRNG)
+				local teleporterRoomDesc = mod.TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER, -1, -1, Dimension.NORMAL, teleRNG)
 				if teleporterRoomDesc then
 					local teleporterRoomGrid = teleporterRoomDesc.GridIndex
 					floorSaveNoRevert["TeleDimensionEntrance"] = teleporterRoomGrid
@@ -150,14 +152,14 @@ function PibersMod:OnNewLevelTeleDimension()
 						end
 					end
 
-					local teleporterRoomDescExit = PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, -2)
+					local teleporterRoomDescExit = mod.TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, -2)
 					if teleporterRoomDescExit then
 						local teleporterRoomGridExit = teleporterRoomDescExit.GridIndex
 						floorSaveNoRevert["TeleDimension1Start"] = teleporterRoomGridExit
 						local placedTeles = {teleporterRoomGridExit}
 						local extrateleAttempts = 0
 						while extrateleAttempts < 20 and #placedTeles < 3 do
-							local extrateleRoomDesc = PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, -2, -1, -1, false, placedTeles, 5, 3)
+							local extrateleRoomDesc = mod.TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, -2, -1, -1, false, placedTeles, 5, 3)
 							if extrateleRoomDesc then
 								placedTeles[#placedTeles+1] = extrateleRoomDesc.GridIndex
 								floorSaveNoRevert["TeleDimension" .. #placedTeles .. "Start"] = extrateleRoomDesc.GridIndex
@@ -172,16 +174,16 @@ function PibersMod:OnNewLevelTeleDimension()
 							end
 							local numRooms = teleRNG:RandomInt(1, 3)
 							for i=0, numRooms do
-								PibersMod:TryForcePlaceRandomRoom(-1, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, 10, 15, true, avoidTeles, 5, 3)
+								mod.TryForcePlaceRandomRoom(-1, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, 10, 15, true, avoidTeles, 5, 3)
 							end
 
 							if numTele == #placedTeles then
-								local momroomDesc = PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_TREASURE, RoomShape.ROOMSHAPE_1x1, 330, Dimension.MIRROR, teleRNG, nil, -1, -1, false, avoidTeles, 5, 3)
+								local momroomDesc = mod.TryForcePlaceRandomRoom(RoomType.ROOM_TREASURE, RoomShape.ROOMSHAPE_1x1, 330, Dimension.MIRROR, teleRNG, nil, -1, -1, false, avoidTeles, 5, 3)
 								if momroomDesc then
 									floorSaveNoRevert["TeleDimension" .. numTele .. "End"] = momroomDesc.GridIndex
 								end
 							else
-								local newTeleDesc = PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, avoidTeles, 5, 3)
+								local newTeleDesc = mod.TryForcePlaceRandomRoom(RoomType.ROOM_TELEPORTER_EXIT, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, avoidTeles, 5, 3)
 								if newTeleDesc then
 									floorSaveNoRevert["TeleDimension" .. numTele .. "End"] = newTeleDesc.GridIndex
 								end
@@ -189,7 +191,7 @@ function PibersMod:OnNewLevelTeleDimension()
 						end
 
 						if teleRNG:RandomFloat() < (level:GetPlanetariumChance()*2) then
-							PibersMod:TryForcePlaceRandomRoom(RoomType.ROOM_PLANETARIUM, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
+							mod.TryForcePlaceRandomRoom(RoomType.ROOM_PLANETARIUM, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
 						end
 
 						local doRare = teleRNG:RandomInt(1, 20)
@@ -204,7 +206,7 @@ function PibersMod:OnNewLevelTeleDimension()
 							elseif specialRoomRare == 4 then
 								specialRoomRare = RoomType.ROOM_DICE
 							end
-							PibersMod:TryForcePlaceRandomRoom(specialRoomRare, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
+							mod.TryForcePlaceRandomRoom(specialRoomRare, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
 						end
 
 						local specialRoom = teleRNG:RandomInt(1, 4)
@@ -217,16 +219,16 @@ function PibersMod:OnNewLevelTeleDimension()
 						elseif specialRoom == 4 then
 							specialRoom = RoomType.ROOM_LIBRARY
 						end
-						PibersMod:TryForcePlaceRandomRoom(specialRoom, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
+						mod.TryForcePlaceRandomRoom(specialRoom, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
 					end
 				end
 			end
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PibersMod.OnNewLevelTeleDimension)
+mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelTeleDimension)
 
-function PibersMod:PreTeleporterUpdate(grident)
+function mod.PreTeleporterUpdate(grident)
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 	if stage == LevelStage.STAGE3_2 then
@@ -241,7 +243,7 @@ function PibersMod:PreTeleporterUpdate(grident)
 				if room:GetGridIndex(player.Position) == grident:GetGridIndex() then
 					doTele = true
 				end
-				local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+				local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 				local dimension = level:GetDimension()
 
 				local ourRoom = false
@@ -252,7 +254,7 @@ function PibersMod:PreTeleporterUpdate(grident)
 						ourRoom = currentDesc.GridIndex
 						if doTele and grident.State == 0 then
 							doTele = floorSaveNoRevert["TeleDimension1Start"]
-							PibersMod.TeleportingToMausAlt = 2
+							mod.TeleportingToMausAlt = 2
 						end
 					end
 				elseif dimension == Dimension.MIRROR then
@@ -261,31 +263,31 @@ function PibersMod:PreTeleporterUpdate(grident)
 						if doTele and grident.State == 0 then
 							doTele = floorSaveNoRevert["TeleDimensionEntrance"]
 							doTeleDimension = Dimension.NORMAL
-							PibersMod.TeleportingToMausAlt = 2
+							mod.TeleportingToMausAlt = 2
 						end
 					elseif floorSaveNoRevert["TeleDimension1End"] and floorSaveNoRevert["TeleDimension2Start"] and currentDesc.GridIndex == floorSaveNoRevert["TeleDimension1End"] then
 						ourRoom = currentDesc.GridIndex
 						if doTele and grident.State == 2 then
 							doTele = floorSaveNoRevert["TeleDimension2Start"]
-							PibersMod.TeleportingToMausAlt = 2
+							mod.TeleportingToMausAlt = 2
 						end
 					elseif floorSaveNoRevert["TeleDimension2Start"] and floorSaveNoRevert["TeleDimension1End"] and currentDesc.GridIndex == floorSaveNoRevert["TeleDimension2Start"] then
 						ourRoom = currentDesc.GridIndex
 						if doTele and grident.State == 0 then
 							doTele = floorSaveNoRevert["TeleDimension1End"]
-							PibersMod.TeleportingToMausAlt = 0
+							mod.TeleportingToMausAlt = 0
 						end
 					elseif floorSaveNoRevert["TeleDimension2End"] and floorSaveNoRevert["TeleDimension3Start"] and currentDesc.GridIndex == floorSaveNoRevert["TeleDimension2End"] then
 						ourRoom = currentDesc.GridIndex
 						if doTele and grident.State == 2 then
 							doTele = floorSaveNoRevert["TeleDimension3Start"]
-							PibersMod.TeleportingToMausAlt = 2
+							mod.TeleportingToMausAlt = 2
 						end
 					elseif floorSaveNoRevert["TeleDimension3Start"] and floorSaveNoRevert["TeleDimension2End"] and currentDesc.GridIndex == floorSaveNoRevert["TeleDimension3Start"] then
 						ourRoom = currentDesc.GridIndex
 						if doTele and grident.State == 0 then
 							doTele = floorSaveNoRevert["TeleDimension2End"]
-							PibersMod.TeleportingToMausAlt = 0
+							mod.TeleportingToMausAlt = 0
 						end
 					end
 				end
@@ -301,9 +303,9 @@ function PibersMod:PreTeleporterUpdate(grident)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TELEPORTER_UPDATE, PibersMod.PreTeleporterUpdate)
+mod.AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TELEPORTER_UPDATE, mod.PreTeleporterUpdate)
 
-function PibersMod:PreTeleporterRender(grident)
+function mod.PreTeleporterRender(grident)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -313,7 +315,7 @@ function PibersMod:PreTeleporterRender(grident)
 			local room = game:GetRoom()
 			local roomType = room:GetType()
 			if roomType == RoomType.ROOM_TELEPORTER or roomType == RoomType.ROOM_TELEPORTER_EXIT then
-				local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+				local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 				local dimension = level:GetDimension()
 
 				local ourRoom = false
@@ -411,9 +413,9 @@ function PibersMod:PreTeleporterRender(grident)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TELEPORTER_RENDER, PibersMod.PreTeleporterRender)
+mod.AddCallback(ModCallbacks.MC_PRE_GRID_ENTITY_TELEPORTER_RENDER, mod.PreTeleporterRender)
 
-function PibersMod:IsMausTreasureRoom()
+function mod.IsMausTreasureRoom()
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -431,7 +433,7 @@ function PibersMod:IsMausTreasureRoom()
 	end
 end
 
-function PibersMod:PreLevelSelect(stage, stageType)
+function mod.PreLevelSelect(stage, stageType)
 	local game = Game()
 	local isGreed = game:IsGreedMode()
 	if not isGreed then
@@ -439,13 +441,13 @@ function PibersMod:PreLevelSelect(stage, stageType)
 			for playerIndex, player in ipairs(PlayerManager.GetPlayers()) do
 				player:AddCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1)
 			end
-			PibersMod.AddedFakeKnifePiece = true
+			mod.AddedFakeKnifePiece = true
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_LEVEL_SELECT, PibersMod.PreLevelSelect)
+mod.AddCallback(ModCallbacks.MC_PRE_LEVEL_SELECT, mod.PreLevelSelect)
 
-function PibersMod:PreUseCardMausTeleporterStart(cardID, player, useFlags)
+function mod.PreUseCardMausTeleporterStart(cardID, player, useFlags)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -454,7 +456,7 @@ function PibersMod:PreUseCardMausTeleporterStart(cardID, player, useFlags)
 		if stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
 			local dimension = level:GetDimension()
 			if dimension == Dimension.MIRROR then
-				local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+				local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 				if floorSaveNoRevert["TeleDimension1Start"] then
 					game:StartRoomTransition(floorSaveNoRevert["TeleDimension1Start"], Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, player, Dimension.MIRROR)
 					return true
@@ -463,9 +465,9 @@ function PibersMod:PreUseCardMausTeleporterStart(cardID, player, useFlags)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_USE_CARD, PibersMod.PreUseCardMausTeleporterStart, Card.CARD_FOOL)
+mod.AddCallback(ModCallbacks.MC_PRE_USE_CARD, mod.PreUseCardMausTeleporterStart, Card.CARD_FOOL)
 
-function PibersMod:PreUseCardMausTeleporterEnd(cardID, player, useFlags)
+function mod.PreUseCardMausTeleporterEnd(cardID, player, useFlags)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -474,7 +476,7 @@ function PibersMod:PreUseCardMausTeleporterEnd(cardID, player, useFlags)
 		if stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
 			local dimension = level:GetDimension()
 			if dimension == Dimension.MIRROR then
-				local floorSaveNoRevert = PibersMod.SaveManager.GetFloorSave(nil, true)
+				local floorSaveNoRevert = mod.SaveManager.GetFloorSave(nil, true)
 				if floorSaveNoRevert["TeleDimension3End"] then
 					game:StartRoomTransition(floorSaveNoRevert["TeleDimension3End"], Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, player, Dimension.MIRROR)
 					return true
@@ -483,21 +485,21 @@ function PibersMod:PreUseCardMausTeleporterEnd(cardID, player, useFlags)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_USE_CARD, PibersMod.PreUseCardMausTeleporterEnd, Card.CARD_EMPEROR)
-PibersMod:AddCallback(ModCallbacks.MC_PRE_USE_CARD, PibersMod.PreUseCardMausTeleporterEnd, Card.CARD_REVERSE_MOON)
+mod.AddCallback(ModCallbacks.MC_PRE_USE_CARD, mod.PreUseCardMausTeleporterEnd, Card.CARD_EMPEROR)
+mod.AddCallback(ModCallbacks.MC_PRE_USE_CARD, mod.PreUseCardMausTeleporterEnd, Card.CARD_REVERSE_MOON)
 
-function PibersMod:PreOpenMomsChest(pickup, player)
-	if PibersMod:IsMausTreasureRoom() then
-		local pickupData = PibersMod.GetData(pickup)
+function mod.PreOpenMomsChest(pickup, player)
+	if mod.IsMausTreasureRoom() then
+		local pickupData = mod.GetData(pickup)
 		pickupData.BecomeItem = true
 		return false
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_OPEN_CHEST, PibersMod.PreOpenMomsChest, PickupVariant.PICKUP_MOMSCHEST)
+mod.AddCallback(ModCallbacks.MC_PRE_OPEN_CHEST, mod.PreOpenMomsChest, PickupVariant.PICKUP_MOMSCHEST)
 
-function PibersMod:OnUpdateMomsChest(pickup)
-	if PibersMod:IsMausTreasureRoom() then
-		local pickupData = PibersMod.GetData(pickup)
+function mod.OnUpdateMomsChest(pickup)
+	if mod.IsMausTreasureRoom() then
+		local pickupData = mod.GetData(pickup)
 		if pickupData.BecomeItem then
 			pickupData.BecomeItem = false
 			local loot = pickup:GetLootList(shouldAdvance)
@@ -511,10 +513,10 @@ function PibersMod:OnUpdateMomsChest(pickup)
 		end
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, PibersMod.OnUpdateMomsChest, PickupVariant.PICKUP_MOMSCHEST)
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnUpdateMomsChest, PickupVariant.PICKUP_MOMSCHEST)
 
-function PibersMod:PreGetLootList(pickup, advance)
-	if pickup.Variant == PickupVariant.PICKUP_MOMSCHEST and PibersMod:IsMausTreasureRoom() then
+function mod.PreGetLootList(pickup, advance)
+	if pickup.Variant == PickupVariant.PICKUP_MOMSCHEST and mod.IsMausTreasureRoom() then
 		local itemID = CollectibleType.COLLECTIBLE_KNIFE_PIECE_1
 		if PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_1) and not PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_KNIFE_PIECE_2) then
 			itemID = CollectibleType.COLLECTIBLE_KNIFE_PIECE_2
@@ -526,4 +528,4 @@ function PibersMod:PreGetLootList(pickup, advance)
 		return loot
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, PibersMod.PreGetLootList)
+mod.AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, mod.PreGetLootList)

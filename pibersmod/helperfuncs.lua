@@ -1,4 +1,6 @@
-function PibersMod.GetData(entity)
+local mod = PibersMod
+
+function mod.GetData(entity)
 	local data = entity:GetData()
 	if data.PibersMod == nil then
 		data.PibersMod = {}
@@ -6,64 +8,64 @@ function PibersMod.GetData(entity)
 	return data.PibersMod
 end
 
-function PibersMod.Clamp(num, min, max)
+function mod.Clamp(num, min, max)
     return math.min(math.max(num,min),max)
 end
 
-function PibersMod.Round(num, decimalPlaces)
+function mod.Round(num, decimalPlaces)
     local mult = 10^(decimalPlaces or 0)
     return math.floor(num * mult + 0.5) / mult
 end
 
-function PibersMod.GetOffset()
-	return PibersMod.Clamp(math.floor(Options.HUDOffset*10),0,10)
+function mod.GetOffset()
+	return mod.Clamp(math.floor(Options.HUDOffset*10),0,10)
 end
 
-function PibersMod.GetScreenSize()
+function mod.GetScreenSize()
 	return Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
 end
 
-function PibersMod.RoundVector(vector, decimalPlaces)
-    return Vector(PibersMod.Round(vector.X, decimalPlaces), PibersMod.Round(vector.Y, decimalPlaces))
+function mod.RoundVector(vector, decimalPlaces)
+    return Vector(mod.Round(vector.X, decimalPlaces), mod.Round(vector.Y, decimalPlaces))
 end
 
-function PibersMod.GetScreenCenter()
-	return PibersMod.GetScreenSize() / 2
+function mod.GetScreenCenter()
+	return mod.GetScreenSize() / 2
 end
 
-function PibersMod.GetScreenBottomRight(offset)
-	offset = offset or PibersMod.GetOffset()
-	local pos = PibersMod.GetScreenSize()
+function mod.GetScreenBottomRight(offset)
+	offset = offset or mod.GetOffset()
+	local pos = mod.GetScreenSize()
 	local hudOffset = Vector(-offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
-	return PibersMod.RoundVector(pos)
+	return mod.RoundVector(pos)
 end
 
-function PibersMod.GetScreenBottomLeft(offset)
-	offset = offset or PibersMod.GetOffset()
-	local pos = Vector(0, PibersMod.GetScreenBottomRight(0).Y)
+function mod.GetScreenBottomLeft(offset)
+	offset = offset or mod.GetOffset()
+	local pos = Vector(0, mod.GetScreenBottomRight(0).Y)
 	local hudOffset = Vector(offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
-	return PibersMod.RoundVector(pos)
+	return mod.RoundVector(pos)
 end
 
-function PibersMod.GetScreenTopRight(offset)
-	offset = offset or PibersMod.GetOffset()
-	local pos = Vector(PibersMod.GetScreenBottomRight(0).X, 0)
+function mod.GetScreenTopRight(offset)
+	offset = offset or mod.GetOffset()
+	local pos = Vector(mod.GetScreenBottomRight(0).X, 0)
 	local hudOffset = Vector(-offset * 2.2, offset * 1.2)
 	pos = pos + hudOffset
-	return PibersMod.RoundVector(pos)
+	return mod.RoundVector(pos)
 end
 
-function PibersMod.GetScreenTopLeft(offset)
-	offset = offset or PibersMod.GetOffset()
+function mod.GetScreenTopLeft(offset)
+	offset = offset or mod.GetOffset()
 	local pos = Vector.Zero
 	local hudOffset = Vector(offset * 2, offset * 1.2)
 	pos = pos + hudOffset
-	return PibersMod.RoundVector(pos)
+	return mod.RoundVector(pos)
 end
 
-function PibersMod:GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, forceDoors, roomSubtype, minVariant)
+function mod.GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, forceDoors, roomSubtype, minVariant)
 	if not roomShape or roomShape < 0 then
 		roomShape = RoomShape.NUM_ROOMSHAPES
 	end
@@ -120,7 +122,7 @@ function PibersMod:GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomSh
 	return roomConfig
 end
 
-function PibersMod:TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant)
+function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
@@ -141,7 +143,7 @@ function PibersMod:TryPlaceRandomRoom(index, dimension, rng, multipleDoors, spec
 		maxDifficulty = 15
 	end
 	for i=0, 100 do
-		local roomConfig = PibersMod:GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant)
+		local roomConfig = mod.GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant)
 		if not index or index < 0 then
 			local validGrids = level:FindValidRoomPlacementLocations(roomConfig, dimension, multipleDoors, specialNeighbors)
 			if #validGrids > 0 then
@@ -175,7 +177,7 @@ function PibersMod:TryPlaceRandomRoom(index, dimension, rng, multipleDoors, spec
 	end
 end
 
-function PibersMod:TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, dimension, rng, index, minDifficulty, maxDifficulty, forceDoors, avoidGrid, avoidGridDistance, minDistance, ignoreStage)
+function mod.TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, dimension, rng, index, minDifficulty, maxDifficulty, forceDoors, avoidGrid, avoidGridDistance, minDistance, ignoreStage)
 	local roomType = RoomType.ROOM_DEFAULT
 	if not roomConfig or type(roomConfig) == "number" then
 		roomType = roomConfig or RoomType.ROOM_DEFAULT
@@ -365,24 +367,24 @@ function PibersMod:TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, d
 	end
 end
 
-PibersMod.ModEffectUpdateFuncs = {}
-PibersMod.ModEffectRenderFuncs = {}
-function PibersMod:OnModEffectUpdate(effect)
-	local sprite, data = effect:GetSprite(), PibersMod.GetData(effect)
-	if PibersMod.ModEffectUpdateFuncs[effect.SubType] then
-		PibersMod.ModEffectUpdateFuncs[effect.SubType](effect,sprite,data)
+mod.ModEffectUpdateFuncs = {}
+mod.ModEffectRenderFuncs = {}
+function mod.OnModEffectUpdate(effect)
+	local sprite, data = effect:GetSprite(), mod.GetData(effect)
+	if mod.ModEffectUpdateFuncs[effect.SubType] then
+		mod.ModEffectUpdateFuncs[effect.SubType](effect,sprite,data)
 	end
 end
-function PibersMod:OnModEffectRender(effect)
-	local sprite, data = effect:GetSprite(), PibersMod.GetData(effect)
-	if PibersMod.ModEffectRenderFuncs[effect.SubType] then
-		PibersMod.ModEffectRenderFuncs[effect.SubType](effect,sprite,data)
+function mod.OnModEffectRender(effect)
+	local sprite, data = effect:GetSprite(), mod.GetData(effect)
+	if mod.ModEffectRenderFuncs[effect.SubType] then
+		mod.ModEffectRenderFuncs[effect.SubType](effect,sprite,data)
 	end
 end
-PibersMod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, PibersMod.OnModEffectUpdate, EffectVariant.PIBERSMOD)
-PibersMod:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, PibersMod.OnModEffectRender, EffectVariant.PIBERSMOD)
+mod.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.OnModEffectUpdate, EffectVariant.PIBERSMOD)
+mod.AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, mod.OnModEffectRender, EffectVariant.PIBERSMOD)
 
-function PibersMod.RemoveItemFromHistory(player, itemid, isTrinket)
+function mod.RemoveItemFromHistory(player, itemid, isTrinket)
 	if isTrinket then
 		isTrinket = true
 	else

@@ -1,4 +1,0 @@
-<players root="gfx/characters/costumes/" portraitroot="gfx/ui/stage/" nameimageroot="gfx/ui/boss/">
-	<player name="Joslyne" hidden="true" skin="Character_001_Isaac.png" hp="6" nameimage="PlayerName_01_Isaac.png" portrait="PlayerPortrait_Isaac.png" skinColor="-1" birthright="Joslyne birthright placeholder" />
-	<player name="Joseph" hidden="true" bSkinParent="Joslyne" skin="Character_001b_Isaac.png" hp="6" nameimage="PlayerName_01_Isaac.png" portrait="PlayerPortrait_Isaac_b.png" skinColor="-1" birthright="Joseph birthright placeholder" />
-</players>

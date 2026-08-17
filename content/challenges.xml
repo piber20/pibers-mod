@@ -1,6 +1,0 @@
-<challenges version="1">
-	<challenge name="7 Years Bad Luck" hidden="true" endstage="6" /> <!-- starting luck is -77, chance to not spawn a treasure room, unlock lucky 7? -->
-	<challenge name="9 Deaths" hidden="true" startingitems="81" endstage="6" roomfilter="4" /> <!-- 9 lives, no treasure rooms, unlock guppys tail -->
-	<challenge name="Lord of the Flies" hidden="true" /> <!-- infestation, mulligan, enough items to start with beelzebub, moms heart, no treasure rooms, unlock fish head  -->
-	<challenge name="Meat 4 Evar!" hidden="true" /> <!-- lv4 meat boy, lv4 bandage girl, all bosses are harbingers, no treasure rooms, moms heart, unlock smb super fan, its in the cards unlocks chaos card, demo man unlocks epic fetus, need to figure out unlock for family man -->
-</challenges>
