@@ -11,6 +11,14 @@ for funcname, func in pairs(PibersMod) do
 		PibersMod[funcname] = function(...)
 			local args = {...}
 			if not args or type(args[1]) ~= "table" or not args[1].Name or args[1].Name ~= modname then
+				for index,arg in ipairs(args) do
+					if type(arg) == "function" then
+						args[index] = function(...)
+							local funcargs = {...}
+							arg(table.unpack(funcargs, 2))
+						end
+					end
+				end
 				PibersMod["old"..funcname](PibersMod,table.unpack(args))
 			else
 				PibersMod["old"..funcname](PibersMod,table.unpack(args, 2))
