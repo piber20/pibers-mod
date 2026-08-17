@@ -176,7 +176,7 @@ end
 mod.AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, mod.PreHeartSlotUpdate, SlotVariant.DEVIL_BEGGAR)
 mod.AddCallback(ModCallbacks.MC_PRE_SLOT_UPDATE, mod.PreHeartSlotUpdate, SlotVariant.HELL_GAME)
 
-function mod.PreEntitySpawn(entType, entVariant, entSubType, pos, vel, spawner, seed)
+function mod.PreEntitySpawnForSlots(entType, entVariant, entSubType, pos, vel, spawner, seed)
 	if entType == EntityType.ENTITY_ATTACKFLY then
 		for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, SlotVariant.SHELL_GAME, -1, true, false)) do
 			if entity.Position:Distance(pos) < 50 then
@@ -199,7 +199,7 @@ function mod.PreEntitySpawn(entType, entVariant, entSubType, pos, vel, spawner, 
 		end
 	end
 end
-mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.PreEntitySpawn)
+mod.AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.PreEntitySpawnForSlots)
 
 function mod.PrePlayerTakeDMGSlots(player, amount, flags, source, cooldown)
 	if source and source.Entity and source.Type == EntityType.ENTITY_SLOT and (source.Variant == SlotVariant.DEVIL_BEGGAR or source.Variant == SlotVariant.HELL_GAME) then

@@ -4,31 +4,46 @@ if not REPENTOGON then
 end
 
 local modname = "Piber's Mod"
-PibersMod = RegisterMod(modname, 1)
-for funcname, func in pairs(PibersMod) do
-	if type(func) == "function" and not PibersMod["old"..funcname] then
-		PibersMod["old"..funcname] = func
-		PibersMod[funcname] = function(...)
-			local args = {...}
-			if not args or type(args[1]) ~= "table" or not args[1].Name or args[1].Name ~= modname then
-				for index,arg in ipairs(args) do
-					if type(arg) == "function" then
-						args[index] = function(...)
-							local funcargs = {...}
-							arg(table.unpack(funcargs, 2))
-						end
-					end
-				end
-				PibersMod["old"..funcname](PibersMod,table.unpack(args))
-			else
-				PibersMod["old"..funcname](PibersMod,table.unpack(args, 2))
-			end
-		end
+PibersMod = {}
+PibersMod.Mod = RegisterMod(modname, 1)
+
+function PibersMod.AddCallback(callbackId, callbackFn, entityId)
+	newFn = function(...)
+		local args = {...}
+		return callbackFn(table.unpack(args,2))
 	end
+	return PibersMod.Mod:AddCallback(callbackId, newFn, entityId)
 end
+function PibersMod.AddPriorityCallback(callbackId, priority, callbackFn, entityId)
+	newFn = function(...)
+		local args = {...}
+		return callbackFn(table.unpack(args,2))
+	end
+	return PibersMod.Mod:AddPriorityCallback(callbackId, priority, newFn, entityId)
+end
+function PibersMod.HasData()
+	return PibersMod.Mod:HasData()
+end
+function PibersMod.LoadData()
+	return PibersMod.Mod:LoadData()
+end
+function PibersMod.RemoveCallback(callbackId, callbackFn)
+	newFn = function(...)
+		local args = {...}
+		return callbackFn(table.unpack(args,2))
+	end
+	return PibersMod.Mod:RemoveCallback(callbackId, newFn)
+end
+function PibersMod.RemoveData()
+	return PibersMod.Mod:RemoveData()
+end
+function PibersMod.SaveData(data)
+	return PibersMod.Mod:SaveData(data)
+end
+PibersMod.Name = modname
 
 PibersMod.SaveManager = include("pibersmod.libs.save_manager")
-PibersMod.SaveManager.Init(PibersMod)
+PibersMod.SaveManager.Init(PibersMod.Mod)
 Options.MouseControl = true
 
 include("pibersmod.enums")
