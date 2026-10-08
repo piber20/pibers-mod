@@ -1,90 +1,102 @@
+local modname = "Desecration"
+
 if not REPENTOGON then
-	print("piber mod need repentogon :(")
+	print(modname .. " needs Repentogon to function.")
 	return
 end
 
-local modname = "Piber's Mod"
-PibersMod = {}
-PibersMod.Mod = RegisterMod(modname, 1)
+Desecration = {}
+Desecration.Mod = RegisterMod(modname, 1)
 
-PibersMod.AddedCallbacks = {}
-function PibersMod.AddCallback(callbackId, callbackFn, entityId)
-	PibersMod.AddedCallbacks[callbackId] = PibersMod.AddedCallbacks[callbackId] or {}
-	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]+1] = {callbackFn}
-	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2] = function(...)
+Desecration.AddedCallbacks = {}
+function Desecration.AddCallback(callbackId, callbackFn, entityId)
+	Desecration.AddedCallbacks[callbackId] = Desecration.AddedCallbacks[callbackId] or {}
+	Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]+1] = {callbackFn}
+	Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]][2] = function(...)
 		local args = {...}
 		return callbackFn(table.unpack(args,2))
 	end
-	return PibersMod.Mod:AddCallback(callbackId, PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2], entityId)
+	return Desecration.Mod:AddCallback(callbackId, Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]][2], entityId)
 end
-function PibersMod.AddPriorityCallback(callbackId, priority, callbackFn, entityId)
-	PibersMod.AddedCallbacks[callbackId] = PibersMod.AddedCallbacks[callbackId] or {}
-	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]+1] = {callbackFn}
-	PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2] = function(...)
+function Desecration.AddPriorityCallback(callbackId, priority, callbackFn, entityId)
+	Desecration.AddedCallbacks[callbackId] = Desecration.AddedCallbacks[callbackId] or {}
+	Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]+1] = {callbackFn}
+	Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]][2] = function(...)
 		local args = {...}
 		return callbackFn(table.unpack(args,2))
 	end
-	return PibersMod.Mod:AddPriorityCallback(callbackId, priority, PibersMod.AddedCallbacks[callbackId][#PibersMod.AddedCallbacks[callbackId]][2], entityId)
+	return Desecration.Mod:AddPriorityCallback(callbackId, priority, Desecration.AddedCallbacks[callbackId][#Desecration.AddedCallbacks[callbackId]][2], entityId)
 end
-function PibersMod.HasData()
-	return PibersMod.Mod:HasData()
+function Desecration.HasData()
+	return Desecration.Mod:HasData()
 end
-function PibersMod.LoadData()
-	return PibersMod.Mod:LoadData()
+function Desecration.LoadData()
+	return Desecration.Mod:LoadData()
 end
-function PibersMod.RemoveCallback(callbackId, callbackFn)
-	if PibersMod.AddedCallbacks[callbackId] then
-		for index,funcs in ipairs(PibersMod.AddedCallbacks[callbackId]) do
+function Desecration.RemoveCallback(callbackId, callbackFn)
+	if Desecration.AddedCallbacks[callbackId] then
+		for index,funcs in ipairs(Desecration.AddedCallbacks[callbackId]) do
 			if type(funcs) == "table" and funcs[1] == callbackFn then
-				return PibersMod.Mod:RemoveCallback(callbackId, funcs[2])
+				return Desecration.Mod:RemoveCallback(callbackId, funcs[2])
 			end
 		end
 	end
 end
-function PibersMod.RemoveData()
-	return PibersMod.Mod:RemoveData()
+function Desecration.RemoveData()
+	return Desecration.Mod:RemoveData()
 end
-function PibersMod.SaveData(data)
-	return PibersMod.Mod:SaveData(data)
+function Desecration.SaveData(data)
+	return Desecration.Mod:SaveData(data)
 end
-PibersMod.Name = modname
+Desecration.Name = modname
 
-PibersMod.SaveManager = include("pibersmod.libs.save_manager")
-PibersMod.SaveManager.Init(PibersMod.Mod)
+Desecration.SaveManager = include("desecration.libs.save_manager")
+Desecration.SaveManager.Init(Desecration.Mod)
+
+Desecration.xml2lua = require("desecration.libs.xml2lua")
+
+Desecration.itempools = require("desecration.libs.xmlhandler.tree")
+Desecration.itempoolsparser = Desecration.xml2lua.parser(Desecration.itempools)
+Desecration.itempoolsparser:parse(include("desecration.libs.xmls.itempools"))
+Desecration.itempoolsparser:parse(include("desecration.libs.xmls.itempoolsdesecration"))
+Desecration.itempoolsparser:parse(include("desecration.libs.xmls.itempoolsrestoredcollection"))
+
 Options.MouseControl = true
 
-include("pibersmod.enums")
-include("pibersmod.helperfuncs")
+include("desecration.enums")
+include("desecration.helperfuncs")
 
-include("pibersmod.menus.mainmenu")
-include("pibersmod.menus.todolist")
-include("pibersmod.menus.secrets")
-include("pibersmod.menus.collectionpage")
-include("pibersmod.menus.options")
-include("pibersmod.modes.optionalhardmode")
-include("pibersmod.modes.greedmode")
+include("desecration.menus.mainmenu")
+include("desecration.menus.todolist")
+include("desecration.menus.secrets")
+include("desecration.menus.collectionpage")
+include("desecration.menus.options")
+include("desecration.modes.optionalhardmode")
+include("desecration.modes.greedmode")
 
-include("pibersmod.stages.cathedral")
-include("pibersmod.stages.darkroom")
-include("pibersmod.stages.home")
-include("pibersmod.stages.teledimension")
-include("pibersmod.stages.bluewomb")
+include("desecration.stages.cathedral")
+include("desecration.stages.darkroom")
+include("desecration.stages.home")
+include("desecration.stages.teledimension")
+include("desecration.stages.bluewomb")
 
-include("pibersmod.rooms.specialrooms")
-include("pibersmod.rooms.fakewalls")
-include("pibersmod.rooms.grids")
+include("desecration.rooms.specialrooms")
+include("desecration.rooms.grids")
+include("desecration.rooms.shading")
 
-include("pibersmod.items.data")
-include("pibersmod.items.holyshield")
-include("pibersmod.items.vanillaitems")
-include("pibersmod.items.vanillapickups")
-include("pibersmod.items.vanillaslots")
-include("pibersmod.items.items")
-include("pibersmod.items.runes")
-include("pibersmod.items.pickups")
+include("desecration.items.data")
+include("desecration.items.itempools")
+include("desecration.items.holyshield")
+include("desecration.items.vanillaitems")
+include("desecration.items.vanillapickups")
+include("desecration.items.vanillaslots")
+include("desecration.items.items")
+include("desecration.items.runes")
+include("desecration.items.pickups")
 
-include("pibersmod.npcs.vanillamonsters")
-include("pibersmod.npcs.vanillabosses")
+include("desecration.npcs.vanillamonsters")
+include("desecration.npcs.vanillabosses")
 
-include("pibersmod.xml")
-include("pibersmod.compat")
+include("desecration.xml")
+include("desecration.rooms")
+include("desecration.compat")

@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="28200" name="Challenge (Caves, Wave 1)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="3" y="0">
+			<entity type="243" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="0">
+			<entity type="243" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="3">
+			<entity type="243" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="3" y="6">
+			<entity type="243" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="6">
+			<entity type="243" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28201" name="Challenge (Caves, Wave 1)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="6" y="0">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="2">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="2">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="3" y="6">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="6">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28202" name="Challenge (Caves, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="0">
+			<entity type="22" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="22" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="6">
+			<entity type="22" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28203" name="Challenge (Caves, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="6" y="0">
+			<entity type="24" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="3">
+			<entity type="24" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="3">
+			<entity type="24" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="6">
+			<entity type="24" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28204" name="Challenge (Caves, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="0">
+			<entity type="27" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="27" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="6">
+			<entity type="27" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28205" name="Challenge (Caves, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="1" y="0">
+			<entity type="26" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="0">
+			<entity type="26" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="6">
+			<entity type="26" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="6">
+			<entity type="26" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28206" name="Boss Challenge (Caves, Wave 1)" type="11" subtype="11" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="10" y="1">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="1">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="28" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="28" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="3">
+			<entity type="28" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="5">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="5">
+			<entity type="23" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28207" name="Boss Challenge (Caves, Wave 2)" type="11" subtype="11" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="10" y="3">
+			<entity type="68" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+</rooms>

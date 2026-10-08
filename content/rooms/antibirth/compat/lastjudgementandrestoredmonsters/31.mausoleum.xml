@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="54200" name="Challenge (Mausoleum, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="210" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="200" variant="2410" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="743" variant="250" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="210" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+</rooms>

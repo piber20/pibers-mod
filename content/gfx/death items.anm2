@@ -2,7 +2,7 @@
     <Info CreatedBy="robot" CreatedOn="3/6/2022 12:46:53 AM" Fps="60" Version="119"/>
     <Content>
         <Spritesheets>
-            <Spritesheet Id="0" Path="../../resources/gfx/ui/death items pibersmod.png"/>
+            <Spritesheet Id="0" Path="../../resources/gfx/ui/death items desecration.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="items" SpritesheetId="0"/>

@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="28200" name="Challenge (Corpse, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="1" y="0">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="0">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="1">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="1">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="5">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="5">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="6">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="6">
+			<entity type="238" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="28201" name="Challenge (Corpse, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="1">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="2">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="4">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="5">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="39" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+</rooms>

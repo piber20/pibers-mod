@@ -2,7 +2,7 @@
     <Info CreatedBy="robot" CreatedOn="8/21/2015 10:54:52 AM" Fps="30" Version="104"/>
     <Content>
         <Spritesheets>
-            <Spritesheet Id="1" Path="ui_pills_pibersmod.png"/>
+            <Spritesheet Id="1" Path="ui_pills_desecration.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="ui" SpritesheetId="1"/>
