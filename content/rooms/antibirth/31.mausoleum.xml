@@ -93,7 +93,7 @@
 			<entity type="1901" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28200" name="Challenge (Mausoleum, Wave 1)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="28200" name="Challenge (Mausoleum, Wave 1)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

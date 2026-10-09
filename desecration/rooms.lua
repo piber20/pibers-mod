@@ -36,7 +36,10 @@ mod.RoomsFilename = {}
 mod.RoomsMods = {}
 mod.RoomsMods.IncludeShared = 800
 mod.RoomsMods.OnlyShared = 900
+mod.RoomsMods.IncludeGreed = 8000
+mod.RoomsMods.OnlyGreed = 9000
 mod.RoomsMods["repentance"] = {
+	StbType.SPECIAL_ROOMS+mod.RoomsMods.IncludeGreed,
 	StbType.BASEMENT+mod.RoomsMods.IncludeShared,
 	StbType.CELLAR,
 	StbType.BURNING_BASEMENT,
@@ -311,6 +314,15 @@ function mod.HandleModLoadedRoom(stageid, path)
 	path = path or ""
 	local doShared = false
 	local doSelf = true
+	local doGreed = false
+	if stageid >= mod.RoomsMods.OnlyGreed then
+		stageid = stageid - mod.RoomsMods.OnlyGreed
+		doGreed = true
+		doSelf = false
+	elseif stageid >= mod.RoomsMods.IncludeGreed then
+		stageid = stageid - mod.RoomsMods.IncludeGreed
+		doGreed = true
+	end
 	if stageid >= mod.RoomsMods.OnlyShared then
 		stageid = stageid - mod.RoomsMods.OnlyShared
 		doShared = true
@@ -337,6 +349,9 @@ function mod.HandleModLoadedRoom(stageid, path)
 	end
 	if doSelf then
 		mod.LoadStbFromPath(stageid, 0, path .. mod.RoomsFilename[stageid])
+	end
+	if doGreed then
+		mod.LoadStbFromPath(stageid, 1, path .. string.gsub(mod.RoomsFilename[stageid],".stb","_greed.stb"))
 	end
 end
 

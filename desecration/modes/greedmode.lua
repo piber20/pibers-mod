@@ -303,6 +303,7 @@ function mod.OnNewLevelGreedMode()
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_PLANETARIUM)
 							curseDoor:SetLocked(true)
+							curseDoor:SetVariant(DoorVariant.DOOR_LOCKED)
 						end
 					elseif mod.GetBedroomChance() >= levelRNG:RandomFloat() then
 						if levelRNG:RandomInt(1, 2) == 1 then
@@ -310,12 +311,18 @@ function mod.OnNewLevelGreedMode()
 							if curseDoor then
 								curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ISAACS)
 								curseDoor:SetLocked(true)
+								curseDoor:SetVariant(DoorVariant.DOOR_LOCKED_DOUBLE)
+								curseDoor:GetExtraSprite():Load("gfx/grid/door_18_crackeddoor.anm2", true)
+								curseDoor:GetExtraSprite():Play("Idle", true)
 							end
 						else
 							roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_BARREN, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 							if curseDoor then
 								curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_BARREN)
 								curseDoor:SetLocked(true)
+								curseDoor:SetVariant(DoorVariant.DOOR_LOCKED_DOUBLE)
+								curseDoor:GetExtraSprite():Load("gfx/grid/door_18_crackeddoor.anm2", true)
+								curseDoor:GetExtraSprite():Play("Idle", true)
 							end
 						end
 					elseif mod.GetChestChance(true) >= levelRNG:RandomFloat() then
@@ -323,18 +330,25 @@ function mod.OnNewLevelGreedMode()
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_CHEST)
 							curseDoor:SetLocked(true)
+							curseDoor:SetVariant(DoorVariant.DOOR_LOCKED_DOUBLE)
+							curseDoor:GetExtraSprite():Load("gfx/grid/door_16_doublelock.anm2", true)
+							curseDoor:GetExtraSprite():Play("TwoChains", true)
 						end
 					elseif mod.GetDiceChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_DICE, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DICE)
 							curseDoor:SetLocked(true)
+							curseDoor:SetVariant(DoorVariant.DOOR_LOCKED_DOUBLE)
+							curseDoor:GetExtraSprite():Load("gfx/grid/door_16_doublelock.anm2", true)
+							curseDoor:GetExtraSprite():Play("TwoChains", true)
 						end
 					elseif mod.GetLibraryChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_LIBRARY, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_LIBRARY)
 							curseDoor:SetLocked(true)
+							curseDoor:SetVariant(DoorVariant.DOOR_LOCKED)
 						end
 					elseif mod.GetSacrificeChance() >= levelRNG:RandomFloat() then
 						roomDesc.Data = RoomConfig.GetRandomRoom(roomDesc.SpawnSeed, false, StbType.SPECIAL_ROOMS, RoomType.ROOM_SACRIFICE, RoomShape.ROOMSHAPE_1x1, nil, nil, 0, maxDifficulty, nil, 0, 1)
@@ -346,6 +360,7 @@ function mod.OnNewLevelGreedMode()
 						if curseDoor then
 							curseDoor:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ARCADE)
 							curseDoor:SetLocked(true)
+							curseDoor:SetVariant(DoorVariant.DOOR_LOCKED)
 						end
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_GREED_EXIT then
