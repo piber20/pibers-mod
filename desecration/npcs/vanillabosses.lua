@@ -101,8 +101,64 @@ mod.BossChampionNames[BossType.THE_FORSAKEN][0] = "boom"
 mod.BossChampionNames[BossType.SCOLEX] = {}
 mod.BossChampionNames[BossType.SCOLEX][BossColors.SCOLEX_BLACK] = "tanky_black"
 mod.BossChampionPortraits = {}
+mod.BossChampionPortraits[BossType.LARRY_JR] = {}
+mod.BossChampionPortraits[BossType.LARRY_JR][0] = true
+mod.BossChampionPortraits[BossType.LARRY_JR][1] = true
+mod.BossChampionPortraits[BossType.THE_HOLLOW] = {}
+mod.BossChampionPortraits[BossType.THE_HOLLOW][0] = true
+mod.BossChampionPortraits[BossType.THE_HOLLOW][1] = true
+mod.BossChampionPortraits[BossType.THE_HOLLOW][2] = true
+mod.BossChampionPortraits[BossType.MONSTRO] = {}
+mod.BossChampionPortraits[BossType.MONSTRO][0] = true
+mod.BossChampionPortraits[BossType.MONSTRO][1] = true
+mod.BossChampionPortraits[BossType.CHUB] = {}
+mod.BossChampionPortraits[BossType.CHUB][0] = true
+mod.BossChampionPortraits[BossType.CHUB][1] = true
+mod.BossChampionPortraits[BossType.THE_CARRION_QUEEN] = {}
+mod.BossChampionPortraits[BossType.THE_CARRION_QUEEN][0] = true
+mod.BossChampionPortraits[BossType.GURDY] = {}
+mod.BossChampionPortraits[BossType.GURDY][0] = true
+mod.BossChampionPortraits[BossType.MONSTRO_2] = {}
+mod.BossChampionPortraits[BossType.MONSTRO_2][0] = true
+mod.BossChampionPortraits[BossType.MOM] = {}
+mod.BossChampionPortraits[BossType.MOM][0] = true
+mod.BossChampionPortraits[BossType.MOM][1] = true
+mod.BossChampionPortraits[BossType.PIN] = {}
+mod.BossChampionPortraits[BossType.PIN][0] = true
+mod.BossChampionPortraits[BossType.FAMINE] = {}
+mod.BossChampionPortraits[BossType.FAMINE][0] = true
+mod.BossChampionPortraits[BossType.PESTILENCE] = {}
+mod.BossChampionPortraits[BossType.PESTILENCE][0] = true
+mod.BossChampionPortraits[BossType.WAR] = {}
+mod.BossChampionPortraits[BossType.WAR][0] = true
+mod.BossChampionPortraits[BossType.DEATH] = {}
+mod.BossChampionPortraits[BossType.DEATH][0] = true
 mod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
 mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
+mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][1] = true
+mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][BossColors.DUKE_ETERNAL] = true
+mod.BossChampionPortraits[BossType.THE_HUSK] = {}
+mod.BossChampionPortraits[BossType.THE_HUSK][0] = true
+mod.BossChampionPortraits[BossType.THE_HUSK][1] = true
+mod.BossChampionPortraits[BossType.PEEP] = {}
+mod.BossChampionPortraits[BossType.PEEP][0] = true
+mod.BossChampionPortraits[BossType.PEEP][1] = true
+mod.BossChampionPortraits[BossType.THE_BLOAT] = {}
+mod.BossChampionPortraits[BossType.THE_BLOAT][0] = true
+mod.BossChampionPortraits[BossType.FISTULA] = {}
+mod.BossChampionPortraits[BossType.FISTULA][0] = true
+mod.BossChampionPortraits[BossType.GEMINI] = {}
+mod.BossChampionPortraits[BossType.GEMINI][0] = true
+mod.BossChampionPortraits[BossType.GEMINI][1] = true
+mod.BossChampionPortraits[BossType.GEMINI][BossColors.GEMINI_STEVEN] = true
+mod.BossChampionPortraits[BossType.MASK_OF_INFAMY] = {}
+mod.BossChampionPortraits[BossType.MASK_OF_INFAMY][0] = true
+mod.BossChampionPortraits[BossType.GURDY_JR] = {}
+mod.BossChampionPortraits[BossType.GURDY_JR][0] = true
+mod.BossChampionPortraits[BossType.GURDY_JR][1] = true
+mod.BossChampionPortraits[BossType.WIDOW] = {}
+mod.BossChampionPortraits[BossType.WIDOW][0] = true
+mod.BossChampionPortraits[BossType.WIDOW][1] = true
 function mod.onRenderBossIntro()
 	local isRendering = RoomTransition.IsRenderingBossIntro()
 	if isRendering and not lastRoomTransMode then
@@ -127,7 +183,6 @@ function mod.onRenderBossIntro()
 			if mod.BossChampionPortraits[likelyBossID] and mod.BossChampionPortraits[likelyBossID][likelyBossColor] then
 				local bosssheet = XMLData.GetEntryById(XMLNode.BOSSPORTRAIT, likelyBossID)
 				if bosssheet and type(bosssheet) == "string" then
-					print(bosssheet)
 					sprite:ReplaceSpritesheet(4, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
 					sprite:ReplaceSpritesheet(13, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
 				end

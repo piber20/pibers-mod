@@ -430,3 +430,90 @@ function mod.PreAddTrinketForBlackFeather(player, trinketID, firsttime)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_PRE_ADD_TRINKET, mod.PreAddTrinketForBlackFeather)
+
+function mod.OnInputForCursor(entity, hook, action)
+	if action == ButtonAction.ACTION_DROP and Input.IsMouseBtnPressed(Mouse.MOUSE_BUTTON_RIGHT) then
+		if hook == InputHook.GET_ACTION_VALUE then
+			return 1
+		else
+			return true
+		end
+	end
+	if entity and (action == ButtonAction.ACTION_SHOOTLEFT or action == ButtonAction.ACTION_SHOOTRIGHT or action == ButtonAction.ACTION_SHOOTUP or action == ButtonAction.ACTION_SHOOTDOWN) then
+		local data = mod.GetData(entity)
+		if Input.IsMouseBtnPressed(Mouse.MOUSE_BUTTON_LEFT) then
+			local frame = Isaac.GetFrameCount()
+			if not data.heldmouseframe then
+				data.heldmouseframe = frame
+			end
+			local mousepos = Input.GetMousePosition(true)
+			local entpos = entity.Position
+			local inputdir = mousepos - entpos
+			inputdir:Resize(1)
+			if action == ButtonAction.ACTION_SHOOTLEFT then
+				if inputdir.X < 0 then
+					print("left " .. (-inputdir.X))
+					if hook == InputHook.GET_ACTION_VALUE then
+						return -inputdir.X
+					elseif inputdir.X <= -0.5 then
+						if hook == InputHook.IS_ACTION_TRIGGERED then
+							if data.heldmouseframe == frame then
+								return true
+							end
+						else
+							return true
+						end
+					end
+				end
+			elseif action == ButtonAction.ACTION_SHOOTRIGHT then
+				if inputdir.X > 0 then
+					print("right " .. inputdir.X)
+					if hook == InputHook.GET_ACTION_VALUE then
+						return inputdir.X
+					elseif inputdir.X >= 0.5 then
+						if hook == InputHook.IS_ACTION_TRIGGERED then
+							if data.heldmouseframe == frame then
+								return true
+							end
+						else
+							return true
+						end
+					end
+				end
+			elseif action == ButtonAction.ACTION_SHOOTUP then
+				if inputdir.Y < 0 then
+					print("up " .. (-inputdir.Y))
+					if hook == InputHook.GET_ACTION_VALUE then
+						return -inputdir.Y
+					elseif inputdir.Y <= -0.5 then
+						if hook == InputHook.IS_ACTION_TRIGGERED then
+							if data.heldmouseframe == frame then
+								return true
+							end
+						else
+							return true
+						end
+					end
+				end
+			elseif action == ButtonAction.ACTION_SHOOTDOWN then
+				if inputdir.Y > 0 then
+					print("down " .. inputdir.Y)
+					if hook == InputHook.GET_ACTION_VALUE then
+						return inputdir.Y
+					elseif inputdir.Y >= 0.5 then
+						if hook == InputHook.IS_ACTION_TRIGGERED then
+							if data.heldmouseframe == frame then
+								return true
+							end
+						else
+							return true
+						end
+					end
+				end
+			end
+		else
+			data.heldmouseframe = nil
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.OnInputForCursor)
