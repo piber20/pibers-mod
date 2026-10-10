@@ -5,9 +5,13 @@ mod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KEY_PIECE_1] = Coll
 mod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KEY_PIECE_2] = CollectibleType.COLLECTIBLE_KEY_PIECE_1
 mod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KNIFE_PIECE_1] = CollectibleType.COLLECTIBLE_KNIFE_PIECE_2
 mod.ReplaceCollectibleWithOnDupe[CollectibleType.COLLECTIBLE_KNIFE_PIECE_2] = CollectibleType.COLLECTIBLE_KNIFE_PIECE_1
+mod.ItemsAddedToPool = {}
+mod.ItemsRemovedFromPool = {}
 function mod.OnCollectibleInit(pickup)
 	if mod.ReplaceCollectibleWithOnDupe[pickup.SubType] and PlayerManager.AnyoneHasCollectible(pickup.SubType) then
 		pickup:Morph(pickup.Type, pickup.Variant, mod.ReplaceCollectibleWithOnDupe[pickup.SubType], true, true, true)
+	elseif mod.ItemsRemovedFromPool[-1] and mod.ItemsRemovedFromPool[-1][pickup.SubType] then
+		pickup:Morph(pickup.Type, pickup.Variant, 0, true, true, true)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.OnCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
@@ -22,8 +26,6 @@ function mod.OnCollectibleUpdate(pickup)
 end
 mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnCollectibleUpdate, PickupVariant.PICKUP_COLLECTIBLE)
 
-mod.ItemsAddedToPool = {}
-mod.ItemsRemovedFromPool = {}
 function mod.AddModItemToPool(collID, poolID, weight)
 	if itemID and itemID > 0 and poolID and poolID > 0 then
 		if mod.ItemsRemovedFromPool[poolID] and mod.ItemsAddedToPool[poolID][collID] then

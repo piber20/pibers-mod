@@ -452,7 +452,6 @@ function mod.OnInputForCursor(entity, hook, action)
 			inputdir:Resize(1)
 			if action == ButtonAction.ACTION_SHOOTLEFT then
 				if inputdir.X < 0 then
-					print("left " .. (-inputdir.X))
 					if hook == InputHook.GET_ACTION_VALUE then
 						return -inputdir.X
 					elseif inputdir.X <= -0.5 then
@@ -467,7 +466,6 @@ function mod.OnInputForCursor(entity, hook, action)
 				end
 			elseif action == ButtonAction.ACTION_SHOOTRIGHT then
 				if inputdir.X > 0 then
-					print("right " .. inputdir.X)
 					if hook == InputHook.GET_ACTION_VALUE then
 						return inputdir.X
 					elseif inputdir.X >= 0.5 then
@@ -482,7 +480,6 @@ function mod.OnInputForCursor(entity, hook, action)
 				end
 			elseif action == ButtonAction.ACTION_SHOOTUP then
 				if inputdir.Y < 0 then
-					print("up " .. (-inputdir.Y))
 					if hook == InputHook.GET_ACTION_VALUE then
 						return -inputdir.Y
 					elseif inputdir.Y <= -0.5 then
@@ -497,7 +494,6 @@ function mod.OnInputForCursor(entity, hook, action)
 				end
 			elseif action == ButtonAction.ACTION_SHOOTDOWN then
 				if inputdir.Y > 0 then
-					print("down " .. inputdir.Y)
 					if hook == InputHook.GET_ACTION_VALUE then
 						return inputdir.Y
 					elseif inputdir.Y >= 0.5 then
