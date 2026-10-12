@@ -1,44 +1,44 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
 
 	<!-- Collectibles -->
-	<passive id="0" name="Mixed Veggies" quality="2" gfx="pibersmod_mixedveggies.png"
+	<passive id="0" name="Mixed Veggies" quality="2" gfx="desecration_mixedveggies.png"
 			 description="HP + DMG up"
 			 damage="0.15" hearts="4" maxhearts="2"
 			 tags="nolostbr"
 	/>
-	<passive id="1" name="Bloody Feather" quality="1" gfx="pibersmod_bloodyfeather.png"
+	<passive id="1" name="Bloody Feather" quality="1" gfx="desecration_bloodyfeather.png"
 			 description="Tears up + God's protection"
 			 tears="0.5"
 			 tags="angel tearsup"
 	/>
-	<passive id="2" name="The Key" quality="0" craftquality="-1" gfx="pibersmod_key.png"
+	<passive id="2" name="The Key" quality="0" craftquality="-1" gfx="desecration_key.png"
 			 description="???"
 			 tags="offensive lazarusshared noeden nocantrip quest"
 	/>
-	<passive id="3" name="The Knife" quality="0" craftquality="-1" gfx="pibersmod_knife.png"
+	<passive id="3" name="The Knife" quality="0" craftquality="-1" gfx="desecration_knife.png"
 			 description="???"
 			 tags="offensive lazarusshared noeden nocantrip quest"
 	/>
-	<passive id="4" name="Counterfeit Dollar" quality="2" gfx="pibersmod_counterfietdollar.png"
+	<passive id="4" name="Counterfeit Dollar" quality="2" gfx="desecration_counterfietdollar.png"
 			 description="DMG up + Temporary money!"
 			 damage="0.2" luck="-1" coins="100"
 			 tags="nogreed offensive"
 	/>
-	<passive id="5" name="Birthday Cake" quality="2" gfx="pibersmod_birthdaycake.png"
+	<passive id="5" name="Birthday Cake" quality="2" gfx="desecration_birthdaycake.png"
 			 description="HP + Tears up"
 			 tears="0.1" hearts="4" maxhearts="2"
 			 tags="nolostbr"
-			 extraCostume="pibersmod_birthdaycake_candle"
+			 extraCostume="desecration_birthdaycake_candle"
 	/>
-	<active  id="6" name="Mystical Egg" quality="3" gfx="pibersmod_egg_temp.png"
+	<active  id="6" name="Mystical Egg" quality="3" gfx="desecration_egg_temp.png"
 			 description="Special babies!"
 			 maxcharges="3"
 	/>
 
 	<!-- Trinkets -->
-	<trinket id="0" name="Orthodox Cross" gfx="pibersmod_orthodoxcross.png"
+	<trinket id="0" name="Orthodox Cross" gfx="desecration_orthodoxcross.png"
 			 description="Rewards faith"
-			 collectionsprite="death items trinkets pibersmod" collectionframe="0"
+			 collectionsprite="death items trinkets desecration" collectionframe="0"
 	/>
 
 	<!-- Null Items -->

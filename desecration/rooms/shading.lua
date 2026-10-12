@@ -212,7 +212,6 @@ mod.ShadingBg.BackdropsSprites = {
 	mod.ShadingBg.TinyClosetL.Floor,
 	mod.ShadingBg.TinyClosetL.Wall
 }
---mod.ShadingBg.ActiveCam = Options.CameraStyle   mod.ShadingBg.ClosetL.WallGrids
 
 function mod.BackdropHasWalls(backdrop)
 	return backdrop ~= BackdropType.DARKROOM and backdrop ~= BackdropType.MEGA_SATAN and backdrop ~= BackdropType.ERROR_ROOM and backdrop ~= BackdropType.DUNGEON and backdrop ~= BackdropType.PLANETARIUM and backdrop ~= BackdropType.DOGMA and backdrop ~= BackdropType.DUNGEON_GIDEON and backdrop ~= BackdropType.DUNGEON_ROTGUT and backdrop ~= BackdropType.DUNGEON_BEAST
@@ -295,26 +294,3 @@ mod.ModEffectRenderFuncs[mod.Effects.FAKE_WALL_HANDLER] = function(effect,sprite
 		end
 	end
 end
-
---[[
-mod.ShadingBg.CurrentCamPos = nil
-mod.framemult = 20
-function mod.OnRenderShading()
-	local game = Game()
-	local room = game:GetRoom()
-	if mod.ShadingBg.ShouldRender then
-		if mod.ShadingBg[mod.ShadingBg.Current] and mod.ShadingBg[mod.ShadingBg.Current].CameraPos then
-			Options.CameraStyle = 2
-			local camera = room:GetCamera()
-			if camera:IsClampEnabled() then
-				camera:SetClampEnabled(false)
-			end
-			mod.ShadingBg.CurrentCamPos = Vector(mod.ShadingBg[mod.ShadingBg.Current].CameraPosStart.X,mod.ShadingBg[mod.ShadingBg.Current].CameraPosStart.Y)
-			camera:SnapToPosition(mod.ShadingBg.CurrentCamPos:Lerp(mod.ShadingBg[mod.ShadingBg.Current].CameraPos,math.min(room:GetFrameCount()/mod.framemult,1)))
-		end
-	elseif Options.CameraStyle ~= mod.ShadingBg.ActiveCam and room:GetFrameCount() < 10 then
-		Options.CameraStyle = mod.ShadingBg.ActiveCam
-	end
-end
-mod.AddCallback(ModCallbacks.MC_POST_RENDER, mod.OnRenderShading)
-]]

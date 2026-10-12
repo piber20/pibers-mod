@@ -18,22 +18,7 @@
 			<entity type="227" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28201" name="Challenge (Necropolis, Wave 1)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="1" weight="1.0">
-		<door exists="True" x="-1" y="3"/>
-		<door exists="True" x="6" y="-1"/>
-		<door exists="True" x="6" y="7"/>
-		<door exists="True" x="13" y="3"/>
-		<spawn x="6" y="0">
-			<entity type="35" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-		<spawn x="1" y="6">
-			<entity type="35" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-		<spawn x="11" y="6">
-			<entity type="35" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-	</room>
-	<room variant="28202" name="Challenge (Necropolis, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="28201" name="Challenge (Necropolis, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -48,7 +33,7 @@
 			<entity type="213" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28203" name="Challenge (Necropolis, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="28202" name="Challenge (Necropolis, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -63,7 +48,7 @@
 			<entity type="241" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28204" name="Challenge (Necropolis, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+	<room variant="28203" name="Challenge (Necropolis, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -87,25 +72,7 @@
 			<entity type="92" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28205" name="Challenge (Necropolis, Wave 3)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="10" weight="1.0">
-		<door exists="True" x="-1" y="3"/>
-		<door exists="True" x="6" y="-1"/>
-		<door exists="True" x="6" y="7"/>
-		<door exists="True" x="13" y="3"/>
-		<spawn x="1" y="0">
-			<entity type="252" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-		<spawn x="11" y="0">
-			<entity type="252" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-		<spawn x="1" y="6">
-			<entity type="252" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-		<spawn x="11" y="6">
-			<entity type="252" variant="0" subtype="0" weight="2.0"/>
-		</spawn>
-	</room>
-	<room variant="28206" name="Boss Challenge (Necropolis, Wave 1)" type="11" subtype="11" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="28204" name="Boss Challenge (Necropolis, Wave 1)" type="11" subtype="11" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -120,13 +87,25 @@
 			<entity type="38" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="28207" name="Boss Challenge (Necropolis, Wave 2)" type="11" subtype="11" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+	<room variant="28205" name="Challenge (Depths, Wave 2)" type="11" subtype="10" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="10" y="3">
-			<entity type="68" variant="1" subtype="0" weight="2.0"/>
+		<spawn x="6" y="0">
+			<entity type="29" variant="1" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="2">
+			<entity type="29" variant="1" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="2">
+			<entity type="29" variant="1" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="3" y="6">
+			<entity type="29" variant="1" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="6">
+			<entity type="29" variant="1" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
 </rooms>

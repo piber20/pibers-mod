@@ -223,27 +223,76 @@ end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onLilHauntUpdate, EntityType.ENTITY_THE_HAUNT)
 
 function mod.onLumpUpdate(npc)
-	if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
-		local data = mod.GetData(npc)
-		if not data.ReplacedSprite then
-			npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_198_lump_corpse2.png", false)
-			npc:ReplaceSpritesheet(1, "gfx/monsters/classic/monster_198_lump_corpse2.png", true)
-			data.ReplacedSprite = true
+	if npc.Variant == 0 then
+		if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
+			local data = mod.GetData(npc)
+			if not data.ReplacedSprite then
+				npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_198_lump_corpse2.png", false)
+				npc:ReplaceSpritesheet(1, "gfx/monsters/classic/monster_198_lump_corpse2.png", true)
+				data.ReplacedSprite = true
+			end
 		end
 	end
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onLumpUpdate, EntityType.ENTITY_LUMP)
 
 function mod.onGasbagUpdate(npc)
-	if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
-		local data = mod.GetData(npc)
-		if not data.ReplacedSprite then
-			npc:ReplaceSpritesheet(0, "gfx/monsters/repentance/856.000_gasbag2.png", true)
-			data.ReplacedSprite = true
+	if npc.Variant == 0 then
+		if Isaac.GetCurrentStageConfigId() == StbType.CORPSE and Game():GetRoom():GetBackdropType() == BackdropType.CORPSE2 then
+			local data = mod.GetData(npc)
+			if not data.ReplacedSprite then
+				npc:ReplaceSpritesheet(0, "gfx/monsters/repentance/856.000_gasbag2.png", true)
+				data.ReplacedSprite = true
+			end
 		end
 	end
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onGasbagUpdate, EntityType.ENTITY_GASBAG)
+
+function mod.onConjoinedFattyUpdate(npc)
+	if npc.Variant == 1 then
+		local backdrop = Game():GetRoom():GetBackdropType()
+		if (Isaac.GetCurrentStageConfigId() == StbType.CHEST and backdrop == BackdropType.CHEST) or backdrop == BackdropType.ERROR_ROOM then
+			local data = mod.GetData(npc)
+			if not data.ReplacedSprite then
+				npc:ReplaceSpritesheet(0, "gfx/monsters/afterbirth/257.001_blueconjoinedfatty_neon.png", false)
+				npc:ReplaceSpritesheet(1, "gfx/monsters/afterbirth/257.001_blueconjoinedfatty_neon.png", true)
+				data.ReplacedSprite = true
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onConjoinedFattyUpdate, EntityType.ENTITY_CONJOINED_FATTY)
+
+function mod.onHushGaperUpdate(npc)
+	if npc.Variant == 0 then
+		local backdrop = Game():GetRoom():GetBackdropType()
+		if (Isaac.GetCurrentStageConfigId() == StbType.CHEST and backdrop == BackdropType.CHEST) or backdrop == BackdropType.ERROR_ROOM then
+			local data = mod.GetData(npc)
+			if not data.ReplacedSprite then
+				npc:ReplaceSpritesheet(0, "gfx/monsters/afterbirth/monster_bluebodies_neon.png", false)
+				npc:ReplaceSpritesheet(1, "gfx/monsters/afterbirth/monster_blue_neon.png", true)
+				data.ReplacedSprite = true
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHushGaperUpdate, EntityType.ENTITY_HUSH_GAPER)
+
+function mod.onHushBoilUpdate(npc)
+	if npc.Variant == 0 then
+		local backdrop = Game():GetRoom():GetBackdropType()
+		if (Isaac.GetCurrentStageConfigId() == StbType.CHEST and backdrop == BackdropType.CHEST) or backdrop == BackdropType.ERROR_ROOM then
+			local data = mod.GetData(npc)
+			if not data.ReplacedSprite then
+				npc:ReplaceSpritesheet(0, "gfx/monsters/afterbirth/monster_blueboil_neon.png", false)
+				npc:ReplaceSpritesheet(2, "gfx/monsters/afterbirth/monster_blueboil_neon.png", true)
+				data.ReplacedSprite = true
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHushBoilUpdate, EntityType.ENTITY_HUSH_BOIL)
 
 function mod.onRoomEntitySpawnReplacements(spawntype, spawnvariant, spawnsubtype, gridindex, seed)
 	if spawntype == EntityType.BLIND_BAT then

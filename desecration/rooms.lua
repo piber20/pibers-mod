@@ -57,18 +57,17 @@ mod.RoomsMods["repentance"] = {
 	StbType.CATHEDRAL,
 	StbType.DARK_ROOM,
 	StbType.CHEST,
-	StbType.DOWNPOUR,
-	StbType.DROSS,
-	StbType.MINES,
-	StbType.ASHPIT,
-	StbType.MAUSOLEUM,
-	StbType.GEHENNA,
-	StbType.CORPSE
+	StbType.DOWNPOUR+mod.RoomsMods.IncludeGreed,
+	StbType.DROSS+mod.RoomsMods.IncludeGreed,
+	StbType.MINES+mod.RoomsMods.IncludeGreed,
+	StbType.ASHPIT+mod.RoomsMods.IncludeGreed,
+	StbType.MAUSOLEUM+mod.RoomsMods.IncludeGreed,
+	StbType.GEHENNA+mod.RoomsMods.IncludeGreed,
+	StbType.CORPSE+mod.RoomsMods.IncludeGreed
 }
 mod.RoomsMods["antibirth"] = {
 	StbType.BASEMENT,
 	StbType.CELLAR,
-	StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
 	StbType.CAVES,
 	StbType.CATACOMBS,
 	StbType.DEPTHS,
@@ -79,11 +78,14 @@ mod.RoomsMods["antibirth"] = {
 	StbType.CATHEDRAL,
 	StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
 	StbType.MINES+mod.RoomsMods.IncludeShared,
+	StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
 	StbType.CORPSE,
 	["kilburn"] = {
 		StbType.SPECIAL_ROOMS+mod.RoomsMods.IncludeShared,
-		StbType.BASEMENT+mod.RoomsMods.OnlyShared,
+		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
+		StbType.BURNING_BASEMENT,
 		StbType.CAVES+mod.RoomsMods.OnlyShared,
+		StbType.FLOODED_CAVES,
 		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
 		StbType.SHEOL,
 		StbType.CATHEDRAL,
@@ -94,34 +96,40 @@ mod.RoomsMods["antibirth"] = {
 		StbType.CORPSE
 	},
 	["sal"] = {
-		StbType.BASEMENT,
+		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
 		StbType.CAVES+mod.RoomsMods.OnlyShared,
-		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
+		StbType.CATACOMBS,
+		StbType.DEPTHS+mod.RoomsMods.IncludeShared,
+		StbType.NECROPOLIS,
 		StbType.CATHEDRAL,
 		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
 		StbType.MINES+mod.RoomsMods.IncludeShared,
 		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared
 	},
 	["leather"] = {
-		StbType.BASEMENT,
+		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
 		StbType.CELLAR,
 		StbType.BURNING_BASEMENT,
-		StbType.CAVES+mod.RoomsMods.IncludeShared,
+		StbType.CAVES+mod.RoomsMods.OnlyShared,
 		StbType.CATACOMBS,
 		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
+		StbType.NECROPOLIS,
 		StbType.DANK_DEPTHS,
 		StbType.WOMB+mod.RoomsMods.OnlyShared,
+		StbType.UTERO,
+		StbType.SCARRED_WOMB,
 		StbType.SHEOL,
 		StbType.CATHEDRAL,
 		StbType.DARK_ROOM,
 		StbType.CHEST,
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-		StbType.MINES+mod.RoomsMods.IncludeShared,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-		StbType.CORPSE
+		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
+		StbType.MINES+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
+		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
+		StbType.CORPSE+mod.RoomsMods.IncludeGreed
 	},
 	["sag"] = {
-		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
+		StbType.DEPTHS,
+		StbType.NECROPOLIS,
 		StbType.SHEOL
 	},
 	["ikana"] = {
@@ -131,8 +139,8 @@ mod.RoomsMods["antibirth"] = {
 		StbType.CORPSE
 	},
 	["luke"] = {
-		StbType.CAVES,
-		StbType.WOMB+mod.RoomsMods.OnlyShared,
+		StbType.CAVES+mod.RoomsMods.IncludeShared,
+		StbType.UTERO,
 		StbType.DOWNPOUR,
 		StbType.MINES,
 		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared
@@ -144,10 +152,12 @@ mod.RoomsMods["antibirth"] = {
 	},
 	["compat"] = {
 		["lastjudgement"] = {
-			StbType.WOMB+mod.RoomsMods.OnlyShared,
+			StbType.CATACOMBS,
+			StbType.UTERO,
+			StbType.DOWNPOUR,
 			["kilburn"] = {
 				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.WOMB+mod.RoomsMods.OnlyShared,
+				StbType.UTERO,
 				StbType.MINES,
 				StbType.MAUSOLEUM,
 				StbType.CORPSE
@@ -159,10 +169,10 @@ mod.RoomsMods["antibirth"] = {
 				StbType.MAUSOLEUM
 			},
 			["leather"] = {
-				StbType.CAVES+mod.RoomsMods.IncludeShared,
+				StbType.CAVES+mod.RoomsMods.OnlyShared,
 				StbType.CATACOMBS,
 				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-				StbType.WOMB+mod.RoomsMods.OnlyShared,
+				StbType.UTERO,
 				StbType.SHEOL,
 				StbType.MINES,
 				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
@@ -170,16 +180,18 @@ mod.RoomsMods["antibirth"] = {
 			},
 			["ikana"] = {
 				StbType.MINES,
-				StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared,
+				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
 				StbType.CORPSE
 			},
 			["luke"] = {
-				StbType.CAVES
+				StbType.CAVES+mod.RoomsMods.OnlyShared
+			},
+			["edd"] = {
+				StbType.MAUSOLEUM
 			}
-			--["edd"]
 		},
 		["lastjudgementandrestoredmonsters"] = {
-			StbType.WOMB+mod.RoomsMods.OnlyShared,
+			StbType.UTERO,
 			StbType.MAUSOLEUM,
 			["kilburn"] = {
 				StbType.MAUSOLEUM
@@ -188,7 +200,7 @@ mod.RoomsMods["antibirth"] = {
 				StbType.DEPTHS+mod.RoomsMods.OnlyShared
 			},
 			["leather"] = {
-				StbType.WOMB+mod.RoomsMods.OnlyShared,
+				StbType.UTERO,
 				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
 				StbType.CORPSE
 			},
@@ -210,7 +222,8 @@ mod.RoomsMods["antibirth"] = {
 			StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared,
 			StbType.CORPSE,
 			["kilburn"] = {
-				StbType.BASEMENT+mod.RoomsMods.OnlyShared,
+				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
+				StbType.BURNING_BASEMENT,
 				StbType.CAVES+mod.RoomsMods.OnlyShared,
 				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
 				StbType.CHEST,
@@ -219,7 +232,8 @@ mod.RoomsMods["antibirth"] = {
 				StbType.CORPSE
 			},
 			["sal"] = {
-				StbType.BASEMENT,
+				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
+				StbType.CELLAR,
 				StbType.BURNING_BASEMENT,
 				StbType.CAVES+mod.RoomsMods.OnlyShared,
 				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
@@ -227,13 +241,13 @@ mod.RoomsMods["antibirth"] = {
 				StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared
 			},
 			["leather"] = {
-				StbType.BASEMENT,
+				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
 				StbType.CELLAR,
-				StbType.BURNING_BASEMENT,
-				StbType.CAVES+mod.RoomsMods.IncludeShared,
+				StbType.CAVES+mod.RoomsMods.OnlyShared,
 				StbType.CATACOMBS,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
+				StbType.DEPTHS+mod.RoomsMods.IncludeShared,
 				StbType.WOMB+mod.RoomsMods.OnlyShared,
+				StbType.UTERO,
 				StbType.SHEOL,
 				StbType.CATHEDRAL,
 				StbType.CHEST,
@@ -259,12 +273,11 @@ mod.RoomsMods["antibirth"] = {
 				StbType.GEHENNA
 			},
 			["sal"] = {
-				StbType.BASEMENT,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared
+				StbType.BASEMENT+mod.RoomsMods.OnlyShared,
+				StbType.DEPTHS+mod.RoomsMods.IncludeShared
 			},
 			["leather"] = {
-				StbType.BASEMENT,
-				StbType.BURNING_BASEMENT,
+				StbType.BASEMENT+mod.RoomsMods.OnlyShared,
 				StbType.DEPTHS+mod.RoomsMods.OnlyShared
 			},
 			["ikana"] = {
@@ -343,6 +356,8 @@ function mod.HandleModLoadedRoom(stageid, path)
 				mod.LoadStbFromPath(otherstage, 0, path .. mod.RoomsSharedFilename[stageid])
 				if stageid == StbType.SPECIAL_ROOMS then
 					mod.LoadStbFromPath(otherstage, 1, path .. mod.RoomsSharedFilename[stageid])
+				elseif doGreed then
+					mod.LoadStbFromPath(otherstage, 1, path .. string.gsub(mod.RoomsSharedFilename[stageid],".stb","_greed.stb"))
 				end
 			end
 		end
@@ -351,7 +366,9 @@ function mod.HandleModLoadedRoom(stageid, path)
 		mod.LoadStbFromPath(stageid, 0, path .. mod.RoomsFilename[stageid])
 	end
 	if doGreed then
-		mod.LoadStbFromPath(stageid, 1, path .. string.gsub(mod.RoomsFilename[stageid],".stb","_greed.stb"))
+		if doSelf then
+			mod.LoadStbFromPath(stageid, 1, path .. string.gsub(mod.RoomsFilename[stageid],".stb","_greed.stb"))
+		end
 	end
 end
 

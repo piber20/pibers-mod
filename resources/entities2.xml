@@ -2881,7 +2881,7 @@
         <bestiary anim="Idle" transform="0,14,1"/>
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1"/>
     </entity>
-    <entity anm2path="404.000_Littlehorn.anm2" baseHP="350" boss="1" bossID="60" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="16" friction="1" id="404" name="#LITTLE_HORN" numGridCollisionPoints="12" portrait="82" shadowSize="16" stageHP="0" variant="0" shieldStrength="2">
+    <entity anm2path="404.000_Littlehorn.anm2" baseHP="300" boss="1" bossID="60" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="16" friction="1" id="404" name="#LITTLE_HORN" numGridCollisionPoints="12" portrait="82" shadowSize="16" stageHP="0" variant="0" shieldStrength="2">
         <bestiary anim="Idle" transform="0,0,1"/>
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="1"/>
     </entity>
