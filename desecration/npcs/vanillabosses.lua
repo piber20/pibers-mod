@@ -249,23 +249,6 @@ function mod.onGeminiUpdate(npc)
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onGeminiUpdate, EntityType.ENTITY_GEMINI)
 
-function mod.preGeminiUpdate(npc)
-	if npc.Variant == GeminiVariant.STEVEN_BABY and npc.SubType == 0 then
-		local sprite = npc:GetSprite()
-		if sprite:IsPlaying("Rage") then
-			if sprite:WasEventTriggered("Land") then
-				npc.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL
-				npc.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
-				if not sprite:WasEventTriggered("GetUp") then
-					npc.Velocity = npc.Velocity * 0.5
-					return true
-				end
-			end
-		end
-	end
-end
-mod.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, mod.preGeminiUpdate, EntityType.ENTITY_GEMINI)
-
 mod.StevenBabyOffsetL = Vector(32,-2)
 mod.StevenBabyOffsetR = Vector(-32,-2)
 function mod.onGeminiRender(npc, offset)
@@ -304,10 +287,8 @@ function mod.onStevenProjectileUpdate(proj)
 end
 mod.AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, mod.onStevenProjectileUpdate, ProjectileVariant.PROJECTILE_FCUK)
 
-mod.StartingWeirdness = 5
+mod.StartingWeirdness = 2
 mod.DontReplaceBosses = {}
-mod.DontReplaceBosses[BossType.MOM] = true
-mod.DontReplaceBosses[BossType.MOMS_HEART] = true
 mod.DontReplaceBosses[BossType.FAMINE] = true
 mod.DontReplaceBosses[BossType.PESTILENCE] = true
 mod.DontReplaceBosses[BossType.WAR] = true
@@ -315,24 +296,10 @@ mod.DontReplaceBosses[BossType.DEATH] = true
 mod.DontReplaceBosses[BossType.STEVEN] = true
 mod.DontReplaceBosses[BossType.HEADLESS_HORSEMAN] = true
 mod.DontReplaceBosses[BossType.THE_FALLEN] = true
-mod.DontReplaceBosses[BossType.SATAN] = true
-mod.DontReplaceBosses[BossType.IT_LIVES] = true
 mod.DontReplaceBosses[BossType.CONQUEST] = true
-mod.DontReplaceBosses[BossType.ISAAC] = true
-mod.DontReplaceBosses[BossType.BLUE_BABY] = true
-mod.DontReplaceBosses[BossType.THE_LAMB] = true
-mod.DontReplaceBosses[BossType.MEGA_SATAN] = true
 mod.DontReplaceBosses[BossType.ULTRA_GREED] = true
-mod.DontReplaceBosses[BossType.HUSH] = true
-mod.DontReplaceBosses[BossType.DELIRIUM] = true
-mod.DontReplaceBosses[BossType.ULTRA_GREEDIER] = true
-mod.DontReplaceBosses[BossType.MOTHER] = true
-mod.DontReplaceBosses[BossType.MOM_MAUSOLEUM] = true
-mod.DontReplaceBosses[BossType.MOMS_HEART_MAUSOLEUM] = true
-mod.DontReplaceBosses[BossType.DOGMA] = true
-mod.DontReplaceBosses[BossType.THE_BEAST] = true
 function mod.preBossSelect(bossType, bossPool, stage, stagetype)
-	if not mod.DontReplaceBosses[bossType] then
+	if not mod.DontReplaceBosses[bossType] and stage < LevelStage.STAGE3_2 then
 		local runSave = mod.SaveManager.GetRunSave()
 		if not runSave.EncounteredSteven then
 			runSave.Weirdness = runSave.Weirdness or mod.StartingWeirdness --might use weirdness for other things

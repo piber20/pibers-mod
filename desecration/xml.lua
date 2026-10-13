@@ -8,6 +8,8 @@ mod.XMLToTable[XMLNode.ITEM] = {}
 mod.XMLToTable[XMLNode.ITEM]["extracostume"] = mod.ExtraCostumes
 mod.XMLToTable[XMLNode.ITEM]["collectionsprite"] = mod.CollectionPageIconOverrideCollectibles
 mod.XMLToTable[XMLNode.ITEM]["collectionframe"] = mod.CollectionPageIconOverrideCollectibles
+mod.XMLToTable[XMLNode.ITEM]["hasaltgfx"] = mod.CollectibleHasAltFrame
+mod.XMLToTable[XMLNode.ITEM]["hasanimgfx"] = mod.CollectibleHasAnim
 mod.XMLToTable[XMLNode.TRINKET] = {}
 mod.XMLToTable[XMLNode.TRINKET]["collectionsprite"] = mod.CollectionPageIconOverrideTrinket
 mod.XMLToTable[XMLNode.TRINKET]["collectionframe"] = mod.CollectionPageIconOverrideTrinket
@@ -35,6 +37,9 @@ mod.XMLToTableVerifySprite = {}
 mod.XMLToTableVerifySprite["collectionsprite"] = "gfx/ui/"
 mod.XMLToTableVerifyNumber = {}
 mod.XMLToTableVerifyNumber["collectionframe"] = true
+mod.XMLToTableVerifyBool = {}
+mod.XMLToTableVerifyBool["hasaltgfx"] = true
+mod.XMLToTableVerifyBool["hasanimgfx"] = true
 function mod.ParseXMLNode(node)
 	if mod.XMLToTable[node] then
 		for index=0, XMLData.GetNumEntries(node) do
@@ -65,6 +70,13 @@ function mod.ParseXMLNode(node)
 							attribute = tonumber(attribute)
 							shouldForceNoString = true
 							shouldForceNumber = true
+
+						elseif mod.XMLToTableVerifyBool[xmlAttribute] then
+							if attribute ~= "" and attribute ~= "0" and attribute ~= "false" then
+								attribute = true
+							else
+								attribute = false
+							end
 						end
 
 						if type(attribute) == "string" and tonumber(attribute) then
@@ -85,7 +97,7 @@ function mod.ParseXMLNode(node)
 							goodToAdd = true
 						end
 
-						if goodToAdd then
+						if attribute and goodToAdd then
 							if mod.XMLToTableIndex[node] and mod.XMLToTableIndex[node][xmlAttribute] then
 								addToTable[tonumber(data[useID])] = addToTable[tonumber(data[useID])] or {}
 								addToTable[tonumber(data[useID])][mod.XMLToTableIndex[node][xmlAttribute]] = attribute

@@ -8,6 +8,7 @@
         <Layers>
             <Layer Id="0" Name="Main" SpritesheetId="0"/>
             <Layer Id="1" Name="Glow" SpritesheetId="1"/>
+            <Layer Id="2" Name="*lighting" SpritesheetId="1"/>
         </Layers>
         <Nulls/>
         <Events/>
@@ -19,6 +20,11 @@
             </RootAnimation>
             <LayerAnimations>
                 <LayerAnimation LayerId="1" Visible="true">
+                    <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="125" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="3" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="75" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="125" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+                </LayerAnimation>
+                <LayerAnimation LayerId="2" Visible="true">
                     <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="125" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
                     <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="3" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="75" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
                     <Frame XPosition="-14" YPosition="-30" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="80" Height="70" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="125" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>

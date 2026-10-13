@@ -28,7 +28,7 @@
 			 description="HP + Tears up"
 			 tears="0.1" hearts="4" maxhearts="2"
 			 tags="nolostbr"
-			 extraCostume="desecration_birthdaycake_candle"
+			 extraCostume="desecration_birthdaycake_candle" hasaltgfx="true"
 	/>
 	<active  id="6" name="Mystical Egg" quality="3" gfx="desecration_egg_temp.png"
 			 description="Special babies!"

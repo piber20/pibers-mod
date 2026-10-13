@@ -194,3 +194,39 @@ function mod.PostRemoveCostumeForExtras(itemconfig, player, itemstateonly)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_POST_PLAYER_REMOVE_COSTUME, mod.PostRemoveCostumeForExtras)
+
+mod.CollectibleHasAltFrame = {}
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_LUNCH] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_ROTTEN_MEAT] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_DEAD_CAT] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_GUPPYS_HEAD] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_RED_CANDLE] = true
+mod.CollectibleHasAnim = {}
+mod.CollectibleHasAnim[CollectibleType.COLLECTIBLE_SKELETON_KEY] = true
+function mod.OnCollectibleUpdateSprite(pickup)
+	local data = mod.GetData(pickup)
+	if data.LastID ~= pickup.SubType then
+		data.LastID = pickup.SubType
+		local xmldata = XMLData.GetEntryById(XMLNode.ITEM, pickup.SubType)
+		if xmldata then
+			if xmldata.gfx then
+				local sprite = pickup:GetSprite()
+				if mod.CollectibleHasAltFrame[pickup.SubType] then
+					sprite:ReplaceSpritesheet(6, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame1.png"), false)
+					sprite:ReplaceSpritesheet(7, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame2.png"), true)
+				else
+					sprite:ReplaceSpritesheet(6, "blank.png", false)
+					sprite:ReplaceSpritesheet(7, "blank.png", true)
+				end
+				if mod.CollectibleHasAnim[pickup.SubType] then
+					sprite:ReplaceSpritesheet(8, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_anim.png"), true)
+				else
+					sprite:ReplaceSpritesheet(8, "blank.png", true)
+				end
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnCollectibleUpdateSprite, PickupVariant.PICKUP_COLLECTIBLE)
