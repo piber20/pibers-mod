@@ -2276,7 +2276,7 @@
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="289.0.0" weight="1" />
 	</entity>
-    <entity anm2path="230.000_camillojr.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="230" name="#CAMILLO_JR" numGridCollisionPoints="12" portrait="107" reroll="true" shadowSize="26" stageHP="0" variant="0">
+    <entity anm2path="230.000_camillojr.anm2" baseHP="32" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="230" name="#CAMILLO_JR" numGridCollisionPoints="12" portrait="107" reroll="true" shadowSize="26" stageHP="0" variant="0" hasFloorAlts="true">
         <bestiary anim="FloatDown" transform="0,0,1"/>
         <gibs amount="5" blood="1" bone="0" eye="1" gut="0" large="0"/>
     	<devolve id="229.0.0" weight="1" />

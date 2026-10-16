@@ -24,11 +24,11 @@
 			 damage="0.2" luck="-1" coins="100"
 			 tags="nogreed offensive"
 	/>
-	<passive id="5" name="Birthday Cake" quality="2" gfx="desecration_birthdaycake.png"
+	<passive id="5" name="Birthday Cake" quality="2" gfx="desecration_birthdaycake.png" hasaltgfx="true"
 			 description="HP + Tears up"
 			 tears="0.1" hearts="4" maxhearts="2"
 			 tags="nolostbr"
-			 extraCostume="desecration_birthdaycake_candle" hasaltgfx="true"
+			 extraCostume="desecration_birthdaycake_candle"
 	/>
 	<active  id="6" name="Mystical Egg" quality="3" gfx="desecration_egg_temp.png"
 			 description="Special babies!"
@@ -38,6 +38,7 @@
 	<!-- Trinkets -->
 	<trinket id="0" name="Orthodox Cross" gfx="desecration_orthodoxcross.png"
 			 description="Rewards faith"
+			 customtags="angelpool"
 			 collectionsprite="death items trinkets desecration" collectionframe="0"
 	/>
 

@@ -197,36 +197,72 @@ mod.AddCallback(ModCallbacks.MC_POST_PLAYER_REMOVE_COSTUME, mod.PostRemoveCostum
 
 mod.CollectibleHasAltFrame = {}
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_LUNCH] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_DESSERT] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BREAKFAST] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_ROTTEN_MEAT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_PACT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_DEAD_CAT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_GUPPYS_HEAD] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_CANDLE] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_RED_CANDLE] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BUCKET_OF_LARD] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BLACK_CANDLE] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_PROPTOSIS] = true
+mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_SERPENTS_KISS] = true
 mod.CollectibleHasAnim = {}
 mod.CollectibleHasAnim[CollectibleType.COLLECTIBLE_SKELETON_KEY] = true
 function mod.OnCollectibleUpdateSprite(pickup)
 	local data = mod.GetData(pickup)
 	if data.LastID ~= pickup.SubType then
 		data.LastID = pickup.SubType
-		local xmldata = XMLData.GetEntryById(XMLNode.ITEM, pickup.SubType)
-		if xmldata then
-			if xmldata.gfx then
-				local sprite = pickup:GetSprite()
-				if mod.CollectibleHasAltFrame[pickup.SubType] then
-					sprite:ReplaceSpritesheet(6, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame1.png"), false)
-					sprite:ReplaceSpritesheet(7, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame2.png"), true)
-				else
-					sprite:ReplaceSpritesheet(6, "blank.png", false)
-					sprite:ReplaceSpritesheet(7, "blank.png", true)
-				end
-				if mod.CollectibleHasAnim[pickup.SubType] then
-					sprite:ReplaceSpritesheet(8, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_anim.png"), true)
-				else
-					sprite:ReplaceSpritesheet(8, "blank.png", true)
+		local sprite = pickup:GetSprite()
+		sprite:ReplaceSpritesheet(6, "blank.png", false)
+		sprite:ReplaceSpritesheet(7, "blank.png", false)
+		sprite:ReplaceSpritesheet(8, "blank.png", true)
+		if not pickup:IsBlind() and Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND == 0 then
+			local xmldata = XMLData.GetEntryById(XMLNode.ITEM, pickup.SubType)
+			if xmldata then
+				if xmldata.gfx then
+					local sprite = pickup:GetSprite()
+					if mod.CollectibleHasAltFrame[pickup.SubType] then
+						sprite:ReplaceSpritesheet(6, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame1.png"), false)
+						sprite:ReplaceSpritesheet(7, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_frame2.png"), true)
+					end
+					if mod.CollectibleHasAnim[pickup.SubType] then
+						sprite:ReplaceSpritesheet(8, "gfx/items/collectibles/" .. string.gsub(xmldata.gfx,".png","_anim.png"), true)
+					end
 				end
 			end
 		end
 	end
 end
 mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnCollectibleUpdateSprite, PickupVariant.PICKUP_COLLECTIBLE)
+
+mod.TrinketHasAltFrame = {}
+mod.TrinketHasAltFrame[TrinketType.TRINKET_USED_DIAPER] = true
+mod.TrinketHasAnim = {}
+function mod.OnTrinketUpdateSprite(pickup)
+	local data = mod.GetData(pickup)
+	if data.LastID ~= pickup.SubType then
+		data.LastID = pickup.SubType
+		local sprite = pickup:GetSprite()
+		sprite:ReplaceSpritesheet(2, "blank.png", false)
+		sprite:ReplaceSpritesheet(3, "blank.png", false)
+		sprite:ReplaceSpritesheet(4, "blank.png", true)
+		local xmldata = XMLData.GetEntryById(XMLNode.TRINKET, pickup.SubType)
+		if xmldata then
+			if xmldata.gfx then
+				if mod.TrinketHasAltFrame[pickup.SubType] then
+					sprite:ReplaceSpritesheet(2, "gfx/items/trinkets/" .. string.gsub(xmldata.gfx,".png","_frame1.png"), false)
+					sprite:ReplaceSpritesheet(3, "gfx/items/trinkets/" .. string.gsub(xmldata.gfx,".png","_frame2.png"), true)
+				end
+				if mod.TrinketHasAnim[pickup.SubType] then
+					sprite:ReplaceSpritesheet(4, "gfx/items/trinkets/" .. string.gsub(xmldata.gfx,".png","_anim.png"), true)
+				end
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.OnTrinketUpdateSprite, PickupVariant.PICKUP_TRINKET)

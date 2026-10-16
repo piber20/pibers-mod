@@ -86,6 +86,7 @@ include("desecration.rooms.shading")
 
 include("desecration.items.data")
 include("desecration.items.itempools")
+include("desecration.items.trinketpools")
 include("desecration.items.holyshield")
 include("desecration.items.vanillaitems")
 include("desecration.items.vanillapickups")

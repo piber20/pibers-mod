@@ -6,6 +6,7 @@
             <Spritesheet Id="1" Path="items/collectibles/collectibles_001_thesadonion.png"/>
             <Spritesheet Id="2" Path="effects/effect_023_starflash.png"/>
             <Spritesheet Id="3" Path="items/levelitem_001_itemaltar_shadow.png"/>
+            <Spritesheet Id="4" Path="blank.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="body" SpritesheetId="0"/>
@@ -14,9 +15,9 @@
             <Layer Id="3" Name="shadow" SpritesheetId="3"/>
             <Layer Id="4" Name="itemshadow" SpritesheetId="0"/>
             <Layer Id="5" Name="altar" SpritesheetId="0"/>
-            <Layer Id="6" Name="headalt1" SpritesheetId="1"/>
-            <Layer Id="7" Name="headalt2" SpritesheetId="1"/>
-            <Layer Id="8" Name="headanim" SpritesheetId="1"/>
+            <Layer Id="6" Name="headalt1" SpritesheetId="4"/>
+            <Layer Id="7" Name="headalt2" SpritesheetId="4"/>
+            <Layer Id="8" Name="headanim" SpritesheetId="4"/>
         </Layers>
         <Nulls>
             <Null Id="0" Name="ItemOffset"/>
