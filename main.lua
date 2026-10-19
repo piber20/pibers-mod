@@ -79,6 +79,7 @@ include("desecration.stages.darkroom")
 include("desecration.stages.home")
 include("desecration.stages.teledimension")
 include("desecration.stages.bluewomb")
+include("desecration.stages.void")
 
 include("desecration.rooms.specialrooms")
 include("desecration.rooms.grids")

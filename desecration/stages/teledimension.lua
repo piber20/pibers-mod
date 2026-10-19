@@ -529,3 +529,20 @@ function mod.PreGetLootList(pickup, advance)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, mod.PreGetLootList)
+
+function mod.OnMistUpdateTeleDimension(effect)
+	local game = Game()
+	local room = game:GetRoom()
+	local level = game:GetLevel()
+	local stage = level:GetStage()
+	if stage == LevelStage.STAGE3_2 then
+		local stageType = level:GetStageType()
+		if stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
+			local dimension = level:GetDimension()
+			if dimension == Dimension.MIRROR then
+				effect:Remove()
+			end
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.OnMistUpdateTeleDimension, EffectVariant.MIST)

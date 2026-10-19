@@ -4153,8 +4153,8 @@
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0"/>
     	<devolve id="12.0.0" weight="1" />
 	</entity>
-    <entity anm2path="812.001_ultra sub horf.anm2" baseHP="50" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="16" friction="1" gridCollision="nopits" id="812" name="#TAINTED_SUB_HORF" numGridCollisionPoints="12" portrait="368" shadowSize="16" shieldStrength="8" stageHP="0" variant="1">
-        <bestiary anim="Bestiary" transform="0,0,1"/>
+    <entity anm2path="812.001_ultra sub horf.anm2" baseHP="50" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="16" friction="1" gridCollision="nopits" hasFloorAlts="true" id="812" name="#TAINTED_SUB_HORF" numGridCollisionPoints="12" portrait="368" shadowSize="16" shieldStrength="8" stageHP="0" variant="1">
+        <bestiary alt="_downpour" anim="Bestiary" transform="0,0,1"/>
         <gibs amount="10" blood="1" bone="1" eye="0" gut="1" large="1"/>
     	<devolve id="812.0.0" weight="1" />
 	</entity>
@@ -4302,7 +4302,7 @@
         <gibs amount="6" blood="1" bone="1" eye="0" gut="1" large="0"/>
     	<devolve id="10.0.0" weight="1" />
 	</entity>
-    <entity anm2path="827.001_ultra faceless.anm2" baseHP="100" boss="0" champion="0" collisionDamage="2" collisionMass="18" collisionRadius="13" friction="1" id="827" name="#TAINTED_FACELESS" numGridCollisionPoints="12" portrait="367" shadowSize="16" shieldStrength="20" stageHP="0" variant="1">
+    <entity anm2path="827.001_ultra faceless.anm2" baseHP="100" boss="0" champion="0" collisionDamage="2" collisionMass="18" collisionRadius="13" friction="1" id="827" name="#TAINTED_FACELESS" numGridCollisionPoints="12" portrait="367" shadowSize="16" shieldStrength="20" stageHP="0" variant="1" hasFloorAlts="true">
         <bestiary anim="WalkVert" overlay="Head" transform="0,0,1"/>
         <gibs amount="12" blood="1" bone="1" eye="0" gut="1" large="1"/>
     	<devolve id="827.0.0" weight="1" />

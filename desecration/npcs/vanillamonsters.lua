@@ -310,3 +310,31 @@ function mod.onRoomEntitySpawnReplacements(spawntype, spawnvariant, spawnsubtype
 	end
 end
 mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, mod.onRoomEntitySpawnReplacements)
+
+mod.EmbryoSadChance = 0.35
+mod.EmbryoHappyChance = 0.1
+mod.EmbryoSmileChance = 0.05
+function mod.onEmbryoUpdate(npc)
+	if npc.Variant == 0 then
+		local data = mod.GetData(npc)
+		if not data.ReplacedSprite then
+			local sprite = npc:GetSprite()
+			local rng = RNG(npc.InitSeed)
+			if rng:RandomFloat() <= mod.EmbryoSmileChance then
+				sprite:Load("gfx/077.000_embryo_smile.anm2", true)
+				npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_154_embryo.png", true)
+				sprite:Play("Walk Neutral")
+			elseif rng:RandomFloat() <= mod.EmbryoHappyChance then
+				sprite:Load("gfx/077.000_embryo_happy.anm2", true)
+				npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_154_embryo.png", true)
+				sprite:Play("Walk Neutral")
+			elseif rng:RandomFloat() > mod.EmbryoSadChance and npc.SpawnerType == 0 then
+				sprite:Load("gfx/077.000_embryo_neutral.anm2", true)
+				npc:ReplaceSpritesheet(0, "gfx/monsters/classic/monster_154_embryo.png", true)
+				sprite:Play("Walk Neutral")
+			end
+			data.ReplacedSprite = true
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onEmbryoUpdate, EntityType.ENTITY_EMBRYO)

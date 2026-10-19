@@ -1,164 +1,18 @@
 local mod = Desecration
 
 local lastRoomTransMode = false
-mod.BossChampionNames = {}
-mod.BossChampionNames[BossType.LARRY_JR] = {}
-mod.BossChampionNames[BossType.LARRY_JR][0] = "gush_green"
-mod.BossChampionNames[BossType.LARRY_JR][1] = "tanky_blue"
-mod.BossChampionNames[BossType.THE_HOLLOW] = {}
-mod.BossChampionNames[BossType.THE_HOLLOW][0] = "gush_green"
-mod.BossChampionNames[BossType.THE_HOLLOW][1] = "boom"
-mod.BossChampionNames[BossType.THE_HOLLOW][2] = "gilded"
-mod.BossChampionNames[BossType.MONSTRO] = {}
-mod.BossChampionNames[BossType.MONSTRO][0] = "duplo_red"
-mod.BossChampionNames[BossType.MONSTRO][1] = "tanky_black"
-mod.BossChampionNames[BossType.CHUB] = {}
-mod.BossChampionNames[BossType.CHUB][0] = "tanky_blue"
-mod.BossChampionNames[BossType.CHUB][1] = "orange"
-mod.BossChampionNames[BossType.THE_CARRION_QUEEN] = {}
-mod.BossChampionNames[BossType.THE_CARRION_QUEEN][0] = "tanky_pink"
-mod.BossChampionNames[BossType.GURDY] = {}
-mod.BossChampionNames[BossType.GURDY][0] = "green"
-mod.BossChampionNames[BossType.MONSTRO_2] = {}
-mod.BossChampionNames[BossType.MONSTRO_2][0] = "red"
-mod.BossChampionNames[BossType.MOM] = {}
-mod.BossChampionNames[BossType.MOM][0] = "tanky_blue"
-mod.BossChampionNames[BossType.MOM][1] = "red"
-mod.BossChampionNames[BossType.PIN] = {}
-mod.BossChampionNames[BossType.PIN][0] = "tanky_black"
-mod.BossChampionNames[BossType.FAMINE] = {}
-mod.BossChampionNames[BossType.FAMINE][0] = "blue"
-mod.BossChampionNames[BossType.PESTILENCE] = {}
-mod.BossChampionNames[BossType.PESTILENCE][0] = "infested"
-mod.BossChampionNames[BossType.WAR] = {}
-mod.BossChampionNames[BossType.WAR][0] = "tanky_black"
-mod.BossChampionNames[BossType.DEATH] = {}
-mod.BossChampionNames[BossType.DEATH][0] = "tanky_black"
-mod.BossChampionNames[BossType.DUKE_OF_FLIES] = {}
-mod.BossChampionNames[BossType.DUKE_OF_FLIES][0] = "gush_green"
-mod.BossChampionNames[BossType.DUKE_OF_FLIES][1] = "tanky_orange"
-mod.BossChampionNames[BossType.DUKE_OF_FLIES][BossColors.DUKE_ETERNAL] = "dry"
-mod.BossChampionNames[BossType.THE_HUSK] = {}
-mod.BossChampionNames[BossType.THE_HUSK][0] = "boom"
-mod.BossChampionNames[BossType.THE_HUSK][1] = "gush_red"
-mod.BossChampionNames[BossType.PEEP] = {}
-mod.BossChampionNames[BossType.PEEP][0] = "yellow"
-mod.BossChampionNames[BossType.PEEP][1] = "cyan"
-mod.BossChampionNames[BossType.THE_BLOAT] = {}
-mod.BossChampionNames[BossType.THE_BLOAT][0] = "green"
-mod.BossChampionNames[BossType.FISTULA] = {}
-mod.BossChampionNames[BossType.FISTULA][0] = "boom"
-mod.BossChampionNames[BossType.GEMINI] = {}
-mod.BossChampionNames[BossType.GEMINI][0] = "green"
-mod.BossChampionNames[BossType.GEMINI][1] = "blue"
-mod.BossChampionNames[BossType.GEMINI][BossColors.GEMINI_STEVEN] = "black"
-mod.BossChampionNames[BossType.MASK_OF_INFAMY] = {}
-mod.BossChampionNames[BossType.MASK_OF_INFAMY][0] = "tanky_black"
-mod.BossChampionNames[BossType.GURDY_JR] = {}
-mod.BossChampionNames[BossType.GURDY_JR][0] = "duplo_blue"
-mod.BossChampionNames[BossType.GURDY_JR][1] = "tanky_yellow"
-mod.BossChampionNames[BossType.WIDOW] = {}
-mod.BossChampionNames[BossType.WIDOW][0] = "black"
-mod.BossChampionNames[BossType.WIDOW][1] = "pink"
-mod.BossChampionNames[BossType.GURGLINGS] = {}
-mod.BossChampionNames[BossType.GURGLINGS][0] = "triplo_yellow"
-mod.BossChampionNames[BossType.GURGLINGS][1] = "boom"
-mod.BossChampionNames[BossType.THE_HAUNT] = {}
-mod.BossChampionNames[BossType.THE_HAUNT][0] = "infested"
-mod.BossChampionNames[BossType.THE_HAUNT][1] = "gush_pink"
-mod.BossChampionNames[BossType.DINGLE] = {}
-mod.BossChampionNames[BossType.DINGLE][0] = "red"
-mod.BossChampionNames[BossType.DINGLE][1] = "infested"
-mod.BossChampionNames[BossType.MEGA_MAW] = {}
-mod.BossChampionNames[BossType.MEGA_MAW][0] = "gush_red"
-mod.BossChampionNames[BossType.MEGA_MAW][1] = "infested"
-mod.BossChampionNames[BossType.THE_GATE] = {}
-mod.BossChampionNames[BossType.THE_GATE][0] = "gush_red"
-mod.BossChampionNames[BossType.THE_GATE][1] = "tanky_black"
-mod.BossChampionNames[BossType.MEGA_FATTY] = {}
-mod.BossChampionNames[BossType.MEGA_FATTY][0] = "gush_red"
-mod.BossChampionNames[BossType.MEGA_FATTY][1] = "brown"
-mod.BossChampionNames[BossType.THE_CAGE] = {}
-mod.BossChampionNames[BossType.THE_CAGE][0] = "green"
-mod.BossChampionNames[BossType.THE_CAGE][1] = "pink"
-mod.BossChampionNames[BossType.POLYCEPHALUS] = {}
-mod.BossChampionNames[BossType.POLYCEPHALUS][0] = "red"
-mod.BossChampionNames[BossType.POLYCEPHALUS][1] = "pink"
-mod.BossChampionNames[BossType.LITTLE_HORN] = {}
-mod.BossChampionNames[BossType.LITTLE_HORN][0] = "flaming"
-mod.BossChampionNames[BossType.LITTLE_HORN][1] = "dark"
-mod.BossChampionNames[BossType.RAG_MAN] = {}
-mod.BossChampionNames[BossType.RAG_MAN][0] = "red"
-mod.BossChampionNames[BossType.RAG_MAN][1] = "infested"
-mod.BossChampionNames[BossType.THE_FRAIL] = {}
-mod.BossChampionNames[BossType.THE_FRAIL][0] = "black"
-mod.BossChampionNames[BossType.BROWNIE] = {}
-mod.BossChampionNames[BossType.BROWNIE][0] = "infested"
-mod.BossChampionNames[BossType.THE_STAIN] = {}
-mod.BossChampionNames[BossType.THE_STAIN][0] = "grey"
-mod.BossChampionNames[BossType.THE_FORSAKEN] = {}
-mod.BossChampionNames[BossType.THE_FORSAKEN][0] = "boom"
-mod.BossChampionNames[BossType.SCOLEX] = {}
-mod.BossChampionNames[BossType.SCOLEX][BossColors.SCOLEX_BLACK] = "tanky_black"
-mod.BossChampionPortraits = {}
-mod.BossChampionPortraits[BossType.LARRY_JR] = {}
-mod.BossChampionPortraits[BossType.LARRY_JR][0] = true
-mod.BossChampionPortraits[BossType.LARRY_JR][1] = true
-mod.BossChampionPortraits[BossType.THE_HOLLOW] = {}
-mod.BossChampionPortraits[BossType.THE_HOLLOW][0] = true
-mod.BossChampionPortraits[BossType.THE_HOLLOW][1] = true
-mod.BossChampionPortraits[BossType.THE_HOLLOW][2] = true
-mod.BossChampionPortraits[BossType.MONSTRO] = {}
-mod.BossChampionPortraits[BossType.MONSTRO][0] = true
-mod.BossChampionPortraits[BossType.MONSTRO][1] = true
-mod.BossChampionPortraits[BossType.CHUB] = {}
-mod.BossChampionPortraits[BossType.CHUB][0] = true
-mod.BossChampionPortraits[BossType.CHUB][1] = true
-mod.BossChampionPortraits[BossType.THE_CARRION_QUEEN] = {}
-mod.BossChampionPortraits[BossType.THE_CARRION_QUEEN][0] = true
-mod.BossChampionPortraits[BossType.GURDY] = {}
-mod.BossChampionPortraits[BossType.GURDY][0] = true
-mod.BossChampionPortraits[BossType.MONSTRO_2] = {}
-mod.BossChampionPortraits[BossType.MONSTRO_2][0] = true
-mod.BossChampionPortraits[BossType.MOM] = {}
-mod.BossChampionPortraits[BossType.MOM][0] = true
-mod.BossChampionPortraits[BossType.MOM][1] = true
-mod.BossChampionPortraits[BossType.PIN] = {}
-mod.BossChampionPortraits[BossType.PIN][0] = true
-mod.BossChampionPortraits[BossType.FAMINE] = {}
-mod.BossChampionPortraits[BossType.FAMINE][0] = true
-mod.BossChampionPortraits[BossType.PESTILENCE] = {}
-mod.BossChampionPortraits[BossType.PESTILENCE][0] = true
-mod.BossChampionPortraits[BossType.WAR] = {}
-mod.BossChampionPortraits[BossType.WAR][0] = true
-mod.BossChampionPortraits[BossType.DEATH] = {}
-mod.BossChampionPortraits[BossType.DEATH][0] = true
-mod.BossChampionPortraits[BossType.DUKE_OF_FLIES] = {}
-mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][0] = true
-mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][1] = true
-mod.BossChampionPortraits[BossType.DUKE_OF_FLIES][BossColors.DUKE_ETERNAL] = true
-mod.BossChampionPortraits[BossType.THE_HUSK] = {}
-mod.BossChampionPortraits[BossType.THE_HUSK][0] = true
-mod.BossChampionPortraits[BossType.THE_HUSK][1] = true
-mod.BossChampionPortraits[BossType.PEEP] = {}
-mod.BossChampionPortraits[BossType.PEEP][0] = true
-mod.BossChampionPortraits[BossType.PEEP][1] = true
-mod.BossChampionPortraits[BossType.THE_BLOAT] = {}
-mod.BossChampionPortraits[BossType.THE_BLOAT][0] = true
-mod.BossChampionPortraits[BossType.FISTULA] = {}
-mod.BossChampionPortraits[BossType.FISTULA][0] = true
-mod.BossChampionPortraits[BossType.GEMINI] = {}
-mod.BossChampionPortraits[BossType.GEMINI][0] = true
-mod.BossChampionPortraits[BossType.GEMINI][1] = true
-mod.BossChampionPortraits[BossType.GEMINI][BossColors.GEMINI_STEVEN] = true
-mod.BossChampionPortraits[BossType.MASK_OF_INFAMY] = {}
-mod.BossChampionPortraits[BossType.MASK_OF_INFAMY][0] = true
-mod.BossChampionPortraits[BossType.GURDY_JR] = {}
-mod.BossChampionPortraits[BossType.GURDY_JR][0] = true
-mod.BossChampionPortraits[BossType.GURDY_JR][1] = true
-mod.BossChampionPortraits[BossType.WIDOW] = {}
-mod.BossChampionPortraits[BossType.WIDOW][0] = true
-mod.BossChampionPortraits[BossType.WIDOW][1] = true
+mod.BossChampHasGfx = {}
+mod.BossChampHasGfx["_black"] = true
+mod.BossChampHasGfx["_blue"] = true
+mod.BossChampHasGfx["_brown"] = true
+mod.BossChampHasGfx["_cyan"] = true
+mod.BossChampHasGfx["_green"] = true
+mod.BossChampHasGfx["_grey"] = true
+mod.BossChampHasGfx["_orange"] = true
+mod.BossChampHasGfx["_pink"] = true
+mod.BossChampHasGfx["_red"] = true
+mod.BossChampHasGfx["_yellow"] = true
+mod.BossChampHasPortrait = {}
 function mod.onRenderBossIntro()
 	local isRendering = RoomTransition.IsRenderingBossIntro()
 	if isRendering and not lastRoomTransMode then
@@ -167,34 +21,42 @@ function mod.onRenderBossIntro()
 		local roomEnts = Isaac.GetRoomEntities()
 		local likelyBossColor = -1
 		local likelyBossID = room:GetBossID()
+		local enttype = 0
+		local entvar = 0
+		local entsub = 0
 		for _,ent in ipairs(roomEnts) do
 			if ent:ToNPC() then
 				local npc = ent:ToNPC()
 				if npc:IsBoss() and npc:GetBossID() == likelyBossID and npc:GetBossColorIdx() > -1 then
 					likelyBossColor = npc:GetBossColorIdx()
+					enttype = npc.Type
+					entvar = npc.Variant
+					entsub = npc.SubType
 				end
 			end
 		end
 		local sprite = RoomTransition.GetVersusScreenSprite()
 		if likelyBossColor == -1 then
 			sprite:ReplaceSpritesheet(24, "blank.png", true)
-		elseif mod.BossChampionNames[likelyBossID] and mod.BossChampionNames[likelyBossID][likelyBossColor] then
-			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
-			if mod.BossChampionPortraits[likelyBossID] and mod.BossChampionPortraits[likelyBossID][likelyBossColor] then
-				local bosssheet = XMLData.GetEntryById(XMLNode.BOSSPORTRAIT, likelyBossID)
-				if bosssheet and type(bosssheet) == "string" then
-					sprite:ReplaceSpritesheet(4, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
-					sprite:ReplaceSpritesheet(13, bosssheet .. "_" .. tostring(mod.BossChampionNames[likelyBossID][likelyBossColor]) .. ".png", true)
-				end
-			end
 		else
-			sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champions/default.png", true)
+			local suffix = XMLData.GetBossColorByTypeVarSub(enttype, entvar, entsub).suffix
+			if suffix and mod.BossChampHasGfx[suffix] then
+				sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champion" .. suffix .. ".png", true)
+			else
+				sprite:ReplaceSpritesheet(24, "gfx/ui/boss/champion.png", true)
+			end
+			local portrait = XMLData.GetEntryById(XMLNode.BOSSPORTRAIT, likelyBossID).portrait
+			if suffix and portrait and mod.BossChampHasPortrait[likelyBossID] and mod.BossChampHasPortrait[likelyBossID][suffix] then
+				sprite:ReplaceSpritesheet(4, portrait .. suffix .. ".png", true)
+				sprite:ReplaceSpritesheet(13, portrait .. suffix .. ".png", true)
+			end
 		end
 	end
 	lastRoomTransMode = isRendering
 end
 mod.AddCallback(ModCallbacks.MC_POST_RENDER, mod.onRenderBossIntro)
 
+--[[
 function mod.PreEntityTakeDMGVanillaBosses(entity, amount, flags, source, cooldown)
 	local ignoresArmor = flags & DamageFlag.DAMAGE_IGNORE_ARMOR > 0
 	if not ignoresArmor then
@@ -202,6 +64,7 @@ function mod.PreEntityTakeDMGVanillaBosses(entity, amount, flags, source, cooldo
 	end
 end
 mod.AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, mod.PreEntityTakeDMGVanillaBosses)
+]]
 
 function mod.onGeminiUpdate(npc)
 	if npc.ChildNPC then

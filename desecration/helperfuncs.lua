@@ -65,7 +65,33 @@ function mod.GetScreenTopLeft(offset)
 	return mod.RoundVector(pos)
 end
 
-function mod.GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, forceDoors, roomSubtype, minVariant)
+mod.AllowedRandomStbs = {
+	StbType.BASEMENT,
+	StbType.CELLAR,
+	StbType.BURNING_BASEMENT,
+	StbType.CAVES,
+	StbType.CATACOMBS,
+	StbType.FLOODED_CAVES,
+	StbType.DEPTHS,
+	StbType.NECROPOLIS,
+	StbType.DANK_DEPTHS,
+	StbType.WOMB,
+	StbType.UTERO,
+	StbType.SCARRED_WOMB,
+	StbType.BLUE_WOMB,
+	StbType.SHEOL,
+	StbType.CATHEDRAL,
+	StbType.DARK_ROOM,
+	StbType.CHEST,
+	StbType.DOWNPOUR,
+	StbType.DROSS,
+	StbType.MINES,
+	StbType.ASHPIT,
+	StbType.MAUSOLEUM,
+	StbType.GEHENNA,
+	StbType.CORPSE
+}
+function mod.GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, forceDoors, roomSubtype, minVariant, minDifficulty, maxDifficulty)
 	if not roomShape or roomShape < 0 then
 		roomShape = RoomShape.NUM_ROOMSHAPES
 	end
@@ -78,23 +104,23 @@ function mod.GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, f
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
-	local minDifficulty = 0
-	local maxDifficulty = 10
-	if stage == LevelStage.STAGE7 then
-		minDifficulty = 15
-	elseif game:IsHardMode() then
-		if rng:GetSeed() % 8 == 0 then
-			minDifficulty = 1
-		else
+	minDifficulty = minDifficulty or 1
+	maxDifficulty = maxDifficulty or 10
+	if minDifficulty == 1 and game:IsHardMode() then
+		if rng:GetSeed() % 8 ~= 0 then
 			minDifficulty = 2
 		end
 	end
-	if stage == LevelStage.STAGE7 then
-		maxDifficulty = 20
-	elseif game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
+	if maxDifficulty == 10 and game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
 		maxDifficulty = 15
 	end
 	local stbType = Isaac.GetCurrentStageConfigId()
+	if stage == LevelStage.STAGE7 then
+		if maxDifficulty == 10 or maxDifficulty == 15 then
+			maxDifficulty = 20
+		end
+		stbType = mod.AllowedRandomStbs[rng:RandomInt(1,#mod.AllowedRandomStbs)]
+	end
 	local roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, minDifficulty, maxDifficulty, forceDoors, roomSubtype)
 	if minDifficulty > 0 and not roomConfig then
 		roomConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, roomType, roomShape, minVariant, -1, 0, maxDifficulty, forceDoors, roomSubtype)
@@ -122,29 +148,13 @@ function mod.GetRandomRoomForCurrentStage(rng, isSpecial, roomType, roomShape, f
 	return roomConfig
 end
 
-function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant)
+function mod.TryPlaceRoom(roomConfig, index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, attempts)
 	local game = Game()
 	local level = game:GetLevel()
-	local stage = level:GetStage()
-	local minDifficulty = 0
-	local maxDifficulty = 10
-	if stage == LevelStage.STAGE7 then
-		minDifficulty = 15
-	elseif game:IsHardMode() then
-		if rng:GetSeed() % 8 == 0 then
-			minDifficulty = 1
-		else
-			minDifficulty = 2
-		end
-	end
-	if stage == LevelStage.STAGE7 then
-		maxDifficulty = 20
-	elseif game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
-		maxDifficulty = 15
-	end
-	for i=0, 100 do
-		local roomConfig = mod.GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant)
+	attempts = attempts or 10
+	for i=0, attempts do
 		if not index or index < 0 then
+			index = index or GridRooms.ROOM_LAST_IDX
 			local validGrids = level:FindValidRoomPlacementLocations(roomConfig, dimension, multipleDoors, specialNeighbors)
 			if #validGrids > 0 then
 				local useGrid = validGrids[rng:RandomInt(1, #validGrids)]
@@ -173,6 +183,33 @@ function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNei
 			if roomDesc then
 				return roomDesc
 			end
+		end
+	end
+end
+
+function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant, minDifficulty, maxDifficulty, attempts)
+	local game = Game()
+	local level = game:GetLevel()
+	local stage = level:GetStage()
+	attempts = attempts or 10
+	minDifficulty = minDifficulty or 1
+	maxDifficulty = maxDifficulty or 10
+	if minDifficulty == 1 and game:IsHardMode() then
+		if rng:GetSeed() % 8 ~= 0 then
+			minDifficulty = 2
+		end
+	end
+	if maxDifficulty == 10 and game:IsHardMode() and ((stage ~= LevelStage.STAGE1_1 and stage ~= LevelStage.STAGE2_1 and stage ~= LevelStage.STAGE3_1 and stage ~= LevelStage.STAGE4_1) or game:IsGreedMode()) then
+		maxDifficulty = 15
+	end
+	if stage == LevelStage.STAGE7 and (maxDifficulty == 10 or maxDifficulty == 15) then
+		maxDifficulty = 20
+	end
+	for i=0, attempts do
+		local roomConfig = mod.GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant, minDifficulty, maxDifficulty)
+		local roomDesc = mod.TryPlaceRoom(roomConfig, index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, math.min(attempts,10))
+		if roomDesc then
+			return roomDesc
 		end
 	end
 end

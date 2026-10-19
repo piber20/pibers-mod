@@ -1,0 +1,2 @@
+/run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/052.000_pride.anm2
+/run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/052.001_super pride.anm2

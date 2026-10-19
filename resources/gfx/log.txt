@@ -1,0 +1,27 @@
+[INFO] (19-October-2026 12:17:29) Initializing Anm2Ed
+[INFO] (19-October-2026 12:17:29) Opened socket at 127.0.0.1:11414
+[WARNING] (19-October-2026 12:17:29) Settings file does not exist; using default
+[INFO] (19-October-2026 12:17:29) Saving settings to: settings.ini
+[INFO] (19-October-2026 12:17:29) Saved settings to: settings.ini
+[INFO] (19-October-2026 12:17:29) Initialized SDL
+[INFO] (19-October-2026 12:17:29) Initialized SDL_mixer
+[INFO] (19-October-2026 12:17:29) Initialized OpenGL 3.3.0 NVIDIA 615.78.08
+[INFO] (19-October-2026 12:17:29) Initialized Dear ImGui
+[WARNING] (19-October-2026 12:17:29) Could not load recent files from: recent.txt. Skipping...
+[WARNING] (19-October-2026 12:17:29) Could not load autosave files from: autosave.txt. Skipping...
+[INFO] (19-October-2026 12:17:30) Opened document: /run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/052.000_pride.anm2
+[INFO] (19-October-2026 12:19:50) Initializing Anm2Ed
+[INFO] (19-October-2026 12:19:50) Existing instance of program exists; passing arguments...
+[INFO] (19-October-2026 12:19:50) Sent arguments to existing instance. Exiting.
+[INFO] (19-October-2026 12:19:50) Exiting Anm2Ed
+[INFO] (19-October-2026 12:19:50) Opened document: /run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/052.001_super pride.anm2
+[INFO] (19-October-2026 12:20:45) Undo: Change Frame Properties
+[INFO] (19-October-2026 12:20:46) Undo: Paste Frame(s)
+[INFO] (19-October-2026 12:20:46) Undo: Paste Frame(s)
+[INFO] (19-October-2026 12:20:46) Undo: Delete Frame(s)
+[INFO] (19-October-2026 12:22:36) Autosaving...
+[INFO] (19-October-2026 12:22:36) Autosaved document to: /run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/.052.000_pride.anm2.autosave
+[INFO] (19-October-2026 12:23:28) Saved document to: /run/media/piber/SSD1TB/SteamLibrary/steamapps/common/The Binding of Isaac Rebirth/mods/desecration/resources/gfx/052.000_pride.anm2
+[INFO] (19-October-2026 12:23:29) Saving settings to: settings.ini
+[INFO] (19-October-2026 12:23:29) Saved settings to: settings.ini
+[INFO] (19-October-2026 12:23:29) Exiting Anm2Ed
