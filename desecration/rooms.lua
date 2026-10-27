@@ -1,436 +1,236 @@
 local mod = Desecration
 
-mod.RoomsSharedFilename = {}
-mod.RoomsSharedFilename[StbType.SPECIAL_ROOMS] = "00.special rooms_shared.stb"
-mod.RoomsSharedFilename[StbType.BASEMENT] = "01.basement_shared.stb"
-mod.RoomsSharedFilename[StbType.CAVES] = "04.caves_shared.stb"
-mod.RoomsSharedFilename[StbType.DEPTHS] = "07.depths_shared.stb"
-mod.RoomsSharedFilename[StbType.WOMB] = "10.womb_shared.stb"
-mod.RoomsSharedFilename[StbType.DOWNPOUR] = "27.downpour_shared.stb"
-mod.RoomsSharedFilename[StbType.MINES] = "29.mines_shared.stb"
-mod.RoomsSharedFilename[StbType.MAUSOLEUM] = "31.mausoleum_shared.stb"
-
-mod.RoomsSharedStage = {}
-mod.RoomsSharedStage[StbType.SPECIAL_ROOMS] = StbType.SPECIAL_ROOMS
-mod.RoomsSharedStage[StbType.BASEMENT] = StbType.BASEMENT
-mod.RoomsSharedStage[StbType.CELLAR] = StbType.BASEMENT
-mod.RoomsSharedStage[StbType.BURNING_BASEMENT] = StbType.BASEMENT
-mod.RoomsSharedStage[StbType.CAVES] = StbType.CAVES
-mod.RoomsSharedStage[StbType.CATACOMBS] = StbType.CAVES
-mod.RoomsSharedStage[StbType.FLOODED_CAVES] = StbType.CAVES
-mod.RoomsSharedStage[StbType.DEPTHS] = StbType.DEPTHS
-mod.RoomsSharedStage[StbType.NECROPOLIS] = StbType.DEPTHS
-mod.RoomsSharedStage[StbType.DANK_DEPTHS] = StbType.DEPTHS
-mod.RoomsSharedStage[StbType.WOMB] = StbType.WOMB
-mod.RoomsSharedStage[StbType.UTERO] = StbType.WOMB
-mod.RoomsSharedStage[StbType.SCARRED_WOMB] = StbType.WOMB
-mod.RoomsSharedStage[StbType.DOWNPOUR] = StbType.DOWNPOUR
-mod.RoomsSharedStage[StbType.DROSS] = StbType.DOWNPOUR
-mod.RoomsSharedStage[StbType.MINES] = StbType.MINES
-mod.RoomsSharedStage[StbType.ASHPIT] = StbType.MINES
-mod.RoomsSharedStage[StbType.MAUSOLEUM] = StbType.MAUSOLEUM
-mod.RoomsSharedStage[StbType.GEHENNA] = StbType.MAUSOLEUM
-
-mod.RoomsFilename = {}
-
-mod.RoomsMods = {}
-mod.RoomsMods.IncludeShared = 800
-mod.RoomsMods.OnlyShared = 900
-mod.RoomsMods.IncludeGreed = 8000
-mod.RoomsMods.OnlyGreed = 9000
-mod.RoomsMods["repentance"] = {
-	StbType.SPECIAL_ROOMS+mod.RoomsMods.IncludeGreed,
-	StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-	StbType.CELLAR,
-	StbType.BURNING_BASEMENT,
-	StbType.CAVES,
-	StbType.CATACOMBS,
-	StbType.FLOODED_CAVES,
-	StbType.DEPTHS,
-	StbType.NECROPOLIS,
-	StbType.DANK_DEPTHS,
-	StbType.WOMB,
-	StbType.UTERO,
-	StbType.SCARRED_WOMB,
-	StbType.BLUE_WOMB,
-	StbType.SHEOL,
-	StbType.CATHEDRAL,
-	StbType.DARK_ROOM,
-	StbType.CHEST,
-	StbType.DOWNPOUR+mod.RoomsMods.IncludeGreed,
-	StbType.DROSS+mod.RoomsMods.IncludeGreed,
-	StbType.MINES+mod.RoomsMods.IncludeGreed,
-	StbType.ASHPIT+mod.RoomsMods.IncludeGreed,
-	StbType.MAUSOLEUM+mod.RoomsMods.IncludeGreed,
-	StbType.GEHENNA+mod.RoomsMods.IncludeGreed,
-	StbType.CORPSE+mod.RoomsMods.IncludeGreed
-}
-mod.RoomsMods["antibirth"] = {
-	StbType.BASEMENT,
-	StbType.CELLAR,
-	StbType.CAVES,
-	StbType.CATACOMBS,
-	StbType.DEPTHS,
-	StbType.NECROPOLIS,
-	StbType.WOMB+mod.RoomsMods.IncludeShared,
-	StbType.UTERO,
-	StbType.SHEOL,
-	StbType.CATHEDRAL,
-	StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-	StbType.MINES+mod.RoomsMods.IncludeShared,
-	StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-	StbType.CORPSE,
-	["kilburn"] = {
-		StbType.SPECIAL_ROOMS+mod.RoomsMods.IncludeShared,
-		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-		StbType.BURNING_BASEMENT,
-		StbType.CAVES+mod.RoomsMods.OnlyShared,
-		StbType.FLOODED_CAVES,
-		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-		StbType.SHEOL,
-		StbType.CATHEDRAL,
-		StbType.DARK_ROOM,
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-		StbType.MINES+mod.RoomsMods.IncludeShared,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-		StbType.CORPSE
-	},
-	["sal"] = {
-		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-		StbType.CAVES+mod.RoomsMods.OnlyShared,
-		StbType.CATACOMBS,
-		StbType.DEPTHS+mod.RoomsMods.IncludeShared,
-		StbType.NECROPOLIS,
-		StbType.CATHEDRAL,
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-		StbType.MINES+mod.RoomsMods.IncludeShared,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared
-	},
-	["leather"] = {
-		StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-		StbType.CELLAR,
-		StbType.BURNING_BASEMENT,
-		StbType.CAVES+mod.RoomsMods.OnlyShared,
-		StbType.CATACOMBS,
-		StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-		StbType.NECROPOLIS,
-		StbType.DANK_DEPTHS,
-		StbType.WOMB+mod.RoomsMods.OnlyShared,
-		StbType.UTERO,
-		StbType.SCARRED_WOMB,
-		StbType.SHEOL,
-		StbType.CATHEDRAL,
-		StbType.DARK_ROOM,
-		StbType.CHEST,
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
-		StbType.MINES+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared+mod.RoomsMods.IncludeGreed,
-		StbType.CORPSE+mod.RoomsMods.IncludeGreed
-	},
-	["sag"] = {
-		StbType.DEPTHS,
-		StbType.NECROPOLIS,
-		StbType.SHEOL
-	},
-	["ikana"] = {
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-		StbType.MINES+mod.RoomsMods.IncludeShared,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-		StbType.CORPSE
-	},
-	["luke"] = {
-		StbType.CAVES+mod.RoomsMods.IncludeShared,
-		StbType.UTERO,
-		StbType.DOWNPOUR,
-		StbType.MINES,
-		StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared
-	},
-	["noodle"] = {
-		StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-		StbType.MINES+mod.RoomsMods.IncludeShared,
-		StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared
-	},
-	["compat"] = {
-		["lastjudgement"] = {
-			StbType.CATACOMBS,
-			StbType.UTERO,
-			StbType.DOWNPOUR,
-			["kilburn"] = {
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.UTERO,
-				StbType.MINES,
-				StbType.MAUSOLEUM,
-				StbType.CORPSE
-			},
-			["sal"] = {
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-				StbType.CATHEDRAL,
-				StbType.MAUSOLEUM
-			},
-			["leather"] = {
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.CATACOMBS,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-				StbType.UTERO,
-				StbType.SHEOL,
-				StbType.MINES,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.CORPSE
-			},
-			["ikana"] = {
-				StbType.MINES,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.CORPSE
-			},
-			["luke"] = {
-				StbType.CAVES+mod.RoomsMods.OnlyShared
-			},
-			["edd"] = {
-				StbType.MAUSOLEUM
-			}
-		},
-		["lastjudgementandrestoredmonsters"] = {
-			StbType.UTERO,
-			StbType.MAUSOLEUM,
-			["kilburn"] = {
-				StbType.MAUSOLEUM
-			},
-			["sal"] = {
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared
-			},
-			["leather"] = {
-				StbType.UTERO,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.CORPSE
-			},
-			["ikana"] = {
-				StbType.CORPSE
-			}
-		},
-		["restoredhearts"] = {
-			["kilburn"] = {
-				StbType.SPECIAL_ROOMS+mod.RoomsMods.OnlyShared
-			},
-			["leather"] = {
-				StbType.CORPSE
-			}
-		},
-		["restoredmonsters"] = {
-			StbType.WOMB+mod.RoomsMods.OnlyShared,
-			StbType.DOWNPOUR+mod.RoomsMods.OnlyShared,
-			StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared,
-			StbType.CORPSE,
-			["kilburn"] = {
-				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-				StbType.BURNING_BASEMENT,
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-				StbType.CHEST,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.GEHENNA,
-				StbType.CORPSE
-			},
-			["sal"] = {
-				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-				StbType.CELLAR,
-				StbType.BURNING_BASEMENT,
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared,
-				StbType.CATHEDRAL,
-				StbType.MAUSOLEUM+mod.RoomsMods.OnlyShared
-			},
-			["leather"] = {
-				StbType.BASEMENT+mod.RoomsMods.IncludeShared,
-				StbType.CELLAR,
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.CATACOMBS,
-				StbType.DEPTHS+mod.RoomsMods.IncludeShared,
-				StbType.WOMB+mod.RoomsMods.OnlyShared,
-				StbType.UTERO,
-				StbType.SHEOL,
-				StbType.CATHEDRAL,
-				StbType.CHEST,
-				StbType.DOWNPOUR+mod.RoomsMods.IncludeShared,
-				StbType.MINES,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.CORPSE
-			},
-			["ikana"] = {
-				StbType.DOWNPOUR+mod.RoomsMods.OnlyShared,
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared,
-				StbType.CORPSE
-			},
-			["luke"] = {
-				StbType.MAUSOLEUM+mod.RoomsMods.IncludeShared
-			}
-		},
-		["norestoredmonsters"] = {
-			StbType.DOWNPOUR+mod.RoomsMods.OnlyShared,
-			["kilburn"] = {
-				StbType.CAVES+mod.RoomsMods.OnlyShared,
-				StbType.MAUSOLEUM,
-				StbType.GEHENNA
-			},
-			["sal"] = {
-				StbType.BASEMENT+mod.RoomsMods.OnlyShared,
-				StbType.DEPTHS+mod.RoomsMods.IncludeShared
-			},
-			["leather"] = {
-				StbType.BASEMENT+mod.RoomsMods.OnlyShared,
-				StbType.DEPTHS+mod.RoomsMods.OnlyShared
-			},
-			["ikana"] = {
-				StbType.DOWNPOUR+mod.RoomsMods.OnlyShared
-			}
-		}
-	}
-}
-mod.RoomsMods["desecration"] = {
-	["piber"] = {
-		StbType.SPECIAL_ROOMS,
-		StbType.BASEMENT
-	},
-	["buttercarsen"] = {
-		StbType.BLUE_WOMB
-	}
-}
-
 local debugrooms = false
 function mod.LoadStbFromPath(stageid, mode, path)
 	local loadedrooms = RoomConfig.LoadStb(stageid, mode, path)
-	local numrooms = #loadedrooms
 	if debugrooms then
+		local numrooms = #loadedrooms
 		if numrooms > 0 then
 			print("Loaded rooms for stage " .. stageid .. " to mode " .. mode .. " from " .. path .. " (" .. numrooms .. ")")
 		else
-			print("Failed to load rooms for stage " .. stageid .. " to mode " .. mode .. " from " .. path)
+			print("FAILED TO LOAD ROOMS for stage " .. stageid .. " to mode " .. mode .. " from " .. path)
 		end
 	end
 	return loadedrooms
 end
 
-function mod.LoadSharedRooms(stageid, mode, path, filename)
-	path = path or ""
-	if filename and mod.RoomsSharedFilename[stageid] then
-		mod.RoomsSharedFilename[stageid] = string.gsub(filename,".stb","_shared.stb")
-	end
-	if mod.RoomsSharedStage[stageid] and mod.RoomsSharedFilename[mod.RoomsSharedStage[stageid]] then
-		if stageid == StbType.SPECIAL_ROOMS and mode == 0 then
-			mode = 1
-		end
-		return mod.LoadStbFromPath(stageid, mode, path .. mod.RoomsSharedFilename[mod.RoomsSharedStage[stageid]])
-	end
-end
+mod.AntibirthRooms = {
+	[StbType.SPECIAL_ROOMS]=true,
+	[StbType.BASEMENT]=true,
+	[StbType.CELLAR]=true,
+	[StbType.BURNING_BASEMENT]=true,
+	[StbType.CAVES]=true,
+	[StbType.CATACOMBS]=true,
+	[StbType.FLOODED_CAVES]=true,
+	[StbType.DEPTHS]=true,
+	[StbType.NECROPOLIS]=true,
+	[StbType.DANK_DEPTHS]=true,
+	[StbType.WOMB]=true,
+	[StbType.UTERO]=true,
+	[StbType.SCARRED_WOMB]=true,
+	[StbType.SHEOL]=true,
+	[StbType.CATHEDRAL]=true,
+	[StbType.DARK_ROOM]=true,
+	[StbType.CHEST]=true,
+	[StbType.DOWNPOUR]=true,
+	[StbType.MINES]=true,
+	[StbType.MAUSOLEUM]=true,
+	[StbType.CORPSE]=true
+}
 
-function mod.HandleModLoadedRoom(stageid, path)
-	path = path or ""
-	local doShared = false
-	local doSelf = true
-	local doGreed = false
-	if stageid >= mod.RoomsMods.OnlyGreed then
-		stageid = stageid - mod.RoomsMods.OnlyGreed
-		doGreed = true
-		doSelf = false
-	elseif stageid >= mod.RoomsMods.IncludeGreed then
-		stageid = stageid - mod.RoomsMods.IncludeGreed
-		doGreed = true
-	end
-	if stageid >= mod.RoomsMods.OnlyShared then
-		stageid = stageid - mod.RoomsMods.OnlyShared
-		doShared = true
-		doSelf = false
-	elseif stageid >= mod.RoomsMods.IncludeShared then
-		stageid = stageid - mod.RoomsMods.IncludeShared
-		doSelf = true
-	end
-	if not mod.RoomsFilename[stageid] then
-		local stageconfig = RoomConfig.GetStage(stageid)
-		if stageconfig then
-			mod.RoomsFilename[stageid] = string.gsub(string.lower(stageconfig:GetXMLName()),".xml",".stb")
-		end
-	end
-	if doShared then
-		for otherstage,sharedstage in pairs(mod.RoomsSharedStage) do
-			if sharedstage == stageid then
-				mod.LoadStbFromPath(otherstage, 0, path .. mod.RoomsSharedFilename[stageid])
-				if stageid == StbType.SPECIAL_ROOMS then
-					mod.LoadStbFromPath(otherstage, 1, path .. mod.RoomsSharedFilename[stageid])
-				elseif doGreed then
-					mod.LoadStbFromPath(otherstage, 1, path .. string.gsub(mod.RoomsSharedFilename[stageid],".stb","_greed.stb"))
-				end
-			end
-		end
-	end
-	if doSelf then
-		mod.LoadStbFromPath(stageid, 0, path .. mod.RoomsFilename[stageid])
-	end
-	if doGreed then
-		if doSelf then
-			mod.LoadStbFromPath(stageid, 1, path .. string.gsub(mod.RoomsFilename[stageid],".stb","_greed.stb"))
-		end
-	end
-end
+mod.AntibirthSharedRooms = {
+	[StbType.SPECIAL_ROOMS]={StbType.SPECIAL_ROOMS},
+	[StbType.BASEMENT]={StbType.BASEMENT,StbType.CELLAR,StbType.BURNING_BASEMENT},
+	[StbType.CAVES]={StbType.CAVES,StbType.CATACOMBS,StbType.FLOODED_CAVES},
+	[StbType.DEPTHS]={StbType.DEPTHS,StbType.NECROPOLIS,StbType.DANK_DEPTHS},
+	[StbType.WOMB]={StbType.WOMB,StbType.UTERO,StbType.SCARRED_WOMB},
+	[StbType.DOWNPOUR]={StbType.DOWNPOUR,StbType.DROSS},
+	[StbType.MINES]={StbType.MINES,StbType.ASHPIT},
+	[StbType.MAUSOLEUM]={StbType.MAUSOLEUM,StbType.GEHENNA}
+}
 
-function mod.HandleModLoadedRoomCompat(authordata, compatstring, modname)
-	if authordata[compatstring] then
-		for compatname,compatdata in pairs(authordata[compatstring]) do
-			if type(compatdata) == "number" then
-				mod.HandleModLoadedRoom(compatdata, modname .. "/compat/" .. compatstring .. "/")
-			elseif type(compatdata) == "table" then
-				for _,stageid in pairs(compatdata) do
-					mod.HandleModLoadedRoom(stageid, modname .. "/compat/" .. compatstring .. "/" .. compatname .. "/")
-				end
-			end
-		end
-	end
-end
+mod.AntibirthSharedWithGreedRooms = {
+	[StbType.DOWNPOUR]=mod.AntibirthSharedRooms[StbType.DOWNPOUR],
+	[StbType.MINES]=mod.AntibirthSharedRooms[StbType.MINES],
+	[StbType.MAUSOLEUM]=mod.AntibirthSharedRooms[StbType.MAUSOLEUM]
+}
+
+mod.AntibirthWithGreedRooms = {
+	[StbType.CORPSE]=true
+}
+
+mod.AntibirthRestoredMonstersRooms = {
+	[StbType.BASEMENT]=true,
+	[StbType.CELLAR]=true,
+	[StbType.BURNING_BASEMENT]=true,
+	[StbType.CATACOMBS]=true,
+	[StbType.DEPTHS]=true,
+	[StbType.UTERO]=true,
+	[StbType.SHEOL]=true,
+	[StbType.CATHEDRAL]=true,
+	[StbType.CHEST]=true,
+	[StbType.DOWNPOUR]=true,
+	[StbType.MINES]=true,
+	[StbType.MAUSOLEUM]=true,
+	[StbType.GEHENNA]=true,
+	[StbType.CORPSE]=true
+}
+mod.AntibirthRestoredMonstersSharedRooms = {
+	[StbType.BASEMENT]=mod.AntibirthSharedRooms[StbType.BASEMENT],
+	[StbType.CAVES]=mod.AntibirthSharedRooms[StbType.CAVES],
+	[StbType.DEPTHS]=mod.AntibirthSharedRooms[StbType.DEPTHS],
+	[StbType.WOMB]=mod.AntibirthSharedRooms[StbType.WOMB],
+	[StbType.DOWNPOUR]=mod.AntibirthSharedRooms[StbType.DOWNPOUR],
+	[StbType.MAUSOLEUM]=mod.AntibirthSharedRooms[StbType.MAUSOLEUM]
+}
+
+mod.AntibirthNoRestoredMonstersRooms = {
+	[StbType.DEPTHS]=true,
+	[StbType.MAUSOLEUM]=true,
+	[StbType.GEHENNA]=true
+}
+mod.AntibirthNoRestoredMonstersSharedRooms = {
+	[StbType.BASEMENT]=mod.AntibirthSharedRooms[StbType.BASEMENT],
+	[StbType.CAVES]=mod.AntibirthSharedRooms[StbType.CAVES],
+	[StbType.DEPTHS]=mod.AntibirthSharedRooms[StbType.DEPTHS],
+	[StbType.DOWNPOUR]=mod.AntibirthSharedRooms[StbType.DOWNPOUR]
+}
+
+mod.AntibirthRestoredHeartsRooms = {
+	[StbType.CORPSE]=true
+}
+mod.AntibirthRestoredHeartsSharedRooms = {
+	[StbType.SPECIAL_ROOMS]=mod.AntibirthSharedRooms[StbType.SPECIAL_ROOMS]
+}
+
+mod.VanillaEditsRooms = {
+	[StbType.SPECIAL_ROOMS]=true,
+	[StbType.BASEMENT]=true,
+	[StbType.CELLAR]=true,
+	[StbType.BURNING_BASEMENT]=true,
+	[StbType.CAVES]=true,
+	[StbType.CATACOMBS]=true,
+	[StbType.FLOODED_CAVES]=true,
+	[StbType.DEPTHS]=true,
+	[StbType.NECROPOLIS]=true,
+	[StbType.DANK_DEPTHS]=true,
+	[StbType.WOMB]=true,
+	[StbType.UTERO]=true,
+	[StbType.SCARRED_WOMB]=true,
+	[StbType.BLUE_WOMB]=true,
+	[StbType.SHEOL]=true,
+	[StbType.CATHEDRAL]=true,
+	[StbType.DARK_ROOM]=true,
+	[StbType.CHEST]=true,
+	[StbType.DOWNPOUR]=true,
+	[StbType.DROSS]=true,
+	[StbType.MINES]=true,
+	[StbType.ASHPIT]=true,
+	[StbType.MAUSOLEUM]=true,
+	[StbType.GEHENNA]=true,
+	[StbType.CORPSE]=true
+}
+
+mod.VanillaEditsSharedRooms = {
+	[StbType.BASEMENT]=mod.AntibirthSharedRooms[StbType.BASEMENT],
+	[StbType.CAVES]=mod.AntibirthSharedRooms[StbType.CAVES],
+	[StbType.WOMB]=mod.AntibirthSharedRooms[StbType.WOMB]
+}
+
+mod.VanillaEditsGreedRooms = {
+	[StbType.DOWNPOUR]=true,
+	[StbType.DROSS]=true,
+	[StbType.MINES]=true,
+	[StbType.ASHPIT]=true,
+	[StbType.MAUSOLEUM]=true,
+	[StbType.GEHENNA]=true,
+	[StbType.CORPSE]=true
+}
 
 function mod.OnModsLoadedRooms()
 	for _,stageid in pairs(StbType) do
-		if stageid ~= StbType.MORTIS then --crashes without this check
+		if stageid ~= StbType.MORTIS then
 			local stageconfig = RoomConfig.GetStage(stageid)
 			if stageconfig then
-				mod.RoomsFilename[stageid] = string.gsub(string.lower(stageconfig:GetXMLName()),".xml",".stb")
-				mod.LoadSharedRooms(stageid, 0, nil, mod.RoomsFilename[stageid])
-			end
-		end
-	end
-	for modname,moddata in pairs(mod.RoomsMods) do
-		if type(moddata) == "table" then
-			for authorname,authordata in pairs(moddata) do
-				if type(authordata) == "number" then
-					mod.HandleModLoadedRoom(authordata, modname .. "/")
-				elseif type(authordata) == "table" then
-					if authorname == "compat" then
-						if LastJudgement then
-							mod.HandleModLoadedRoomCompat(authordata, "lastjudgement", modname)
-							if RestoredMonsterPack then
-								mod.HandleModLoadedRoomCompat(authordata, "lastjudgementandrestoredmonsters", modname)
-							end
-						else
-							mod.HandleModLoadedRoomCompat(authordata, "nolastjudgement", modname)
-							if RestoredMonsterPack then
-								mod.HandleModLoadedRoomCompat(authordata, "restoredmonstersnolastjudgement", modname)
-							else
-								mod.HandleModLoadedRoomCompat(authordata, "norestoredmonstersnolastjudgement", modname)
-								mod.HandleModLoadedRoomCompat(authordata, "nolastjudgementnorestoredmonsters", modname)
+				local filename = string.gsub(string.lower(stageconfig:GetXMLName()),".xml",".stb")
+				local filenameshared = string.gsub(filename,".stb","_shared.stb")
+				local filenamesharedwithgreed = string.gsub(filenameshared,".stb","_withgreed.stb")
+				local filenamewithgreed = string.gsub(filename,".stb","_withgreed.stb")
+
+				if mod.AntibirthSharedRooms[stageid] then
+					for _,sharedid in ipairs(mod.AntibirthSharedRooms[stageid]) do
+						mod.LoadStbFromPath(sharedid, 0, "antibirth/" .. filenameshared)
+					end
+					if stageid == StbType.SPECIAL_ROOMS then
+						mod.LoadStbFromPath(stageid, 1, "antibirth/" .. filenameshared)
+					end
+
+					if RestoredMonsterPack then
+						if mod.AntibirthRestoredMonstersSharedRooms[stageid] then
+							mod.LoadStbFromPath(stageid, 0, "antibirth/restoredmonsters/" .. filenameshared)
+							if stageid == StbType.SPECIAL_ROOMS then
+								mod.LoadStbFromPath(stageid, 1, "antibirth/restoredmonsters/" .. filenameshared)
 							end
 						end
-						if RestoredMonsterPack then
-							mod.HandleModLoadedRoomCompat(authordata, "restoredmonsters", modname)
-						else
-							mod.HandleModLoadedRoomCompat(authordata, "norestoredmonsters", modname)
+					elseif mod.AntibirthNoRestoredMonstersSharedRooms[stageid] then
+						mod.LoadStbFromPath(stageid, 0, "antibirth/norestoredmonsters/" .. filenameshared)
+						if stageid == StbType.SPECIAL_ROOMS then
+							mod.LoadStbFromPath(stageid, 1, "antibirth/norestoredmonsters/" .. filenameshared)
 						end
-						if RestoredHearts then
-							mod.HandleModLoadedRoomCompat(authordata, "restoredhearts", modname)
-						else
-							mod.HandleModLoadedRoomCompat(authordata, "norrestoredhearts", modname)
+					end
+
+					if RestoredHearts then
+						if mod.AntibirthRestoredHeartsSharedRooms[stageid] then
+							mod.LoadStbFromPath(stageid, 0, "antibirth/restoredhearts/" .. filenameshared)
+							if stageid == StbType.SPECIAL_ROOMS then
+								mod.LoadStbFromPath(stageid, 1, "antibirth/restoredhearts/" .. filenameshared)
+							end
 						end
-					else
-						for _,stageid in pairs(authordata) do
-							mod.HandleModLoadedRoom(stageid, modname .. "/" .. authorname .. "/")
+					end
+
+					if mod.AntibirthSharedWithGreedRooms[stageid] then
+						for _,sharedwithgreedid in ipairs(mod.AntibirthSharedWithGreedRooms[stageid]) do
+							mod.LoadStbFromPath(sharedwithgreedid, 0, "antibirth/" .. filenamesharedwithgreed)
+							mod.LoadStbFromPath(sharedwithgreedid, 1, "antibirth/" .. filenamesharedwithgreed)
 						end
+					end
+				end
+
+				if mod.VanillaEditsSharedRooms[stageid] then
+					for _,sharedid in ipairs(mod.VanillaEditsSharedRooms[stageid]) do
+						mod.LoadStbFromPath(sharedid, 0, "vanillaedits/" .. filenameshared)
+					end
+					if stageid == StbType.SPECIAL_ROOMS then
+						mod.LoadStbFromPath(stageid, 1, "vanillaedits/" .. filenameshared)
+					end
+				end
+
+				if mod.AntibirthWithGreedRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 0, "antibirth/" .. filenamewithgreed)
+					mod.LoadStbFromPath(stageid, 1, "antibirth/" .. filenamewithgreed)
+				end
+
+				if mod.AntibirthRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 0, "antibirth/" .. filename)
+				end
+				if mod.VanillaEditsRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 0, "vanillaedits/" .. filename)
+				end
+				if mod.VanillaEditsGreedRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 1, "vanillaedits/greed/" .. filename)
+				end
+
+				if RestoredMonsterPack then
+					if mod.AntibirthRestoredMonstersRooms[stageid] then
+						mod.LoadStbFromPath(stageid, 0, "antibirth/restoredmonsters/" .. filename)
+					end
+				elseif mod.AntibirthNoRestoredMonstersRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 0, "antibirth/norestoredmonsters/" .. filename)
+				end
+
+				if RestoredHearts then
+					if mod.AntibirthRestoredHeartsRooms[stageid] then
+						mod.LoadStbFromPath(stageid, 0, "antibirth/restoredhearts/" .. filename)
 					end
 				end
 			end

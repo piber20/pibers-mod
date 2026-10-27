@@ -7,15 +7,6 @@ function mod.OnNewRoomHome()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 	if stage == LevelStage.STAGE8 then
-		local roomDescriptor = level:GetCurrentRoomDesc()
-		local roomConfigRoom = roomDescriptor.Data
-		if roomConfigRoom.Subtype == 330 then
-			room:SetBackdropType(BackdropType.CORPSE, 1) --placeholder (outside)
-		elseif roomConfigRoom.Subtype == 331 or roomConfigRoom.Subtype == 333 then
-			room:SetBackdropType(BackdropType.CORPSE2, 1) --placeholder (woods entrance and woods)
-		elseif roomConfigRoom.Subtype == 332 then
-			room:SetBackdropType(BackdropType.MINES, 1) --placeholder (kitchen)
-		end
 		local dimension = level:GetDimension()
 		if MinimapAPI and dimension == Dimension.NORMAL then
 			local isaacsroom = MinimapAPI:GetRoomByIdx(GridRooms.ROOM_HOME_ISAACSROOM_IDX)

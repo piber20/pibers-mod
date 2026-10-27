@@ -106,7 +106,6 @@ mod.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelVoid)
 mod.RedMistColor = Color(2,0,0,1)
 function mod.OnMistUpdateVoid(effect)
 	local game = Game()
-	local room = game:GetRoom()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 	if stage == LevelStage.STAGE7 then
@@ -117,3 +116,15 @@ function mod.OnMistUpdateVoid(effect)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.OnMistUpdateVoid, EffectVariant.MIST)
+
+function mod.PreChangeRoomVoid(roomidx, dimension)
+	local game = Game()
+	local level = game:GetLevel()
+	local stage = level:GetStage()
+	if stage == LevelStage.STAGE7 then
+		if dimension == Dimension.NORMAL then
+			return {GridRooms.ROOM_STARTING_IDX, Dimension.MIRROR}
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_PRE_CHANGE_ROOM, mod.PreChangeRoomVoid)

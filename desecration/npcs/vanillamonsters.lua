@@ -1,5 +1,36 @@
 local mod = Desecration
 
+function mod.onGlobalNPCUpdate(npc)
+	if npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+		local data = mod.GetData(npc)
+		if npc.State < NpcState.STATE_ATTACK and npc.State > NpcState.STATE_ATTACK5 then
+			data.LastNonAttackState = npc.State
+		end
+		local target = npc:GetPlayerTarget()
+		if target and target.Type == EntityType.ENTITY_PLAYER and data.LastNonAttackState and npc.State >= NpcState.STATE_ATTACK and npc.State <= NpcState.STATE_ATTACK5 then
+			npc.State = data.LastNonAttackState
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onGlobalNPCUpdate)
+
+function mod.onRoomEntitySpawnReplacements(spawntype, spawnvariant, spawnsubtype, gridindex, seed)
+	if spawntype == EntityType.BLIND_BAT then
+		if LastJudgement and LastJudgement.BlindBat then
+			return {LastJudgement.BlindBat.ID, LastJudgement.BlindBat.Var, LastJudgement.BlindBat.Sub}
+		else
+			return {EntityType.ENTITY_ONE_TOOTH, 0, 230}
+		end
+	end
+	if spawntype == EntityType.ENTITY_EXORCIST and LastJudgement and LastJudgement.Exorcist then
+		return {LastJudgement.Exorcist.ID, LastJudgement.Exorcist.Var, LastJudgement.Exorcist.Sub}
+	end
+	if spawntype == EntityType.VESSEL and RestoredMonsterPack and RestoredMonsterPack.ENTITY_INFO and RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH then
+		return {RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.ID, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.VARIANT, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.SUBTYPE}
+	end
+end
+mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, mod.onRoomEntitySpawnReplacements)
+
 function mod.onGusherInitUpdate(npc)
 	if npc.Variant == 0 or npc.Variant == 1 then
 		local data = mod.GetData(npc)
@@ -293,23 +324,6 @@ function mod.onHushBoilUpdate(npc)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHushBoilUpdate, EntityType.ENTITY_HUSH_BOIL)
-
-function mod.onRoomEntitySpawnReplacements(spawntype, spawnvariant, spawnsubtype, gridindex, seed)
-	if spawntype == EntityType.BLIND_BAT then
-		if LastJudgement and LastJudgement.BlindBat then
-			return {LastJudgement.BlindBat.ID, LastJudgement.BlindBat.Var, LastJudgement.BlindBat.Sub}
-		else
-			return {EntityType.ENTITY_ONE_TOOTH, 0, 230}
-		end
-	end
-	if spawntype == EntityType.ENTITY_EXORCIST and LastJudgement and LastJudgement.Exorcist then
-		return {LastJudgement.Exorcist.ID, LastJudgement.Exorcist.Var, LastJudgement.Exorcist.Sub}
-	end
-	if spawntype == EntityType.VESSEL and RestoredMonsterPack and RestoredMonsterPack.ENTITY_INFO and RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH then
-		return {RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.ID, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.VARIANT, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.SUBTYPE}
-	end
-end
-mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, mod.onRoomEntitySpawnReplacements)
 
 mod.EmbryoSadChance = 0.35
 mod.EmbryoHappyChance = 0.1

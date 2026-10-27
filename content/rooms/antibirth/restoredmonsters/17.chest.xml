@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="61400" name="(Antibirth - kilburn) dumpsplosion xxl" type="1" subtype="0" shape="4" width="13" height="14" difficulty="10" weight="5.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="4">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="5" y="5">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="5">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="7" y="5">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="4" y="6">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="5" y="6">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="6">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="7" y="6">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="8" y="6">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="4" y="7">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="5" y="7">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="7">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="7" y="7">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="8" y="7">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="5" y="8">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="8">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="7" y="8">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="6" y="9">
+			<entity type="800" variant="0" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="61401" name="(Antibirth - leather) chest7" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="3" y="0">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="0">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="1">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="1">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="1" y="5">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="11" y="5">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="3" y="6">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+		<spawn x="9" y="6">
+			<entity type="29" variant="1" subtype="181" weight="2.0"/>
+		</spawn>
+	</room>
+	<room variant="61402" name="(Antibirth - leather) New Room" type="1" subtype="0" shape="8" width="26" height="14" difficulty="10" weight="0.75">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="19" y="-1"/>
+		<door exists="True" x="19" y="14"/>
+		<door exists="True" x="26" y="3"/>
+		<door exists="True" x="26" y="10"/>
+		<spawn x="12" y="5">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="14" y="5">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="6">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="16" y="6">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="10" y="8">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="16" y="8">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="12" y="9">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+		<spawn x="14" y="9">
+			<entity type="800" variant="2" subtype="0" weight="2.0"/>
+		</spawn>
+	</room>
+</rooms>
