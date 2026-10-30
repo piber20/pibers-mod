@@ -16,15 +16,13 @@ mod.ArcadeMachines.RenderPos = Vector(60,140)
 mod.ForceBackdropSubTypes = {}
 mod.ForceBackdropSubTypes[101] = BackdropType.RUNEROOM_SECRET
 mod.ForceBackdropSubTypes[102] = BackdropType.BASEMENT_BOSS
-mod.ForceBackdropSubTypes[103] = BackdropType.TEST
-mod.ForceBackdropSubTypes[104] = BackdropType.BABY_SHOP
-mod.ForceBackdropSubTypes[105] = BackdropType.ARCADE_BETA
-mod.ForceBackdropSubTypes[106] = BackdropType.BLANK
+mod.ForceBackdropSubTypes[103] = BackdropType.BABY_SHOP
+mod.ForceBackdropSubTypes[104] = BackdropType.WOMB_SECRET
+mod.ForceBackdropSubTypes[105] = BackdropType.WOMB_CHALLENGE
 function mod.OnNewRoomSpecialRooms()
 	local game = Game()
 	local level = game:GetLevel()
-	local roomDescriptor = level:GetCurrentRoomDesc()
-	local roomConfigRoom = roomDescriptor.Data
+
 	local floorSave = mod.SaveManager.GetFloorSave()
 	if MinimapAPI then
 		local dimension = level:GetDimension()
@@ -48,6 +46,9 @@ function mod.OnNewRoomSpecialRooms()
 			end
 		end
 	end
+
+	local roomDescriptor = level:GetCurrentRoomDesc()
+	local roomConfigRoom = roomDescriptor.Data
 	local room = game:GetRoom()
 	if roomConfigRoom.Type == RoomType.ROOM_SUPERSECRET and roomConfigRoom.Subtype == BackdropType.DARKROOM then
 		if game:IsGreedMode() then
@@ -61,6 +62,7 @@ function mod.OnNewRoomSpecialRooms()
 			end
 		end
 	end
+
 	local backdropType = room:GetBackdropType()
 	if roomConfigRoom.Type == RoomType.ROOM_BOSS and backdropType == BackdropType.BASEMENT then
 		room:SetBackdropType(BackdropType.BASEMENT_BOSS, 1)
@@ -72,6 +74,17 @@ function mod.OnNewRoomSpecialRooms()
 	if roomConfigRoom.Type == RoomType.ROOM_SHOP and floorSave.babyshops[roomDescriptor.GridIndex] then
 		room:SetBackdropType(BackdropType.BABY_SHOP, 1)
 	end
+
+	local stage = level:GetStage()
+	if stage == LevelStage.STAGE4_1 or stage == LevelStage.STAGE4_2 or stage == LevelStage.STAGE4_3 then
+		if backdropType == BackdropType.SHEOL then
+			room:SetBackdropType(BackdropType.WOMB_CHALLENGE, 1)
+		end
+		if backdropType == BackdropType.SECRET then
+			room:SetBackdropType(BackdropType.WOMB_SECRET, 1)
+		end
+	end
+
 	for _, entity in pairs(Isaac.FindByType(EntityType.EFFECT_PROXY, -1, -1, false, false)) do
 		game:Spawn(EntityType.ENTITY_EFFECT, entity.Variant, entity.Position, entity.Velocity, entity.SpawnerEntity, entity.SubType, entity.InitSeed)
 		entity:Remove()

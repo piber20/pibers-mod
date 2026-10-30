@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="29500" name="(Antibirth - leather) New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29500" name="(Antibirth - leather) (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -12,7 +12,7 @@
 			<entity type="5" variant="100" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29501" name="(Antibirth - leather) New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29501" name="(Antibirth - leather) (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -36,7 +36,7 @@
 			<entity type="1002" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29502" name="(Antibirth - leather) New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29502" name="(Antibirth - leather) (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -63,7 +63,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29503" name="(Antibirth - leather) New Room (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29503" name="(Antibirth - leather) (Downpour)" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -78,7 +78,7 @@
 			<entity type="5" variant="100" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29500" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29500" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -120,7 +120,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29501" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29501" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -150,7 +150,7 @@
 			<entity type="1002" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29502" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29502" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -198,7 +198,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29503" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29503" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -222,7 +222,7 @@
 			<entity type="5" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29504" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29504" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -249,7 +249,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29505" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29505" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -291,7 +291,7 @@
 			<entity type="3000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29506" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="29506" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -315,7 +315,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29507" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="29507" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -333,7 +333,7 @@
 			<entity type="5" variant="100" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="29508" name="(Antibirth - leather) New Room" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
+	<room variant="29508" name="(Antibirth - leather)" type="7" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.5">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>

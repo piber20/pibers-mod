@@ -21,10 +21,9 @@ GeminiVariant.CORD = 20
 
 BackdropType.RUNEROOM_SECRET = Isaac.GetBackdropIdByName("Rune Room Secret")
 BackdropType.BASEMENT_BOSS = Isaac.GetBackdropIdByName("Basement Boss")
-BackdropType.TEST = Isaac.GetBackdropIdByName("Test")
 BackdropType.BABY_SHOP = Isaac.GetBackdropIdByName("Baby Shop")
-BackdropType.ARCADE_BETA = Isaac.GetBackdropIdByName("Arcade Beta")
-BackdropType.BLANK = Isaac.GetBackdropIdByName("Blank")
+BackdropType.WOMB_SECRET = Isaac.GetBackdropIdByName("Womb Secret")
+BackdropType.WOMB_CHALLENGE = Isaac.GetBackdropIdByName("Womb Challenge")
 
 HeartSubType.BLESSING = Isaac.GetEntitySubTypeByName("Blessing")
 

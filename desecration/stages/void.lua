@@ -15,6 +15,8 @@ function mod.OnNewLevelVoid()
 			local dif20rooms = {}
 			local startingroom = nil
 			local bossroom = nil
+			local secretConfig = nil
+			local secretConfig2 = nil
 			for i=0, rooms.Size-1 do
 				local roomDesc = rooms:Get(i)
 				local roomData = roomDesc.Data
@@ -24,16 +26,17 @@ function mod.OnNewLevelVoid()
 					if roomData.Subtype == BossType.DELIRIUM then
 						bossroom = roomData
 					end
+				elseif roomData.Type == RoomType.ROOM_SECRET then
+					if not secretConfig then
+						secretConfig = roomData
+					else
+						secretConfig2 = roomData
+					end
 				elseif roomData.Difficulty >= 20 then
 					dif20rooms[#dif20rooms+1] = roomData
 				elseif roomData.Difficulty >= 15 then --intentially making this >= 15 and not == 15, for void exclusive easier rooms at 19 or less
 					dif15rooms[#dif15rooms+1] = roomData
 				end
-			end
-
-			--make a deli room if it doesnt exist somehow
-			if not bossroom then
-				bossroomConfig = RoomConfig.GetRandomRoom(rng:Next(), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_BOSS, RoomShape.NUM_ROOMSHAPES, 0, -1, 0, 20, 0, BossType.DELIRIUM)
 			end
 
 			--get num rooms
@@ -88,6 +91,57 @@ function mod.OnNewLevelVoid()
 			if #validBossGrids > 0 then
 				local useGrid = validBossGrids[rng:RandomInt(1, #validBossGrids)]
 				level:TryPlaceRoom(bossroom, useGrid, Dimension.MIRROR, rng:Next(), false, false, false)
+			end
+
+			local numSecrets = 1
+			if PlayerManager.AnyoneHasTrinket(TrinketType.TRINKET_FRAGMENTED_CARD) then
+				numSecrets = numSecrets+1
+			end
+			for i=1, numSecrets do
+				local useConfig = secretConfig
+				if i == 2 then
+					useConfig = secretConfig2
+				end
+				local validSecretGrids = level:FindValidRoomPlacementLocations(useConfig, Dimension.MIRROR, true, true)
+				local validSecretGrids1 = {}
+				local validSecretGrids2 = {}
+				local validSecretGrids3 = {}
+				local validSecretGrids4 = {}
+				for _,placementindex in ipairs(validSecretGrids) do
+					local neighbors = level:GetNeighboringRooms(placementindex, useConfig.Shape, Dimension.MIRROR)
+					local numNeighbors = 0
+					for doorslot,neighborDesc in pairs(neighbors) do
+						local roomType = neighborDesc.Data.Type
+						if roomType == RoomType.ROOM_SECRET or roomType == RoomType.ROOM_SUPERSECRET or roomType == RoomType.ROOM_ULTRASECRET or roomType == RoomType.ROOM_BOSS then
+							numNeighbors = 0
+							break
+						end
+						numNeighbors = numNeighbors+1
+					end
+					if numNeighbors >= 4 then
+						validSecretGrids4[#validSecretGrids4+1] = placementindex
+					elseif numNeighbors >= 3 then
+						validSecretGrids3[#validSecretGrids3+1] = placementindex
+					elseif numNeighbors >= 2 then
+						validSecretGrids2[#validSecretGrids2+1] = placementindex
+					elseif numNeighbors >= 1 then
+						validSecretGrids1[#validSecretGrids1+1] = placementindex
+					end
+				end
+
+				local secretGrid = nil
+				if #validSecretGrids4 > 0 then
+					secretGrid = validSecretGrids4[rng:RandomInt(1, #validSecretGrids4)]
+				elseif #validSecretGrids3 > 0 then
+					secretGrid = validSecretGrids3[rng:RandomInt(1, #validSecretGrids3)]
+				elseif #validSecretGrids2 > 0 then
+					secretGrid = validSecretGrids2[rng:RandomInt(1, #validSecretGrids2)]
+				elseif #validSecretGrids1 > 0 then
+					secretGrid = validSecretGrids1[rng:RandomInt(1, #validSecretGrids1)]
+				end
+				if secretGrid then
+					level:TryPlaceRoom(useConfig, secretGrid, Dimension.MIRROR, rng:Next(), true, true, false)
+				end
 			end
 
 			game:StartRoomTransition(GridRooms.ROOM_STARTING_IDX, Direction.NO_DIRECTION, RoomTransitionAnim.MAZE, Isaac.GetPlayer(), Dimension.MIRROR)

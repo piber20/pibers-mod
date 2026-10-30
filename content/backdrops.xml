@@ -11,17 +11,17 @@
 	<backdrop reftype="1" name="Basement Boss" gfx="01_basement_boss.png"
 		walls="1" wallvariants="1" floors="1" floorvariants="6"
 	/>
-	<backdrop reftype="1" name="Test" gfx="test.png"
-		walls="1" wallvariants="1" floors="1" floorvariants="1"
-	/>
 	<backdrop reftype="25" name="Baby Shop" gfx="0E_Arcade_BabyShop.png"
 		walls="1" wallvariants="2" floors="1" floorvariants="6"
 	/>
-	<backdrop reftype="25" name="Arcade Beta" gfx="0E_Arcade_Beta.png"
-		walls="1" wallvariants="4" floors="1" floorvariants="4"
+	<backdrop reftype="23" name="Womb Secret" gfx="07_the womb_secret.png"
+		walls="1" wallvariants="4" floors="1" floorvariants="6"
+		rocks		= "rocks_womb_secret.png"
 	/>
-	<backdrop reftype="16" name="Blank" gfx="blank.png"
-		props="blank.png"
+	<backdrop reftype="14" name="Womb Challenge" gfx="07_the womb_challenge.png"
+		walls="1" wallvariants="4" floors="1" floorvariants="6"
+		nfloorgfx	= "07_the womb_challenge_nfloor.png"
+		rocks		= "rocks_womb_challenge.png"
 	/>
 
 </backdrops>

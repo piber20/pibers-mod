@@ -3218,7 +3218,7 @@
 			<entity type="834" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="35200" name="New Room" type="5" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="1.0">
+	<room variant="35200" name="" type="5" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>

@@ -220,6 +220,65 @@ function mod.OnNewLevelTeleDimension()
 							specialRoom = RoomType.ROOM_LIBRARY
 						end
 						mod.TryForcePlaceRandomRoom(specialRoom, RoomShape.ROOMSHAPE_1x1, -1, Dimension.MIRROR, teleRNG, nil, -1, -1, false, nil, 5, 3)
+
+						local stbType = Isaac.GetCurrentStageConfigId()
+						local numSecrets = 1
+						if PlayerManager.AnyoneHasTrinket(TrinketType.TRINKET_FRAGMENTED_CARD) then
+							numSecrets = numSecrets+1
+						end
+						for i=1, numSecrets do
+							local secretConfig = RoomConfig.GetRandomRoom(rng:Next(), false, stbType, RoomType.ROOM_SECRET, RoomShape.NUM_ROOMSHAPES, 0, -1, 10, 15)
+							if not secretConfig then
+								secretConfig = RoomConfig.GetRandomRoom(rng:Next(), false, stbType, RoomType.ROOM_SECRET, RoomShape.NUM_ROOMSHAPES, 0, -1, 0, 15)
+								if not secretConfig then
+									secretConfig = RoomConfig.GetRandomRoom(rng:Next(), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_SECRET, RoomShape.NUM_ROOMSHAPES, 0, -1, 10, 15)
+									if not secretConfig then
+										secretConfig = RoomConfig.GetRandomRoom(rng:Next(), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_SECRET, RoomShape.NUM_ROOMSHAPES, 0, -1, 0, 15)
+									end
+								end
+							end
+
+							local validSecretGrids = level:FindValidRoomPlacementLocations(secretConfig, Dimension.MIRROR, true, true)
+							local validSecretGrids1 = {}
+							local validSecretGrids2 = {}
+							local validSecretGrids3 = {}
+							local validSecretGrids4 = {}
+							for _,placementindex in ipairs(validSecretGrids) do
+								local neighbors = level:GetNeighboringRooms(placementindex, secretConfig.Shape, Dimension.MIRROR)
+								local numNeighbors = 0
+								for doorslot,neighborDesc in pairs(neighbors) do
+									local roomType = neighborDesc.Data.Type
+									if roomType == RoomType.ROOM_SECRET or roomType == RoomType.ROOM_SUPERSECRET or roomType == RoomType.ROOM_ULTRASECRET or roomType == RoomType.ROOM_BOSS then
+										numNeighbors = 0
+										break
+									end
+									numNeighbors = numNeighbors+1
+								end
+								if numNeighbors >= 4 then
+									validSecretGrids4[#validSecretGrids4+1] = placementindex
+								elseif numNeighbors >= 3 then
+									validSecretGrids3[#validSecretGrids3+1] = placementindex
+								elseif numNeighbors >= 2 then
+									validSecretGrids2[#validSecretGrids2+1] = placementindex
+								elseif numNeighbors >= 1 then
+									validSecretGrids1[#validSecretGrids1+1] = placementindex
+								end
+							end
+
+							local secretGrid = nil
+							if #validSecretGrids4 > 0 then
+								secretGrid = validSecretGrids4[rng:RandomInt(1, #validSecretGrids4)]
+							elseif #validSecretGrids3 > 0 then
+								secretGrid = validSecretGrids3[rng:RandomInt(1, #validSecretGrids3)]
+							elseif #validSecretGrids2 > 0 then
+								secretGrid = validSecretGrids2[rng:RandomInt(1, #validSecretGrids2)]
+							elseif #validSecretGrids1 > 0 then
+								secretGrid = validSecretGrids1[rng:RandomInt(1, #validSecretGrids1)]
+							end
+							if secretGrid then
+								level:TryPlaceRoom(secretConfig, secretGrid, Dimension.MIRROR, rng:Next(), true, true, false)
+							end
+						end
 					end
 				end
 			end

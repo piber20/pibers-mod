@@ -1475,7 +1475,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61523" name="(Antibirth - leather) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="61523" name="(Antibirth - leather)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1592,7 +1592,7 @@
 			<entity type="1931" variant="1" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61525" name="(Antibirth - leather) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="2" weight="1.0">
+	<room variant="61525" name="(Antibirth - leather)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="2" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1637,7 +1637,7 @@
 			<entity type="1010" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61526" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="0.125">
+	<room variant="61526" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="0.125">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1676,7 +1676,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61527" name="(Antibirth - leather) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.125">
+	<room variant="61527" name="(Antibirth - leather)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.125">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1721,7 +1721,7 @@
 			<entity type="33" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61528" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="61528" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1748,7 +1748,7 @@
 			<entity type="1500" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61529" name="(Antibirth - leather) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.125">
+	<room variant="61529" name="(Antibirth - leather)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.125">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1808,7 +1808,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61530" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="61530" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1925,7 +1925,7 @@
 			<entity type="1000" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61532" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="1.0">
+	<room variant="61532" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="10" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -1988,7 +1988,7 @@
 			<entity type="1930" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61534" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
+	<room variant="61534" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="5" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="False" x="6" y="7"/>
@@ -2048,7 +2048,7 @@
 			<entity type="1901" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61535" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="61535" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -2111,7 +2111,7 @@
 			<entity type="800" variant="0" subtype="0" weight="2.0"/>
 		</spawn>
 	</room>
-	<room variant="61536" name="(Antibirth - sal) New Room" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="61536" name="(Antibirth - sal)" type="1" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
