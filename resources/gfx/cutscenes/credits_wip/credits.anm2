@@ -1,0 +1,125 @@
+<AnimatedActor>
+    <Info CreatedBy="robot" CreatedOn="01-January-1979 12:00:00 AM" Fps="30" Version="0"/>
+    <Content>
+        <Spritesheets>
+            <Spritesheet Id="0" Path="credits_page1.png"/>
+            <Spritesheet Id="1" Path="credits_page2.png"/>
+            <Spritesheet Id="2" Path="credits_page3.png"/>
+            <Spritesheet Id="3" Path="credits_page0.png"/>
+            <Spritesheet Id="4" Path="credits_page4.png"/>
+            <Spritesheet Id="5" Path="credits_page5.png"/>
+            <Spritesheet Id="6" Path="credits_page6.png"/>
+            <Spritesheet Id="7" Path="credits_page7.png"/>
+            <Spritesheet Id="8" Path="credits_page8.png"/>
+            <Spritesheet Id="9" Path="credits_page9.png"/>
+            <Spritesheet Id="10" Path="credits_page12.png"/>
+            <Spritesheet Id="11" Path="credits_page1b.png"/>
+            <Spritesheet Id="12" Path="credits_page2b.png"/>
+            <Spritesheet Id="13" Path="credits_page3b.png"/>
+            <Spritesheet Id="14" Path="credits_page4b.png"/>
+            <Spritesheet Id="15" Path="credits_page5b.png"/>
+            <Spritesheet Id="16" Path="credits_page6b.png"/>
+            <Spritesheet Id="17" Path="credits_page7b.png"/>
+            <Spritesheet Id="18" Path="credits_page8b.png"/>
+            <Spritesheet Id="19" Path="credits_page9b.png"/>
+            <Spritesheet Id="20" Path="credits_page11.png"/>
+            <Spritesheet Id="21" Path="contributors_page1.png"/>
+            <Spritesheet Id="22" Path="contributors_page2.png"/>
+            <Spritesheet Id="23" Path="contributors_page3.png"/>
+            <Spritesheet Id="24" Path="contributors_page4.png"/>
+            <Spritesheet Id="25" Path="contributors_page5.png"/>
+            <Spritesheet Id="26" Path="contributors_page6.png"/>
+            <Spritesheet Id="27" Path="credits_page10.png"/>
+            <Spritesheet Id="28" Path="credits_page10b.png"/>
+            <Spritesheet Id="29" Path="credits_page13.png"/>
+            <Spritesheet Id="30" Path="locali_pg1.png"/>
+            <Spritesheet Id="31" Path="locali_pg1b.png"/>
+            <Spritesheet Id="32" Path="locali_pg2.png"/>
+            <Spritesheet Id="33" Path="locali_pg2b.png"/>
+            <Spritesheet Id="34" Path="locali_pg3.png"/>
+            <Spritesheet Id="35" Path="locali_pg3b.png"/>
+            <Spritesheet Id="36" Path="locali_pg4.png"/>
+            <Spritesheet Id="37" Path="locali_pg4b.png"/>
+            <Spritesheet Id="38" Path="locali_pg5.png"/>
+            <Spritesheet Id="39" Path="locali_pg5b.png"/>
+            <Spritesheet Id="40" Path="frame.png"/>
+        </Spritesheets>
+        <Layers>
+            <Layer Id="0" Name="Page1" SpritesheetId="0"/>
+            <Layer Id="1" Name="Black" SpritesheetId="0"/>
+            <Layer Id="2" Name="Page2" SpritesheetId="1"/>
+            <Layer Id="3" Name="Page3" SpritesheetId="2"/>
+            <Layer Id="4" Name="Text" SpritesheetId="3"/>
+            <Layer Id="5" Name="Page4" SpritesheetId="4"/>
+            <Layer Id="6" Name="Page5" SpritesheetId="5"/>
+            <Layer Id="7" Name="Page6" SpritesheetId="6"/>
+            <Layer Id="8" Name="Page7" SpritesheetId="7"/>
+            <Layer Id="9" Name="Page12" SpritesheetId="10"/>
+            <Layer Id="10" Name="Page8" SpritesheetId="8"/>
+            <Layer Id="11" Name="Page13" SpritesheetId="29"/>
+            <Layer Id="12" Name="Page1b" SpritesheetId="11"/>
+            <Layer Id="13" Name="Page2b" SpritesheetId="12"/>
+            <Layer Id="14" Name="Page3b" SpritesheetId="13"/>
+            <Layer Id="15" Name="Page4b" SpritesheetId="14"/>
+            <Layer Id="16" Name="Page5b" SpritesheetId="15"/>
+            <Layer Id="17" Name="Page6b" SpritesheetId="16"/>
+            <Layer Id="18" Name="Page7b" SpritesheetId="17"/>
+            <Layer Id="19" Name="Page8b" SpritesheetId="18"/>
+            <Layer Id="20" Name="Page9" SpritesheetId="9"/>
+            <Layer Id="21" Name="Page9b" SpritesheetId="19"/>
+            <Layer Id="22" Name="contri_pg1" SpritesheetId="21"/>
+            <Layer Id="23" Name="contri_pg2" SpritesheetId="22"/>
+            <Layer Id="24" Name="contri_pg3" SpritesheetId="23"/>
+            <Layer Id="25" Name="contri_pg4" SpritesheetId="24"/>
+            <Layer Id="26" Name="contri_pg5" SpritesheetId="25"/>
+            <Layer Id="27" Name="Page11" SpritesheetId="20"/>
+            <Layer Id="28" Name="Page10" SpritesheetId="27"/>
+            <Layer Id="29" Name="Page10b" SpritesheetId="28"/>
+            <Layer Id="30" Name="contri_pg6" SpritesheetId="26"/>
+            <Layer Id="31" Name="locali_pg1" SpritesheetId="30"/>
+            <Layer Id="32" Name="loali_pg1b" SpritesheetId="31"/>
+            <Layer Id="33" Name="locali_pg2" SpritesheetId="32"/>
+            <Layer Id="34" Name="locali_pg2b" SpritesheetId="33"/>
+            <Layer Id="35" Name="locali_pg3" SpritesheetId="34"/>
+            <Layer Id="36" Name="locali_ph3b" SpritesheetId="35"/>
+            <Layer Id="37" Name="locali_pg4" SpritesheetId="36"/>
+            <Layer Id="38" Name="locali_pg4b" SpritesheetId="37"/>
+            <Layer Id="39" Name="locali_pg5" SpritesheetId="38"/>
+            <Layer Id="40" Name="locali_pg5b" SpritesheetId="39"/>
+            <Layer Id="41" Name="Back" SpritesheetId="0"/>
+            <Layer Id="42" Name="Frame" SpritesheetId="40"/>
+        </Layers>
+        <Nulls/>
+        <Events/>
+    </Content>
+    <Animations DefaultAnimation="Credits">
+        <Animation Name="Credits" FrameNum="1715" Loop="false">
+            <RootAnimation>
+                <Frame XPosition="120" YPosition="67.5" Delay="1715" Visible="true" XScale="50" YScale="50" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+            </RootAnimation>
+            <LayerAnimations>
+                <LayerAnimation LayerId="1" Visible="true">
+                    <Frame XPosition="240" YPosition="135" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="32" Height="32" XScale="5000" YScale="5000" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+                </LayerAnimation>
+                <LayerAnimation LayerId="0" Visible="true">
+                    <Frame XPosition="0" YPosition="0" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="100" YScale="100" Delay="62" Visible="false" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+                    <Frame XPosition="0" YPosition="270" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="100" YScale="100" Delay="60" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="0" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="90" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="100" YScale="100" Delay="30" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="0" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="100" YScale="100" Delay="90" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="0" YPosition="-270" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="0" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                </LayerAnimation>
+                <LayerAnimation LayerId="4" Visible="true">
+                    <Frame XPosition="148" YPosition="180" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="210" Height="132" XScale="100" YScale="100" Delay="22" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="0" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="148" YPosition="90" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="210" Height="132" XScale="100" YScale="100" Delay="40" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+                    <Frame XPosition="148" YPosition="90" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="210" Height="132" XScale="100" YScale="100" Delay="90" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                    <Frame XPosition="148" YPosition="-180" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="210" Height="132" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="0" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+                </LayerAnimation>
+                <LayerAnimation LayerId="42" Visible="true">
+                    <Frame XPosition="-240" YPosition="-135" XPivot="0" YPivot="0" XCrop="0" YCrop="0" Width="480" Height="270" XScale="200" YScale="200" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+                </LayerAnimation>
+            </LayerAnimations>
+            <NullAnimations/>
+            <Triggers/>
+        </Animation>
+    </Animations>
+</AnimatedActor>
