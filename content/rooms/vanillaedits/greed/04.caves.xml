@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="35200" name="boss_wave (easy)" type="5" subtype="18" shape="4" width="13" height="14" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="9">
+			<entity type="71" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35201" name="boss_wave (easy)" type="5" subtype="18" shape="4" width="13" height="14" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="5">
+			<entity type="71" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35202" name="boss_wave (medium)" type="5" subtype="18" shape="4" width="13" height="14" difficulty="1" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="1">
+			<entity type="71" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35203" name="boss_wave (medium)" type="5" subtype="14" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="4">
+			<entity type="68" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35204" name="boss_wave (medium)" type="5" subtype="14" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="9">
+			<entity type="68" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35205" name="boss_wave (hard)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="4">
+			<entity type="20" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="9">
+			<entity type="68" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35206" name="boss_wave (hard)" type="5" subtype="18" shape="4" width="13" height="14" difficulty="10" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="4">
+			<entity type="71" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="9">
+			<entity type="72" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35207" name="boss_wave (hard)" type="5" subtype="14" shape="4" width="13" height="14" difficulty="10" weight="0.25">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="4" y="10">
+			<entity type="46" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="10">
+			<entity type="68" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="10">
+			<entity type="46" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35208" name="boss_wave (hard)" type="5" subtype="94" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="11">
+			<entity type="916" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="35209" name="boss_wave (hard)" type="5" subtype="94" shape="4" width="13" height="14" difficulty="5" weight="1.0">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="916" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+</rooms>

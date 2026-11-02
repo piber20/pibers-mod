@@ -4868,7 +4868,7 @@
     <entity anm2path="915.001_singe ball.anm2" baseHP="100" boss="0" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="17" friction="1" id="915" name="Singe&apos;s Ball" numGridCollisionPoints="12" portrait="296" shadowSize="18" shutdoors="false" stageHP="0" tags="noreroll" variant="1">
         <gibs amount="6" blood="0" bone="0" dust="1" eye="0" gut="0" large="0" rock="1"/>
     </entity>
-    <entity anm2path="916.000_bumbino.anm2" baseHP="385" boss="1" bossID="94" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="30" friction="1" id="916" name="#BUMBINO" numGridCollisionPoints="12" portrait="124" shadowSize="40" stageHP="0" variant="0" shieldStrength="2">
+    <entity anm2path="916.000_bumbino.anm2" baseHP="365" boss="1" bossID="94" champion="0" collisionDamage="1" collisionMass="40" collisionRadius="30" friction="1" id="916" name="#BUMBINO" numGridCollisionPoints="12" portrait="124" shadowSize="40" stageHP="0" variant="0" shieldStrength="2">
         <bestiary anim="Idle2" transform="0,0,1"/>
         <gibs amount="20" blood="1" bone="1" eye="1" gut="1" large="1"/>
     </entity>

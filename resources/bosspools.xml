@@ -11,12 +11,13 @@
 		<boss id="34" weight="1" />		<!-- Widow -->
 		<boss id="37" weight="1" />		<!-- Pin -->
 		<boss id="43" weight="1" />		<!-- The Haunt -->
+		<boss id="44" weight="1" />		<!-- Dingle -->
 		<boss id="52" weight="1" />		<!-- Polycephalus -->
 		<boss id="56" weight="1" />		<!-- Gurglings -->
 	</pool>
 	<pool name="burning basement">
 		<boss id="1"  weight="1" />		<!-- Monstro -->
-		<boss id="13" weight="0.5" />	<!-- Duke of Flies -->
+		<boss id="2"  weight="1" />		<!-- Larry Jr. -->
 		<boss id="17" weight="1" />		<!-- Gemini -->
 		<boss id="34" weight="1" />		<!-- Widow -->
 		<boss id="44" weight="0.5" />	<!-- Dingle -->
@@ -29,8 +30,7 @@
 		<boss id="18" weight="1" />		<!-- Fistula -->
 		<boss id="21" weight="0.25" />	<!-- C.H.A.D. -->
 		<boss id="47" weight="1" />		<!-- Mega Fatty -->
-		<boss id="50" weight="1" />		<!-- Dark One -->
-		<boss id="60" weight="1" />		<!-- Little Horn -->
+		<boss id="74" weight="1" />		<!-- Reap Creep -->
 		<boss id="94" weight="1" />		<!-- Bumbino -->
 	</pool>
 	<pool name="catacombs" doubletrouble="3700">
@@ -40,11 +40,12 @@
 		<boss id="32" weight="1" />		<!-- Blighted Ovum -->
 		<boss id="36" weight="1" />		<!-- The Wretched -->
 		<boss id="45" weight="1" />		<!-- Mega Maw -->
+		<boss id="50" weight="1" />		<!-- Dark One -->
 		<boss id="57" weight="1" />		<!-- The Stain -->
 		<boss id="59" weight="1" />		<!-- The Forsaken -->
+		<boss id="60" weight="1" />		<!-- Little Horn -->
 		<boss id="61" weight="1" />		<!-- Rag Man -->
 		<boss id="66" weight="1" />		<!-- The Frail -->
-		<boss id="74" weight="1" />		<!-- Reap Creep -->
 	</pool>
 	<pool name="flooded caves" doubletrouble="3700">
 		<boss id="3"  weight="1" />		<!-- Chub -->
@@ -52,8 +53,9 @@
 		<boss id="18" weight="1" />		<!-- Fistula -->
 		<boss id="21" weight="0.25" />	<!-- C.H.A.D. -->
 		<boss id="28" weight="0.5" />	<!-- Gurdy Jr -->
-		<boss id="47" weight="0.5" />	<!-- Mega Fatty -->
-		<boss id="50" weight="0.5" />	<!-- Dark One -->
+		<boss id="32" weight="1" />		<!-- Blighted Ovum -->
+		<boss id="45" weight="1" />		<!-- Mega Maw -->
+		<boss id="61" weight="0.5" />	<!-- Rag Man -->
 		<boss id="60" weight="0.5" />	<!-- Little Horn -->
 		<boss id="64" weight="0.25" />	<!-- Dangle -->
 		<boss id="65" weight="0.25" />	<!-- Turdlings -->
@@ -61,29 +63,28 @@
 		<boss id="92" weight="0.25" />	<!-- Clog -->
 	</pool>
 	<pool name="depths" doubletrouble="3750">
+		<boss id="4"  weight="1" />		<!-- Gurdy -->
 		<boss id="5"  weight="1" />		<!-- Monstro II -->
 		<boss id="19" weight="0.25" />	<!-- Gish -->
 		<boss id="15" weight="1" />		<!-- Loki -->
 		<boss id="48" weight="1" />		<!-- The Cage -->
-		<boss id="51" weight="1" />		<!-- The Adversary -->
 		<boss id="58" weight="0.5" />	<!-- Brownie -->
 		<boss id="68" weight="0.5" />	<!-- Sisters Vis -->
-		<boss id="69" weight="1" />		<!-- Big Horn -->
 	</pool>
 	<pool name="necropolis" doubletrouble="3750">
-		<boss id="4"  weight="1" />		<!-- Gurdy -->
 		<boss id="27" weight="1" />		<!-- Carrion Queen -->
 		<boss id="33" weight="1" />		<!-- Teratoma -->
 		<boss id="35" weight="1" />		<!-- Mask of Infamy -->
 		<boss id="41" weight="1" />		<!-- Daddy Long Legs -->
 		<boss id="42" weight="0.25" />	<!-- Triachnid -->
 		<boss id="46" weight="1" />		<!-- The Gate -->
+		<boss id="51" weight="1" />		<!-- The Adversary -->
 		<boss id="67" weight="1" />		<!-- Rag Mega -->
+		<boss id="69" weight="1" />		<!-- Big Horn -->
 		<boss id="73" weight="1" />		<!-- The Pile -->
 	</pool>
 	<pool name="dank depths" doubletrouble="3750">
 		<boss id="4"  weight="0.5" />	<!-- Gurdy -->
-		<boss id="15" weight="0.5" />	<!-- Loki -->
 		<boss id="19" weight="1.5" />	<!-- Gish -->
 		<boss id="48" weight="1" />		<!-- The Cage -->
 		<boss id="58" weight="1" />		<!-- Brownie -->
@@ -93,19 +94,15 @@
 	</pool>
 	<pool name="womb" doubletrouble="3800">
 		<boss id="7"  weight="1" />		<!-- Scolex -->
-		<boss id="16" weight="1" />		<!-- Blastocyst -->
-		<boss id="30" weight="0.5" />	<!-- The Bloat -->
 		<boss id="31" weight="0.5" />	<!-- Lokii -->
-		<boss id="53" weight="1" />		<!-- Mr. Fred -->
+		<boss id="49" weight="1" />		<!-- Mama Gurdy -->
 		<boss id="101" weight="1" />	<!-- Horny Boys -->
 	</pool>
 	<pool name="utero" doubletrouble="3800">
+		<boss id="7"  weight="0.5" />	<!-- Scolex -->
 		<boss id="16" weight="1" />		<!-- Blastocyst -->
 		<boss id="30" weight="1" />		<!-- The Bloat -->
-		<boss id="31" weight="1" />		<!-- Lokii -->
-		<boss id="49" weight="1" />		<!-- Mama Gurdy -->
 		<boss id="53" weight="1" />		<!-- Mr. Fred -->
-		<boss id="72" weight="0.5" />	<!-- The Matriarch -->
 	</pool>
 	<pool name="scarred womb" doubletrouble="3800">
 		<boss id="7"  weight="0.5" />	<!-- Scolex -->
@@ -140,17 +137,15 @@
 		<boss id="97" weight="1" />		<!-- Turdlet -->
 	</pool>
 	<pool name="mines">
-		<boss id="15" weight="0.25" />	<!-- Loki -->
-		<boss id="69" weight="0.5" />	<!-- Big Horn -->
+		<boss id="69" weight="0.25" />	<!-- Big Horn -->
 		<boss id="74" weight="0.5" />	<!-- Reap Creep -->
 		<boss id="80" weight="1" />		<!-- Tuff Twins -->
 		<boss id="82" weight="1" />		<!-- Hornfel -->
 		<boss id="83" weight="1" />		<!-- Great Gideon -->
 	</pool>
 	<pool name="ashpit">
-		<boss id="27" weight="0.25" />	<!-- Carrion Queen -->
+		<boss id="15" weight="0.25" />	<!-- Loki -->
 		<boss id="59" weight="0.25" />	<!-- The Forsaken -->
-		<boss id="61" weight="0.25" />	<!-- Rag Man -->
 		<boss id="73" weight="1" />		<!-- The Pile -->
 		<boss id="83" weight="0.5" />	<!-- Great Gideon -->
 		<boss id="96" weight="1" />		<!-- The Shell -->
@@ -166,13 +161,12 @@
 	<pool name="gehenna">
 		<boss id="46" weight="0.25" />	<!-- The Gate -->
 		<boss id="51" weight="0.25" />	<!-- The Adversary -->
-		<boss id="68" weight="0.5" />	<!-- Sisters Vis -->
+		<boss id="68" weight="0.25" />	<!-- Sisters Vis -->
 		<boss id="78" weight="1" />		<!-- The Visage -->
 		<boss id="101" weight="1" />	<!-- Horny Boys -->
 	</pool>
 	<pool name="corpse">
 		<boss id="30" weight="0.25" />	<!-- The Bloat -->
-		<boss id="72" weight="0.25" />	<!-- The Matriarch -->
 		<boss id="85" weight="1" />		<!-- The Scourge -->
 		<boss id="86" weight="1" />		<!-- Chimera -->
 		<boss id="87" weight="1" />		<!-- Rotgut -->

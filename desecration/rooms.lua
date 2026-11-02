@@ -138,6 +138,12 @@ mod.VanillaEditsSharedRooms = {
 }
 
 mod.VanillaEditsGreedRooms = {
+	[StbType.SPECIAL_ROOMS]=true,
+	[StbType.BASEMENT]=true,
+	[StbType.CELLAR]=true,
+	[StbType.BURNING_BASEMENT]=true,
+	[StbType.CAVES]=true,
+	[StbType.CATACOMBS]=true,
 	[StbType.DOWNPOUR]=true,
 	[StbType.DROSS]=true,
 	[StbType.MINES]=true,

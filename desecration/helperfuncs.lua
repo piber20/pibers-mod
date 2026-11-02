@@ -368,38 +368,40 @@ function mod.TryForcePlaceRandomRoom(roomConfig, roomShape, roomSubtype, dimensi
 			end
 		end
 	end
-	local attempts = 0
-	while attempts < 100 do
-		attempts = attempts + 1
-		local useGrid = index
-		if not index and #validGrids > 0 then
-			useGrid = validGrids[rng:RandomInt(1, #validGrids)]
-		end
-		local roomDesc = nil
-		if avoidGrid and not index then
-			for distance=GridRooms.WIDTH, 1, -1 do
-				if validGridsByDistance[distance] then
-					local avoidAttempts = 0
-					while avoidAttempts < 100 do
-						avoidAttempts = avoidAttempts + 1
-						useGrid = validGridsByDistance[distance][rng:RandomInt(1, #validGridsByDistance[distance])]
-						roomDesc = level:TryPlaceRoom(roomConfig, useGrid, dimension, rng:Next(), true, true, true)
-						if roomDesc then
-							break
+	if roomConfig then
+		local attempts = 0
+		while attempts < 100 do
+			attempts = attempts + 1
+			local useGrid = index
+			if not index and #validGrids > 0 then
+				useGrid = validGrids[rng:RandomInt(1, #validGrids)]
+			end
+			local roomDesc = nil
+			if avoidGrid and not index then
+				for distance=GridRooms.WIDTH, 1, -1 do
+					if validGridsByDistance[distance] then
+						local avoidAttempts = 0
+						while avoidAttempts < 100 do
+							avoidAttempts = avoidAttempts + 1
+							useGrid = validGridsByDistance[distance][rng:RandomInt(1, #validGridsByDistance[distance])]
+							roomDesc = level:TryPlaceRoom(roomConfig, useGrid, dimension, rng:Next(), true, true, true)
+							if roomDesc then
+								break
+							end
 						end
 					end
-				end
-				if roomDesc then
-					break
+					if roomDesc then
+						break
+					end
 				end
 			end
-		end
-		if not roomDesc then
-			roomDesc = level:TryPlaceRoom(roomConfig, useGrid, dimension, rng:Next(), true, true, true)
-		end
-		if roomDesc then
-			attempts = 100
-			return roomDesc
+			if not roomDesc then
+				roomDesc = level:TryPlaceRoom(roomConfig, useGrid, dimension, rng:Next(), true, true, true)
+			end
+			if roomDesc then
+				attempts = 100
+				return roomDesc
+			end
 		end
 	end
 end
