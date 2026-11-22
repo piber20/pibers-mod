@@ -25,7 +25,7 @@ function mod.OnNewLevelBlueWomb()
 
 			--make a large regular room to replace the original hush boss room
 			local useSize = rng:RandomInt(1, RoomShape.NUM_ROOMSHAPES)
-			if useSize > RoomShape.ROOMSHAPE_LBR or useSize == RoomShape.ROOMSHAPE_LBL or useSize == RoomShape.ROOMSHAPE_IIH or useSize == RoomShape.ROOMSHAPE_2x1 then
+			if useSize > RoomShape.ROOMSHAPE_LBR or useSize == RoomShape.ROOMSHAPE_LBL or useSize == RoomShape.ROOMSHAPE_IIH or useSize == RoomShape.ROOMSHAPE_2x1 or useSize == RoomShape.ROOMSHAPE_LTL then
 				useSize = RoomShape.ROOMSHAPE_2x2
 			elseif useSize == RoomShape.ROOMSHAPE_IV or useSize == RoomShape.ROOMSHAPE_IH or useSize == RoomShape.ROOMSHAPE_1x1 then
 				useSize = RoomShape.ROOMSHAPE_1x2
@@ -33,10 +33,17 @@ function mod.OnNewLevelBlueWomb()
 			if isHard and rng:Next() % 8 ~= 0 then
 				minDifficulty = 5
 			end
-			local replaceBossConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, RoomType.ROOM_DEFAULT, useSize, 2, -1, minDifficulty, maxDifficulty, DoorSlot.DOWN0 | DoorSlot.UP0)
-			if not replaceBossConfig then
-				useSize = RoomShape.ROOMSHAPE_1x2
-				replaceBossConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, RoomType.ROOM_DEFAULT, useSize, 2, -1, minDifficulty, maxDifficulty, DoorSlot.DOWN0 | DoorSlot.UP0)
+			local goodroom = false
+			local replaceBossConfig = nil
+			while not goodroom do
+				replaceBossConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, RoomType.ROOM_DEFAULT, useSize, 2, -1, minDifficulty, maxDifficulty, 2)
+				if not replaceBossConfig then
+					useSize = RoomShape.ROOMSHAPE_1x2
+					replaceBossConfig = RoomConfig.GetRandomRoom(rng:Next(), true, stbType, RoomType.ROOM_DEFAULT, useSize, 2, -1, minDifficulty, maxDifficulty, 2)
+				end
+				if replaceBossConfig and replaceBossConfig.Doors & (1 << DoorSlot.DOWN0) > 0 then
+					goodroom = true
+				end
 			end
 			bossroomDesc.Data = replaceBossConfig
 			minDifficulty = 1
@@ -45,7 +52,11 @@ function mod.OnNewLevelBlueWomb()
 			local maxIndex = 60
 			local numRooms = rng:RandomInt(mod.NumBlueWombRooms-1, mod.NumBlueWombRooms+1)
 			for i=0, numRooms do
-				mod.TryPlaceRandomRoom(-maxIndex, Dimension.NORMAL, rng, true, true, false, 2)
+				local requiredoors = 1
+				if i < (numRooms-1) then
+					requiredoors = rng:RandomInt(2, 4)
+				end
+				mod.TryPlaceRandomRoom(-maxIndex, Dimension.NORMAL, rng, true, true, false, 2, nil, nil, nil, requiredoors)
 			end
 
 			--replace the door to the boss room with a regular door

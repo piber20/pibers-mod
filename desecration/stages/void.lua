@@ -55,6 +55,10 @@ function mod.OnNewLevelVoid()
 			local easyPlaced = 0
 			local hardPlaced = 0
 			for i=0, numEasyRooms+numHardRooms do
+				local requiredoors = 1
+				if i ~= numEasyRooms and i ~= numHardRooms then
+					requiredoors = rng:RandomInt(2, 4)
+				end
 				local doHard = false
 				if easyPlaced < numEasyRooms and hardPlaced < numHardRooms then
 					if rng:RandomInt(1,2) == 2 then
@@ -67,9 +71,9 @@ function mod.OnNewLevelVoid()
 					if hardPlaced < #dif20rooms then
 						mod.TryPlaceRoom(dif20rooms[hardPlaced+1], nil, Dimension.MIRROR, rng, true, true, false)
 					else
-						if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 20, 20) then
-							if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 16, 19) then
-								mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 15, 15)
+						if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 20, 20, nil, requiredoors) then
+							if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 16, 19, nil, requiredoors) then
+								mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 15, 15, nil, requiredoors)
 							end
 						end
 					end
@@ -78,8 +82,8 @@ function mod.OnNewLevelVoid()
 					if easyPlaced < #dif15rooms then
 						mod.TryPlaceRoom(dif15rooms[easyPlaced+1], nil, Dimension.MIRROR, rng, true, true, false)
 					else
-						if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 16, 19) then
-							mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 15, 15)
+						if not mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 16, 19, nil, requiredoors) then
+							mod.TryPlaceRandomRoom(nil, Dimension.MIRROR, rng, true, true, false, nil, 15, 15, nil, requiredoors)
 						end
 					end
 					easyPlaced = easyPlaced+1

@@ -30,6 +30,8 @@
 		<boss id="18" weight="1" />		<!-- Fistula -->
 		<boss id="21" weight="0.25" />	<!-- C.H.A.D. -->
 		<boss id="47" weight="1" />		<!-- Mega Fatty -->
+		<boss id="50" weight="1" />		<!-- Dark One -->
+		<boss id="60" weight="1" />		<!-- Little Horn -->
 		<boss id="74" weight="1" />		<!-- Reap Creep -->
 		<boss id="94" weight="1" />		<!-- Bumbino -->
 	</pool>
@@ -40,10 +42,8 @@
 		<boss id="32" weight="1" />		<!-- Blighted Ovum -->
 		<boss id="36" weight="1" />		<!-- The Wretched -->
 		<boss id="45" weight="1" />		<!-- Mega Maw -->
-		<boss id="50" weight="1" />		<!-- Dark One -->
 		<boss id="57" weight="1" />		<!-- The Stain -->
 		<boss id="59" weight="1" />		<!-- The Forsaken -->
-		<boss id="60" weight="1" />		<!-- Little Horn -->
 		<boss id="61" weight="1" />		<!-- Rag Man -->
 		<boss id="66" weight="1" />		<!-- The Frail -->
 	</pool>
@@ -67,9 +67,8 @@
 		<boss id="5"  weight="1" />		<!-- Monstro II -->
 		<boss id="19" weight="0.25" />	<!-- Gish -->
 		<boss id="15" weight="1" />		<!-- Loki -->
-		<boss id="48" weight="1" />		<!-- The Cage -->
 		<boss id="58" weight="0.5" />	<!-- Brownie -->
-		<boss id="68" weight="0.5" />	<!-- Sisters Vis -->
+		<boss id="69" weight="1" />		<!-- Big Horn -->
 	</pool>
 	<pool name="necropolis" doubletrouble="3750">
 		<boss id="27" weight="1" />		<!-- Carrion Queen -->
@@ -78,17 +77,20 @@
 		<boss id="41" weight="1" />		<!-- Daddy Long Legs -->
 		<boss id="42" weight="0.25" />	<!-- Triachnid -->
 		<boss id="46" weight="1" />		<!-- The Gate -->
+		<boss id="48" weight="1" />		<!-- The Cage -->
+		<boss id="68" weight="0.25" />	<!-- Sisters Vis -->
 		<boss id="51" weight="1" />		<!-- The Adversary -->
 		<boss id="67" weight="1" />		<!-- Rag Mega -->
-		<boss id="69" weight="1" />		<!-- Big Horn -->
 		<boss id="73" weight="1" />		<!-- The Pile -->
 	</pool>
 	<pool name="dank depths" doubletrouble="3750">
 		<boss id="4"  weight="0.5" />	<!-- Gurdy -->
+		<boss id="5"  weight="0.5" />	<!-- Monstro II -->
 		<boss id="19" weight="1.5" />	<!-- Gish -->
-		<boss id="48" weight="1" />		<!-- The Cage -->
-		<boss id="58" weight="1" />		<!-- Brownie -->
+		<boss id="15" weight="1" />		<!-- Loki -->
+		<boss id="48" weight="0.5" />	<!-- The Cage -->
 		<boss id="68" weight="1" />		<!-- Sisters Vis -->
+		<boss id="58" weight="1" />		<!-- Brownie -->
 		<boss id="67" weight="0.5" />	<!-- Rag Mega -->
 		<boss id="69" weight="0.5" />	<!-- Big Horn -->
 	</pool>
@@ -96,7 +98,7 @@
 		<boss id="7"  weight="1" />		<!-- Scolex -->
 		<boss id="31" weight="0.5" />	<!-- Lokii -->
 		<boss id="49" weight="1" />		<!-- Mama Gurdy -->
-		<boss id="101" weight="1" />	<!-- Horny Boys -->
+		<boss id="101" weight="0.5" />	<!-- Horny Boys -->
 	</pool>
 	<pool name="utero" doubletrouble="3800">
 		<boss id="7"  weight="0.5" />	<!-- Scolex -->
@@ -153,6 +155,7 @@
 		<boss id="102" weight="1" />	<!-- Clutch -->
 	</pool>
 	<pool name="mausoleum">
+		<boss id="51" weight="0.25" />	<!-- The Adversary -->
 		<boss id="67" weight="0.25" />	<!-- Rag Mega -->
 		<boss id="78" weight="0.5" />	<!-- The Visage -->
 		<boss id="79" weight="1" />		<!-- The Siren -->
@@ -160,7 +163,6 @@
 	</pool>
 	<pool name="gehenna">
 		<boss id="46" weight="0.25" />	<!-- The Gate -->
-		<boss id="51" weight="0.25" />	<!-- The Adversary -->
 		<boss id="68" weight="0.25" />	<!-- Sisters Vis -->
 		<boss id="78" weight="1" />		<!-- The Visage -->
 		<boss id="101" weight="1" />	<!-- Horny Boys -->

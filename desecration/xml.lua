@@ -60,6 +60,9 @@ function mod.ParseXMLNode(node)
 
 						if mod.XMLToTableVerifyCostume[xmlAttribute] then
 							attribute = Isaac.GetCostumeIdByPath(mod.XMLToTableVerifyCostume[xmlAttribute] .. attribute .. ".anm2")
+							if attribute <= -1 then
+								attribute = nil
+							end
 							shouldForceNoString = true
 							shouldForceNumber = true
 

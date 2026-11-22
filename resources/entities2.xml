@@ -1539,7 +1539,7 @@
         <gibs amount="6" blood="1" bone="0" eye="1" gut="1" large="0"/>
     	<devolve id="58.0.0" weight="1" />
 	</entity>
-    <entity anm2path="059.000_Fred.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="59" name="#FRED" numGridCollisionPoints="12" portrait="49" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="0">
+    <entity anm2path="059.000_Fred.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" gridCollision="walls" id="59" name="#FRED" numGridCollisionPoints="12" portrait="49" reroll="true" shadowSize="17" stageHP="0" tags="explosive_soul" variant="0" hasFloorAlts="true">
         <bestiary anim="Attack" transform="0,0,1"/>
         <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" sound_baby="1"/>
         <preload-snd id="72"/>
@@ -1575,7 +1575,7 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="61.0.0" weight="1" />
 	</entity>
-    <entity anm2path="062.000_Pin.anm2" baseHP="100" boss="1" bossID="37" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#PIN" numGridCollisionPoints="12" portrait="25" shadowSize="18" stageHP="0" variant="0" shieldStrength="1">
+    <entity anm2path="062.000_Pin.anm2" baseHP="100" boss="1" bossID="37" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#PIN" numGridCollisionPoints="12" portrait="25" shadowSize="18" stageHP="0" variant="0" shieldStrength="1" hasFloorAlts="true">
         <bestiary anim="Attack1" transform="0,-10,1"/>
         <gibs amount="2" blood="1" bone="0" eye="0" gut="1" large="1"/>
         <preload-snd id="117"/>
@@ -1583,7 +1583,7 @@
         <preload-snd id="64"/>
         <preload-snd id="66"/>
     </entity>
-    <entity anm2path="062.001_Scolex.anm2" baseHP="300" boss="1" bossID="7" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#SCOLEX" numGridCollisionPoints="12" portrait="26" shadowSize="18" stageHP="0" variant="1" shieldStrength="4">
+    <entity anm2path="062.001_Scolex.anm2" baseHP="300" boss="1" bossID="7" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#SCOLEX" numGridCollisionPoints="12" portrait="26" shadowSize="18" stageHP="0" variant="1" shieldStrength="4" hasFloorAlts="true">
         <bestiary anim="Attack1" transform="0,-10,1"/>
         <gibs amount="2" blood="1" bone="0" eye="0" gut="1" large="1"/>
         <preload-snd id="117"/>
@@ -1591,7 +1591,7 @@
         <preload-snd id="64"/>
         <preload-snd id="66"/>
     </entity>
-    <entity anm2path="062.002_TheFrail.anm2" baseHP="200" boss="1" bossID="66" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#THE_FRAIL" numGridCollisionPoints="12" portrait="87" shadowSize="18" stageHP="0" variant="2" shieldStrength="2">
+    <entity anm2path="062.002_TheFrail.anm2" baseHP="200" boss="1" bossID="66" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="62" name="#THE_FRAIL" numGridCollisionPoints="12" portrait="87" shadowSize="18" stageHP="0" variant="2" shieldStrength="2" hasFloorAlts="true">
         <bestiary anim="Attack1" transform="0,-10,1"/>
         <gibs amount="7" blood="0" bone="1" eye="0" gut="0" large="1"/>
         <preload-snd id="117"/>
@@ -2199,7 +2199,7 @@
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0" poop="1"/>
     	<devolve id="220.0.0" weight="1" />
 	</entity>
-    <entity anm2path="220.000_Cod Worm.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="100" collisionRadius="16" friction="1" id="221" name="#COD_WORM" numGridCollisionPoints="12" portrait="88" reroll="true" shadowSize="30" stageHP="0" variant="0">
+    <entity anm2path="220.000_Cod Worm.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="100" collisionRadius="16" friction="1" id="221" name="#COD_WORM" numGridCollisionPoints="12" portrait="88" reroll="true" shadowSize="30" stageHP="0" variant="0" hasFloorAlts="true">
         <bestiary anim="Idle" anm2path="220.000_Cod Worm (bestiary).anm2" transform="0,0,1"/>
         <gibs amount="8" blood="1" bone="0" eye="0" gut="1" large="0"/>
         <preload-snd id="2"/>
@@ -2414,7 +2414,7 @@
         <gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0"/>
     	<devolve id="10.1.0" weight="1" />
 	</entity>
-    <entity anm2path="253.000_PsyTumor.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" id="253" name="#PSY_TUMOR" numGridCollisionPoints="12" portrait="106" reroll="true" shadowSize="26" stageHP="0" tags="homing_soul" variant="0">
+    <entity anm2path="253.000_PsyTumor.anm2" baseHP="40" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" id="253" name="#PSY_TUMOR" numGridCollisionPoints="12" portrait="106" reroll="true" shadowSize="26" stageHP="0" tags="homing_soul" variant="0" hasFloorAlts="true">
         <bestiary anim="FloatDown" transform="0,0,1"/>
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="229.0.0" weight="1" />
@@ -2760,7 +2760,7 @@
     <entity anm2path="295.000_CornMine.anm2" baseHP="8" boss="0" champion="0" collisionDamage="0" collisionMass="80" collisionRadius="16" friction="1" id="295" name="#CORN_MINE" numGridCollisionPoints="12" portrait="198" shadowSize="0" shutdoors="false" stageHP="0" variant="0">
         <gibs amount="5" blood="0" bone="0" eye="0" gut="0" large="0" poop="1"/>
     </entity>
-    <entity anm2path="296.000_Hush Fly.anm2" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="9" friction="1" gridCollision="walls" id="296" name="#HUSH_FLY" numGridCollisionPoints="0" portrait="199" shadowSize="11" stageHP="0" tags="fly" variant="0">
+    <entity anm2path="296.000_Hush Fly.anm2" baseHP="2" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="9" friction="1" gridCollision="walls" id="296" name="#HUSH_FLY" numGridCollisionPoints="0" portrait="199" shadowSize="11" stageHP="0" tags="fly" variant="0">
         <bestiary anim="Fly" transform="0,0,1"/>
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="222.0.0" weight="1" />
@@ -3907,7 +3907,7 @@
         <preload-snd id="249"/>
     	<devolve id="227.0.0" weight="1" />
 	</entity>
-    <entity anm2path="229.001_Planetoid.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="229" name="#PLANETOID" numGridCollisionPoints="12" portrait="330" reroll="true" shadowSize="26" stageHP="4" variant="1">
+    <entity anm2path="229.001_Planetoid.anm2" baseHP="28" boss="0" champion="1" collisionDamage="1" collisionMass="22" collisionRadius="16" friction="1" gridCollision="walls" id="229" name="#PLANETOID" numGridCollisionPoints="12" portrait="330" reroll="true" shadowSize="26" stageHP="4" variant="1" hasFloorAlts="true">
         <bestiary anim="Float" transform="0,0,1"/>
         <gibs amount="5" blood="1" bone="0" eye="0" gut="0" large="0"/>
     	<devolve id="229.0.0" weight="1" />
@@ -4622,7 +4622,7 @@
         <gibs amount="5" blood="1" bone="1" eye="1" gut="1" large="0"/>
     	<devolve id="89.0.0" weight="1" />
 	</entity>
-    <entity anm2path="879.000_bloaty.anm2" baseHP="26" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="879" name="#BLOATY" numGridCollisionPoints="12" portrait="306" reroll="true" shadowSize="16" stageHP="0" variant="0">
+    <entity anm2path="879.000_bloaty.anm2" baseHP="26" boss="0" champion="1" collisionDamage="1" collisionMass="10" collisionRadius="13" friction="1" id="879" name="#BLOATY" numGridCollisionPoints="12" portrait="306" reroll="true" shadowSize="16" stageHP="0" variant="0" hasFloorAlts="true">
         <bestiary anim="WalkVert" transform="0,0,1"/>
         <gibs amount="16" blood="1" bone="1" eye="1" gut="1" large="0"/>
         <preload-snd id="167"/>

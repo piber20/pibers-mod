@@ -38,6 +38,10 @@ mod.AntibirthRooms = {
 	[StbType.CORPSE]=true
 }
 
+mod.AntibirthGreedRooms = {
+	[StbType.SPECIAL_ROOMS]=true
+}
+
 mod.AntibirthSharedRooms = {
 	[StbType.SPECIAL_ROOMS]={StbType.SPECIAL_ROOMS},
 	[StbType.BASEMENT]={StbType.BASEMENT,StbType.CELLAR,StbType.BURNING_BASEMENT},
@@ -144,6 +148,15 @@ mod.VanillaEditsGreedRooms = {
 	[StbType.BURNING_BASEMENT]=true,
 	[StbType.CAVES]=true,
 	[StbType.CATACOMBS]=true,
+	[StbType.FLOODED_CAVES]=true,
+	[StbType.DEPTHS]=true,
+	[StbType.NECROPOLIS]=true,
+	[StbType.DANK_DEPTHS]=true,
+	[StbType.WOMB]=true,
+	[StbType.UTERO]=true,
+	[StbType.SCARRED_WOMB]=true,
+	[StbType.SHEOL]=true,
+	[StbType.SHOP]=true,
 	[StbType.DOWNPOUR]=true,
 	[StbType.DROSS]=true,
 	[StbType.MINES]=true,
@@ -151,6 +164,10 @@ mod.VanillaEditsGreedRooms = {
 	[StbType.MAUSOLEUM]=true,
 	[StbType.GEHENNA]=true,
 	[StbType.CORPSE]=true
+}
+
+mod.SharedRooms = {
+	[StbType.SPECIAL_ROOMS]={StbType.SPECIAL_ROOMS},
 }
 
 function mod.OnModsLoadedRooms()
@@ -219,11 +236,24 @@ function mod.OnModsLoadedRooms()
 				if mod.AntibirthRooms[stageid] then
 					mod.LoadStbFromPath(stageid, 0, "antibirth/" .. filename)
 				end
+				if mod.AntibirthGreedRooms[stageid] then
+					mod.LoadStbFromPath(stageid, 1, "antibirth/greed/" .. filename)
+				end
+
 				if mod.VanillaEditsRooms[stageid] then
 					mod.LoadStbFromPath(stageid, 0, "vanillaedits/" .. filename)
 				end
 				if mod.VanillaEditsGreedRooms[stageid] then
 					mod.LoadStbFromPath(stageid, 1, "vanillaedits/greed/" .. filename)
+				end
+
+				if mod.SharedRooms[stageid] then
+					for _,sharedid in ipairs(mod.SharedRooms[stageid]) do
+						mod.LoadStbFromPath(sharedid, 0, filenameshared)
+					end
+					if stageid == StbType.SPECIAL_ROOMS then
+						mod.LoadStbFromPath(stageid, 1, filenameshared)
+					end
 				end
 
 				if RestoredMonsterPack then

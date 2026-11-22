@@ -17,11 +17,19 @@
 	<backdrop reftype="23" name="Womb Secret" gfx="07_the womb_secret.png"
 		walls="1" wallvariants="4" floors="1" floorvariants="6"
 		rocks		= "rocks_womb_secret.png"
+		props		= "Props_07_The Womb_secret.anm2"
 	/>
 	<backdrop reftype="14" name="Womb Challenge" gfx="07_the womb_challenge.png"
 		walls="1" wallvariants="4" floors="1" floorvariants="6"
 		nfloorgfx	= "07_the womb_challenge_nfloor.png"
 		rocks		= "rocks_womb_challenge.png"
+		props		= "Props_07_The Womb_challenge.anm2"
+	/>
+	<backdrop reftype="14" name="Womb Sacrifice" gfx="07_the womb_challenge.png"
+		walls="1" wallvariants="4" floors="1" floorvariants="6"
+		nfloorgfx	= "07_the womb_challenge_nfloor.png"
+		rocks		= "rocks_womb_challenge.png"
+		props		= "Props_07_The Womb_sacrifice.anm2"
 	/>
 
 </backdrops>

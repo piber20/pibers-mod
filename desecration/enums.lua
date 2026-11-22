@@ -1,5 +1,6 @@
 local mod = Desecration
 
+Music = Music or {}
 Music.MUSIC_DEATHMATCH = 119
 Music.NUM_MUSIC = 120
 
@@ -19,27 +20,33 @@ GeminiVariant.STEVEN_BABY = 11
 GeminiVariant.SUTURE_GHOST = 12
 GeminiVariant.CORD = 20
 
+BackdropType = BackdropType or {}
 BackdropType.RUNEROOM_SECRET = Isaac.GetBackdropIdByName("Rune Room Secret")
 BackdropType.BASEMENT_BOSS = Isaac.GetBackdropIdByName("Basement Boss")
 BackdropType.BABY_SHOP = Isaac.GetBackdropIdByName("Baby Shop")
 BackdropType.WOMB_SECRET = Isaac.GetBackdropIdByName("Womb Secret")
 BackdropType.WOMB_CHALLENGE = Isaac.GetBackdropIdByName("Womb Challenge")
+BackdropType.WOMB_SACRIFICE = Isaac.GetBackdropIdByName("Womb Sacrifice")
 
+HeartSubType = HeartSubType or {}
 HeartSubType.BLESSING = Isaac.GetEntitySubTypeByName("Blessing")
 
+EffectVariant = EffectVariant or {}
 EffectVariant.DESECRATION = Isaac.GetEntityVariantByName("Sticky Nickel Puddle")
-mod.Effects = {}
+EffectVariant.DESECRATION_FORCEBACKDROP = Isaac.GetEntityVariantByName("Force Backdrop Handler")
+
+mod.Effects = mod.Effects or {}
 mod.Effects.STICKY_NICKEL_PUDDLE = Isaac.GetEntitySubTypeByName("Sticky Nickel Puddle")
 mod.Effects.FAKE_WALL_HANDLER = Isaac.GetEntitySubTypeByName("Fake Wall Handler")
 
-EffectVariant.DESECRATION_FORCEBACKDROP = Isaac.GetEntityVariantByName("Force Backdrop Handler")
-
+EntityType = EntityType or {}
 EntityType.EFFECT_PROXY = Isaac.GetEntityTypeByName("Effect Proxy")
 EntityType.ENTITY_BLIND_BAT = 803
 EntityType.ENTITY_VESSEL = 858
 EntityType.BLIND_BAT = EntityType.ENTITY_BLIND_BAT
 EntityType.VESSEL = EntityType.ENTITY_VESSEL
 
+CollectibleType = CollectibleType or {}
 CollectibleType.MIXED_VEGGIES = Isaac.GetItemIdByName("Mixed Veggies")
 CollectibleType.BLOODY_FEATHER = Isaac.GetItemIdByName("Bloody Feather")
 CollectibleType.KEY_PIECE_COMPLETE = Isaac.GetItemIdByName("The Key")
@@ -50,8 +57,10 @@ CollectibleType.MYSTICAL_EGG = Isaac.GetItemIdByName("Mystical Egg")
 CollectibleType.FIRST_COLLECTIBLE_DESECRATION = CollectibleType.MIXED_VEGGIES
 CollectibleType.LAST_COLLECTIBLE_DESECRATION = CollectibleType.MYSTICAL_EGG
 
+TrinketType = TrinketType or {}
 TrinketType.ORTHODOX_CROSS = Isaac.GetTrinketIdByName("Orthodox Cross")
 
+ItemPoolType = ItemPoolType or {}
 ItemPoolType.VAULT = ItemPoolType.POOL_GOLDEN_CHEST
 ItemPoolType.CHEST_ROOM = ItemPoolType.POOL_GOLDEN_CHEST
 ItemPoolType.ARCADE = ItemPoolType.POOL_CRANE_GAME
@@ -89,8 +98,10 @@ ItemPoolType.TREASURE_MAUSOLEUM = Isaac.GetPoolIdByName("mausoleumTreasure")
 ItemPoolType.TREASURE_GEHENNA = Isaac.GetPoolIdByName("gehennaTreasure")
 ItemPoolType.TREASURE_CORPSE = Isaac.GetPoolIdByName("corpseTreasure")
 
+NullItemID = NullItemID or {}
 NullItemID.MAGGYS_HAIR_HAT = Isaac.GetNullItemIdByName("maggys hair for hats")
 
+Card = Card or {}
 Card.RUNE_ISAZ = Isaac.GetCardIdByName("Isaz")
 Card.RUNE_WUNJO = Isaac.GetCardIdByName("Wunjo")
 
@@ -98,8 +109,10 @@ CostumeID = CostumeID or {}
 CostumeID.PENTAGRAM_HORNS = Isaac.GetCostumeIdByPath("gfx/characters/051_Pentagram_Horns.anm2")
 CostumeID.BIRTHDAY_CAKE_CANDLE = Isaac.GetCostumeIdByPath("gfx/characters/desecration_birthdaycake_candle.anm2")
 
+BedSubType = BedSubType or {}
 BedSubType.BED_MOM = 10
 
+GridRooms = GridRooms or {}
 GridRooms.ROOM_FIRST_IDX = 0
 GridRooms.ROOM_LAST_IDX = 168
 GridRooms.WIDTH = 13
@@ -257,3 +270,7 @@ PickupSubType.NUM_PICKUPS = 35
 PickupSubType.CARD_SUIT_BLOODY = Isaac.GetEntitySubTypeByName("Bloody Suit Card")
 PickupSubType.CARD_CARD_QUESTION = Isaac.GetEntitySubTypeByName("Question Card")
 PickupSubType.CARD_RUNE_BLANK = Isaac.GetEntitySubTypeByName("Blank Rune")
+
+StbType = StbType or {}
+StbType.SHOP = 24
+StbType.ULTRA_GREED = 25

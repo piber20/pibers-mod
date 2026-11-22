@@ -187,13 +187,14 @@ function mod.TryPlaceRoom(roomConfig, index, dimension, rng, multipleDoors, spec
 	end
 end
 
-function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant, minDifficulty, maxDifficulty, attempts)
+function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, minVariant, minDifficulty, maxDifficulty, attempts, requireddoors)
 	local game = Game()
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 	attempts = attempts or 10
 	minDifficulty = minDifficulty or 1
 	maxDifficulty = maxDifficulty or 10
+	requireddoors = requireddoors or 0
 	if minDifficulty == 1 and game:IsHardMode() then
 		if rng:GetSeed() % 8 ~= 0 then
 			minDifficulty = 2
@@ -206,7 +207,7 @@ function mod.TryPlaceRandomRoom(index, dimension, rng, multipleDoors, specialNei
 		maxDifficulty = 20
 	end
 	for i=0, attempts do
-		local roomConfig = mod.GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant, minDifficulty, maxDifficulty)
+		local roomConfig = mod.GetRandomRoomForCurrentStage(rng, false, RoomType.ROOM_DEFAULT, -1, -1, 0, minVariant, minDifficulty, maxDifficulty, requireddoors)
 		local roomDesc = mod.TryPlaceRoom(roomConfig, index, dimension, rng, multipleDoors, specialNeighbors, noNeighbors, math.min(attempts,10))
 		if roomDesc then
 			return roomDesc

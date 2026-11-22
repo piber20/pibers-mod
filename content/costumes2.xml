@@ -1,8 +1,8 @@
 <costumes anm2root="gfx/characters/">
 
 	<!-- Collectible Costumes -->
-	<costume id="4" type="passive" anm2path="pibersmod_counterfeitdollar.anm2" />
-	<costume id="5" type="passive" anm2path="pibersmod_birthdaycake.anm2"
+	<costume id="4" type="passive" anm2path="desecration_counterfeitdollar.anm2" />
+	<costume id="5" type="passive" anm2path="desecration_birthdaycake.anm2"
 		  hasSkinAlt="true"
 	/>
 
@@ -11,6 +11,6 @@
 		  priority="99"
 	/>
 	<costume id="1" type="none" anm2path="051_Pentagram_Horns.anm2" />
-	<costume id="2" type="none" anm2path="pibersmod_birthdaycake_candle.anm2" />
+	<costume id="2" type="none" anm2path="desecration_birthdaycake_candle.anm2" />
 
 </costumes>

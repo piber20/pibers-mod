@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <rooms>
-	<room variant="0" name="Gehenna" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.1">
+	<room variant="0" name="Gehenna" type="1" subtype="0" shape="4" width="13" height="14" difficulty="1" weight="0.01">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="-1" y="10"/>
 		<door exists="True" x="6" y="-1"/>

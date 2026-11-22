@@ -199,6 +199,7 @@
 	<backdrop id="22" gfx="0D_BarrenRoom.png" walls="1" wallvariants="3" floors="1" floorvariants="6" />
 	<backdrop id="23" gfx="0F_SecretRoom.png" walls="1" wallvariants="6" floors="1" floorvariants="6"
 		nfloorgfx	= "0F_SecretRoom_nfloor.png"
+		props		= "props_03x_mines.anm2"
 		rocks		= "rocks_secretroom.png"
 		holeinwall	= "door_08_holeinwall_secret.png"
 	/>

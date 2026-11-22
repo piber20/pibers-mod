@@ -4,10 +4,11 @@
         <Spritesheets>
             <Spritesheet Id="0" Path="bosses/classic/boss_062_scolex.png"/>
             <Spritesheet Id="1" Path="bosses/classic/boss_062_scolex_lighting.png"/>
+            <Spritesheet Id="2" Path="bosses/classic/boss_062_scolex_dirt.png"/>
         </Spritesheets>
         <Layers>
             <Layer Id="0" Name="body" SpritesheetId="0"/>
-            <Layer Id="1" Name="dirt" SpritesheetId="0"/>
+            <Layer Id="1" Name="dirt" SpritesheetId="2"/>
             <Layer Id="2" Name="weakpoint" SpritesheetId="0"/>
             <Layer Id="3" Name="*lighting" SpritesheetId="1"/>
         </Layers>

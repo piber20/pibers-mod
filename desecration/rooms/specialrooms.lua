@@ -19,6 +19,7 @@ mod.ForceBackdropSubTypes[102] = BackdropType.BASEMENT_BOSS
 mod.ForceBackdropSubTypes[103] = BackdropType.BABY_SHOP
 mod.ForceBackdropSubTypes[104] = BackdropType.WOMB_SECRET
 mod.ForceBackdropSubTypes[105] = BackdropType.WOMB_CHALLENGE
+mod.ForceBackdropSubTypes[106] = BackdropType.WOMB_SACRIFICE
 function mod.OnNewRoomSpecialRooms()
 	local game = Game()
 	local level = game:GetLevel()
@@ -82,6 +83,9 @@ function mod.OnNewRoomSpecialRooms()
 		end
 		if backdropType == BackdropType.SECRET then
 			room:SetBackdropType(BackdropType.WOMB_SECRET, 1)
+		end
+		if backdropType == BackdropType.SACRIFICE then
+			room:SetBackdropType(BackdropType.WOMB_SACRIFICE, 1)
 		end
 	end
 

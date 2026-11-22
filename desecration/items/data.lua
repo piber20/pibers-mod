@@ -182,14 +182,14 @@ mod.AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.PostAddHatCollectible)
 mod.ExtraCostumes = {}
 mod.ExtraCostumes[CollectibleType.COLLECTIBLE_PENTAGRAM] = CostumeID.PENTAGRAM_HORNS
 function mod.PostAddCostumeForExtras(itemconfig, player, itemstateonly)
-	if mod.ExtraCostumes[itemconfig.ID] then
+	if mod.ExtraCostumes[itemconfig.ID] and mod.ExtraCostumes[itemconfig.ID] >= 0 then
 		player:AddNullCostume(mod.ExtraCostumes[itemconfig.ID])
 	end
 end
 mod.AddCallback(ModCallbacks.MC_POST_PLAYER_ADD_COSTUME, mod.PostAddCostumeForExtras)
 
 function mod.PostRemoveCostumeForExtras(itemconfig, player, itemstateonly)
-	if mod.ExtraCostumes[itemconfig.ID] then
+	if mod.ExtraCostumes[itemconfig.ID] and mod.ExtraCostumes[itemconfig.ID] >= 0 then
 		player:TryRemoveNullCostume(mod.ExtraCostumes[itemconfig.ID])
 	end
 end
@@ -201,7 +201,6 @@ mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_DESSERT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BREAKFAST] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_ROTTEN_MEAT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD] = true
-mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_PACT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_DEAD_CAT] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_GUPPYS_HEAD] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS] = true
@@ -210,7 +209,6 @@ mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_RED_CANDLE] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BUCKET_OF_LARD] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_BLACK_CANDLE] = true
 mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_PROPTOSIS] = true
-mod.CollectibleHasAltFrame[CollectibleType.COLLECTIBLE_SERPENTS_KISS] = true
 mod.CollectibleHasAnim = {}
 mod.CollectibleHasAnim[CollectibleType.COLLECTIBLE_SKELETON_KEY] = true
 function mod.OnCollectibleUpdateSprite(pickup)

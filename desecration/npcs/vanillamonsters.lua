@@ -28,6 +28,10 @@ function mod.onRoomEntitySpawnReplacements(spawntype, spawnvariant, spawnsubtype
 	if spawntype == EntityType.VESSEL and RestoredMonsterPack and RestoredMonsterPack.ENTITY_INFO and RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH then
 		return {RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.ID, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.VARIANT, RestoredMonsterPack.ENTITY_INFO.VESSEL_ANTIBIRTH.SUBTYPE}
 	end
+	if spawntype == EntityType.ENTITY_SHOPKEEPER and spawnsubtype == 131 then
+		Game():GetRoom():SpawnGridEntity(gridindex, GridEntityType.GRID_PIT, nil, seed)
+		return {spawntype, spawnvariant, 0}
+	end
 end
 mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, mod.onRoomEntitySpawnReplacements)
 
@@ -306,6 +310,16 @@ function mod.onHushGaperUpdate(npc)
 				data.ReplacedSprite = true
 			end
 		end
+		local sprite = npc:GetSprite()
+		if sprite:IsPlaying("WalkVertAppear") then
+			for _, pitfall in ipairs(Isaac.FindByType(EntityType.ENTITY_PITFALL, -1, -1, true)) do
+				if pitfall.Position:Distance(npc.Position) <= 30 then
+					sprite:Play("JumpOut")
+					sprite:PlayOverlay("JumpOut")
+					break
+				end
+			end
+		end
 	end
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onHushGaperUpdate, EntityType.ENTITY_HUSH_GAPER)
@@ -352,3 +366,12 @@ function mod.onEmbryoUpdate(npc)
 	end
 end
 mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onEmbryoUpdate, EntityType.ENTITY_EMBRYO)
+
+function mod.onDeathsHeadUpdate(npc)
+	if npc.Variant == 1 then
+		if npc.State == NpcState.STATE_MOVE and npc.FrameCount % 5 == 1 then
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_BLACK, 0, npc.Position+npc.Velocity, Vector.Zero, npc)
+		end
+	end
+end
+mod.AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.onDeathsHeadUpdate, EntityType.ENTITY_DEATHS_HEAD)
