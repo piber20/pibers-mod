@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stringtable>
+	<info version="1.0" rgon_sta_version="0"/>
+	<languages>
+		<language id="21" index="0" name="Key"/>
+		<language id="0" index="1" name="English"/>
+		<language id="2" index="2" name="Japanese"/>
+		<language id="11" index="3" name="Korean"/>
+		<language id="13" index="4" name="Chinese (Simple)"/>
+		<language id="10" index="5" name="Russian"/>
+		<language id="5" index="6" name="German"/>
+		<language id="4" index="7" name="Spanish"/>
+		<language id="3" index="8" name="French"/>
+	</languages>
+
+	<category name="Items">
+		<key name="D12_DESCRIPTION">
+			<string>Reroll your playground</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="SCHOOLBAG_DESCRIPTION">
+			<string>More active item room</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="THE_STAIRWAY_NAME">
+			<string>Stairway to Heaven</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="VOODOO_HEAD_DESCRIPTION">
+			<string>More curse rooms</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="ACT_OF_CONTRITION_DESCRIPTION">
+			<string>Tears up, all is forgiven</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="FREEZER_BABY_DESCRIPTION">
+			<string>Cool friend</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+		<key name="M_DESCRIPTION">
+			<string>t's broken9Reroll your dest       </string>
+			<string>壊れ®廷いｍス。運ｍネイを切®開く       </string>
+			<string>ㅏㅇ가졋네9목적지리롤ㄱ       </string>
+			<string>坏了9重置你的命       </string>
+			<string>н слома9Перевени вою суд       </string>
+			<string>st kaputt9Würfle dein Schicks       </string>
+			<string>Es't roto6ambi tu dest       </string>
+			<string>st cassée9Relance le d       </string>
+		</key>
+	</category>
+	<category name="Entities">
+		<key name="LIL_BLUB">
+			<string>Beelzeblub</string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string></string>
+		</key>
+	</category>
+</stringtable>
